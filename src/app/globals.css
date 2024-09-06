@@ -3,23 +3,19 @@
 @tailwind utilities;
 
 :root {
-  /* Default Dark Theme */
+  --main: #FFFFFF;
+  --secondary: #F0F0F0;
+  --accent: #F2C32F;
+  --dark: #E5E5E5;
+  --text: #26262b;
+}
+
+.dark {
   --main: #34353A;
   --secondary: #3C3E43;
   --accent: #F1BE6C;
   --dark: #26262b;
   --text: #E5E5E5;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    /* Light Theme */
-    --main: #FFFFFF;
-    --secondary: #F0F0F0;
-    --accent: #F2C32F;
-    --dark: #E5E5E5;
-    --text: #26262b;
-  }
 }
 
 body {
