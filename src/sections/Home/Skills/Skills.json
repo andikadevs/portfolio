@@ -1,0 +1,20 @@
+[
+    { "src": "/assets/static/img/Icons/git.svg", "alt": "Git", "url": "https://git-scm.com/" },
+    { "src": "/assets/static/img/Icons/bootstrap.svg", "alt": "Bootstrap", "url": "https://getbootstrap.com/" },
+    { "src": "/assets/static/img/Icons/chakra.svg", "alt": "Chakra UI", "url": "https://chakra-ui.com/" },
+    { "src": "/assets/static/img/Icons/docker.svg", "alt": "Docker", "url": "https://www.docker.com/" },
+    { "src": "/assets/static/img/Icons/express.svg", "alt": "Express.js", "url": "https://expressjs.com/" },
+    { "src": "/assets/static/img/Icons/figma.svg", "alt": "Figma", "url": "https://www.figma.com/" },
+    { "src": "/assets/static/img/Icons/github.svg", "alt": "GitHub", "url": "https://github.com/" },
+    { "src": "/assets/static/img/Icons/javascript.svg", "alt": "JavaScript", "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+    { "src": "/assets/static/img/Icons/mysql.svg", "alt": "MySQL", "url": "https://www.mysql.com/" },
+    { "src": "/assets/static/img/Icons/react.svg", "alt": "React", "url": "https://reactjs.org/" },
+    { "src": "/assets/static/img/Icons/tailwind.svg", "alt": "Tailwind CSS", "url": "https://tailwindcss.com/" },
+    { "src": "/assets/static/img/Icons/csharp.svg", "alt": "C#", "url": "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+    { "src": "/assets/static/img/Icons/laravel.svg", "alt": "Laravel", "url": "https://laravel.com/" },
+    { "src": "/assets/static/img/Icons/php.svg", "alt": "PHP", "url": "https://www.php.net/" },
+    { "src": "/assets/static/img/Icons/sql-server.svg", "alt": "SQL Server", "url": "https://www.microsoft.com/en-us/sql-server" },
+    { "src": "/assets/static/img/Icons/nginx.svg", "alt": "Nginx", "url": "https://nginx.org/" },
+    { "src": "/assets/static/img/Icons/nodejs.svg", "alt": "Node.js", "url": "https://nodejs.org/" },
+    { "src": "/assets/static/img/Icons/net.svg", "alt": ".NET", "url": "https://dotnet.microsoft.com/" }
+]
