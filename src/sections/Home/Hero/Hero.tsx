@@ -2,7 +2,7 @@ import { HeroImage, SosmedChain } from '@/components/Home';
 import { Typing } from '@/components/Global'; 
 
 export const Hero = () => {
-  const typingTexts = ['Web Developer', 'Software Engineer', 'Determined Learner'];
+  const whatIam = ['Web Developer', 'Software Engineer', 'Determined Learner'];
 
   return (
     <div className='relative bg-main min-h-screen w-full'>
@@ -17,7 +17,7 @@ export const Hero = () => {
           </h1>
           <h2 className='text-center text-accent text-xl'>
             {`I’m `}
-            <Typing texts={typingTexts} />
+            <Typing texts={whatIam} />
           </h2>
         </div>
         <div className='p-4'>
