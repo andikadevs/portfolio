@@ -37,7 +37,7 @@ export const Title: React.FC<TitleProps> = ({ title, description = '', className
         <span dangerouslySetInnerHTML={createMarkup(formattedTitle)} />
       </h2>
       {description && (
-        <p className='text-text'>
+        <p className='text-text text-center'>
           <span dangerouslySetInnerHTML={createMarkup(formattedDescription)} />
         </p>
       )}
