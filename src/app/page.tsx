@@ -1,10 +1,11 @@
-import { About, Hero } from "@/sections/Home";
+import { About, Compaines, Hero } from "@/sections/Home";
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-main">
       <Hero/>
       <About/>
+      <Compaines/>
     </main>
   );
 }
