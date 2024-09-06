@@ -36,7 +36,7 @@ export const Profile: React.FC<ProfileProps> = ({ src, alt }) => {
         className="absolute border-2 border-dashed border-text"
         style={{
           left: '11%',
-          top: '30px',
+          top: '24px',
           width: imageSize.width,
           height: imageSize.height, 
         }}
