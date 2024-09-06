@@ -14,7 +14,7 @@ export const AboutTabs = () => {
   ];
 
   return (
-    <div className="bg-secondary w-full p-2">
+    <div className="bg-secondary w-full p-2 min-h-[500px]">
       <Tabs 
         tabs={tabs} 
         contentRenderer={(activeTab: string) => 

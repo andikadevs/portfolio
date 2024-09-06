@@ -25,7 +25,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, contentRenderer }) => {
         {tabs.map((tab) => (
           <button
             key={tab.name}
-            className={`p-2 font-medium flex-1 flex items-center justify-center gap-2 border border-accent 
+            className={`p-2 font-normal text-sm flex-1 flex items-center justify-center gap-2 border border-accent 
               transition duration-300 ease-in-out
               hover:bg-accent hover:text-secondary 
               ${activeTab === tab.name ? 'bg-accent text-main' : 'bg-transparent text-text'}`}
@@ -36,7 +36,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, contentRenderer }) => {
         ))}
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 min-h-[300px]">
         {contentRenderer ? contentRenderer(activeTab) : <p>No content renderer provided.</p>}
       </div>
     </div>
