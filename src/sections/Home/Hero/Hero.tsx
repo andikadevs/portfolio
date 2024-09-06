@@ -12,7 +12,7 @@ export const Hero = () => {
 
       <div className="relative h-screen grid grid-cols-1 md:grid-cols-2 w-full z-[1]">
         <div className='pl-12 flex w-full flex-col items-start justify-center'>
-          <h1 className='text-center text-accent text-5xl border-b-2 border-accent'>
+          <h1 className='text-center text-accent text-3xl md:text-4xl lg:text-5xl border-b-2 border-accent'>
             Andika Dwi Saputra
           </h1>
           <h2 className='text-center text-accent text-xl'>
