@@ -1,20 +1,182 @@
 [
-    { "src": "/assets/static/img/Icons/git.svg", "alt": "Git", "url": "https://git-scm.com/" },
-    { "src": "/assets/static/img/Icons/bootstrap.svg", "alt": "Bootstrap", "url": "https://getbootstrap.com/" },
-    { "src": "/assets/static/img/Icons/chakra.svg", "alt": "Chakra UI", "url": "https://chakra-ui.com/" },
-    { "src": "/assets/static/img/Icons/docker.svg", "alt": "Docker", "url": "https://www.docker.com/" },
-    { "src": "/assets/static/img/Icons/express.svg", "alt": "Express.js", "url": "https://expressjs.com/" },
-    { "src": "/assets/static/img/Icons/figma.svg", "alt": "Figma", "url": "https://www.figma.com/" },
-    { "src": "/assets/static/img/Icons/github.svg", "alt": "GitHub", "url": "https://github.com/" },
-    { "src": "/assets/static/img/Icons/javascript.svg", "alt": "JavaScript", "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-    { "src": "/assets/static/img/Icons/mysql.svg", "alt": "MySQL", "url": "https://www.mysql.com/" },
-    { "src": "/assets/static/img/Icons/react.svg", "alt": "React", "url": "https://reactjs.org/" },
-    { "src": "/assets/static/img/Icons/tailwind.svg", "alt": "Tailwind CSS", "url": "https://tailwindcss.com/" },
-    { "src": "/assets/static/img/Icons/csharp.svg", "alt": "C#", "url": "https://learn.microsoft.com/en-us/dotnet/csharp/" },
-    { "src": "/assets/static/img/Icons/laravel.svg", "alt": "Laravel", "url": "https://laravel.com/" },
-    { "src": "/assets/static/img/Icons/php.svg", "alt": "PHP", "url": "https://www.php.net/" },
-    { "src": "/assets/static/img/Icons/sql-server.svg", "alt": "SQL Server", "url": "https://www.microsoft.com/en-us/sql-server" },
-    { "src": "/assets/static/img/Icons/nginx.svg", "alt": "Nginx", "url": "https://nginx.org/" },
-    { "src": "/assets/static/img/Icons/nodejs.svg", "alt": "Node.js", "url": "https://nodejs.org/" },
-    { "src": "/assets/static/img/Icons/net.svg", "alt": ".NET", "url": "https://dotnet.microsoft.com/" }
+    {
+        "src": "/assets/static/img/Icons/git.svg",
+        "alt": "Git",
+        "url": "https://git-scm.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/github.svg",
+        "alt": "GitHub",
+        "url": "https://github.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/figma.svg",
+        "alt": "Figma",
+        "url": "https://www.figma.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/bootstrap.svg",
+        "alt": "Bootstrap",
+        "url": "https://getbootstrap.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/chakra.svg",
+        "alt": "Chakra UI",
+        "url": "https://chakra-ui.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/react.svg",
+        "alt": "React",
+        "url": "https://reactjs.org/",
+        "animation": "rotate"
+    },
+    {
+        "src": "/assets/static/img/Icons/tailwind.svg",
+        "alt": "Tailwind CSS",
+        "url": "https://tailwindcss.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/nodejs.svg",
+        "alt": "Node.js",
+        "url": "https://nodejs.org/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/express.svg",
+        "alt": "Express.js",
+        "url": "https://expressjs.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/laravel.svg",
+        "alt": "Laravel",
+        "url": "https://laravel.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/php.svg",
+        "alt": "PHP",
+        "url": "https://www.php.net/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/csharp.svg",
+        "alt": "C#",
+        "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/docker.svg",
+        "alt": "Docker",
+        "url": "https://www.docker.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/mysql.svg",
+        "alt": "MySQL",
+        "url": "https://www.mysql.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/sql-server.svg",
+        "alt": "SQL Server",
+        "url": "https://www.microsoft.com/en-us/sql-server",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/nginx.svg",
+        "alt": "Nginx",
+        "url": "https://nginx.org/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/alpinejs.svg",
+        "alt": "AlpineJS",
+        "url": "https://alpinejs.dev/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/apache.svg",
+        "alt": "Apache",
+        "url": "https://httpd.apache.org/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/canva.svg",
+        "alt": "Canva",
+        "url": "https://www.canva.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/javascript.svg",
+        "alt": "JavaScript",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/html.svg",
+        "alt": "HTML",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/css.svg",
+        "alt": "CSS",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/jquery.svg",
+        "alt": "JQuery",
+        "url": "https://jquery.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/linux.svg",
+        "alt": "Linux",
+        "url": "https://www.linux.org/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/livewire.svg",
+        "alt": "Livewire",
+        "url": "https://laravel-livewire.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/material-ui.svg",
+        "alt": "MaterialUI",
+        "url": "https://mui.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/unity.svg",
+        "alt": "Unity",
+        "url": "https://unity.com/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/next.svg",
+        "alt": "Next JS",
+        "url": "https://nextjs.org/",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/photoshop.svg",
+        "alt": "Photoshop",
+        "url": "https://www.adobe.com/products/photoshop.html",
+        "animation": "static"
+    },
+    {
+        "src": "/assets/static/img/Icons/net.svg",
+        "alt": ".NET",
+        "url": "https://dotnet.microsoft.com/",
+        "animation": "static"
+    }
 ]
