@@ -1,5 +1,6 @@
-import { ListsInterface } from "./ListsInterface";
+import { ListsInterface } from './ListsInterface';
 
 export interface ListsProps {
-    items: ListsInterface[];
+  items: ListsInterface[];
+  iconPosition?: 'left' | 'right';
 }
