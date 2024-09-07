@@ -1,4 +1,4 @@
-import { About, Compaines, Education, Hero, Skills } from "@/sections/Home";
+import { About, Compaines, Education, Experience, Hero, Skills } from "@/sections/Home";
 
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
       <Compaines/>
       <Skills/>
       <Education/>
+      <Experience/>
     </main>
   );
 }
