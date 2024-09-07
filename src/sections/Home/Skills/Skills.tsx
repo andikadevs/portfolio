@@ -5,10 +5,10 @@ import { Title } from '@/components/Global';
 import Image from 'next/image';
 import React from 'react';
 import skillsData from './skills.json'; 
-import { Skill } from './Skills';
+import { SkillsInterface } from './SkillsInterface';
 import { MdArrowUpward, MdArrowDownward } from 'react-icons/md';
 
-const skills: Skill[] = skillsData;
+const skills: SkillsInterface[] = skillsData;
 
 export const Skills: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
@@ -36,7 +36,7 @@ export const Skills: React.FC = () => {
         ))}
       </div>
       {skills.length > 12 && (
-        <div className='text-center mt-8 flex justify-center'>
+      <div className='text-center mt-8 flex justify-center'>
           <button
             onClick={() => setShowAll(!showAll)}
             className='bg-secondary text-accent px-6 py-3 rounded shadow-lg hover:text-secondary hover:bg-accent transition duration-300 ease-in-out flex items-center justify-center'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Lists } from '@/components/Global';
-import items from './Items.json'
+import items from './Items.json';
 
 export const Education: React.FC = () => {
   return (
@@ -13,7 +13,11 @@ export const Education: React.FC = () => {
         <Lists items={items} />
 
         <div className="flex items-center justify-center">
-          <img src="assets/static/img/Icons/react.svg" alt="ReactJS" className='h-[200px]'/>
+          <img 
+            src="assets/static/img/Icons/react.svg" 
+            alt="ReactJS" 
+            className='h-[200px] animate-rotate' // Apply the rotation animation class here
+          />
         </div>
       </div>
     </div>

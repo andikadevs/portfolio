@@ -18,13 +18,18 @@ const config: Config = {
         text: "var(--text)",
       },
       animation: {
-        "loop-scroll": "loop-scroll 50s linear infinite"
+        "loop-scroll": "loop-scroll 50s linear infinite",
+        "rotate": 'rotate 6s linear infinite',
       },
       keyframes: {
         "loop-scroll": {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-100%)" }
-        }
+        },
+        "rotate": {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
       }
     },
   },
