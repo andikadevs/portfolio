@@ -5,9 +5,9 @@ import data from './Portfolio.json'
 
 export const Portfolio: React.FC = () => {
   return (
-    <div className='bg-main h-auto w-full px-6 pb-20'>
+    <div className='bg-main h-auto w-full px-0 md:px-10 pb-20'>
       <Title
-        title='Portfolio'
+        title='Excellent [Portfolio]'
         description='Check out my wonderful [projects] & [achievements] that I have built throughout my journey!'
         className='mb-6'
       />
