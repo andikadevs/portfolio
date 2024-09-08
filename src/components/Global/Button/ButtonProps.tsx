@@ -5,5 +5,6 @@ export interface ButtonProps {
     className?: string;
     children: ReactNode;
     disabled?: boolean;
-    variant?: 'outline' | 'fill';
+    variant?: 'outline' | 'fill' | 'disabled';
+    size?: 'md' | 'sm';
 }
