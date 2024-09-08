@@ -39,6 +39,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({ imgSrc, title, des
                   alt={`${item} Icon`}
                   layout='fill'
                   objectFit='contain'
+                  className={item.toLowerCase() === 'react' ? 'animate-rotate' : ''}
                 />
               </div>
             ))}
