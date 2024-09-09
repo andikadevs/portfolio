@@ -1,12 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
-import { markupAccents } from '@/utils/Global'; 
+import { markupAccents } from '@/utils/Global';
 import { PortfolioCardProps } from './PortfolioCardPropsInterface';
 import { Button } from '@/components/Global';
 import { FaChrome } from 'react-icons/fa';
 import { BsSlashCircle } from 'react-icons/bs';
 
-export const PortfolioCard: React.FC<PortfolioCardProps> = ({ imgSrc, title, description, stacks, url }) => {
+export const PortfolioCard: React.FC<PortfolioCardProps> = ({
+  imgSrc,
+  title,
+  description,
+  stacks,
+  url,
+  onClick
+}) => {
   return (
     <div className='bg-secondary shadow-xl rounded-lg overflow-hidden flex flex-col p-3'>
       <div className='relative w-full' style={{ paddingTop: '56.25%' }}>
@@ -16,7 +23,8 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({ imgSrc, title, des
           alt={title}
           layout='fill'
           objectFit='contain'
-          className='absolute top-0 left-0'
+          className='absolute top-0 left-0 cursor-pointer'
+          onClick={() => onClick()} 
         />
       </div>
       <div className='flex-1 text-text flex flex-col justify-between'>

@@ -40,3 +40,19 @@ body {
   -ms-overflow-style: none;  
   scrollbar-width: none;
 }
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-item {
+  flex: 0 0 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+}

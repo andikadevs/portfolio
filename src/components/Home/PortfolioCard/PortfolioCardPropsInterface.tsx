@@ -4,4 +4,6 @@ export interface PortfolioCardProps {
     description: string;
     stacks: string[];
     url: string;
-}
+    onClick: () => void;
+  }
+  
