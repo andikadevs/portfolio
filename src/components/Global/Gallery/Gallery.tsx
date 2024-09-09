@@ -19,7 +19,7 @@ export const Gallery: React.FC<GalleryProps> = ({
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
       <button
         onClick={onClose}
-        className="absolute top-2 right-4 text-white text-3xl rounded-full"
+        className="absolute top-2 right-4 text-white text-3xl"
       >
         &times;
       </button>
@@ -37,12 +37,12 @@ export const Gallery: React.FC<GalleryProps> = ({
         <BiChevronRight />
       </button>
 
-      <div className="relative bg-secondary p-4 shadow-xl rounded-lg max-w-[80vw]">
+      <div className="relative bg-secondary p-4 shadow-xl max-w-[80vw]">
         <div className="overflow-hidden mb-4">
           <img
             src={images[currentIndex]}
             alt={`Slide ${currentIndex}`}
-            className="w-full h-auto rounded-md"
+            className="w-full h-auto"
           />
         </div>
         <div className="text-white mt-4">

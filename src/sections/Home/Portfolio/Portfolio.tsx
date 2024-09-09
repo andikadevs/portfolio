@@ -7,10 +7,10 @@ import data from './Portfolio.json';
 
 export const Portfolio: React.FC = () => {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const [descriptions, setDescriptions] = useState<string[]>([]);
-  const [titles, setTitles] = useState<string[]>([]);
+  const [descriptions, setDescriptions]     = useState<string[]>([]);
+  const [titles, setTitles]                 = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen]   = useState<boolean>(false);
 
   const handleImageClick = (images: string[], index: number) => {
     setSelectedImages(images);

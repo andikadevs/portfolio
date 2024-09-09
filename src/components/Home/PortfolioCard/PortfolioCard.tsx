@@ -15,7 +15,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
   onClick
 }) => {
   return (
-    <div className='bg-secondary shadow-xl rounded-lg overflow-hidden flex flex-col p-3'>
+    <div className='bg-secondary shadow-xl overflow-hidden flex flex-col p-3 pt-1'>
       <div className='relative w-full' style={{ paddingTop: '56.25%' }}>
         <Image
           loading='lazy'
