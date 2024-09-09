@@ -21,12 +21,18 @@ export const Portfolio: React.FC = () => {
   };
 
   return (
-    <div className='bg-main h-auto w-full px-0 md:px-10 pb-20'>
+    <div className='bg-main h-auto w-full px-4 md:px-10 pb-20'>
       <Title 
         title='Excellent [Portfolio]'
         description='Check out my wonderful [projects] & [achievements] that I have built throughout my journey!'
       />
-      <div className='grid gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3'>
+
+      <h4 className='relative text-2xl text-text mb-4'>
+        Projects
+        <div className="border-b-[3px] border-accent w-[80px]"></div>
+      </h4>
+
+      <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3'>
         {data.map((project, index) => (
           <PortfolioCard
             key={project.title}
