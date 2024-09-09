@@ -11,6 +11,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({ imgSrc, title, des
     <div className='bg-secondary shadow-xl rounded-lg overflow-hidden flex flex-col p-3'>
       <div className='relative w-full' style={{ paddingTop: '56.25%' }}>
         <Image
+          loading='lazy'
           src={imgSrc}
           alt={title}
           layout='fill'
