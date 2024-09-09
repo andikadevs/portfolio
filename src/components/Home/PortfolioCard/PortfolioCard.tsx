@@ -30,7 +30,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
       <div className='flex-1 text-text flex flex-col justify-between'>
         <div>
           <h3
-            className='text-xl mb-2 border-b border-accent'
+            className='text-xl mb-2 pb-1 border-b border-accent'
             dangerouslySetInnerHTML={{ __html: markupAccents(title) }}
           />
           <p

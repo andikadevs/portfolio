@@ -27,7 +27,7 @@ export const Portfolio: React.FC = () => {
         description='Check out my wonderful [projects] & [achievements] that I have built throughout my journey!'
       />
 
-      <h4 className='relative text-2xl text-text mb-4'>
+      <h4 className='relative text-3xl text-text mb-4'>
         Projects
         <div className="border-b-[3px] border-accent w-[80px]"></div>
       </h4>
