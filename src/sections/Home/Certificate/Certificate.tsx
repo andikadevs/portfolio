@@ -1,6 +1,6 @@
 export const Certificate: React.FC = () => {
   return (
-    <div className='bg-secondary relative h-auto w-full p-4 md:px-10 pb-20'>
+    <div className='bg-secondary relative h-auto w-full p-4 md:px-10 pb-20 shadow-xl'>
       <h4 className='relative text-3xl text-text mb-4'>
         Certificates
         <div className="border-b-[3px] border-accent w-[80px]"></div>
