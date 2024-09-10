@@ -1,12 +1,10 @@
-'use client'
-
-import ReactParticles , { initParticlesEngine } from "@tsparticles/react";
+/* eslint-disable */
+import ReactParticles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
 import { Engine } from "@tsparticles/engine";
 
 export const Particles = (props: { id: string | undefined; }) => {
-
   const [init, setInit] = useState(false);
   console.log(init);
 
@@ -93,6 +91,7 @@ export const Particles = (props: { id: string | undefined; }) => {
     }),
     [],
   );
-  
-  return <ReactParticles id={props.id} init={particlesLoaded} options={options} />; 
+
+  return <ReactParticles id={props.id} init={particlesLoaded} options={options} />;
 };
+/* eslint-enable */
