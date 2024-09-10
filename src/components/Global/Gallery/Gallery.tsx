@@ -26,13 +26,13 @@ export const Gallery: React.FC<GalleryProps> = ({
 
       <button
         onClick={onPrev}
-        className="absolute text-3xl left-[5vw] top-1/2 transform -translate-y-1/2 text-white"
+        className="absolute text-3xl left-[10px] top-1/2 transform -translate-y-1/2 text-white"
       >
         <BiChevronLeft />
       </button>
       <button
         onClick={onNext}
-        className="absolute text-3xl right-[5vw] top-1/2 transform -translate-y-1/2 text-white"
+        className="absolute text-3xl right-[10px] top-1/2 transform -translate-y-1/2 text-white"
       >
         <BiChevronRight />
       </button>
@@ -46,7 +46,10 @@ export const Gallery: React.FC<GalleryProps> = ({
           />
         </div>
         <div className="text-white mt-4">
-          <h3 className='text-xl mb-2' dangerouslySetInnerHTML={{ __html: markupAccents(titles[currentIndex]) }}></h3>
+          <h3 className="text-xl mb-2 relative">
+            <span dangerouslySetInnerHTML={{ __html: markupAccents(titles[currentIndex]) }} />
+            <div className="absolute w-[50px] h-[2px] bg-accent bottom-0"></div>
+          </h3>
           <p dangerouslySetInnerHTML={{ __html: markupAccents(descriptions[currentIndex]) }}></p>
         </div>
       </div>
