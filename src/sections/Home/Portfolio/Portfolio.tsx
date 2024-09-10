@@ -21,7 +21,7 @@ export const Portfolio: React.FC = () => {
   };
 
   return (
-    <div className='bg-main h-auto w-full px-4 md:px-10 pb-20'>
+    <div id='portfolio' className='bg-main h-auto w-full px-4 md:px-10 pb-20'>
       <Title 
         title='Excellent [Portfolio]'
         description='Check out my wonderful [projects] & [achievements] that I have built throughout my journey!'

@@ -16,7 +16,7 @@ export const Skills: React.FC = () => {
   const displayedSkills = showAll ? skills : skills.slice(0, 12);
 
   return (
-    <div className='bg-main h-auto w-full mb-20'>
+    <div id='skills' className='bg-main h-auto w-full mb-20'>
       <Title
         title='Skills'
         description='Toolkits that help me [complete] all of my [projects]'

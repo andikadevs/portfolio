@@ -3,7 +3,7 @@ import { AboutTabs, Profile } from '@/components/Home';
 
 export const About = () => {
   return (
-    <div className='bg-secondary relative min-h-screen w-full px-0 py-6 md:p-6 shadow-xl mb-12'>
+    <div id='about' className='bg-secondary relative min-h-screen w-full px-0 py-6 md:p-6 shadow-xl mb-12'>
       
       {/* Top Vignette */}
       <div className='hidden z-10 lg:block bg-accent h-[300px] w-12 absolute top-0 left-0'></div>

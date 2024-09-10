@@ -22,6 +22,10 @@
   --text: #E5E5E5;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
