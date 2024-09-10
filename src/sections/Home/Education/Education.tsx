@@ -4,7 +4,7 @@ import items from './Items.json';
 
 export const Education: React.FC = () => {
   return (
-    <div id='education' className='h-auto w-full p-12 bg-secondary shadow-xl relative mb-[100px]'>
+    <div id='education' className='h-auto w-full px-4 md:px-12 pt-12 bg-secondary shadow-xl relative mb-[60px]'>
       <h3 className="text-text text-4xl absolute top-[-20px] left-4">
         Education
       </h3>
