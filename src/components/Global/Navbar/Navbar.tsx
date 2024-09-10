@@ -63,7 +63,7 @@ export const Navbar: React.FC = () => {
     <nav className="fixed top-4 left-0 right-0 z-30">
       {/* Main navbar container */}
       <div
-        className={`w-[94vw] mx-auto bg-dark opacity-[0.9] shadow-2xl md:rounded-full px-2 sm:px-3 sm:pr-3 py-2 ${
+        className={`w-[94vw] mx-auto bg-dark opacity-[0.9] shadow-2xl rounded-3xl md:rounded-full px-2 sm:px-3 sm:pr-3 py-2 ${
           isOpen ? 'sm:rounded-3xl' : 'sm:rounded-full'
         }`}
       >
@@ -102,9 +102,9 @@ export const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-text hover:text-gray-400 focus:outline-none"
+              className="text-text hover:text-gray-400 focus:outline-none pr-2 flex"
             >
-              {isOpen ? <FaX size={24} /> : <FaList size={24} />}
+              {isOpen ? <FaX size={18} /> : <FaList size={18} />}
             </button>
           </div>
         </div>
