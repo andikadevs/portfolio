@@ -1,4 +1,4 @@
-import { Navbar, Progress } from "@/components/Global";
+import { Navbar, Progress, Facts } from "@/components/Global";
 import { About, Certificate, Compaines, Education, Experience, Hero, Portfolio, Skills } from "@/sections/Home";
 
 export default function Home() {
@@ -7,6 +7,7 @@ export default function Home() {
 
       <Progress/>
       <Navbar/>
+      <Facts/>
 
       <Hero/>
       <About/>
