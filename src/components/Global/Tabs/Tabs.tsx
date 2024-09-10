@@ -21,12 +21,12 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, contentRenderer }) => {
 
   return (
     <div>
-      <div className="flex justify-around">
+      <div className="flex justify-even">
         {tabs.map((tab) => (
           <button
             key={tab.name}
             className={`p-2 font-normal text-sm flex-1 flex items-center justify-center gap-2 border border-accent 
-              transition duration-300 ease-in-out
+              transition duration-300 ease-in-out px-0 md:px-2
               hover:bg-accent hover:text-secondary 
               ${activeTab === tab.name ? 'bg-accent text-main' : 'bg-transparent text-text'}`}
             onClick={() => handleTabClick(tab.name)}
@@ -36,7 +36,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, contentRenderer }) => {
         ))}
       </div>
 
-      <div className="mt-6 min-h-[300px]">
+      <div className="mt-6 min-h-[300px] px-3">
         {contentRenderer ? contentRenderer(activeTab) : <p>No content renderer provided.</p>}
       </div>
     </div>

@@ -3,7 +3,7 @@ import { AboutTabs, Profile } from '@/components/Home';
 
 export const About = () => {
   return (
-    <div className='bg-secondary relative min-h-screen w-full p-6 shadow-xl mb-12'>
+    <div className='bg-secondary relative min-h-screen w-full px-0 py-6 md:p-6 shadow-xl mb-12'>
       
       {/* Top Vignette */}
       <div className='hidden z-10 lg:block bg-accent h-[300px] w-12 absolute top-0 left-0'></div>
@@ -18,7 +18,7 @@ export const About = () => {
         description='Let me [introduce] myself and tell you about my journey to becoming a [developer]'
       />
 
-      <div className=" grid grid-cols-1 md:grid-cols-5 w-full z-[1] p-2 relative">
+      <div className="grid grid-cols-1 md:grid-cols-5 w-full z-[1] px-0 py-2 md:p-2 relative">
         <div className="col-span-2 md:col-span-2 flex justify-center items-center relative py-6">
           <Profile
             src="/assets/static/img/person.webp"
