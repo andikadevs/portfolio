@@ -11,7 +11,7 @@ export const About = () => {
 
       {/* Bottom Vignette */}
       <div className='hidden z-10 lg:block bg-accent h-[200px] w-12 absolute bottom-0 right-0'></div>
-      <div className='hidden z-10 lg:block bg-accent h-12 w-[300px] absolute bottom-0 right-0'></div>
+      <div className='hidden z-10 lg:block bg-accent h-12 w-[500px] absolute bottom-0 right-0'></div>
 
       <Title
         title='About [Me]'
