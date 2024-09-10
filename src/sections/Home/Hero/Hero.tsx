@@ -5,7 +5,7 @@ export const Hero = () => {
   const whatIam = ['Web Developer', 'Software Engineer', 'Determined Learner'];
 
   return (
-    <div id='home' className='relative bg-main min-h-screen w-full'>
+    <div id='home' className='relative bg-main h-screen w-full'>
 
       <Particles id="particles"/>
       {/* <HeroImage /> */}
