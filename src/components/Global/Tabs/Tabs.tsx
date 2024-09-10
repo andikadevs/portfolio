@@ -25,9 +25,9 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, contentRenderer }) => {
         {tabs.map((tab) => (
           <button
             key={tab.name}
-            className={`p-2 font-normal text-sm flex-1 flex items-center justify-center gap-2 border border-accent 
+            className={`p-2 font-normal text-sm flex-1 flex items-center justify-center gap-1 border border-accent 
               transition duration-300 ease-in-out px-0 md:px-2
-              hover:bg-accent hover:text-secondary 
+              hover:bg-accent hover:text-secondary whitespace-nowrap 
               ${activeTab === tab.name ? 'bg-accent text-main' : 'bg-transparent text-text'}`}
             onClick={() => handleTabClick(tab.name)}
           >
