@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* GitHub logo */}
           <a
-            href="https://github.com"
+            href="https://github.com/Andikss"
             target="_blank"
             rel="noopener noreferrer"
             className="text-text hover:text-gray-400 flex items-center gap-2"
