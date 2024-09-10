@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable */
 import ReactParticles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo, useState } from "react";
