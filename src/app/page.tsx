@@ -2,7 +2,7 @@ import { About, Certificate, Compaines, Education, Experience, Hero, Portfolio, 
 
 export default function Home() {
   return (
-    <main className="bg-main">
+    <main className="bg-main relative">
       <Hero/>
       <About/>
       <Compaines/>

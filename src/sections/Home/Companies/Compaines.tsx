@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Compaines = () => {
   return (
-    <div className="bg-secondary flex flex-col shadow-xl items-center py-6 overflow-hidden mb-12">
+    <div className="bg-secondary flex flex-col shadow-xl items-center py-6 overflow-hidden mb-12 relative">
       <p className="text-text">
         Companies that <span className="text-accent">trusted me!</span>
       </p>

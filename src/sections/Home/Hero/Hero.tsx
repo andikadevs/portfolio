@@ -1,5 +1,5 @@
 import { HeroImage, SosmedChain } from '@/components/Home';
-import { Typing } from '@/components/Global'; 
+import { Particles, Typing } from '@/components/Global'; 
 
 export const Hero = () => {
   const whatIam = ['Web Developer', 'Software Engineer', 'Determined Learner'];
@@ -7,7 +7,8 @@ export const Hero = () => {
   return (
     <div className='relative bg-main min-h-screen w-full'>
 
-      <HeroImage />
+      <Particles id="particles"/>
+      {/* <HeroImage /> */}
       <SosmedChain />
 
       <div className="relative h-screen grid grid-cols-1 md:grid-cols-2 w-full z-[1]">

@@ -28,7 +28,7 @@ export const Skills: React.FC = () => {
             href={skill.url}
             target="_blank"
             rel="noopener noreferrer"
-            className='cursor-pointer bg-secondary gap-3 flex justify-between flex-col items-center px-4 py-8 rounded shadow-xl text-center text-text hover:bg-accent hover:text-secondary transition duration-300 ease-in-out'
+            className='cursor-pointer relative bg-secondary gap-3 flex justify-between flex-col items-center px-4 py-8 rounded shadow-xl text-center text-text hover:bg-accent hover:text-secondary transition duration-300 ease-in-out'
           >
             <Image src={skill.src} alt={skill.alt} width={80} height={80} className={skill.alt.toLowerCase() === 'react' ? 'animate-rotate' : ''} />
             <p className='text-lg'>{skill.alt}</p>
