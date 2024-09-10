@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Title } from '@/components/Global';
 import Image from 'next/image';
 import React from 'react';
-import skillsData from './skills.json'; 
+import skillsData from './Skills.json'; 
 import { SkillsInterface } from './SkillsInterface';
 import { MdArrowUpward, MdArrowDownward } from 'react-icons/md';
 
