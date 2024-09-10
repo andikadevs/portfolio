@@ -1,4 +1,4 @@
-import { HeroImage, SosmedChain } from '@/components/Home';
+import { SosmedChain } from '@/components/Home';
 import { Particles, Typing } from '@/components/Global'; 
 
 export const Hero = () => {

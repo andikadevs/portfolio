@@ -8,6 +8,7 @@ import { Engine } from "@tsparticles/engine";
 export const Particles = (props: { id: string | undefined; }) => {
 
   const [init, setInit] = useState(false);
+  console.log(init);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {

@@ -9,7 +9,7 @@ export const Hello = () => {
       </h3>
 
       <p className="text-text mb-5">
-        Hello there! I'm Andika Dwi Saputra, and I'm a <span className="text-accent">Fullstack Developer!</span> Feel free to check out my portfolio!
+        Hello there! I`m Andika Dwi Saputra, and I`m a <span className="text-accent">Fullstack Developer!</span> Feel free to check out my portfolio!
       </p>
 
       <div className="flex gap-3">
