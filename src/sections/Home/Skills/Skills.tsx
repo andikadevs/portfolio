@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Title } from '@/components/Global';
+import { Title, Tooltip } from '@/components/Global';
 import Image from 'next/image';
 import React from 'react';
 import skillsData from './Skills.json'; 
@@ -39,16 +39,18 @@ export const Skills: React.FC = () => {
       <div className='text-center mt-8 flex justify-center'>
           <button
             onClick={() => setShowAll(!showAll)}
-            className='bg-secondary text-accent px-6 py-3 rounded shadow-lg hover:text-secondary hover:bg-accent transition duration-300 ease-in-out flex items-center justify-center'
+            className='relative bg-secondary text-accent px-6 py-3 rounded shadow-lg hover:text-secondary hover:bg-accent transition duration-300 ease-in-out flex items-center justify-center'
           >
             {showAll ? (
               <>
                 <MdArrowUpward className='mr-2' /> Show Less
               </>
             ) : (
-              <>
-                <MdArrowDownward className='mr-2' /> Show More
-              </>
+              <Tooltip hasArrow position='top' label='Let`s see what else i can do!'>
+                <div className="flex items-center">
+                  <MdArrowDownward className='mr-2 inlne' /> Show More
+                </div>
+              </Tooltip>
             )}
           </button>
         </div>

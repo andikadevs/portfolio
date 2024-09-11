@@ -3,7 +3,7 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
 import { FaGithub, FaList } from 'react-icons/fa';
 import { FaX } from 'react-icons/fa6';
-import { Button } from '@/components/Global';
+import { Button, Tooltip } from '@/components/Global';
 import { BsEnvelope, BsGithub } from 'react-icons/bs';
 
 interface NavItem {
@@ -69,6 +69,7 @@ export const Navbar: React.FC = () => {
       >
         <div className="flex items-center justify-between">
           {/* GitHub logo */}
+        <Tooltip hasArrow position='bottom' label='Visit my GitHub Account'>
           <a
             href="https://github.com/Andikss"
             target="_blank"
@@ -78,6 +79,7 @@ export const Navbar: React.FC = () => {
             <FaGithub size={32} />
             <span className='text-xl text-text'>AndikaDS</span>
           </a>
+        </Tooltip>
 
           {/* Desktop Links (hidden on mobile) */}
           <div className="hidden md:flex space-x-6 ml-auto items-center text-text">
@@ -93,19 +95,23 @@ export const Navbar: React.FC = () => {
                 {item.label}
               </a>
             ))}
-            <Button variant='outline' className='rounded-full'>
-              <BsEnvelope /> Email
-            </Button>
+            <Tooltip hasArrow position='bottom' label='Email me'>
+              <Button variant='outline' className='rounded-full'>
+                <BsEnvelope /> Email
+              </Button>
+            </Tooltip>
           </div>
 
           {/* Hamburger menu icon */} 
           <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-text hover:text-gray-400 focus:outline-none pr-2 flex"
-            >
-              {isOpen ? <FaX size={18} /> : <FaList size={18} />}
-            </button>
+            <Tooltip hasArrow position='bottom' label={isOpen? 'Close Navbar' : 'Extends Navbar'}>
+              <button
+                onClick={toggleMenu}
+                className="text-text hover:text-gray-400 focus:outline-none pr-2 flex items-center justify-center"
+              >
+                {isOpen ? <FaX size={18} /> : <FaList size={18} />}
+              </button>
+            </Tooltip>
           </div>
         </div>
 
@@ -130,12 +136,16 @@ export const Navbar: React.FC = () => {
             ))}
           </div>
           <div className="flex gap-2">
-            <Button variant='fill' className='rounded-sm shadow-lg w-full'>
-              <BsEnvelope/> Email
-            </Button>
-            <Button variant='outline' className='rounded-sm shadow-lg w-full'>
-              <BsGithub/> GitHub
-            </Button>
+            <Tooltip hasArrow position='top' label='Email me'>
+              <Button variant='fill' className='rounded-sm shadow-lg w-full'>
+                <BsEnvelope /> Email
+              </Button>
+            </Tooltip>
+            <Tooltip hasArrow position='top' label='Visit my GitHub profile'>
+              <Button variant='putline' className='rounded-sm shadow-lg w-full'>
+                <BsGithub/> GitHub
+              </Button>
+            </Tooltip>
           </div>
         </div>
       </div>

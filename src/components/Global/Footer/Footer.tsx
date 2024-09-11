@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@/components/Global';
+import { Button, Tooltip } from '@/components/Global';
 import { BsEnvelope, BsGithub, BsInstagram, BsJournalCheck, BsLinkedin, BsWhatsapp, BsYoutube } from 'react-icons/bs';
 
 export const Footer = () => {
@@ -17,9 +17,11 @@ export const Footer = () => {
           </p>
         </div>
         <div className="w-full h-full flex items-center justify-center">
-          <Button variant="outline">
-            <BsJournalCheck /> Wrap it up!
-          </Button>
+          <Tooltip hasArrow label="Let`s talk about your interest privately!">
+            <Button variant="outline">
+              <BsJournalCheck /> Wrap it up!
+            </Button>
+          </Tooltip>
         </div>
       </div>
 
@@ -33,36 +35,48 @@ export const Footer = () => {
       </h4>
 
       <div className="flex flex-row gap-3 items-center justify-center">
-        <a href="#" className="transition-transform duration-300 hover:scale-110">
-          <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
-            <BsEnvelope />
-          </div>
-        </a>
-        <a href="#" className="transition-transform duration-300 hover:scale-110">
-          <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
-            <BsInstagram />
-          </div>
-        </a>
-        <a href="#" className="transition-transform duration-300 hover:scale-110">
-          <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
-            <BsYoutube />
-          </div>
-        </a>
-        <a href="#" className="transition-transform duration-300 hover:scale-110">
-          <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
-            <BsLinkedin />
-          </div>
-        </a>
-        <a href="#" className="transition-transform duration-300 hover:scale-110">
-          <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
-            <BsWhatsapp />
-          </div>
-        </a>
-        <a href="#" className="transition-transform duration-300 hover:scale-110">
-          <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
-            <BsGithub />
-          </div>
-        </a>
+        <Tooltip hasArrow label='Email Me!'>
+          <a href="#" className="transition-transform duration-300 hover:scale-110">
+            <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
+              <BsEnvelope />
+            </div>
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='Visit my Instagram Profile!'>
+          <a href="#" className="transition-transform duration-300 hover:scale-110">
+            <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
+              <BsInstagram />
+            </div>
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='See me on YouTube!'>
+          <a href="#" className="transition-transform duration-300 hover:scale-110">
+            <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
+              <BsYoutube />
+            </div>
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='Connect with me!'>
+          <a href="#" className="transition-transform duration-300 hover:scale-110">
+            <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
+              <BsLinkedin />
+            </div>
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='Chat Me!'>
+          <a href="#" className="transition-transform duration-300 hover:scale-110">
+            <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
+              <BsWhatsapp />
+            </div>
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='Checkout my GitHub Account!'>
+          <a href="#" className="transition-transform duration-300 hover:scale-110">
+            <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
+              <BsGithub />
+            </div>
+          </a>
+        </Tooltip>
       </div>
 
       <h5 className='text-text'>

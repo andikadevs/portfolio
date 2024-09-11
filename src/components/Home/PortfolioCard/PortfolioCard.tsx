@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { markupAccents } from '@/utils/Global';
 import { PortfolioCardProps } from './PortfolioCardPropsInterface';
-import { Button } from '@/components/Global';
+import { Button, Tooltip } from '@/components/Global';
 import { FaChrome } from 'react-icons/fa';
 import { BsSlashCircle } from 'react-icons/bs';
 
@@ -54,9 +54,11 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
             ))}
           </div>
 
-          <Button variant='outline' size='sm' disabled={url === 'forbidden'}>
-            {url === 'forbidden' ? <><BsSlashCircle className='text-accent' /> Forbidden</> : <><FaChrome /> Visit</>}
-          </Button>
+          <Tooltip hasArrow position='left' label={url === 'forbidden' ? 'Sorry, I can`t show you this one!' : 'Checkout this wonderful project!'}>
+            <Button variant='outline' size='sm' disabled={url === 'forbidden'}>
+              {url === 'forbidden' ? <><BsSlashCircle className='text-accent' /> Forbidden</> : <><FaChrome /> Visit</>}
+            </Button>
+          </Tooltip>
         </div>
       </div>
     </div>
