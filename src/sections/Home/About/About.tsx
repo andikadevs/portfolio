@@ -19,7 +19,7 @@ export const About = () => {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-5 w-full z-[1] px-0 py-2 md:p-2 relative">
-        <div className="col-span-2 md:col-span-2 flex justify-center items-center relative py-6">
+        <div className="col-span-2 md:col-span-2 flex justify-center items-start relative py-6">
           <Profile
             src="/assets/static/img/person.webp"
             alt="Andika Dwi Saputra's Image Profile"

@@ -36,7 +36,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, contentRenderer }) => {
         ))}
       </div>
 
-      <div className="mt-6 min-h-[300px] px-3">
+      <div className="mt-6 h-auto px-3">
         {contentRenderer ? contentRenderer(activeTab) : <p>No content renderer provided.</p>}
       </div>
     </div>

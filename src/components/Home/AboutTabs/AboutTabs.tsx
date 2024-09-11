@@ -10,11 +10,11 @@ export const AboutTabs = () => {
     { name: 'hello', icon: <FaUser />, component: <Hello /> },
     { name: 'origin', icon: <FaMapMarkerAlt />, component: <Origin /> },
     { name: 'hobbies', icon: <FaHeart />, component: <Hobbies /> },
-    { name: 'social media', icon: <FaTwitter />, component: <Sosmed /> },
+    { name: 'social', icon: <FaTwitter />, component: <Sosmed /> },
   ];
 
   return (
-    <div className="bg-secondary w-full p-0 min-h-[500px]">
+    <div className="bg-secondary w-full p-0 h-auto">
       <Tabs 
         tabs={tabs} 
         contentRenderer={(activeTab: string) => 
