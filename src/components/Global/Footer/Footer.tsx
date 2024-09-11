@@ -36,42 +36,42 @@ export const Footer = () => {
 
       <div className="flex flex-row gap-3 items-center justify-center">
         <Tooltip hasArrow label='Email Me!'>
-          <a href="#" className="transition-transform duration-300 hover:scale-110">
+          <a target='_blank' href="mailto:andikadwisaputra.dev@gmail.com" className="transition-transform duration-300 hover:scale-110">
             <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
               <BsEnvelope />
             </div>
           </a>
         </Tooltip>
         <Tooltip hasArrow label='Visit my Instagram Profile!'>
-          <a href="#" className="transition-transform duration-300 hover:scale-110">
+          <a target='_blank' href="https://instagram.com/andikads__" className="transition-transform duration-300 hover:scale-110">
             <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
               <BsInstagram />
             </div>
           </a>
         </Tooltip>
         <Tooltip hasArrow label='See me on YouTube!'>
-          <a href="#" className="transition-transform duration-300 hover:scale-110">
+          <a target='_blank' href="https://youtube.com/@andikads__" className="transition-transform duration-300 hover:scale-110">
             <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
               <BsYoutube />
             </div>
           </a>
         </Tooltip>
         <Tooltip hasArrow label='Connect with me!'>
-          <a href="#" className="transition-transform duration-300 hover:scale-110">
+          <a target='_blank' href="https://linkedin/in/andikadwisaputra" className="transition-transform duration-300 hover:scale-110">
             <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
               <BsLinkedin />
             </div>
           </a>
         </Tooltip>
         <Tooltip hasArrow label='Chat Me!'>
-          <a href="#" className="transition-transform duration-300 hover:scale-110">
+          <a target='_blank' href="https://wa.me/6285743699909" className="transition-transform duration-300 hover:scale-110">
             <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
               <BsWhatsapp />
             </div>
           </a>
         </Tooltip>
         <Tooltip hasArrow label='Checkout my GitHub Account!'>
-          <a href="#" className="transition-transform duration-300 hover:scale-110">
+          <a target='_blank' href="https://github.com/Andikss" className="transition-transform duration-300 hover:scale-110">
             <div className="text-text border border-text rounded-full shadow-lg p-3 text-xl transition-colors duration-300 hover:bg-accent hover:text-secondary">
               <BsGithub />
             </div>
@@ -81,7 +81,7 @@ export const Footer = () => {
 
       <h5 className='text-text'>
         Handcrafted by&nbsp;
-        <a href="https://github.com/Andikss">
+        <a target='_blank' href="https://github.com/Andikss">
             @andikss
         </a>
       </h5>

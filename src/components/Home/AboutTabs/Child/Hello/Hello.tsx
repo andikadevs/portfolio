@@ -27,7 +27,7 @@ export const Hello: React.FC = () => {
           </Button>
         </Tooltip>
 
-        <a href="https://wa.me/6285743699909">
+        <a target='_blank' href="https://wa.me/6285743699909">
           <Tooltip hasArrow position='bottom' label='Chat me on WhatsApp!'>
             <Button variant="fill">
               <FaWhatsapp /> Contact Me

@@ -9,27 +9,27 @@ export const SosmedChain = () => {
 
       <div className="flex flex-col gap-3 text-text text-2xl z-[2]">
         <Tooltip hasArrow position="left" label="Email Me!">
-          <Link href="#">
+          <Link target="_blank" href="mailto:andikadwisaputra.dev@gmail.com">
             <BsEnvelope className="transition-transform duration-300 transform hover:rotate-[-15deg]"/>
           </Link>
         </Tooltip>
         <Tooltip hasArrow position="left" label="Visit my Instagram Profile">
-          <Link href="#">
+          <Link target="_blank" href="https://instagram.com/andikads__">
             <BsInstagram className="transition-transform duration-300 transform hover:rotate-[-15deg]"/>
           </Link>
         </Tooltip>
         <Tooltip hasArrow position="left" label="Chat Me!">
-          <Link href="#">
+          <Link target="_blank" href="https://wa.me/6285743699909">
             <BsWhatsapp className="transition-transform duration-300 transform hover:rotate-[-15deg]"/>
           </Link>
         </Tooltip>
         <Tooltip hasArrow position="left" label="Connect with me!">
-          <Link href="#">
+          <Link target="_blank" href="https://linkedin/in/andikadwisaputra">
             <BsLinkedin className="transition-transform duration-300 transform hover:rotate-[-15deg]"/>
           </Link>
         </Tooltip>
         <Tooltip hasArrow position="left" label="Checkout my GitHub Account!">
-          <Link href="#">
+          <Link target="_blank" href="https://github.com/Andikss">
             <BsGithub className="transition-transform duration-300 transform hover:rotate-[-15deg]"/>
           </Link>
         </Tooltip>
