@@ -142,7 +142,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </Tooltip>
             <Tooltip hasArrow position='top' label='Visit my GitHub profile'>
-              <Button variant='putline' className='rounded-sm shadow-lg w-full'>
+              <Button variant='outline' className='rounded-sm shadow-lg w-full'>
                 <BsGithub/> GitHub
               </Button>
             </Tooltip>
