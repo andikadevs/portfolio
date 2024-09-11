@@ -21,7 +21,7 @@ export const Progress: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-1 z-50 bg-main">
+    <div className="fixed top-0 left-0 right-0 h-[3px] z-50 bg-main">
       <div
         className="h-1 bg-accent-contrast bg-accent"
         style={{ width: `${scrollProgress}%` }}
