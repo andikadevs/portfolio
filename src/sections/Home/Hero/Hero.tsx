@@ -25,7 +25,7 @@ export const Hero = () => {
           </div>
         </div>
         <div>
-          <img className='hidden md:block absolute bottom-0 h-[70%] md:right-8 xl:right-12 xl:h-[80%] object-contain' src="/assets/static/img/Avatar.webp" alt="Avatar" />
+          <img className='hidden md:block absolute bottom-0 h-[70%] md:right-8 xl:right-12 xl:h-[80%] object-contain' src="/assets/static/img/avatar.webp" alt="Avatar" />
         </div>
       </div>
     </div>
