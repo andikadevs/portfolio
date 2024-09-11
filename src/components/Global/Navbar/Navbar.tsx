@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className="fixed top-4 left-0 right-0 z-30">
+    <nav className="fixed top-4 left-0 right-0 z-30" style={{ zIndex: 999 }}>
       {/* Main navbar container */}
       <div
         className={`w-[94vw] mx-auto bg-dark opacity-[0.9] shadow-2xl rounded-3xl md:rounded-full px-2 sm:px-3 sm:pr-3 py-2 ${

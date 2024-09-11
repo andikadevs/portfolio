@@ -22,6 +22,9 @@ export const Toast: React.FC<ToastProps> = ({ title, message, onClose, delay }) 
         className={`fixed max-w-[calc(100vw-3rem)] sm:max-w-[50%] bottom-4 right-4 bg-gray-800 text-white p-4 rounded shadow-lg flex items-center space-x-4 z-50 transform transition-transform duration-300 ease-in-out ${
           isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
         }`}
+        style={{
+          zIndex: 999
+        }}
       >
         <div>
           <strong className="relative">
