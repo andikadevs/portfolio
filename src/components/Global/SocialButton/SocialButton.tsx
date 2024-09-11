@@ -5,7 +5,7 @@ export const SocialButton: React.FC<SocialButtonProps> = ({ iconUrl, altText, la
   return (
     <a href={href} target='_blank'>
       <button
-        className={`relative flex items-center justify-center gap-3 text-text px-8 py-2 bg-secondary shadow-2xl transition-shadow duration-300 hover:shadow-accent group ${classNames}`}
+        className={`relative flex items-center justify-center gap-3 text-text px-8 py-2 bg-secondary shadow-xl transition-shadow duration-300 hover:shadow-accent group ${classNames}`}
         style={{ fontWeight: 550 }}
       >
         <img

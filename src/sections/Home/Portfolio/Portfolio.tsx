@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { PortfolioCard } from '@/components/Home';
-import { Gallery, Title } from '@/components/Global';
+import { Gallery, SocialButton, Title } from '@/components/Global';
 import data from './Portfolio.json';
 
 export const Portfolio: React.FC = () => {
@@ -21,7 +21,7 @@ export const Portfolio: React.FC = () => {
   };
 
   return (
-    <div id='portfolio' className='bg-main h-auto w-full px-4 md:px-10 pb-20'>
+    <div id='portfolio' className='bg-main h-auto w-full px-4 md:px-10 pb-14'>
       <Title 
         title='Excellent [Portfolio]'
         description='Check out my wonderful [projects] & [achievements] that I have built throughout my journey!'
@@ -32,7 +32,7 @@ export const Portfolio: React.FC = () => {
         <div className="border-b-[3px] border-accent w-[80px]"></div>
       </h4>
 
-      <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3'>
+      <div className='mb-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3'>
         {data.map((project, index) => (
           <PortfolioCard
             key={project.title}
@@ -45,6 +45,17 @@ export const Portfolio: React.FC = () => {
           />
         ))}
       </div>
+
+      <div className="flex w-full justify-center">
+        <SocialButton
+          href='https://github.com/Andikss'
+          iconUrl='assets/static/img/Icons/github.svg'
+          altText='GitHub'
+          label='Checkout My GitHub'
+          classNames='w-full md:w-auto'
+        />
+      </div>
+
       <Gallery
         images={selectedImages}
         descriptions={descriptions}

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Lists } from '@/components/Global';
+import { Lists, SocialButton } from '@/components/Global';
 
 const data_1 = [
   {
@@ -62,8 +62,18 @@ export const Experience: React.FC = () => {
       </h3>
 
       {isMobileOrTablet ? (
-        <div className="mb-12">
+        <div className="mb-12 pb-8">
           <Lists items={combinedData} />
+
+          <div className="flex justify-end w-full">
+            <SocialButton
+              href='https://linkedin.com/in/andikadwisaputra'
+              iconUrl='assets/static/img/Icons/linkedin.svg'
+              altText='Linkedin'
+              label='Connect With Me'
+              classNames='w-full md:w-auto'
+            />
+          </div>
         </div>
       ) : (
         <>
@@ -98,6 +108,16 @@ export const Experience: React.FC = () => {
                 className='h-[180px]'
               />
             </div>
+          </div>
+
+          <div className="flex w-full justify-end pb-8">
+            <SocialButton
+              href='https://linkedin.com/in/andikadwisaputra'
+              iconUrl='assets/static/img/Icons/linkedin.svg'
+              altText='Linkedin'
+              label='Connect With Me'
+              classNames='w-full md:w-auto'
+            />
           </div>
         </>
       )}
