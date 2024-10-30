@@ -1,0 +1,39 @@
+{
+  "certificates": [
+    { 
+      "src": "sql-advanced.webp", 
+      "alt": "SQL Advanced Certification",
+      "description": "Advanced SQL certification covering complex queries, database optimization, and data management."
+    },
+    {
+      "src": "javascript-intermediate.webp",
+      "alt": "JavaScript Intermediate Certification",
+      "description": "Intermediate JavaScript programming skills including ES6+ features, async programming, and DOM manipulation."
+    },
+    { 
+      "src": "webdev.webp", 
+      "alt": "Web Development Certification",
+      "description": "Comprehensive web development certification covering HTML5, CSS3, JavaScript, and responsive design principles."
+    },
+    { 
+      "src": "data-programing.webp", 
+      "alt": "SQL Advanced Certification",
+      "description": "Advanced data programming certification focusing on database design, SQL optimization, and data analysis."
+    },
+    { 
+      "src": "tech.webp", 
+      "alt": "Tech for Everyone Certification",
+      "description": "Foundation-level technology certification covering computer science basics and digital literacy."
+    },
+    { 
+      "src": "lks.webp", 
+      "alt": "LKS Jateng Certification",
+      "description": "Achievement certification from LKS (Lomba Kompetensi Siswa) Central Java for technical excellence."
+    },
+    { 
+      "src": "toeic.webp", 
+      "alt": "Advanced TOEIC Certification",
+      "description": "High-level English proficiency certification demonstrating advanced business communication skills."
+    }
+  ]
+} 

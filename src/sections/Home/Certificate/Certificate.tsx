@@ -4,24 +4,14 @@ import { SocialButton } from "@/components/Global";
 import { AnimateOnView } from "@/components/Global/AnimateOnView";
 import { useState } from "react";
 import { Gallery } from "@/components/Global";
+import certificateData from './Certificate.json';
 
 export const Certificate: React.FC = () => {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const certificates = [
-    { src: "sql-advanced.webp", alt: "SQL Advanced Certification" },
-    {
-      src: "javascript-intermediate.webp",
-      alt: "JavaScript Intermediate Certification",
-    },
-    { src: "webdev.webp", alt: "Web Development Certification" },
-    { src: "data-programing.webp", alt: "SQL Advanced Certification" },
-    { src: "tech.webp", alt: "Tech for Everyone Certification" },
-    { src: "lks.webp", alt: "LKS Jateng Certification" },
-    { src: "toeic.webp", alt: "Advanced TOEIC Certification" },
-  ];
+  const { certificates } = certificateData;
 
   const handleImageClick = (index: number) => {
     const images = certificates.map(
@@ -100,7 +90,7 @@ export const Certificate: React.FC = () => {
           )
         }
         titles={certificates.map((cert) => cert.alt)}
-        descriptions={certificates.map(() => "")}
+        descriptions={certificates.map((cert) => cert.description)}
       />
 
       <AnimateOnView direction="up" delay={1000}>

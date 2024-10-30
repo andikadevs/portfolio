@@ -22,34 +22,34 @@ export const Gallery: React.FC<GalleryProps> = ({
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[9999]">
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-white text-4xl hover:text-accent transition-colors"
+        className="absolute top-4 right-4 text-white text-4xl hover:text-accent transition-colors z-[99999]"
       >
         &times;
       </button>
 
       <button
         onClick={onPrev}
-        className="absolute text-4xl left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-accent transition-colors"
+        className="absolute text-4xl left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-accent transition-colors z-[99999]"
       >
         <BiChevronLeft />
       </button>
       <button
         onClick={onNext}
-        className="absolute text-4xl right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-accent transition-colors"
+        className="absolute text-4xl right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-accent transition-colors z-[99999]"
       >
         <BiChevronRight />
       </button>
 
-      <div className="relative bg-secondary p-4 shadow-xl max-w-[90vw] md:max-w-[80vw] max-h-[90vh] overflow-y-auto">
-        <div className="overflow-hidden mb-4">
+      <div className="relative bg-secondary p-4 shadow-xl md:w-[80vw] md:h-[80vh] w-screen h-screen overflow-hidden flex flex-col items-center justify-center">
+        <div className="w-full md:h-[80%] h-[85%] flex justify-center items-center">
           <img
             src={images[currentIndex]}
             alt={titles?.[currentIndex] || `Slide ${currentIndex + 1}`}
-            className="w-full h-auto object-contain max-h-[70vh]"
+            className="max-w-full max-h-full object-contain mb-3"
           />
         </div>
         {(hasTitle || hasDescription) && (
-          <div className="text-white mt-4">
+          <div className="text-white w-full md:h-[20%] h-auto">
             {hasTitle && (
               <h3 className="text-xl mb-2 relative">
                 <span dangerouslySetInnerHTML={{ __html: markupAccents(titles[currentIndex]) }} />
