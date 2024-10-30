@@ -39,7 +39,7 @@ export default function RootLayout({
           property="og:description"
           content="Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures. Proficient in utilizing various frameworks following industrial standards. Always eager to learn and improve in the fast-paced world of technology."
         />
-        <meta property="og:image" content="./assets/img/person.webp" />
+        <meta property="og:image" content="./assets/img/formal.webp" />
         <meta property="og:url" content="https://github.com/Andikss" />
         <meta property="og:type" content="profile" />
         <meta property="og:site_name" content="Andika Dwi Saputra" />

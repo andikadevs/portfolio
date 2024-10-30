@@ -24,7 +24,7 @@ export const About = () => {
         <div className="col-span-2 md:col-span-2 flex justify-center items-start relative py-6">
           <AnimateOnView direction="up">
             <Profile
-              src="/assets/static/img/person.webp"
+              src="/assets/static/img/formal.webp"
               alt="Andika Dwi Saputra's Image Profile"
             />
           </AnimateOnView>
