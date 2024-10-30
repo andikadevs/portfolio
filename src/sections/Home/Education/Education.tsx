@@ -18,7 +18,7 @@ export const Education: React.FC = () => {
           <img 
             src="assets/static/img/Icons/react.svg" 
             alt="ReactJS" 
-            className='h-[200px] animate-rotate'
+            className='h-[200px] animate-rotate hidden md:block'
           />
         </AnimateOnView>
       </div>

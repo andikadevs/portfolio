@@ -61,14 +61,14 @@ export const Experience: React.FC = () => {
   }, []);
 
   return (
-    <div id='experience' className='h-auto w-full px-4 md:px-12 pt-12 bg-secondary shadow-xl relative mb-[60px]'>
+    <div id='experience' className='h-auto w-full px-4 md:px-12 pt-12 pb-2 bg-secondary shadow-xl relative mb-[60px]'>
       <h3 className="text-text text-4xl absolute top-[-20px] left-4">
         Experience
       </h3>
 
       <div>
         {isMobileOrTablet ? (
-          <AnimateOnView direction="left" className="mb-12">
+          <AnimateOnView direction="left" className="mb-4">
             <Lists items={combinedData} />
             <div className="flex justify-end w-full">
               <SocialButton
