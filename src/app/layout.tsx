@@ -44,10 +44,15 @@ export default function RootLayout({
         <meta property="og:type" content="profile" />
         <meta property="og:site_name" content="Andika Dwi Saputra" />
         <meta property="og:locale" content="id_ID" />
+
+        <link
+          rel="preload"
+          href="/assets/static/img/hero-dark.webp"
+          as="image"
+          type="image/webp"
+        />
       </Head>
-      <body className={`${poppins.variable} antialiased`}>
-        {children}
-      </body>
+      <body className={`${poppins.variable} antialiased`}>{children}</body>
     </html>
   );
 }
