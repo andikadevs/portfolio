@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, MouseEvent } from 'react';
-import { FaGithub, FaList } from 'react-icons/fa';
-import { FaX } from 'react-icons/fa6';
-import { Button, Tooltip } from '@/components/Global';
-import { BsEnvelope, BsGithub } from 'react-icons/bs';
-import { useSpring, animated } from '@react-spring/web';
+import React, { useState, useEffect, MouseEvent } from "react";
+import { FaGithub, FaList } from "react-icons/fa";
+import { FaX } from "react-icons/fa6";
+import { Button, Tooltip } from "@/components/Global";
+import { BsEnvelope, BsGithub } from "react-icons/bs";
+import { useSpring, animated } from "@react-spring/web";
 
 interface NavItem {
   label: string;
@@ -13,17 +13,17 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Education', href: '#education' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Portfolio', href: '#portfolio' },
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Education", href: "#education" },
+  { label: "Experience", href: "#experience" },
+  { label: "Portfolio", href: "#portfolio" },
 ];
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [activeSection, setActiveSection] = useState<string>('');
+  const [activeSection, setActiveSection] = useState<string>("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -35,14 +35,14 @@ export const Navbar: React.FC = () => {
     if (section) {
       window.scrollTo({
         top: section.offsetTop - 80, // Adjust offset if necessary
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY + 80; // Account for offset
-    navItems.forEach(item => {
+    navItems.forEach((item) => {
       const section = document.querySelector(item.href) as HTMLElement;
       if (section) {
         const sectionTop = section.offsetTop;
@@ -56,12 +56,12 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const menuAnimation = useSpring({
-    height: isOpen ? '90vh' : '0vh',
+    height: isOpen ? "90vh" : "0vh",
     opacity: isOpen ? 1 : 0,
     config: {
       mass: 1,
@@ -71,7 +71,7 @@ export const Navbar: React.FC = () => {
   });
 
   const iconAnimation = useSpring({
-    transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+    transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
     config: {
       tension: 300,
       friction: 20,
@@ -83,12 +83,12 @@ export const Navbar: React.FC = () => {
       {/* Main navbar container */}
       <div
         className={`w-[94vw] mx-auto bg-dark opacity-[0.9] shadow-2xl rounded-3xl md:rounded-full px-2 sm:px-3 sm:pr-3 py-2 ${
-          isOpen ? 'sm:rounded-3xl' : 'sm:rounded-full'
+          isOpen ? "sm:rounded-3xl" : "sm:rounded-full"
         }`}
       >
         <div className="flex items-center justify-between">
           {/* GitHub logo */}
-          <Tooltip hasArrow position='bottom' label='Visit my GitHub Account'>
+          <Tooltip hasArrow position="bottom" label="Visit my GitHub Account">
             <a
               href="https://github.com/Andikss"
               target="_blank"
@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
               className="text-text hover:text-gray-400 flex items-center gap-2"
             >
               <FaGithub size={32} />
-              <span className='text-xl text-text'>AndikaDS</span>
+              <span className="text-xl text-text">AndikaDS</span>
             </a>
           </Tooltip>
 
@@ -108,28 +108,38 @@ export const Navbar: React.FC = () => {
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
                 className={`hover:text-gray-400 hover:underline ${
-                  activeSection === item.href ? 'text-accent' : ''
+                  activeSection === item.href ? "text-accent" : ""
                 }`}
               >
                 {item.label}
               </a>
             ))}
-            <Tooltip hasArrow position='bottom' label='Email me'>
-              <Button variant='outline' className='rounded-full'>
-                <BsEnvelope /> Email
-              </Button>
+            <Tooltip hasArrow position="bottom" label="Email me">
+              <a href="mailto:andikadwisaputra.dev@gmail.com" target="_blank">
+                <Button variant="outline" className="rounded-full">
+                  <BsEnvelope /> Email
+                </Button>
+              </a>
             </Tooltip>
           </div>
 
-          {/* Hamburger menu icon */} 
+          {/* Hamburger menu icon */}
           <div className="md:hidden">
-            <Tooltip hasArrow position='bottom' label={isOpen? 'Close Navbar' : 'Extends Navbar'}>
+            <Tooltip
+              hasArrow
+              position="bottom"
+              label={isOpen ? "Close Navbar" : "Extends Navbar"}
+            >
               <animated.button
                 onClick={toggleMenu}
                 style={iconAnimation}
                 className="text-text shrink-0 hover:text-gray-400 focus:outline-none pr-2 flex items-center justify-center"
               >
-                {isOpen ? <FaX size={18} className="shrink-0" /> : <FaList size={18} className="shrink-0" />}
+                {isOpen ? (
+                  <FaX size={18} className="shrink-0" />
+                ) : (
+                  <FaList size={18} className="shrink-0" />
+                )}
               </animated.button>
             </Tooltip>
           </div>
@@ -139,7 +149,7 @@ export const Navbar: React.FC = () => {
         <animated.div
           style={{
             ...menuAnimation,
-            overflow: 'hidden',
+            overflow: "hidden",
           }}
           className={`md:hidden text-text flex flex-col items-center justify-between`}
         >
@@ -150,7 +160,7 @@ export const Navbar: React.FC = () => {
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
                 className={`block hover:text-gray-400 text-center ${
-                  activeSection === item.href ? 'text-accent' : ''
+                  activeSection === item.href ? "text-accent" : ""
                 }`}
               >
                 {item.label}
@@ -158,14 +168,19 @@ export const Navbar: React.FC = () => {
             ))}
           </div>
           <div className="flex gap-2">
-            <Tooltip hasArrow position='top' label='Email me'>
-              <Button variant='fill' className='rounded-sm shadow-lg w-full'>
-                <BsEnvelope /> Email
-              </Button>
+            <Tooltip hasArrow position="top" label="Email me">
+              <a href="mailto:andikadwisaputra.dev@gmail.com" target="_blank">
+                <Button
+                  variant="outline"
+                  className="rounded-sm shadow-lg w-full"
+                >
+                  <BsEnvelope /> Email
+                </Button>
+              </a>
             </Tooltip>
-            <Tooltip hasArrow position='top' label='Visit my GitHub profile'>
-              <Button variant='outline' className='rounded-sm shadow-lg w-full'>
-                <BsGithub/> GitHub
+            <Tooltip hasArrow position="top" label="Visit my GitHub profile">
+              <Button variant="outline" className="rounded-sm shadow-lg w-full">
+                <BsGithub /> GitHub
               </Button>
             </Tooltip>
           </div>
