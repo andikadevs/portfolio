@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import React, { ReactNode } from 'react';
-import { animated, useInView } from '@react-spring/web';
+import React, { ReactNode } from "react";
+import { animated, useInView } from "@react-spring/web";
 
-type Direction = 'up' | 'down' | 'left' | 'right';
+type Direction = "up" | "down" | "left" | "right";
 
 interface AnimateOnViewProps {
   children: ReactNode;
@@ -12,50 +12,51 @@ interface AnimateOnViewProps {
   className?: string;
 }
 
-export const AnimateOnView: React.FC<AnimateOnViewProps> = ({ 
-  children, 
-  direction = 'up', 
+export const AnimateOnView: React.FC<AnimateOnViewProps> = ({
+  children,
+  direction = "up",
   delay = 0,
-  className = '' 
+  className = "",
 }) => {
   const getTransform = (direction: Direction) => {
-    const distance = '100px';
+    const distance = "100px";
     switch (direction) {
-      case 'up': return `translateY(${distance})`;
-      case 'down': return `translateY(-${distance})`;
-      case 'left': return `translateX(-${distance})`;
-      case 'right': return `translateX(${distance})`;
+      case "up":
+        return `translateY(${distance})`;
+      case "down":
+        return `translateY(-${distance})`;
+      case "left":
+        return `translateX(-${distance})`;
+      case "right":
+        return `translateX(${distance})`;
     }
   };
 
   const [ref, springs] = useInView(
     () => ({
-      from: { 
-        opacity: 0, 
-        transform: getTransform(direction)
+      from: {
+        opacity: 0,
+        transform: getTransform(direction),
       },
-      to: { 
-        opacity: 1, 
-        transform: 'translate(0px)'
+      to: {
+        opacity: 1,
+        transform: "translate(0px)",
       },
-      config: { 
-        tension: 400, 
+      config: {
+        tension: 400,
         friction: 14,
-        duration: 600
+        duration: 600,
       },
       delay,
     }),
     {
       amount: 0.2,
+      once: true
     }
   );
 
   return (
-    <animated.div 
-      ref={ref} 
-      style={springs}
-      className={className}
-    >
+    <animated.div ref={ref} style={springs} className={className}>
       {children}
     </animated.div>
   );
