@@ -5,6 +5,7 @@ import { FaGithub, FaList } from 'react-icons/fa';
 import { FaX } from 'react-icons/fa6';
 import { Button, Tooltip } from '@/components/Global';
 import { BsEnvelope, BsGithub } from 'react-icons/bs';
+import { useSpring, animated } from '@react-spring/web';
 
 interface NavItem {
   label: string;
@@ -54,10 +55,28 @@ export const Navbar: React.FC = () => {
   };
 
   useEffect(() => {
-    handleScroll(); // Call on initial render
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const menuAnimation = useSpring({
+    height: isOpen ? '90vh' : '0vh',
+    opacity: isOpen ? 1 : 0,
+    config: {
+      mass: 1,
+      tension: 300,
+      friction: 26,
+    },
+  });
+
+  const iconAnimation = useSpring({
+    transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+    config: {
+      tension: 300,
+      friction: 20,
+    },
+  });
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-30" style={{ zIndex: 999 }}>
@@ -69,17 +88,17 @@ export const Navbar: React.FC = () => {
       >
         <div className="flex items-center justify-between">
           {/* GitHub logo */}
-        <Tooltip hasArrow position='bottom' label='Visit my GitHub Account'>
-          <a
-            href="https://github.com/Andikss"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text hover:text-gray-400 flex items-center gap-2"
-          >
-            <FaGithub size={32} />
-            <span className='text-xl text-text'>AndikaDS</span>
-          </a>
-        </Tooltip>
+          <Tooltip hasArrow position='bottom' label='Visit my GitHub Account'>
+            <a
+              href="https://github.com/Andikss"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text hover:text-gray-400 flex items-center gap-2"
+            >
+              <FaGithub size={32} />
+              <span className='text-xl text-text'>AndikaDS</span>
+            </a>
+          </Tooltip>
 
           {/* Desktop Links (hidden on mobile) */}
           <div className="hidden md:flex space-x-6 ml-auto items-center text-text">
@@ -105,21 +124,24 @@ export const Navbar: React.FC = () => {
           {/* Hamburger menu icon */} 
           <div className="md:hidden">
             <Tooltip hasArrow position='bottom' label={isOpen? 'Close Navbar' : 'Extends Navbar'}>
-              <button
+              <animated.button
                 onClick={toggleMenu}
-                className="text-text hover:text-gray-400 focus:outline-none pr-2 flex items-center justify-center"
+                style={iconAnimation}
+                className="text-text shrink-0 hover:text-gray-400 focus:outline-none pr-2 flex items-center justify-center"
               >
-                {isOpen ? <FaX size={18} /> : <FaList size={18} />}
-              </button>
+                {isOpen ? <FaX size={18} className="shrink-0" /> : <FaList size={18} className="shrink-0" />}
+              </animated.button>
             </Tooltip>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`md:hidden overflow-hidden transition-[max-height,opacity,height] duration-300 ease-in-out text-text flex flex-col items-center justify-between ${
-            isOpen ? 'h-[90vh] opacity-100' : 'max-h-0 opacity-0'
-          }`}
+        <animated.div
+          style={{
+            ...menuAnimation,
+            overflow: 'hidden',
+          }}
+          className={`md:hidden text-text flex flex-col items-center justify-between`}
         >
           <div className="space-y-2 mt-8 flex flex-col justify-center gap-7">
             {navItems.map((item) => (
@@ -147,7 +169,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </Tooltip>
           </div>
-        </div>
+        </animated.div>
       </div>
     </nav>
   );
