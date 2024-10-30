@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lists } from '@/components/Global';
+import { Lists, AnimateOnView } from '@/components/Global';
 import items from './Items.json';
 
 export const Education: React.FC = () => {
@@ -10,15 +10,17 @@ export const Education: React.FC = () => {
       </h3>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <Lists items={items} />
+        <AnimateOnView direction="left" className="w-full">
+          <Lists items={items} />
+        </AnimateOnView>
 
-        <div className="flex items-center justify-center">
+        <AnimateOnView direction="up" className="flex items-center justify-center">
           <img 
             src="assets/static/img/Icons/react.svg" 
             alt="ReactJS" 
             className='h-[200px] animate-rotate'
           />
-        </div>
+        </AnimateOnView>
       </div>
     </div>
   );
