@@ -24,7 +24,8 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
           layout='fill'
           objectFit='contain'
           className='absolute top-0 left-0 cursor-pointer'
-          onClick={() => onClick()} 
+          onClick={() => onClick()}
+          draggable={false}
         />
       </div>
       <div className='flex-1 text-text flex flex-col justify-between'>
@@ -49,6 +50,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
                   layout='fill'
                   objectFit='contain'
                   className={item.toLowerCase() === 'react' ? 'animate-rotate' : ''}
+                  draggable={false}
                 />
               </div>
             ))}

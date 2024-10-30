@@ -15,9 +15,10 @@ export const Education: React.FC = () => {
         </AnimateOnView>
 
         <AnimateOnView direction="up" className="flex items-center justify-center">
-          <img 
-            src="assets/static/img/Icons/react.svg" 
-            alt="ReactJS" 
+          <img
+            draggable={false}
+            src="assets/static/img/Icons/react.svg"
+            alt="ReactJS"
             className='h-[200px] animate-rotate hidden md:block'
           />
         </AnimateOnView>

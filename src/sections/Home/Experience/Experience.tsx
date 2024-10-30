@@ -88,6 +88,7 @@ export const Experience: React.FC = () => {
               </AnimateOnView>
               <AnimateOnView direction="up" className="hidden md:flex items-center justify-center">
                 <img
+                  draggable={false}
                   src="assets/static/img/Icons/csharp.svg"
                   alt="C#"
                   className="h-[180px]"
@@ -98,6 +99,7 @@ export const Experience: React.FC = () => {
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mb-14">
               <AnimateOnView direction="up" delay={200} className="hidden md:flex items-center justify-center">
                 <img
+                  draggable={false}
                   src="assets/static/img/Icons/nodejs.svg"
                   alt="NodeJS"
                   className="h-[180px]"
@@ -114,6 +116,7 @@ export const Experience: React.FC = () => {
               </AnimateOnView>
               <AnimateOnView direction="up" delay={400} className="hidden md:flex items-center justify-center">
                 <img
+                  draggable={false}
                   src="assets/static/img/Icons/docker.svg"
                   alt="Docker"
                   className="h-[180px]"

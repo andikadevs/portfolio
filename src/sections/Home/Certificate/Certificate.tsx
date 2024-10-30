@@ -52,6 +52,7 @@ export const Certificate: React.FC = () => {
                 delay={300 + index * 100}
               >
                 <img
+                  draggable={false}
                   src={`/assets/static/img/Portfolio/${cert.src}`}
                   className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
                   alt={cert.alt}
@@ -64,6 +65,7 @@ export const Certificate: React.FC = () => {
         <div className="w-[calc(50%-8px)] md:w-[25%] h-full flex flex-1">
           <AnimateOnView direction="up" delay={900} className="h-full w-full">
             <img
+              draggable={false}
               src="/assets/static/img/Portfolio/toeic.webp"
               className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
               alt="Advanced TOEIC Certification"

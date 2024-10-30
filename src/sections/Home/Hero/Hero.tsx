@@ -28,6 +28,7 @@ export const Hero = () => {
         <AnimateOnView direction="up">
           <div>
             <img
+              draggable={false}
               className="hidden md:block absolute bottom-0 h-[70%] md:right-8 xl:right-12 xl:h-[80%] object-contain"
               src="/assets/static/img/avatar.webp"
               alt="Avatar"
