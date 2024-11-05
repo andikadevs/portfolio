@@ -1,5 +1,5 @@
 import { SosmedChain } from "@/components/Home";
-import { AnimateOnView, Particles, Typing } from "@/components/Global";
+import { AnimateOnView, Typing } from "@/components/Global";
 import { FaChrome } from "react-icons/fa";
 
 export const Hero = () => {
@@ -7,8 +7,6 @@ export const Hero = () => {
 
   return (
     <div id="home" className="relative bg-main h-[100dvh] w-full">
-      <Particles id="particles" />
-      {/* <HeroImage /> */}
       <SosmedChain />
 
       <div className="relative h-screen grid grid-cols-1 md:grid-cols-2 w-full z-[1]">
