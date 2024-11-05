@@ -4,10 +4,10 @@
 
 import React, { useState, useEffect, MouseEvent } from "react";
 import { FaGithub, FaList } from "react-icons/fa";
-import { FaX } from "react-icons/fa6";
 import { Button, Tooltip } from "@/components/Global";
 import { BsEnvelope, BsGithub } from "react-icons/bs";
 import { useSpring, animated } from "@react-spring/web";
+import { HiX } from "react-icons/hi";
 
 interface NavItem {
   label: string;
@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
               className="text-text shrink-0 hover:text-gray-400 focus:outline-none pr-2 flex items-center justify-center"
             >
               {isOpen ? (
-                <FaX size={18} className="shrink-0" />
+                <HiX size={18} className="shrink-0" />
               ) : (
                 <FaList size={18} className="shrink-0" />
               )}

@@ -2,25 +2,11 @@
 
 import { SocialButton } from "@/components/Global";
 import { AnimateOnView } from "@/components/Global/AnimateOnView";
-import { useState } from "react";
-import { Gallery } from "@/components/Global";
 import certificateData from './Certificate.json';
 
 export const Certificate: React.FC = () => {
-  const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const { certificates } = certificateData;
-
-  const handleImageClick = (index: number) => {
-    const images = certificates.map(
-      (cert) => `/assets/static/img/Portfolio/${cert.src}`
-    );
-    setSelectedImages(images);
-    setCurrentIndex(index);
-    setIsModalOpen(true);
-  };
 
   return (
     <div
@@ -56,7 +42,6 @@ export const Certificate: React.FC = () => {
                   src={`/assets/static/img/Portfolio/${cert.src}`}
                   className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
                   alt={cert.alt}
-                  onClick={() => handleImageClick(index)}
                 />
               </AnimateOnView>
             ))}
@@ -69,31 +54,10 @@ export const Certificate: React.FC = () => {
               src="/assets/static/img/Portfolio/toeic.webp"
               className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
               alt="Advanced TOEIC Certification"
-              onClick={() => handleImageClick(6)}
             />
           </AnimateOnView>
         </div>
       </div>
-
-      <Gallery
-        images={selectedImages}
-        currentIndex={currentIndex}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onPrev={() =>
-          setCurrentIndex(
-            (prevIndex) =>
-              (prevIndex - 1 + selectedImages.length) % selectedImages.length
-          )
-        }
-        onNext={() =>
-          setCurrentIndex(
-            (nextIndex) => (nextIndex + 1) % selectedImages.length
-          )
-        }
-        titles={certificates.map((cert) => cert.alt)}
-        descriptions={certificates.map((cert) => cert.description)}
-      />
 
       <AnimateOnView direction="up" delay={1000}>
         <div className="flex w-full justify-center mt-12 mb-32">
