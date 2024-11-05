@@ -10,7 +10,7 @@ export const Title: React.FC<TitleProps> = ({ title, description = '', className
   const formattedDescription = markupAccents(description || '');
 
   return (
-    <div className={`flex flex-col items-center mb-8 ${className}`}>
+    <div className={`flex flex-col items-center px-2 mb-8 ${className}`}>
       <h2 className='text-center text-text text-4xl fontweight-600'>
         <span dangerouslySetInnerHTML={createMarkup(formattedTitle)} />
       </h2>

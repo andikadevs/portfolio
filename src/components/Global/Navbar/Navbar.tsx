@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import React, { useState, useEffect, MouseEvent } from "react";
@@ -82,7 +84,7 @@ export const Navbar: React.FC = () => {
     <nav className="fixed top-4 left-0 right-0 z-30" style={{ zIndex: 999 }}>
       {/* Main navbar container */}
       <div
-        className={`w-[94vw] mx-auto bg-dark opacity-[0.9] shadow-2xl rounded-3xl md:rounded-full px-2 sm:px-3 sm:pr-3 py-2 ${
+        className={`w-[98vw] mx-auto bg-dark opacity-[0.9] shadow-2xl rounded-3xl md:rounded-full px-2 sm:px-3 sm:pr-3 py-2 ${
           isOpen ? "sm:rounded-3xl" : "sm:rounded-full"
         }`}
       >
@@ -124,24 +126,18 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Hamburger menu icon */}
-          <div className="md:hidden">
-            <Tooltip
-              hasArrow
-              position="bottom"
-              label={isOpen ? "Close Navbar" : "Extends Navbar"}
+          <div className="md:hidden shrink-0">
+            <animated.button
+              onClick={toggleMenu}
+              style={iconAnimation}
+              className="text-text shrink-0 hover:text-gray-400 focus:outline-none pr-2 flex items-center justify-center"
             >
-              <animated.button
-                onClick={toggleMenu}
-                style={iconAnimation}
-                className="text-text shrink-0 hover:text-gray-400 focus:outline-none pr-2 flex items-center justify-center"
-              >
-                {isOpen ? (
-                  <FaX size={18} className="shrink-0" />
-                ) : (
-                  <FaList size={18} className="shrink-0" />
-                )}
-              </animated.button>
-            </Tooltip>
+              {isOpen ? (
+                <FaX size={18} className="shrink-0" />
+              ) : (
+                <FaList size={18} className="shrink-0" />
+              )}
+            </animated.button>
           </div>
         </div>
 
