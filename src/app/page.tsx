@@ -1,10 +1,9 @@
-import { Navbar, Facts, Footer, Particles } from "@/components/Global";
+import { Navbar, Facts, Footer } from "@/components/Global";
 import { About, Certificate, Companies, Education, Experience, Hero, Portfolio, Skills } from "@/sections/Home";
 
 export default function Home() {
   return (
     <main className="bg-main relative">
-      <Particles id="particles" />
       <Navbar />
       <Facts />
 
