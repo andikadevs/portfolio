@@ -52,7 +52,7 @@ export const Skills: React.FC = () => {
   const displayedSkills = showAll ? skills : skills.slice(0, 12);
 
   return (
-    <div id='skills' className='bg-main h-auto w-full mb-20'>
+    <div id='skills' className='bg-main h-auto w-full mb-10 sm:mb-20'>
       <animated.div ref={ref} style={scrollAnimation}>
         <Title
           title='Skills'
@@ -60,7 +60,7 @@ export const Skills: React.FC = () => {
         />
         <animated.div 
           style={gridAnimation}
-          className={`grid gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 transition-all duration-500 ease-in-out overflow-hidden`}
+          className={`grid gap-3 sm:gap-4 px-2 sm:px-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 transition-all duration-500 ease-in-out overflow-hidden`}
         >
           {displayedSkills.map((skill, index) => (
             <animated.a
@@ -75,10 +75,17 @@ export const Skills: React.FC = () => {
               href={skill.url}
               target="_blank"
               rel="noopener noreferrer"
-              className='cursor-pointer relative bg-secondary gap-3 flex justify-between flex-col items-center px-4 py-8 rounded shadow-xl text-center text-text hover:bg-accent hover:text-secondary transition duration-300 ease-in-out'
+              className='cursor-pointer relative bg-secondary gap-2 sm:gap-3 flex justify-between flex-col items-center px-2 sm:px-4 py-4 sm:py-8 rounded shadow-xl text-center text-text hover:bg-accent hover:text-secondary transition duration-300 ease-in-out'
             >
-              <Image draggable={false} src={skill.src} alt={skill.alt} width={80} height={80} className={skill.alt.toLowerCase() === 'react' ? 'animate-rotate' : ''} />
-              <p className='text-lg'>{skill.alt}</p>
+              <Image 
+                draggable={false} 
+                src={skill.src} 
+                alt={skill.alt} 
+                width={50} 
+                height={50} 
+                className={`w-8 h-8 sm:w-16 sm:h-16 md:w-20 md:h-20 ${skill.alt.toLowerCase() === 'react' ? 'animate-rotate' : ''}`} 
+              />
+              <p className='text-sm sm:text-base md:text-lg'>{skill.alt}</p>
             </animated.a>
           ))}
         </animated.div>
@@ -86,14 +93,14 @@ export const Skills: React.FC = () => {
         {skills.length > 12 && (
           <animated.div 
             style={scrollAnimation} 
-            className='text-center mt-8 flex justify-center'
+            className='text-center mt-4 sm:mt-8 flex justify-center px-4'
           >
             <animated.button
               onClick={() => setShowAll(!showAll)}
               style={{
                 transform: buttonAnimation.scale.to(s => `scale(${s})`),
               }}
-              className='relative bg-secondary text-accent px-6 py-3 rounded shadow-lg hover:text-secondary hover:bg-accent transition duration-300 ease-in-out flex items-center justify-center group'
+              className='relative bg-secondary text-accent px-4 sm:px-6 py-2 sm:py-3 rounded shadow-lg hover:text-secondary hover:bg-accent transition duration-300 ease-in-out flex items-center justify-center group text-sm sm:text-base'
             >
               {showAll ? (
                 <>
