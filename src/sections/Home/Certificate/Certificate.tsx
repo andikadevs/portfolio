@@ -1,12 +1,18 @@
 "use client";
 
+import React, { useMemo } from 'react';
+import Image from 'next/image';
 import { SocialButton } from "@/components/Global";
 import { AnimateOnView } from "@/components/Global/AnimateOnView";
 import certificateData from './Certificate.json';
 
-export const Certificate: React.FC = () => {
-
+export const Certificate: React.FC = React.memo(() => {
   const { certificates } = certificateData;
+  
+  const filteredCertificates = useMemo(() => 
+    certificates.filter((cert) => cert.src !== "toeic.webp"),
+    [certificates]
+  );
 
   return (
     <div
@@ -31,17 +37,19 @@ export const Certificate: React.FC = () => {
       <div className="flex gap-3 flex-col md:flex-row h-full">
         <div className="w-[100%] md:w-[75%] h-full">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
-            {certificates.filter((cert) => cert.src !== "toeic.webp").map((cert, index) => (
+            {filteredCertificates.map((cert, index) => (
               <AnimateOnView
                 key={cert.src}
                 direction="up"
                 delay={300 + index * 100}
               >
-                <img
-                  draggable={false}
+                <Image
                   src={`/assets/static/img/Portfolio/${cert.src}`}
-                  className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
                   alt={cert.alt}
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
+                  priority={index < 3}
                 />
               </AnimateOnView>
             ))}
@@ -49,11 +57,13 @@ export const Certificate: React.FC = () => {
         </div>
         <div className="w-[calc(50%-8px)] md:w-[25%] h-full flex flex-1">
           <AnimateOnView direction="up" delay={900} className="h-full w-full">
-            <img
-              draggable={false}
+            <Image
               src="/assets/static/img/Portfolio/toeic.webp"
-              className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
               alt="Advanced TOEIC Certification"
+              width={400}
+              height={600}
+              className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
+              priority
             />
           </AnimateOnView>
         </div>
@@ -72,4 +82,6 @@ export const Certificate: React.FC = () => {
       </AnimateOnView>
     </div>
   );
-};
+});
+
+Certificate.displayName = 'Certificate';
