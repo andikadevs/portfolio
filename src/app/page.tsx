@@ -1,11 +1,11 @@
-import { Facts, Footer } from "@/components/Global";
+import { Footer } from "@/components/Global";
 import { About, Certificate, Companies, Education, Experience, Hero, Portfolio, Skills } from "@/sections/Home";
 
 export default function Home() {
   return (
     <main className="bg-main relative">
       {/* <Navbar /> */}
-      <Facts />
+      {/* <Facts /> */}
 
       {/* Contents */}
       <Hero />
