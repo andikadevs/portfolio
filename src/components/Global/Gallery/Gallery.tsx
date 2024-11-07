@@ -1,7 +1,10 @@
+'use client';
+
 import React from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { GalleryProps } from "./GalleryProps";
 import { markupAccents } from "@/utils/Global";
+import { useSpring, animated } from "@react-spring/web";
 
 export const Gallery: React.FC<GalleryProps> = ({
   images,
@@ -13,13 +16,21 @@ export const Gallery: React.FC<GalleryProps> = ({
   onPrev,
   onNext,
 }) => {
+  const animationProps = useSpring({
+    opacity: isOpen ? 1 : 0,
+    transform: isOpen ? "scale(1)" : "scale(0.9)",
+    config: { tension: 200, friction: 20 },
+  });
+
   if (!isOpen || !images?.length) return null;
 
   const hasDescription = descriptions && descriptions.length > 0;
-  const hasTitle = titles && titles.length > 0;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[9999]">
+    <animated.div
+      style={animationProps}
+      className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[9999]"
+    >
       <button
         onClick={onClose}
         className="absolute top-4 right-4 text-white text-4xl hover:text-accent transition-colors z-[99999]"
@@ -40,37 +51,21 @@ export const Gallery: React.FC<GalleryProps> = ({
         <BiChevronRight />
       </button>
 
-      <div className="relative bg-secondary p-4 shadow-xl md:w-[80vw] md:h-[80vh] w-screen h-screen overflow-hidden flex flex-col items-center justify-center">
-        <div className="w-full md:h-[80%] h-[85%] flex justify-center items-center">
-          <img
-            draggable={false}
-            src={images[currentIndex]}
-            alt={titles?.[currentIndex] || `Slide ${currentIndex + 1}`}
-            className="max-w-full max-h-full object-contain mb-3"
-          />
+      <img
+        draggable={false}
+        src={images[currentIndex]}
+        alt={titles?.[currentIndex] || `Slide ${currentIndex + 1}`}
+        className="max-w-[calc(100vw-1rem)] sm:max-w-full h-full object-contain"
+      />
+      {hasDescription && (
+        <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white p-2 rounded">
+          <p
+            dangerouslySetInnerHTML={{
+              __html: markupAccents(descriptions[currentIndex]),
+            }}
+          ></p>
         </div>
-        {(hasTitle || hasDescription) && (
-          <div className="text-white w-full md:h-[20%] h-auto">
-            {hasTitle && (
-              <h3 className="text-xl mb-2 relative">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: markupAccents(titles[currentIndex]),
-                  }}
-                />
-                <div className="absolute w-[50px] h-[2px] bg-accent bottom-0"></div>
-              </h3>
-            )}
-            {hasDescription && (
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: markupAccents(descriptions[currentIndex]),
-                }}
-              ></p>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
+      )}
+    </animated.div>
   );
 };

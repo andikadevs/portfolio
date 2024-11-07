@@ -15,15 +15,15 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
   onClick
 }) => {
   return (
-    <div className='bg-secondary shadow-xl overflow-hidden flex flex-col p-3 pt-1 relative h-full'>
-      <div className='relative w-full' style={{ paddingTop: '56.25%' }}>
+    <div className='bg-secondary shadow-xl overflow-hidden flex flex-col p-3 relative h-full'>
+      <div className='relative w-full mb-1' style={{ paddingTop: '56.25%' }}>
         <Image
           loading='lazy'
           src={imgSrc}
           alt={title}
           layout='fill'
-          objectFit='contain'
-          className='absolute top-0 left-0 cursor-pointer'
+          objectFit='cover'
+          className='absolute top-0 left-0 cursor-pointer rounded-sm'
           onClick={() => onClick()}
           draggable={false}
         />
