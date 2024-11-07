@@ -13,11 +13,11 @@ import {
 export const Footer = () => {
   return (
     <footer
-      className="relative bg-dark w-full min-h-[300px] h-auto pb-8 pt-[180px] flex items-center justify-center flex-col gap-8"
+      className="relative bg-dark w-full min-h-[300px] h-auto pb-[40px] pt-[100px] flex items-center justify-center flex-col gap-8"
       style={{ zIndex: 997 }}
     >
       <div
-        className="absolute bg-main shadow-xl rounded-xl min-h-[180px] py-4 w-[90vw] md:w-[80vw] top-0 left-1/2 transform -translate-x-1/2 grid grid-cols-1 md:grid-cols-3 gap-4 px-4"
+        className="absolute bg-main shadow-xl rounded-xl min-h-[180px] py-4 w-[90vw] md:w-[80vw] top-[-21%] left-1/2 transform -translate-x-1/2 grid grid-cols-1 md:grid-cols-3 gap-4 px-4"
         style={{ zIndex: 998 }}
       >
         <div className="w-full h-full flex items-center justify-center">
