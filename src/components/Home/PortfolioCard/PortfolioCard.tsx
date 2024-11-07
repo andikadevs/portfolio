@@ -15,7 +15,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
   onClick
 }) => {
   return (
-    <div className='bg-secondary shadow-xl overflow-hidden flex flex-col p-3 relative h-full'>
+    <div className='bg-secondary shadow-xl w-auto overflow-hidden flex flex-col p-3 relative h-full'>
       <div className='relative w-full mb-1' style={{ paddingTop: '56.25%' }}>
         <Image
           loading='lazy'
@@ -41,9 +41,9 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
         </div>
 
         <div className='border-t border-dark flex justify-between pt-2 gap-3 overflow-hidden'>
-          <div className='flex gap-2 overflow-x-auto scrollbar-hidden'>
+          <div className='flex gap-2 overflow-x-auto items-center flex-wrap scrollbar-hidden'>
             {stacks.map((item, index) => (
-              <div key={index} className='relative h-[30px] w-[30px]'>
+              <div key={index} className='relative h-[20px] w-[20px] sm:h-[30px] sm:w-[30px]'>
                 <Image
                   src={`/assets/static/img/Icons/${item}.svg`}
                   alt={`${item} Icon`}
