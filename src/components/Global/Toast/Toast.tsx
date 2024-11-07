@@ -2,29 +2,34 @@
 
 import React, { useEffect, useState } from 'react';
 import { ToastProps } from './ToastPropsInterface';
+import { useSpring, animated } from '@react-spring/web';
 
 export const Toast: React.FC<ToastProps> = ({ title, message, onClose, delay }) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
+  
+    const animationProps = useSpring({
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
+      config: { tension: 220, friction: 20 },
+      onRest: () => {
+        if (!isVisible) onClose();
+      },
+    });
   
     useEffect(() => {
       setIsVisible(true);
   
       const hideToastTimeout = setTimeout(() => {
         setIsVisible(false);
-        setTimeout(onClose, 300);
       }, delay);
   
       return () => clearTimeout(hideToastTimeout);
-    }, [onClose, delay]);
+    }, [delay]);
   
     return (
-      <div
-        className={`fixed max-w-[calc(100vw-3rem)] sm:max-w-[50%] bottom-4 right-4 bg-gray-800 text-white p-4 rounded shadow-lg flex items-start space-x-4 z-50 transform transition-transform duration-300 ease-in-out ${
-          isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
-        }`}
-        style={{
-          zIndex: 999
-        }}
+      <animated.div
+        style={animationProps}
+        className={`fixed max-w-[calc(100vw-3rem)] sm:max-w-[50%] bottom-4 right-4 bg-gray-800 text-white p-4 rounded shadow-lg flex items-start space-x-4 z-50`}
       >
         <div className="flex-1 pr-6">
           <strong className="block relative">
@@ -39,6 +44,6 @@ export const Toast: React.FC<ToastProps> = ({ title, message, onClose, delay }) 
         >
           &times;
         </button>
-      </div>
+      </animated.div>
     );
 };
