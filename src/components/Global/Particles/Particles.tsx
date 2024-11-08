@@ -1,19 +1,14 @@
 'use client'
 
 import ReactParticles , { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { loadSlim } from "@tsparticles/slim";
 
 export const Particles = (props: { id: string | undefined; }) => {
 
-  const [init, setInit] = useState(false);
-  console.log(init);
-
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
     });
   }, []);
 
