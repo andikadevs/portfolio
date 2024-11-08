@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const generateStructuredData = () => {
+const generateStructuredData = () => {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
