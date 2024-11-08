@@ -58,6 +58,33 @@ export const metadata: Metadata = {
   },
 };
 
+export const generateStructuredData = () => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Andika Dwi Saputra",
+    jobTitle: "Full Stack Software Engineer",
+    url: "https://andikads.my.id",
+    sameAs: [
+      "https://github.com/Andikss",
+      "https://linkedin.com/in/andikadwisaputra",
+      "https://instagram.com/andikads__",
+      "https://andikss.github.io"
+    ],
+    email: "andikadwisaputra.dev@gmail.com",
+    description: "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    knowsAbout: [
+      "Web Development",
+      "React",
+      "Next.js",
+      "Laravel",
+      "PHP",
+      "JavaScript",
+      "TypeScript"
+    ]
+  }
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,6 +92,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateStructuredData())
+          }}
+        />
+      </head>
       <body className={`${poppins.variable} antialiased`}>{children}</body>
     </html>
   );
