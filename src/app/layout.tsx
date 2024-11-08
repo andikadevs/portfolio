@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -10,9 +9,53 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Andika Dwi Saputra",
-  description:
-    "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures. Proficient in utilizing various frameworks following industrial standards. Always eager to learn and improve in the fast-paced world of technology.",
+  title: "Andika Dwi Saputra | Full Stack Software Engineer",
+  description: "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures. Proficient in utilizing various frameworks following industrial standards. Always eager to learn and improve in the fast-paced world of technology.",
+  keywords: ["Full Stack Developer", "Software Engineer", "Web Development", "Laravel", "React", "Next.js", "PHP", "JavaScript", "TypeScript", "Andika Dwi Saputra"],
+  authors: [{ name: "Andika Dwi Saputra" }],
+  creator: "Andika Dwi Saputra",
+  publisher: "Andika Dwi Saputra",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    title: "Andika Dwi Saputra | Full Stack Software Engineer",
+    description: "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    url: 'https://github.com/Andikss',
+    siteName: 'Andika Dwi Saputra Portfolio',
+    images: [
+      {
+        url: '/assets/img/formal.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Andika Dwi Saputra - Full Stack Software Engineer',
+      },
+    ],
+    locale: 'id_ID',
+    type: 'profile',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Andika Dwi Saputra | Full Stack Software Engineer",
+    description: "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    images: ['/assets/img/formal.webp'],
+  },
+  alternates: {
+    canonical: 'https://github.com/Andikss',
+  },
 };
 
 export default function RootLayout({
@@ -22,36 +65,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <Head>
-        <meta
-          name="description"
-          content="Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures. Proficient in utilizing various frameworks following industrial standards. Always eager to learn and improve in the fast-paced world of technology."
-        />
-        <meta
-          name="keywords"
-          content="GitHub, portfolio, profile, projects, software development, programming, laravel, phpmyadmin, software engineer"
-        />
-        <meta name="author" content="Andika Dwi Saputra" />
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
-        <meta property="og:title" content="AndikaDS" />
-        <meta
-          property="og:description"
-          content="Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures. Proficient in utilizing various frameworks following industrial standards. Always eager to learn and improve in the fast-paced world of technology."
-        />
-        <meta property="og:image" content="./assets/img/formal.webp" />
-        <meta property="og:url" content="https://github.com/Andikss" />
-        <meta property="og:type" content="profile" />
-        <meta property="og:site_name" content="Andika Dwi Saputra" />
-        <meta property="og:locale" content="id_ID" />
-
-        <link
-          rel="preload"
-          href="/assets/static/img/hero-dark.webp"
-          as="image"
-          type="image/webp"
-        />
-      </Head>
       <body className={`${poppins.variable} antialiased`}>{children}</body>
     </html>
   );
