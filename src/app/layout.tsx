@@ -95,6 +95,12 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <GoogleAnalytics GA_MEASUREMENT_ID="G-LXG4SHXKY8" />
+        <link 
+          rel="preload"
+          href="/assets/static/img/avatar.webp"
+          as="image"
+          type="image/webp"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
