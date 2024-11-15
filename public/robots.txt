@@ -3,6 +3,3 @@ Allow: /
 
 # Sitemap
 Sitemap: https://andikads.my.id/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 10 
