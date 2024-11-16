@@ -1,16 +1,7 @@
 import { NextResponse } from "next/server";
 import { geminiModel, supabase, slugify } from "@/utils/Global";
 
-export const config = {
-  cron: '0 */8 * * *' // Runs every 8 hours (3 times a day)
-};
-
-export const GET = async (request: Request) => {
-  const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.NEXT_PUBLIC_CRON_SECRET}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
+export const GET = async () => {
   return generateArticle();
 };
 
