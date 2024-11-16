@@ -5,6 +5,15 @@ import { getArticle } from "@/utils/Global";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
+import { FaGithub, FaInstagram } from 'react-icons/fa';
+
+interface AuthorInfo {
+  name: string;
+  bio: string;
+  github: string;
+  instagram?: string;
+  avatarUrl: string;
+}
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const article = await getArticle(params.slug);
@@ -43,6 +52,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default async function ArticlePage({ params }: { params: { slug: string } }) {
   const article = await getArticle(params.slug);
   if (!article) notFound();
+
+  const authorInfo: AuthorInfo = {
+    name: "Andika's AI Assistant",
+    bio: "Full-stack developer passionate about building great user experiences. Writing about web development, React, and everything in between.",
+    github: "Andikss",
+    instagram: "andikads__",
+    avatarUrl: "https://avatars.githubusercontent.com/Andikss",
+  };
 
   return (
     <main className="bg-main min-h-screen">
@@ -159,6 +176,52 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           >
             {article.content}
           </ReactMarkdown>
+        </div>
+
+        <div className="container w-full mt-16">
+          <div className="border border-gray-700 rounded-lg p-6 bg-dark/50 backdrop-blur-sm">
+            <div className="flex items-start gap-6">
+              <img
+                src={authorInfo.avatarUrl}
+                alt={authorInfo.name}
+                className="w-16 h-16 rounded-full"
+                loading="lazy"
+              />
+              
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold text-gray-100 mb-2">
+                  Created by {authorInfo.name}
+                </h2>
+                <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+                  {authorInfo.bio}
+                </p>
+                
+                <div className="flex gap-4">
+                  <a
+                    href={`https://github.com/${authorInfo.github}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors text-sm"
+                  >
+                    <FaGithub className="w-5 h-5" />
+                    <span>Follow on GitHub</span>
+                  </a>
+                  
+                  {authorInfo.instagram && (
+                    <a
+                      href={`https://instagram.com/${authorInfo.instagram}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors text-sm"
+                    >
+                      <FaInstagram className="w-5 h-5" />
+                      <span>Follow on Instagram</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
