@@ -20,7 +20,7 @@ export default function ArticlesList({ articles }: { articles: any }) {
         />
         <div>
           <h2 className="text-xl font-semibold text-text">Andika Dwi Saputra</h2>
-          <p className="text-accent">Content Creator</p>
+          <p className="text-accent">Software Engineer | AI Enthusiast</p>
         </div>
       </div>
 
