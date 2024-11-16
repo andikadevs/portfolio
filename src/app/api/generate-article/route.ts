@@ -3,44 +3,77 @@ import { geminiModel, supabase, slugify } from "@/utils/Global";
 
 async function getRelevantImage(topic: string, existingImages: string[]) {
   try {
-    // Try multiple pages to find unique image
-    for (let page = 1; page <= 3; page++) {
-      const response = await fetch(
-        `https://api.pexels.com/v1/search?query=${encodeURIComponent(topic)}&per_page=15&page=${page}`,
-        {
-          headers: {
-            Authorization: process.env.NEXT_PUBLIC_PEXELS_API_KEY!,
-          },
-        }
-      );
+    // Extract key terms and create search variations
+    const searchTerms = [
+      topic,
+      // Add technology-focused context if not present
+      topic.includes('technology') ? topic : `${topic} technology`,
+      topic.includes('digital') ? topic : `${topic} digital`,
+      // Remove common words for more focused search
+      ...topic.split(' ')
+        .filter(word => 
+          word.length > 3 && 
+          !['and', 'the', 'for', 'with'].includes(word.toLowerCase())
+        )
+    ];
 
-      const data = await response.json();
-      
-      if (data.photos && data.photos.length > 0) {
-        // Find first image that isn't in existingImages
-        const uniquePhoto = data.photos.find((photo: any) => 
-          !existingImages.includes(photo.src.large2x)
+    // Try each search term until we find a suitable image
+    for (const searchTerm of searchTerms) {
+      // Try multiple pages for each search term
+      for (let page = 1; page <= 3; page++) {
+        const response = await fetch(
+          `https://api.pexels.com/v1/search?query=${encodeURIComponent(searchTerm)}&per_page=15&page=${page}`,
+          {
+            headers: {
+              Authorization: process.env.NEXT_PUBLIC_PEXELS_API_KEY!,
+            },
+          }
         );
 
-        if (uniquePhoto) {
-          return {
-            url: uniquePhoto.src.large2x,
-            photographer: uniquePhoto.photographer
-          };
+        const data = await response.json();
+        
+        if (data.photos && data.photos.length > 0) {
+          // Find first image that isn't in existingImages and has good dimensions
+          const uniquePhoto = data.photos.find((photo: any) => 
+            !existingImages.includes(photo.src.large2x) &&
+            photo.width >= 1200 && // Ensure minimum width
+            photo.height >= 800 && // Ensure minimum height
+            photo.width / photo.height <= 2 // Ensure reasonable aspect ratio
+          );
+
+          if (uniquePhoto) {
+            return {
+              url: uniquePhoto.src.large2x,
+              photographer: uniquePhoto.photographer
+            };
+          }
         }
       }
     }
 
-    // Fallback image if no unique images found
-    return {
-      url: "/assets/img/formal.webp",
-      photographer: "Andika Dwi Saputra"
-    };
+    // Technology-specific fallback images if no relevant images found
+    const fallbackImages = [
+      {
+        url: "/assets/img/tech-fallback-1.webp",
+        photographer: "Your Default Photographer"
+      },
+      {
+        url: "/assets/img/tech-fallback-2.webp",
+        photographer: "Your Default Photographer"
+      },
+      // Add more fallback images as needed
+    ];
+
+    // Return a random fallback image
+    const fallback = fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+    console.warn(`Using fallback image for topic: ${topic}`);
+    return fallback;
+
   } catch (error) {
     console.error("Error fetching image:", error);
     return {
-      url: "/assets/img/formal.webp",
-      photographer: "Andika Dwi Saputra"
+      url: "https://images.unsplash.com/photo-1623697899817-2e067e4a4036?q=80&w=1930&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      photographer: "AndikaDS"
     };
   }
 }
