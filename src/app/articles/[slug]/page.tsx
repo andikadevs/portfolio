@@ -29,11 +29,11 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
       <article className="container mx-auto px-4 py-12 md:py-24 max-w-4xl text-gray-300">
         {/* Hero Image */}
-        <div className="relative w-full h-[300px] md:h-[500px] mb-3 group">
+        <div className="relative w-full h-[300px] md:h-[500px] mb-8">
           <img
             src={article.image_url}
             alt={article.title}
-            className="object-cover rounded-xl shadow-xl transition-transform duration-300 group-hover:scale-[1.02]"
+            className="w-full h-full object-cover object-[center_30%] rounded-xl shadow-xl"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent rounded-xl" />
         </div>
