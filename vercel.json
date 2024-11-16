@@ -5,8 +5,10 @@
       "headers": [{ "key": "Content-Type", "value": "application/xml" }]
     }
   ],
-  "crons": [{
-    "path": "/api/generate-article",
-    "schedule": "0 */8 * * *"
-  }]
+  "crons": [
+    {
+      "path": "/api/generate-article",
+      "schedule": "0 */8 * * *"
+    }
+  ]
 }
