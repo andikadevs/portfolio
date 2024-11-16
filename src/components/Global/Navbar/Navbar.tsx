@@ -8,6 +8,7 @@ import { Button, Tooltip } from "@/components/Global";
 import { BsEnvelope, BsGithub } from "react-icons/bs";
 import { useSpring, animated } from "@react-spring/web";
 import { HiX } from "react-icons/hi";
+import { useRouter, usePathname } from 'next/navigation';
 
 interface NavItem {
   label: string;
@@ -21,9 +22,12 @@ const navItems: NavItem[] = [
   { label: "Education", href: "#education" },
   { label: "Experience", href: "#experience" },
   { label: "Portfolio", href: "#portfolio" },
+  { label: "Articles", href: "/articles" },
 ];
 
 export const Navbar: React.FC = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -33,34 +37,62 @@ export const Navbar: React.FC = () => {
 
   const scrollToSection = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const section = document.querySelector(href) as HTMLElement;
-    if (section) {
-      window.scrollTo({
-        top: section.offsetTop - 80, // Adjust offset if necessary
-        behavior: "smooth",
-      });
+    
+    if (href.startsWith('#')) {
+      // If we're not on the home page, go there first
+      if (pathname !== '/') {
+        router.push('/' + href);
+        return;
+      }
+      
+      // If we're already on home page, just scroll
+      const section = document.querySelector(href) as HTMLElement;
+      if (section) {
+        window.scrollTo({
+          top: section.offsetTop - 80,
+          behavior: "smooth",
+        });
+      }
+    } else {
+      // For non-hash links (like /articles), navigate normally
+      router.push(href);
     }
   };
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY + 80; // Account for offset
+    
+    // Don't check sections if we're on the articles page
+    if (pathname === '/articles') {
+      setActiveSection('/articles');
+      return;
+    }
+
     navItems.forEach((item) => {
-      const section = document.querySelector(item.href) as HTMLElement;
-      if (section) {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          setActiveSection(item.href);
+      if (item.href.startsWith('#')) {  // Only check sections for hash links
+        const section = document.querySelector(item.href) as HTMLElement;
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            setActiveSection(item.href);
+          }
         }
       }
     });
   };
 
   useEffect(() => {
-    handleScroll();
+    // Update active section when pathname changes
+    if (pathname === '/articles') {
+      setActiveSection('/articles');
+    } else {
+      handleScroll();
+    }
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]); // Add pathname to dependency array
 
   const menuAnimation = useSpring({
     height: isOpen ? "90vh" : "0vh",

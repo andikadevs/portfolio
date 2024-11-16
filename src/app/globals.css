@@ -1,3 +1,5 @@
+/** @format */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,19 +9,19 @@
 } */
 
 :root {
-  --main: #FFFFFF;
-  --secondary: #F0F0F0;
-  --accent: #F2C32F;
-  --dark: #E5E5E5;
+  --main: #ffffff;
+  --secondary: #f0f0f0;
+  --accent: #f2c32f;
+  --dark: #e5e5e5;
   --text: #26262b;
 }
 
 .dark {
-  --main: #34353A;
-  --secondary: #3C3E43;
-  --accent: #F1BE6C;
+  --main: #34353a;
+  --secondary: #3c3e43;
+  --accent: #f1be6c;
   --dark: #26262b;
-  --text: #E5E5E5;
+  --text: #e5e5e5;
 }
 
 html {
@@ -42,7 +44,7 @@ body {
 }
 
 .scrollbar-hidden {
-  -ms-overflow-style: none;  
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
@@ -63,7 +65,6 @@ body {
   width: 100%;
   height: auto;
 }
-
 
 /* SCROLLBARS */
 
@@ -86,3 +87,5 @@ body {
 ::-webkit-scrollbar-thumb:horizontal {
   top: 0;
 }
+
+/* ARTICLES */
