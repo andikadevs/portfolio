@@ -81,11 +81,12 @@ async function generateArticle(request?: Request) {
     - Include relevant keywords naturally
     
     Content Requirements:
-    - Write 800-1000 words of original content
+    - Write more than 1000 words of original content
     - Use your own unique explanations and perspectives
     - Include real-world examples and practical applications
     - Break down complex topics into simple, relatable terms
     - Vary sentence structure and paragraph length
+    - Tell about personal experience if needed
     
     Structure:
     - Start with an engaging hook or relevant story
@@ -97,7 +98,6 @@ async function generateArticle(request?: Request) {
     SEO & Readability:
     - Naturally incorporate semantic keywords and LSI terms
     - Write in a conversational, human tone
-    - Use short paragraphs (2-4 sentences)
     - Include relevant statistics or data when applicable
     - Maintain proper keyword density without stuffing
     
