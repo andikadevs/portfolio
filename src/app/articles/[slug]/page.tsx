@@ -178,7 +178,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </ReactMarkdown>
         </div>
 
-        <div className="container w-full mt-16">
+        <div className="container w-full mt-16 shadow-sm">
           <div className="border border-gray-700 rounded-lg p-6 bg-dark/50 backdrop-blur-sm">
             <div className="flex items-start gap-6">
               <img
