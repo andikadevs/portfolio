@@ -10,6 +10,7 @@ export async function POST(request: Request) {
 async function generateArticle(request?: Request) {
   try {
     let topic = "";
+    let customImageUrl = "";
     let attempts = 0;
     const MAX_ATTEMPTS = 5;
 
@@ -17,6 +18,7 @@ async function generateArticle(request?: Request) {
       try {
         const body = await request.json();
         topic = body?.topic || "";
+        customImageUrl = body?.image || "";
       } catch (parseError) {
         console.log(
           "No request body or invalid JSON, proceeding with generated topic"
@@ -43,7 +45,7 @@ async function generateArticle(request?: Request) {
       - Focuses on technology, AI, programming, digital innovation, or tutorials
       - Has not been extensively covered
       - Has search potential
-      - Is specific enough to cover in 600-700 words
+      - Is specific enough to cover more than 1000 words
       - Must be completely different from these existing topics: ${existingTitles.join(
         ", "
       )}
@@ -70,19 +72,36 @@ async function generateArticle(request?: Request) {
     }
 
     // Enhanced SEO-friendly article prompt
-    const articlePrompt = `Write an SEO-optimized article about ${topic} following these requirements:
-    - Include a compelling title using keywords
-    - Length must be between 600-700 words
-    - Use bullet points and numbered lists where appropriate
-    - Include clear subheadings (H2 and H3)
-    - Use explanatory sentences starting with "is", "are", "means", etc.
-    - Include a brief introduction and conclusion
-    - Focus on providing valuable, accurate information
-    - Use natural keyword placement
-    - Break down complex concepts into digestible parts
+    const articlePrompt = `Write an engaging, original article about ${topic} following these guidelines:
+
+    Title Requirements:
+    - Create a natural, conversational title
+    - Vary the title format (questions, statements, how-to, numbers)
+    - Avoid overusing colons (:) in titles
+    - Include relevant keywords naturally
     
-    The article should be informative and engaging for readers interested in technology.
-    Format the article in markdown.`;
+    Content Requirements:
+    - Write 800-1000 words of original content
+    - Use your own unique explanations and perspectives
+    - Include real-world examples and practical applications
+    - Break down complex topics into simple, relatable terms
+    - Vary sentence structure and paragraph length
+    
+    Structure:
+    - Start with an engaging hook or relevant story
+    - Use clear H2 and H3 subheadings
+    - Include bullet points or numbered lists where natural
+    - Add transition sentences between sections
+    - End with a meaningful conclusion and call-to-action
+    
+    SEO & Readability:
+    - Naturally incorporate semantic keywords and LSI terms
+    - Write in a conversational, human tone
+    - Use short paragraphs (2-4 sentences)
+    - Include relevant statistics or data when applicable
+    - Maintain proper keyword density without stuffing
+    
+    Format the article in markdown and ensure it reads like it was written by a human expert.`;
 
     // Generate article content
     const articleResult = await geminiModel.generateContent(articlePrompt);
@@ -95,11 +114,10 @@ async function generateArticle(request?: Request) {
       .trim();
     const slug = slugify(title);
 
-    // Get unique relevant image from Pexels
-    const { url: imageUrl, photographer } = await getRelevantImage(
-      topic,
-      existingImages
-    );
+    // Modify the image fetching logic
+    const { url: imageUrl, photographer } = customImageUrl 
+      ? { url: customImageUrl, photographer: "AI Assistant" }
+      : await getRelevantImage(topic, existingImages);
 
     // Store in Supabase
     const { data, error } = await supabase
@@ -138,30 +156,29 @@ async function generateArticle(request?: Request) {
 
 async function getRelevantImage(topic: string, existingImages: string[]) {
   try {
-    // Extract key terms and create search variations
+    // Create more targeted search variations
     const searchTerms = [
       topic,
-      // Add technology-focused context if not present
-      topic.includes("technology") ? topic : `${topic} technology`,
-      topic.includes("digital") ? topic : `${topic} digital`,
-      // Remove common words for more focused search
-      ...topic
-        .split(" ")
-        .filter(
-          (word) =>
-            word.length > 3 &&
-            !["and", "the", "for", "with"].includes(word.toLowerCase())
-        ),
-    ];
+      `${topic} technology`,
+      `${topic} digital`,
+      // Add specific context based on common tech themes
+      `${topic} computer`,
+      `${topic} software`,
+      `${topic} innovation`,
+      // Create more specific combinations
+      ...topic.split(" ").map(word => `${word} technology`),
+      ...topic.split(" ").map(word => `${word} digital`),
+    ].filter(term => 
+      // Filter out generic terms
+      term.length > 5 && 
+      !term.match(/^(and|the|for|with|how|what|why|when)\s/i)
+    );
 
     // Try each search term until we find a suitable image
     for (const searchTerm of searchTerms) {
-      // Try multiple pages for each search term
       for (let page = 1; page <= 3; page++) {
         const response = await fetch(
-          `https://api.pexels.com/v1/search?query=${encodeURIComponent(
-            searchTerm
-          )}&per_page=15&page=${page}`,
+          `https://api.pexels.com/v1/search?query=${encodeURIComponent(searchTerm)}&per_page=15&page=${page}`,
           {
             headers: {
               Authorization: process.env.NEXT_PUBLIC_PEXELS_API_KEY!,
@@ -172,14 +189,20 @@ async function getRelevantImage(topic: string, existingImages: string[]) {
         const data = await response.json();
 
         if (data.photos && data.photos.length > 0) {
-          // Find first image that isn't in existingImages and has good dimensions
-          const uniquePhoto = data.photos.find(
-            (photo: any) =>
-              !existingImages.includes(photo.src.large2x) &&
-              photo.width >= 1200 && // Ensure minimum width
-              photo.height >= 800 && // Ensure minimum height
-              photo.width / photo.height <= 2 // Ensure reasonable aspect ratio
-          );
+          // Enhanced image filtering criteria
+          const uniquePhoto = data.photos.find((photo: any) => {
+            const isUnique = !existingImages.includes(photo.src.large2x);
+            const hasGoodDimensions = 
+              photo.width >= 1200 &&
+              photo.height >= 800 &&
+              photo.width / photo.height <= 2;
+            const hasRelevantTags = 
+              photo.alt?.toLowerCase().includes(topic.toLowerCase()) ||
+              photo.alt?.toLowerCase().includes('technology') ||
+              photo.alt?.toLowerCase().includes('digital');
+            
+            return isUnique && hasGoodDimensions && hasRelevantTags;
+          });
 
           if (uniquePhoto) {
             return {
