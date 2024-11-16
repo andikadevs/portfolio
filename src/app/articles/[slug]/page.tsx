@@ -105,6 +105,11 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           {/* Main Content */}
           <ReactMarkdown
             components={{
+              h1: ({children}) => (
+                <h2 className="hidden">
+                  {children}
+                </h2>
+              ),
               h2: ({children}) => (
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 mt-12 text-gray-100 leading-tight">
                   {children}
