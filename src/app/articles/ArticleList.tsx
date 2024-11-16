@@ -57,7 +57,7 @@ export default function ArticlesList({ articles }: { articles: any }) {
               <img 
                 src={article.image_url} 
                 alt={article.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[center_30%]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
