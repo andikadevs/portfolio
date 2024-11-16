@@ -71,47 +71,68 @@ async function generateArticle(request?: Request) {
       throw new Error("Failed to generate unique topic after maximum attempts");
     }
 
-    // Enhanced SEO-friendly article prompt
-    const articlePrompt = `Write an engaging, original article about ${topic} following these guidelines:
+    // Enhanced title generation prompt
+    const titlePrompt = `Create a unique, engaging title for an article about ${topic} that:
+    1. Is different from these existing titles: ${existingTitles.join(", ")}
+    2. Avoids overused patterns
+    3. Feels natural and conversational
 
-    Title Requirements:
-    - Create a natural, conversational title
-    - Vary the title format (questions, statements, how-to, numbers)
-    - Avoid overusing colons (:) in titles
-    - Include relevant keywords naturally
+    Use one of these varied styles:
+    - Personal story (e.g., "What I Learned After...")
+    - Challenge-based (e.g., "The Hidden Challenges of...")
+    - Future-focused (e.g., "Why X Will Transform...")
+    - Discovery (e.g., "Uncovering the Power of...")
+    - Problem-solving (e.g., "Solving X With...")
+    - Opinion (e.g., "Why X is the Next Big Thing")
+    - Experience-sharing (e.g., "My Journey With...")
+    - Insight-focused (e.g., "The Surprising Truth About...")
     
-    Content Requirements:
-    - Write more than 1000 words of original content
-    - Use your own unique explanations and perspectives
-    - Include real-world examples and practical applications
-    - Break down complex topics into simple, relatable terms
-    - Vary sentence structure and paragraph length
-    - Tell about personal experience if needed
+    Return only the title, nothing else.`;
+
+    // Generate title first
+    const titleResult = await geminiModel.generateContent(titlePrompt);
+    const generatedTitle = titleResult.response.text().trim();
+
+    // Then use the generated title in the article prompt
+    const articlePrompt = `Write an engaging, original article with the title "${generatedTitle}" that feels like a high-quality Medium post. Follow these guidelines:
+
+    Style & Tone:
+    - Write in a conversational, personal tone
+    - Share insights from experience and real-world scenarios
+    - Include relevant anecdotes or examples where appropriate
+    - Make complex topics accessible without oversimplifying
+    - Use natural transitions between topics
     
-    Structure:
-    - Start with an engaging hook or relevant story
-    - Use clear H2 and H3 subheadings
-    - Include bullet points or numbered lists where natural
-    - Add transition sentences between sections
-    - End with a meaningful conclusion and call-to-action
+    Content Structure:
+    - Start with an engaging hook or personal insight
+    - Break down complex topics naturally
+    - Use descriptive headings that flow with the content
+    - Include code examples where relevant
+    - Mix theory with practical applications
+    - End with thoughtful conclusions or future perspectives
     
-    SEO & Readability:
-    - Naturally incorporate semantic keywords and LSI terms
-    - Write in a conversational, human tone
-    - Include relevant statistics or data when applicable
-    - Maintain proper keyword density without stuffing
+    Technical Depth:
+    - Explain concepts thoroughly but conversationally
+    - Include both beginner-friendly and advanced insights
+    - Share practical tips and real-world considerations
+    - Discuss potential challenges and solutions
+    - Add code snippets with clear explanations
     
-    Format the article in markdown and ensure it reads like it was written by a human expert.`;
+    Writing Quality:
+    - Maintain a natural flow between paragraphs
+    - Vary sentence structure and length
+    - Use analogies to explain complex concepts
+    - Include relevant industry context
+    - Keep the tone professional but approachable
+    
+    Format the article in markdown, ensuring code snippets are properly formatted with language tags. Write as if you're an experienced developer sharing valuable insights with peers.`;
 
     // Generate article content
     const articleResult = await geminiModel.generateContent(articlePrompt);
     const article = await articleResult.response.text();
 
-    // Extract title and generate slug
-    const title = article
-      .split("\n")[0]
-      .replace(/^#+\s*/, "")
-      .trim();
+    // Use the generated title directly instead of extracting from content
+    const title = generatedTitle;
     const slug = slugify(title);
 
     // Modify the image fetching logic
