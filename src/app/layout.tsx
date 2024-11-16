@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import GoogleAnalytics from '@/components/Analytics/GoogleAnalytics'
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -94,7 +93,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <GoogleAnalytics GA_MEASUREMENT_ID="G-LXG4SHXKY8" />
         <link 
           rel="preload"
           href="/assets/static/img/avatar.webp"

@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: 'https://andikads.my.id/assets/img/formal.webp',
+      url: 'https://andikads.my.id/assets/static/img/formal.webp',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
