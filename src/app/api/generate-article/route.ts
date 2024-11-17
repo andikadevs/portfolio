@@ -22,27 +22,17 @@ async function generateArticle(request?: Request) {
     let attempts = 0;
     const MAX_ATTEMPTS = 5;
 
-    if (request) {
-      try {
-        const body = await request.json();
-        topic = body?.topic || "";
-        customImageUrl = body?.image || "";
-      } catch (parseError) {
-        console.log(
-          "No request body or invalid JSON, proceeding with generated topic"
-        );
-      }
-    }
+    // Get request body and existing articles in parallel
+    const [requestBody, { data: existingArticles }] = await Promise.all([
+      request ? request.json().catch(() => ({})) : Promise.resolve({}),
+      supabase.from("articles").select("title, image_url")
+    ]);
 
-    // Get existing articles data for uniqueness check
-    const { data: existingArticles } = await supabase
-      .from("articles")
-      .select("title, image_url");
+    topic = requestBody?.topic || "";
+    customImageUrl = requestBody?.image || "";
 
-    const existingTitles =
-      existingArticles?.map((article) => article.title.toLowerCase()) || [];
-    const existingImages =
-      existingArticles?.map((article) => article.image_url) || [];
+    const existingTitles = existingArticles?.map((article) => article.title.toLowerCase()) || [];
+    const existingImages = existingArticles?.map((article) => article.image_url) || [];
 
     // Generate topic if none provided
     while (!topic && attempts < MAX_ATTEMPTS) {
@@ -99,90 +89,185 @@ async function generateArticle(request?: Request) {
     
     Return only the title, nothing else.`;
 
-    // Generate title first
-    const titleResult = await geminiModel.generateContent(titlePrompt);
+    // Generate title and fetch image in parallel
+    const [titleResult, imageData] = await Promise.all([
+      geminiModel.generateContent(titlePrompt),
+      customImageUrl 
+        ? Promise.resolve({ url: customImageUrl, photographer: "AI Assistant" })
+        : getRelevantImage(topic, existingImages)
+    ]);
+
     const generatedTitle = titleResult.response.text().trim();
 
-    // Then use the generated title in the article prompt
-    const articlePrompt = `Write an engaging, original article with the title "${generatedTitle}" that feels like a high-quality Medium post. Follow these guidelines:
+    const contentStyles = [
+      "deep-dive-technical",
+      "story-driven",
+      "tutorial-based",
+      "opinion-piece",
+      "case-study",
+      "trend-analysis",
+      "problem-solution",
+      "comparison-guide",
+      "industry-insights",
+      "future-predictions"
+    ];
+    
+    const selectedStyle = contentStyles[Math.floor(Math.random() * contentStyles.length)];
 
-    Style & Tone:
-    - Write in a conversational, personal tone
-    - Share insights from experience and real-world scenarios
-    - Include relevant anecdotes or examples where appropriate
-    - Make complex topics accessible without oversimplifying
-    - Use natural transitions between topics
-    
-    Content Structure:
-    - Start with an engaging hook or personal insight
-    - Break down complex topics naturally
-    - Use descriptive headings that flow with the content
-    - Include code examples where relevant
-    - Mix theory with practical applications
-    - End with thoughtful conclusions or future perspectives
-    
-    Technical Depth:
-    - Explain concepts thoroughly but conversationally
-    - Include both beginner-friendly and advanced insights
-    - Share practical tips and real-world considerations
-    - Discuss potential challenges and solutions
-    - Add code snippets with clear explanations
-    
-    Writing Quality:
-    - Maintain a natural flow between paragraphs
-    - Vary sentence structure and length
-    - Use analogies to explain complex concepts
-    - Include relevant industry context
-    - Keep the tone professional but approachable
-    
-    Format the article in markdown, ensuring code snippets are properly formatted with language tags. Write as if you're an experienced developer sharing valuable insights with peers.`;
+    const articlePrompt = `Create a complete, publication-ready ${selectedStyle} article titled "${generatedTitle}" about ${topic}. 
 
-    // Generate article content
+    Writing Style Instructions for ${selectedStyle}:
+    ${selectedStyle === "deep-dive-technical" ? `
+    - Focus on in-depth technical analysis
+    - Include detailed code examples and architecture discussions
+    - Provide performance considerations and benchmarks
+    - Explain complex concepts thoroughly` : selectedStyle === "story-driven" ? `
+    - Use narrative techniques to engage readers
+    - Share real-world experiences and lessons
+    - Include personal insights and learning moments
+    - Build emotional connection with readers` : selectedStyle === "tutorial-based" ? `
+    - Provide clear, step-by-step instructions
+    - Include complete code examples
+    - Address common pitfalls and solutions
+    - Offer troubleshooting guidance` : selectedStyle === "opinion-piece" ? `
+    - Present clear, well-supported arguments
+    - Include industry context and background
+    - Back opinions with data and examples
+    - Address counter-arguments professionally` : selectedStyle === "case-study" ? `
+    - Present real-world scenarios and solutions
+    - Include specific metrics and outcomes
+    - Provide detailed analysis of results
+    - Share actionable lessons learned` : selectedStyle === "trend-analysis" ? `
+    - Analyze current industry trends
+    - Include market data and statistics
+    - Provide future predictions
+    - Offer strategic insights` : selectedStyle === "problem-solution" ? `
+    - Clearly define the problem space
+    - Present multiple solution approaches
+    - Compare different methodologies
+    - Provide implementation guidance` : selectedStyle === "comparison-guide" ? `
+    - Establish clear comparison criteria
+    - Provide detailed feature analysis
+    - Include practical use cases
+    - Offer specific recommendations` : selectedStyle === "industry-insights" ? `
+    - Share expert industry knowledge
+    - Include market analysis
+    - Provide strategic recommendations
+    - Discuss future implications` : `
+    - Focus on future technology trends
+    - Include current development context
+    - Provide realistic predictions
+    - Discuss potential impacts`}
+
+    Important Rules:
+    1. Generate ALL content in full - no placeholders, no "insert here" notes
+    2. Include complete code examples when relevant
+    3. Provide actual statistics and data points
+    4. Write full explanations and examples
+    5. Create complete, detailed sections
+    6. Never use phrases like "you could add" or "you might include"
+    7. Never mention that this is an AI-generated article
+    8. Never use meta-commentary about the article's structure
+    9. Never use "Note:" or similar placeholder indicators
+    10. Generate actual diagrams descriptions in markdown format
+
+    When including code examples:
+    - Write complete, working code snippets
+    - Include actual implementation details
+    - Provide real variable names and logic
+    - Add proper comments and explanations
+    - Show both the problem and solution
+    
+    When mentioning statistics or data:
+    - Include specific numbers and percentages
+    - Reference actual time periods
+    - Provide context for the numbers
+    - Compare relevant metrics
+    - Draw concrete conclusions
+
+    When describing technical concepts:
+    - Explain with real-world analogies
+    - Provide step-by-step breakdowns
+    - Include actual configuration settings
+    - Show practical implementation steps
+    - Give specific troubleshooting tips
+
+    Structure Variations:
+    - Problem → Solution → Implementation
+    - Context → Analysis → Impact
+    - Challenge → Exploration → Discovery
+    - Theory → Practice → Application
+    - Past → Present → Future
+    - Question → Investigation → Answer
+
+    Engagement Elements (include at least 3):
+    - Thought-provoking questions
+    - Interactive code examples
+    - Decision-making frameworks
+    - Practical checklists
+    - Expert insights
+    - Industry trends
+    - Future scenarios
+    - Common misconceptions
+    - Pro tips and tricks
+    - Hidden features or capabilities
+    - Performance optimization guides
+    - Security considerations
+
+    SEO Requirements:
+    - Natural keyword integration
+    - Semantic variations of ${topic}
+    - Clear heading hierarchy
+    - 1500-2500 words
+    - Scannable structure
+    - Internal topic linking suggestions
+
+    Final Requirements:
+    1. Every section must be complete and self-contained
+    2. All examples must be fully detailed and executable
+    3. Every claim must be supported with specific evidence
+    4. All suggestions must include concrete implementation steps
+    5. Every concept must have a complete explanation
+    6. All code samples must be complete and functional
+    7. Every comparison must include specific details
+    8. All recommendations must be actionable and specific
+
+    Format everything in proper markdown, ensuring the article is completely ready for immediate publication with no additional editing needed.`;
+
     const articleResult = await geminiModel.generateContent(articlePrompt);
     const article = await articleResult.response.text();
 
-    // Use the generated title directly instead of extracting from content
-    const title = generatedTitle;
-    const slug = slugify(title);
-
-    // Modify the image fetching logic
-    const { url: imageUrl, photographer } = customImageUrl 
-      ? { url: customImageUrl, photographer: "AI Assistant" }
-      : await getRelevantImage(topic, existingImages);
-
-    // Store in Supabase
-    const { data, error } = await supabase
-      .from("articles")
-      .insert([
-        {
-          title,
-          slug,
-          content: article,
-          image_url: imageUrl,
-          image_author: photographer,
-          status: "published",
-          created_at: new Date().toISOString(),
-        },
-      ])
-      .select();
-
-    if (error) throw error;
-
-    // Send Telegram notification with enhanced formatting
+    // Create telegram message
     const telegramMessage = `
 🤖 <b>New AI-Generated Article</b>
 
-📝 <b>Title:</b> <i>${title}</i>
-🔗 <b>URL:</b> https://andikads.my.id/articles/${slug}`;
+📝 <b>Title:</b> <i>${generatedTitle}</i>
+🔗 <b>URL:</b> https://andikads.my.id/articles/${slugify(generatedTitle)}`;
+    // Prepare data and send notifications in parallel
+    const [{ data, error }] = await Promise.all([
+      supabase
+        .from("articles")
+        .insert([{
+          title: generatedTitle,
+          slug: slugify(generatedTitle),
+          content: article,
+          image_url: imageData.url,
+          image_author: imageData.photographer,
+          status: "published",
+          created_at: new Date().toISOString(),
+        }])
+        .select(),
+      sendTelegramMessage(telegramMessage)
+    ]);
 
-    await sendTelegramMessage(telegramMessage);
+    if (error) throw error;
 
     return NextResponse.json({
       success: true,
       data: {
         article: data[0],
-        imageUrl,
-        imageAuthor: photographer,
+        imageUrl: imageData.url,
+        imageAuthor: imageData.photographer,
       },
     });
   } catch (error) {
@@ -214,44 +299,50 @@ async function getRelevantImage(topic: string, existingImages: string[]) {
       !term.match(/^(and|the|for|with|how|what|why|when)\s/i)
     );
 
-    // Try each search term until we find a suitable image
-    for (const searchTerm of searchTerms) {
-      for (let page = 1; page <= 3; page++) {
-        const response = await fetch(
-          `https://api.pexels.com/v1/search?query=${encodeURIComponent(searchTerm)}&per_page=15&page=${page}`,
-          {
-            headers: {
-              Authorization: process.env.NEXT_PUBLIC_PEXELS_API_KEY!,
-            },
-          }
-        );
-
-        const data = await response.json();
-
-        if (data.photos && data.photos.length > 0) {
-          // Enhanced image filtering criteria
-          const uniquePhoto = data.photos.find((photo: any) => {
-            const isUnique = !existingImages.includes(photo.src.large2x);
-            const hasGoodDimensions = 
-              photo.width >= 1200 &&
-              photo.height >= 800 &&
-              photo.width / photo.height <= 2;
-            const hasRelevantTags = 
-              photo.alt?.toLowerCase().includes(topic.toLowerCase()) ||
-              photo.alt?.toLowerCase().includes('technology') ||
-              photo.alt?.toLowerCase().includes('digital');
-            
-            return isUnique && hasGoodDimensions && hasRelevantTags;
-          });
-
-          if (uniquePhoto) {
-            return {
-              url: uniquePhoto.src.large2x,
-              photographer: uniquePhoto.photographer,
-            };
-          }
+    // Execute image searches in parallel for faster results
+    const searchPromises = searchTerms.map(async (searchTerm) => {
+      const pagePromises = Array.from({ length: 3 }, async (_, page) => {
+        try {
+          const response = await fetch(
+            `https://api.pexels.com/v1/search?query=${encodeURIComponent(searchTerm)}&per_page=15&page=${page + 1}`,
+            {
+              headers: {
+                Authorization: process.env.NEXT_PUBLIC_PEXELS_API_KEY!,
+              },
+            }
+          );
+          return response.json();
+        } catch (error) {
+          return { photos: [] };
         }
-      }
+      });
+
+      const results = await Promise.all(pagePromises);
+      return results.flatMap(data => data.photos || []);
+    });
+
+    const allPhotos = (await Promise.all(searchPromises)).flat();
+
+    // Find the first suitable photo
+    const uniquePhoto = allPhotos.find((photo: any) => {
+      const isUnique = !existingImages.includes(photo.src.large2x);
+      const hasGoodDimensions = 
+        photo.width >= 1200 &&
+        photo.height >= 800 &&
+        photo.width / photo.height <= 2;
+      const hasRelevantTags = 
+        photo.alt?.toLowerCase().includes(topic.toLowerCase()) ||
+        photo.alt?.toLowerCase().includes('technology') ||
+        photo.alt?.toLowerCase().includes('digital');
+      
+      return isUnique && hasGoodDimensions && hasRelevantTags;
+    });
+
+    if (uniquePhoto) {
+      return {
+        url: uniquePhoto.src.large2x,
+        photographer: uniquePhoto.photographer,
+      };
     }
 
     // Technology-specific fallback images if no relevant images found
