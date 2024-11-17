@@ -14,7 +14,7 @@ export default async function ArticlesPage() {
     <main className="bg-main min-h-screen">
       <Navbar />
       <div className="container mx-auto px-4 py-24 pb-36">
-        <ArticlesList articles={articles} />
+        <ArticlesList initialArticles={articles.slice(0, 9)} />
       </div>
       <Footer />
     </main>

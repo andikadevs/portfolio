@@ -34,12 +34,21 @@ export async function getArticle(slug: string): Promise<Article | null> {
   return data;
 }
 
-export async function getArticles(): Promise<Article[]> {
-  const { data, error } = await supabase
+export async function getArticles(page = 1, limit = 9, searchQuery = ''): Promise<Article[]> {
+  const start = (page - 1) * limit;
+  const end = start + limit - 1;
+
+  let query = supabase
     .from("articles")
     .select("*")
     .order("created_at", { ascending: false })
-    .throwOnError();
+    .range(start, end);
+
+  if (searchQuery) {
+    query = query.ilike('title', `%${searchQuery}%`);
+  }
+
+  const { data, error } = await query;
 
   if (error) throw error;
   return data || [];
