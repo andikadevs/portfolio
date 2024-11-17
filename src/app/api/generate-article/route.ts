@@ -3,6 +3,14 @@
 import { NextResponse } from "next/server";
 import { geminiModel, supabase, slugify } from "@/utils/Global";
 
+export async function GET(request: Request) {
+  if (request.headers.get("Authorization") !== `Bearer ${process.env.NEXT_PUBLIC_CRON_SECRET}`) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  return generateArticle(request);
+}
+
 export async function POST(request: Request) {
   return generateArticle(request);
 }
