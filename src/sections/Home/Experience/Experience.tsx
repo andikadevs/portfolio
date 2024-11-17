@@ -5,7 +5,7 @@ import { Lists, SocialButton, AnimateOnView } from "@/components/Global";
 
 const data_1 = [
   {
-    title: "Junior & [Software Engineer]",
+    title: "Junior [Software Engineer]",
     details: "Akastra Toyota | March 2023 - March 2024",
     description:
       "I started my programming journey here at Akastra Toyota as an Intern Junior Software Engineer. I've built and participated in many incredible projects here. This is the place that I prepared myself to be a future-ready programmer.",

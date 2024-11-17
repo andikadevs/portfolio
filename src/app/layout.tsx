@@ -9,8 +9,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Andika Dwi Saputra | Full Stack Software Engineer",
-  description: "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures. Proficient in utilizing various frameworks following industrial standards. Always eager to learn and improve in the fast-paced world of technology.",
+  title: "Andika Dwi Saputra | Full Stack Developer",
+  description: "Cultivated Junior Full Stack Developer with a big passion for building software applications with engaging user interfaces and robust technical structures. Proficient in utilizing various frameworks following industrial standards. Always eager to learn and improve in the fast-paced world of technology.",
   keywords: ["Full Stack Developer", "Software Engineer", "Web Development", "Laravel", "React", "Next.js", "PHP", "JavaScript", "TypeScript", "Andika Dwi Saputra"],
   authors: [{ name: "Andika Dwi Saputra" }],
   creator: "Andika Dwi Saputra",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Andika Dwi Saputra | Full Stack Software Engineer",
-    description: "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    title: "Andika Dwi Saputra | Full Stack Developer",
+    description: "Cultivated Junior Full Stack Developer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
     url: 'https://github.com/Andikss',
     siteName: 'Andika Dwi Saputra Portfolio',
     images: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         url: '/assets/img/formal.webp',
         width: 1200,
         height: 630,
-        alt: 'Andika Dwi Saputra - Full Stack Software Engineer',
+        alt: 'Andika Dwi Saputra - Full Stack Developer',
       },
     ],
     locale: 'id_ID',
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Andika Dwi Saputra | Full Stack Software Engineer",
-    description: "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    title: "Andika Dwi Saputra | Full Stack Developer",
+    description: "Cultivated Junior Full Stack Developer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
     images: ['/assets/img/formal.webp'],
   },
   alternates: {
@@ -63,7 +63,7 @@ const generateStructuredData = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Andika Dwi Saputra",
-    jobTitle: "Full Stack Software Engineer",
+    jobTitle: "Full Stack Developer",
     url: "https://andikads.my.id",
     sameAs: [
       "https://github.com/Andikss",
@@ -72,7 +72,7 @@ const generateStructuredData = () => {
       "https://andikss.github.io"
     ],
     email: "andikadwisaputra.dev@gmail.com",
-    description: "Cultivated Junior Fullstack Software Engineer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    description: "Cultivated Junior Full Stack Developer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
     knowsAbout: [
       "Web Development",
       "React",
