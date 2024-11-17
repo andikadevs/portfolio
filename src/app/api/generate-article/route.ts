@@ -84,6 +84,8 @@ async function generateArticle(request?: Request) {
     1. Is different from these existing titles: ${existingTitles.join(", ")}
     2. Avoids overused patterns
     3. Feels natural and conversational
+    4. Never use word "AI" in the title
+    5. Never use (:) in the title
 
     Use one of these varied styles:
     - Personal story (e.g., "What I Learned After...")
