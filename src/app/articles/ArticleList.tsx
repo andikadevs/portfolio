@@ -76,7 +76,7 @@ export default function ArticlesList({
 
   return (
     <>
-      <div className="max-w-4xl mx-auto mb-8 flex items-center gap-4 bg-secondary p-6 rounded-xl">
+      <div className="relative max-w-4xl mx-auto mb-8 flex items-center gap-4 bg-secondary p-6 rounded-xl">
         <img
           src="/assets/static/img/formal.webp"
           alt="Andika Dwi Saputra"
@@ -90,7 +90,7 @@ export default function ArticlesList({
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto mb-12">
+      <div className="max-w-4xl mx-auto mb-12 relative">
         <h1 className="text-5xl font-bold mb-2 text-text text-center">
           Articles
         </h1>
@@ -143,7 +143,7 @@ export default function ArticlesList({
           {articles.map((article: any) => (
             <article
               key={article.id}
-              className="bg-secondary rounded-xl overflow-hidden shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl flex flex-col"
+              className="relative bg-secondary rounded-xl overflow-hidden shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl flex flex-col"
             >
               <div className="relative h-48 md:h-56">
                 <img

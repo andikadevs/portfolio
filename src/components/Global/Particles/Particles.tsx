@@ -4,7 +4,11 @@ import ReactParticles , { initParticlesEngine } from "@tsparticles/react";
 import { useEffect } from "react";
 import { loadSlim } from "@tsparticles/slim";
 
-export const Particles = (props: { id: string | undefined; }) => {
+type ParticlesProps = {
+  id: string | undefined;
+};
+
+export const Particles = ({ id }: ParticlesProps) => {
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -12,7 +16,7 @@ export const Particles = (props: { id: string | undefined; }) => {
     });
   }, []);
 
-  return <ReactParticles id={props.id} options={{
+  return <ReactParticles id={id} options={{
     interactivity: {
       events: {
         onClick: {
