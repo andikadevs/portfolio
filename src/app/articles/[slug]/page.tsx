@@ -66,7 +66,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       <Navbar />
 
       <article 
-        className="container mx-auto px-4 py-12 md:py-24 max-w-4xl text-gray-300"
+        className="container mx-auto px-4 py-24 max-w-4xl text-gray-300"
         itemScope 
         itemType="http://schema.org/Article"
       >
@@ -86,7 +86,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
         <div className="prose prose-lg prose-invert mx-auto !text-gray-300">
           {/* Image Attribution and Date */}
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-10 text-sm text-gray-300">
+          <div className="flex flex-row flex-wrap gap-2 justify-between sm:items-center mb-10 text-sm text-gray-300">
             <p className="italic mb-2 sm:mb-0 hover:text-gray-100 transition-colors">
               Photo by <span itemProp="author">{article.image_author}</span>
             </p>
@@ -106,7 +106,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           {/* Title */}
           <h1 
             itemProp="headline" 
-            className="text-3xl md:text-4xl font-bold mb-6 text-gray-100 leading-tight"
+            className="text-3xl md:text-4xl font-bold mb-6 text-gray-100 leading-tight text-center sm:text-left"
           >
             {article.title}
           </h1>
@@ -180,7 +180,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
         <div className="container w-full mt-16 shadow-sm">
           <div className="border border-gray-700 rounded-lg p-6 bg-dark/50 backdrop-blur-sm">
-            <div className="flex items-start gap-6">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
               <img
                 src={authorInfo.avatarUrl}
                 alt={authorInfo.name}
