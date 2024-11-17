@@ -1,7 +1,7 @@
 /** @format */
 
 import { NextResponse } from "next/server";
-import { geminiModel, supabase, slugify } from "@/utils/Global";
+import { geminiModel, supabase, slugify, sendTelegramMessage } from "@/utils/Global";
 
 export async function GET(request: Request) {
   if (request.headers.get("Authorization") !== `Bearer ${process.env.NEXT_PUBLIC_CRON_SECRET}`) {
@@ -165,6 +165,15 @@ async function generateArticle(request?: Request) {
       .select();
 
     if (error) throw error;
+
+    // Send Telegram notification with enhanced formatting
+    const telegramMessage = `
+🤖 <b>New AI-Generated Article</b>
+
+📝 <b>Title:</b> <i>${title}</i>
+🔗 <b>URL:</b> https://andikads.my.id/articles/${slug}`;
+
+    await sendTelegramMessage(telegramMessage);
 
     return NextResponse.json({
       success: true,
