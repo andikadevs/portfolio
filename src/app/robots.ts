@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://andikads.my.id/sitemaps.xml",
+    sitemap: "https://andikads.my.id/sitemap.xml",
   };
 }
