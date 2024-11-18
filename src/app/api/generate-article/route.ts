@@ -8,11 +8,21 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  return generateArticle(request);
+  // Run generation in background
+  generateArticle(request).catch(error => 
+    console.error("Background article generation failed:", error)
+  );
+
+  return NextResponse.json({ message: "Processing new articles..." });
 }
 
 export async function POST(request: Request) {
-  return generateArticle(request);
+  // Run generation in background
+  generateArticle(request).catch(error => 
+    console.error("Background article generation failed:", error)
+  );
+
+  return NextResponse.json({ message: "Processing new articles..." });
 }
 
 async function generateArticle(request?: Request) {
