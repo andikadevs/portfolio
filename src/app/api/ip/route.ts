@@ -1,6 +1,7 @@
 /** @format */
 
 import { NextResponse } from "next/server";
+import { sendTelegramMessage } from "@/utils/Global";
 
 export async function GET(request: Request) {
   try {
@@ -32,22 +33,20 @@ export async function GET(request: Request) {
         throw new Error('IP API returned error');
       }
       
+      // Send success message to Telegram
+      await sendTelegramMessage(`Success: IP ${ip}, Country: ${data.country_name}, City: ${data.city}, Region: ${data.region}`);
+
       return NextResponse.json({
         ip,
         country: data.country_name || "Unknown",
-        countryCode: data.country_code || "Unknown",
         city: data.city || "Unknown",
         region: data.region || "Unknown",
-        timezone: data.timezone || "Unknown",
-        latitude: data.latitude || null,
-        longitude: data.longitude || null,
-        org: data.org || "Unknown",
-        postal: data.postal || "Unknown",
-        currency: data.currency || "Unknown",
-        languages: data.languages || "Unknown",
       });
     } catch (error) {
-      // Fallback if IP geolocation fails
+      // Handle error with type assertion
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      await sendTelegramMessage(`Error: ${errorMessage} for IP ${ip}`);
+
       return NextResponse.json({
         ip,
         country: "Unknown",
@@ -57,6 +56,10 @@ export async function GET(request: Request) {
     }
   } catch (error) {
     console.error("Error in IP route:", error);
+    // Handle error with type assertion
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    await sendTelegramMessage(`Error in IP route: ${errorMessage}`);
+
     return NextResponse.json({ 
       ip: request.headers.get("x-forwarded-for") || "127.0.0.1",
       country: "Unknown",

@@ -29,7 +29,6 @@ export const PageStatistic = () => {
       try {
         const response = await fetch("/api/ip");
         const data = await response.json();
-        console.log(data);
         return data;
       } catch (error) {
         console.error("Error fetching IP info:", error);
