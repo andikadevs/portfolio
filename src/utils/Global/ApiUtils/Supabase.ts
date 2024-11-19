@@ -98,3 +98,14 @@ export async function recordPageVisit(statisticData: Omit<UserStatistic, 'id' | 
   if (error) throw error;
   return data[0];
 }
+
+export async function updateVisitDuration(id: number, duration: number) {
+  const { error } = await supabase
+    .from('statistics')
+    .update({ visit_duration: duration })
+    .eq('id', id);
+
+  if (error) {
+    console.error('Error updating visit duration:', error);
+  }
+}

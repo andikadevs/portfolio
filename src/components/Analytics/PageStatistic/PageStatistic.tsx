@@ -2,15 +2,18 @@
 
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import {
   recordPageVisit,
+  updateVisitDuration,
   UserStatistic,
 } from "@/utils/Global/ApiUtils/Supabase";
 
 export const PageStatistic = () => {
   const pathname = usePathname();
+  const visitStartTime = useRef<number>(Date.now());
+  const visitId = useRef<number | null>(null);
 
   useEffect(() => {
     const generateVisitorId = () => {
@@ -42,6 +45,7 @@ export const PageStatistic = () => {
       try {
         const vid = generateVisitorId();
         const ipInfo = await getIpInfo();
+        visitStartTime.current = Date.now();
 
         const statisticData: Omit<UserStatistic, 'id' | 'created_at'> = {
           page_path: pathname,
@@ -52,16 +56,45 @@ export const PageStatistic = () => {
           country: ipInfo.country,
           city: ipInfo.city,
           region: ipInfo.region,
+          visit_duration: 0
         };
 
-        await recordPageVisit(statisticData);
+        const result = await recordPageVisit(statisticData);
+        visitId.current = result.id;
       } catch (error) {
         console.error('Error recording page visit:', error);
       }
     };
 
+    const updateDuration = async () => {
+      if (visitId.current) {
+        const duration = Math.floor((Date.now() - visitStartTime.current) / 1000); // Convert to seconds
+        await updateVisitDuration(visitId.current, duration);
+      }
+    };
+
     trackPageVisit();
+
+    // Update duration when user leaves the page
+    return () => {
+      updateDuration();
+    };
   }, [pathname]);
+
+  // Update duration before page unload
+  useEffect(() => {
+    const handleBeforeUnload = async () => {
+      if (visitId.current) {
+        const duration = Math.floor((Date.now() - visitStartTime.current) / 1000);
+        await updateVisitDuration(visitId.current, duration);
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   return null;
 };
