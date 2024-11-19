@@ -9,9 +9,25 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Andika Dwi Saputra | Full Stack Developer",
-  description: "Cultivated Junior Full Stack Developer with a big passion for building software applications with engaging user interfaces and robust technical structures. Proficient in utilizing various frameworks following industrial standards. Always eager to learn and improve in the fast-paced world of technology.",
-  keywords: ["Full Stack Developer", "Software Engineer", "Web Development", "Laravel", "React", "Next.js", "PHP", "JavaScript", "TypeScript", "Andika Dwi Saputra"],
+  title: "Andika Dwi Saputra | Full Stack Developer & Software Engineer",
+  description: "Innovative Full Stack Developer specializing in React, Next.js, Laravel, and modern web technologies. Creating scalable, user-centric applications with clean code practices. Explore my portfolio featuring responsive web applications, REST APIs, and cloud-based solutions.",
+  keywords: [
+    "Full Stack Developer",
+    "Software Engineer",
+    "Web Development",
+    "Laravel Expert",
+    "React Developer",
+    "Next.js Developer",
+    "PHP Development",
+    "JavaScript Engineer",
+    "TypeScript Developer",
+    "Andika Dwi Saputra",
+    "Frontend Development",
+    "Backend Development",
+    "REST API Development",
+    "UI/UX Implementation",
+    "Cloud Solutions"
+  ],
   authors: [{ name: "Andika Dwi Saputra" }],
   creator: "Andika Dwi Saputra",
   publisher: "Andika Dwi Saputra",
@@ -32,8 +48,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Andika Dwi Saputra | Full Stack Developer",
-    description: "Cultivated Junior Full Stack Developer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    title: "Andika Dwi Saputra | Full Stack Developer & Software Engineer",
+    description: "Full Stack Developer crafting exceptional digital experiences with React, Next.js, and Laravel. View my portfolio showcasing modern web applications, clean architecture, and innovative solutions.",
     url: 'https://github.com/Andikss',
     siteName: 'Andika Dwi Saputra Portfolio',
     images: [
@@ -50,7 +66,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Andika Dwi Saputra | Full Stack Developer",
-    description: "Cultivated Junior Full Stack Developer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    description: "Discover the work of Andika Dwi Saputra - A Full Stack Developer building modern web applications with React, Next.js, and Laravel. Featuring projects with clean architecture and innovative solutions.",
     images: ['/assets/img/formal.webp'],
   },
   alternates: {
@@ -69,18 +85,36 @@ const generateStructuredData = () => {
       "https://github.com/Andikss",
       "https://linkedin.com/in/andikadwisaputra",
       "https://instagram.com/andikads__",
-      "https://andikss.github.io"
+      "https://andikss.github.io",
+      "https://andikads.cloud",
+      "https://andikads.my.id",
+      "https://www.andikads.my.id",
+      "https://www.andikads.cloud",
     ],
     email: "andikadwisaputra.dev@gmail.com",
-    description: "Cultivated Junior Full Stack Developer with a big passion for building software applications with engaging user interfaces and robust technical structures.",
+    description: "Full Stack Developer with expertise in React, Next.js, and Laravel. Specializing in building scalable web applications with modern architecture, responsive design, and optimal performance. Passionate about creating innovative solutions and maintaining clean, efficient codebases.",
     knowsAbout: [
       "Web Development",
-      "React",
-      "Next.js",
-      "Laravel",
-      "PHP",
-      "JavaScript",
-      "TypeScript"
+      "React & Next.js Development",
+      "Laravel Framework",
+      "PHP Backend Development",
+      "JavaScript/TypeScript",
+      "RESTful API Design",
+      "Database Management",
+      "UI/UX Implementation",
+      "Clean Code Practices",
+      "Cloud Services",
+      "Performance Optimization",
+      "Responsive Design"
+    ],
+    skills: [
+      "Frontend Development",
+      "Backend Development",
+      "Database Design",
+      "API Development",
+      "Cloud Computing",
+      "Version Control",
+      "Agile Methodologies"
     ]
   }
 }
