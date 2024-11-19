@@ -9,20 +9,58 @@ import { BsEnvelope, BsGithub } from "react-icons/bs";
 import { useSpring, animated } from "@react-spring/web";
 import { HiX } from "react-icons/hi";
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 interface NavItem {
   label: string;
   href: string;
+  ariaLabel?: string;
+  description?: string;
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
-  { label: "Experience", href: "#experience" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Articles", href: "/articles" },
+  { 
+    label: "Home",
+    href: "#home",
+    ariaLabel: "Navigate to home section",
+    description: "Introduction and overview of Andika Dwi Saputra's portfolio"
+  },
+  { 
+    label: "About",
+    href: "#about",
+    ariaLabel: "Learn more about Andika",
+    description: "Professional background and expertise of Andika Dwi Saputra"
+  },
+  { 
+    label: "Skills",
+    href: "#skills",
+    ariaLabel: "View technical skills",
+    description: "Technical skills and expertise in web development"
+  },
+  { 
+    label: "Education",
+    href: "#education",
+    ariaLabel: "View educational background",
+    description: "Academic qualifications and certifications"
+  },
+  { 
+    label: "Experience",
+    href: "#experience",
+    ariaLabel: "View work experience",
+    description: "Professional work experience and achievements"
+  },
+  { 
+    label: "Portfolio",
+    href: "#portfolio",
+    ariaLabel: "Browse portfolio projects",
+    description: "Showcase of web development projects and applications"
+  },
+  { 
+    label: "Articles",
+    href: "/articles",
+    ariaLabel: "Read technical articles",
+    description: "Technical articles and development insights"
+  },
 ];
 
 export const Navbar: React.FC = () => {
@@ -113,103 +151,136 @@ export const Navbar: React.FC = () => {
   });
 
   return (
-    <nav className="fixed top-4 left-0 right-0 z-30" style={{ zIndex: 999 }}>
-      {/* Main navbar container */}
-      <div
-        className={`w-[98vw] mx-auto bg-dark opacity-[0.9] shadow-2xl rounded-3xl md:rounded-full px-2 sm:px-3 sm:pr-3 py-2 ${
-          isOpen ? "sm:rounded-3xl" : "sm:rounded-full"
-        }`}
-      >
+    <nav 
+      className="fixed top-4 left-0 right-0 z-30" 
+      style={{ zIndex: 999 }}
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div className={`w-[98vw] mx-auto bg-dark opacity-[0.9] shadow-2xl rounded-3xl md:rounded-full px-2 sm:px-3 sm:pr-3 py-2 ${
+        isOpen ? "sm:rounded-3xl" : "sm:rounded-full"
+      }`}>
         <div className="flex items-center justify-between">
-          {/* GitHub logo */}
+          {/* GitHub logo with enhanced accessibility */}
           <Tooltip hasArrow position="bottom" label="Visit my GitHub Account">
-            <a
+            <Link
               href="https://github.com/Andikss"
               target="_blank"
               rel="noopener noreferrer"
               className="text-text hover:text-gray-400 flex items-center gap-2"
+              aria-label="GitHub Profile"
             >
-              <FaGithub size={32} />
-              <span className="text-xl text-text">AndikaDS</span>
-            </a>
+              <FaGithub size={32} aria-hidden="true" />
+              <span className="text-xl text-text" itemProp="name">AndikaDS</span>
+            </Link>
           </Tooltip>
 
-          {/* Desktop Links (hidden on mobile) */}
-          <div className="hidden md:flex space-x-6 ml-auto items-center text-text">
+          {/* Desktop Links with enhanced SEO and accessibility */}
+          <div 
+            className="hidden md:flex space-x-6 ml-auto items-center text-text"
+            role="menubar"
+            aria-label="Main menu"
+          >
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
+                onClick={(e) => scrollToSection(e as any, item.href)}
                 className={`hover:text-gray-400 hover:underline ${
                   activeSection === item.href ? "text-accent" : ""
                 }`}
+                aria-label={item.ariaLabel}
+                role="menuitem"
+                title={item.description}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <Tooltip hasArrow position="bottom" label="Email me">
-              <a href="mailto:andikadwisaputra.dev@gmail.com" target="_blank">
+              <Link 
+                href="mailto:andikadwisaputra.dev@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Send email to Andika"
+              >
                 <Button variant="outline" className="rounded-full">
-                  <BsEnvelope /> Email
+                  <BsEnvelope aria-hidden="true" /> Email
                 </Button>
-              </a>
+              </Link>
             </Tooltip>
           </div>
 
-          {/* Hamburger menu icon */}
+          {/* Hamburger menu with accessibility */}
           <div className="md:hidden shrink-0">
             <animated.button
               onClick={toggleMenu}
               style={iconAnimation}
               className="text-text shrink-0 hover:text-gray-400 focus:outline-none pr-2 flex items-center justify-center"
+              aria-expanded={isOpen}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-controls="mobile-menu"
             >
               {isOpen ? (
-                <HiX size={18} className="shrink-0" />
+                <HiX size={18} className="shrink-0" aria-hidden="true" />
               ) : (
-                <FaList size={18} className="shrink-0" />
+                <FaList size={18} className="shrink-0" aria-hidden="true" />
               )}
             </animated.button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu with accessibility */}
         <animated.div
+          id="mobile-menu"
           style={{
             ...menuAnimation,
             overflow: "hidden",
           }}
-          className={`md:hidden text-text flex flex-col items-center justify-between`}
+          className="md:hidden text-text flex flex-col items-center justify-between"
+          role="menu"
+          aria-label="Mobile navigation menu"
         >
           <div className="space-y-2 mt-8 flex flex-col justify-center gap-7">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
+                onClick={(e) => scrollToSection(e as any, item.href)}
                 className={`block hover:text-gray-400 text-center ${
                   activeSection === item.href ? "text-accent" : ""
                 }`}
+                aria-label={item.ariaLabel}
+                role="menuitem"
+                title={item.description}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="flex gap-2">
             <Tooltip hasArrow position="top" label="Email me">
-              <a href="mailto:andikadwisaputra.dev@gmail.com" target="_blank">
-                <Button
-                  variant="outline"
-                  className="rounded-sm shadow-lg w-full"
-                >
-                  <BsEnvelope /> Email
+              <Link 
+                href="mailto:andikadwisaputra.dev@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Send email to Andika"
+              >
+                <Button variant="outline" className="rounded-sm shadow-lg w-full">
+                  <BsEnvelope aria-hidden="true" /> Email
                 </Button>
-              </a>
+              </Link>
             </Tooltip>
             <Tooltip hasArrow position="top" label="Visit my GitHub profile">
-              <Button variant="outline" className="rounded-sm shadow-lg w-full">
-                <BsGithub /> GitHub
-              </Button>
+              <Link
+                href="https://github.com/Andikss"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+              >
+                <Button variant="outline" className="rounded-sm shadow-lg w-full">
+                  <BsGithub aria-hidden="true" /> GitHub
+                </Button>
+              </Link>
             </Tooltip>
           </div>
         </animated.div>
