@@ -18,9 +18,10 @@ export const Hello: React.FC = () => {
         </h3>
 
         <p className="text-text mb-5">
-          Hello there! I’m Andika Dwi Saputra, and I’m a{" "}
-          <span className="text-accent">Fullstack Developer!</span> Feel free to
-          check out my portfolio!
+          Hi, I`m Andika Dwi Saputra, a passionate{" "}
+          <span className="text-accent">Fullstack Developer</span> with expertise in building
+          modern web applications. I specialize in creating seamless user experiences
+          and robust backend solutions. Let`s explore my work together!
         </p>
 
         <div className="flex gap-3">

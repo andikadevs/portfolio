@@ -52,19 +52,26 @@ export const Skills: React.FC = () => {
   const displayedSkills = showAll ? skills : skills.slice(0, 12);
 
   return (
-    <div id='skills' className='bg-main h-auto w-full mb-10 sm:mb-20'>
+    <section 
+      id='skills' 
+      aria-label="Skills and Technologies"
+      className='bg-main h-auto w-full mb-10 sm:mb-20'
+    >
       <animated.div ref={ref} style={scrollAnimation}>
         <Title
           title='Skills'
           description='Toolkits that help me [complete] all of my [projects]'
         />
         <animated.div 
+          role="list"
+          aria-label="Skills grid"
           style={gridAnimation}
           className={`grid gap-3 sm:gap-4 px-2 sm:px-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 transition-all duration-500 ease-in-out overflow-hidden`}
         >
           {displayedSkills.map((skill, index) => (
-            <animated.a
+            <animated.div
               key={index}
+              role="listitem"
               style={{
                 ...itemAnimations,
                 transform: itemAnimations.transform.to(
@@ -72,21 +79,26 @@ export const Skills: React.FC = () => {
                 ),
                 transition: `all ${index * 100}ms`,
               }}
-              href={skill.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className='cursor-pointer relative bg-secondary gap-2 sm:gap-3 flex justify-between flex-col items-center px-2 sm:px-4 py-4 sm:py-8 rounded shadow-xl text-center text-text hover:bg-accent hover:text-secondary transition duration-300 ease-in-out'
             >
-              <Image 
-                draggable={false} 
-                src={skill.src} 
-                alt={skill.alt} 
-                width={50} 
-                height={50} 
-                className={`w-8 h-8 sm:w-16 sm:h-16 md:w-20 md:h-20 ${skill.alt.toLowerCase() === 'react' ? 'animate-rotate' : ''}`} 
-              />
-              <p className='text-sm sm:text-base md:text-lg'>{skill.alt}</p>
-            </animated.a>
+              <a
+                href={skill.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Learn more about ${skill.alt}`}
+                className="flex flex-col items-center"
+              >
+                <Image 
+                  draggable={false} 
+                  src={skill.src} 
+                  alt={`${skill.alt} logo`}
+                  width={50} 
+                  height={50}
+                  className={`w-8 h-8 sm:w-16 sm:h-16 md:w-20 md:h-20 mb-4 ${skill.alt.toLowerCase() === 'react' ? 'animate-rotate' : ''}`} 
+                />
+                <h3 className='text-sm sm:text-base md:text-lg'>{skill.alt}</h3>
+              </a>
+            </animated.div>
           ))}
         </animated.div>
 
@@ -100,6 +112,8 @@ export const Skills: React.FC = () => {
               style={{
                 transform: buttonAnimation.scale.to(s => `scale(${s})`),
               }}
+              aria-expanded={showAll}
+              aria-controls="skills-grid"
               className='relative bg-secondary text-accent px-4 sm:px-6 py-2 sm:py-3 rounded shadow-lg hover:text-secondary hover:bg-accent transition duration-300 ease-in-out flex items-center justify-center group text-sm sm:text-base'
             >
               {showAll ? (
@@ -131,6 +145,6 @@ export const Skills: React.FC = () => {
           </animated.div>
         )}
       </animated.div>
-    </div>
+    </section>
   );
 };

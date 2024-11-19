@@ -1,62 +1,93 @@
+/** @format */
+
 import React from "react";
 
 export const Companies = () => {
   return (
-    <div
+    <section
       id="companies"
+      aria-label="Trusted Companies"
       className="bg-secondary flex flex-col shadow-xl items-center py-6 overflow-hidden mb-12 relative"
     >
-      <p className="text-text">
+      <h2 className="text-text">
         Companies that <span className="text-accent">trusted me!</span>
-      </p>
-      <div className="flex space-x-16 overflow-hidden bg-secondary">
+      </h2>
+      <div
+        className="flex space-x-16 overflow-hidden bg-secondary"
+        role="marquee"
+        aria-label="Scrolling company logos"
+      >
         <div className="flex space-x-16 animate-loop-scroll items-center">
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/Akastra.png"
-            alt="Akastra Toyota"
+            alt="Akastra Toyota Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/Toploker.png"
-            alt="Toploker.com"
+            alt="Toploker.com Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="144"
             draggable={false}
             src="/assets/static/img/Companies/DIGITEK.png"
-            alt="PT Digital Bisnis Ekonomi"
+            alt="PT Digital Bisnis Ekonomi Logo"
             className="max-w-none grayscale hover:grayscale-0 h-36"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/STEKOM.png"
-            alt="Stekom University"
+            alt="Stekom University Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/Akastra.png"
-            alt="Akastra Toyota"
+            alt="Akastra Toyota Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/Toploker.png"
-            alt="Toploker.com"
+            alt="Toploker.com Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="144"
             draggable={false}
             src="/assets/static/img/Companies/DIGITEK.png"
-            alt="PT Digital Bisnis Ekonomi"
+            alt="PT Digital Bisnis Ekonomi Logo"
             className="max-w-none grayscale hover:grayscale-0 h-36"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/STEKOM.png"
-            alt="Stekom University"
+            alt="Stekom University Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
         </div>
@@ -65,55 +96,79 @@ export const Companies = () => {
           aria-hidden="true"
         >
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/Akastra.png"
-            alt="Akastra Toyota"
+            alt="Akastra Toyota Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/Toploker.png"
-            alt="Toploker.com"
+            alt="Toploker.com Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="144"
             draggable={false}
             src="/assets/static/img/Companies/DIGITEK.png"
-            alt="PT Digital Bisnis Ekonomi"
+            alt="PT Digital Bisnis Ekonomi Logo"
             className="max-w-none grayscale hover:grayscale-0 h-36"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/STEKOM.png"
-            alt="Stekom University"
+            alt="Stekom University Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/Akastra.png"
-            alt="Akastra Toyota"
+            alt="Akastra Toyota Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/Toploker.png"
-            alt="Toploker.com"
+            alt="Toploker.com Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="144"
             draggable={false}
             src="/assets/static/img/Companies/DIGITEK.png"
-            alt="PT Digital Bisnis Ekonomi"
+            alt="PT Digital Bisnis Ekonomi Logo"
             className="max-w-none grayscale hover:grayscale-0 h-36"
           />
           <img
+            loading="lazy"
+            width="160"
+            height="40"
             draggable={false}
             src="/assets/static/img/Companies/STEKOM.png"
-            alt="Stekom University"
+            alt="Stekom University Logo"
             className="max-w-none grayscale hover:grayscale-0 h-10"
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };

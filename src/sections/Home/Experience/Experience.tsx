@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Lists, SocialButton, AnimateOnView } from "@/components/Global";
+import Image from 'next/image';
 
 const data_1 = [
   {
@@ -45,6 +46,29 @@ const data_3 = [
 // Combine data for mobile and tablet
 const combinedData = [...data_1, ...data_2, ...data_3];
 
+const StructuredData = () => {
+  const allData = [...data_1, ...data_2, ...data_3];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": allData.map((item, index) => ({
+      "@type": "WorkExperience",
+      "position": index + 1,
+      "title": item.title.replace(/[\[\]]/g, ''),
+      "description": item.description,
+      "datePublished": item.details.split('|')[1].trim(),
+      "organization": item.details.split('|')[0].trim()
+    }))
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+};
+
 export const Experience: React.FC = () => {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
@@ -61,20 +85,26 @@ export const Experience: React.FC = () => {
   }, []);
 
   return (
-    <div id='experience' className='h-auto w-full px-4 md:px-12 pt-12 pb-2 bg-secondary shadow-xl relative mb-[60px]'>
-      <h3 className="text-text text-4xl absolute top-[-20px] left-4">
+    <section 
+      id='experience' 
+      aria-label="Professional Experience and Achievements"
+      className='h-auto w-full px-4 md:px-12 pt-12 pb-2 bg-secondary shadow-xl relative mb-[60px]'
+    >
+      <h2 className="text-text text-4xl absolute top-[-20px] left-4">
         Experience
-      </h3>
+      </h2>
 
-      <div>
+      <div itemScope itemType="https://schema.org/WorkExperience">
         {isMobileOrTablet ? (
           <AnimateOnView direction="left" className="mb-4">
-            <Lists items={combinedData} />
+            <article role="list" aria-label="Work experience and certifications">
+              <Lists items={combinedData} />
+            </article>
             <div className="flex justify-end w-full">
               <SocialButton
                 href="https://linkedin.com/in/andikadwisaputra"
                 iconUrl="assets/static/img/Icons/linkedin.svg"
-                altText="Linkedin"
+                altText="Connect with me on LinkedIn"
                 label="Connect With Me"
                 classNames="w-full md:w-auto"
               />
@@ -84,14 +114,18 @@ export const Experience: React.FC = () => {
           <>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mb-14">
               <AnimateOnView direction="left" className="w-full">
-                <Lists items={data_1} />
+                <article role="list" aria-label="Professional experience">
+                  <Lists items={data_1} />
+                </article>
               </AnimateOnView>
               <AnimateOnView direction="up" className="hidden md:flex items-center justify-center">
-                <img
-                  draggable={false}
-                  src="assets/static/img/Icons/csharp.svg"
-                  alt="C#"
+                <Image
+                  src="/assets/static/img/Icons/csharp.svg"
+                  width={180}
+                  height={180}
+                  alt="C# Programming Language - Key technology used in professional work"
                   className="h-[180px]"
+                  loading="lazy"
                 />
               </AnimateOnView>
             </div>
@@ -128,14 +162,16 @@ export const Experience: React.FC = () => {
               <SocialButton
                 href="https://linkedin.com/in/andikadwisaputra"
                 iconUrl="assets/static/img/Icons/linkedin.svg"
-                altText="Linkedin"
+                altText="Connect with me on LinkedIn"
                 label="Connect With Me"
                 classNames="w-full md:w-auto"
+                aria-label="Visit my LinkedIn profile"
               />
             </div>
           </>
         )}
       </div>
-    </div>
+      <StructuredData />
+    </section>
   );
 };
