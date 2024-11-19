@@ -95,7 +95,10 @@ export async function recordPageVisit(statisticData: Omit<UserStatistic, 'id' | 
     ])
     .select();
 
-  if (error) throw error;
+  if (error) {
+    console.error('Error recording page visit:', error);
+    throw error;
+  }
   return data[0];
 }
 

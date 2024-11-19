@@ -8,7 +8,7 @@ import {
   recordPageVisit,
   updateVisitDuration,
   UserStatistic,
-} from "@/utils/Global/ApiUtils/Supabase";
+} from "@/utils/Global";
 
 export const PageStatistic = () => {
   const pathname = usePathname();
@@ -27,16 +27,17 @@ export const PageStatistic = () => {
 
     const getIpInfo = async () => {
       try {
-        const response = await fetch('/api/ip');
+        const response = await fetch("/api/ip");
         const data = await response.json();
+        console.log(data);
         return data;
       } catch (error) {
-        console.error('Error fetching IP info:', error);
+        console.error("Error fetching IP info:", error);
         return {
-          ip: '',
-          country: '',
-          city: '',
-          region: '',
+          ip: "",
+          country: "",
+          city: "",
+          region: "",
         };
       }
     };
@@ -47,28 +48,30 @@ export const PageStatistic = () => {
         const ipInfo = await getIpInfo();
         visitStartTime.current = Date.now();
 
-        const statisticData: Omit<UserStatistic, 'id' | 'created_at'> = {
+        const statisticData: Omit<UserStatistic, "id" | "created_at"> = {
           page_path: pathname,
           visitor_id: vid,
           user_agent: window.navigator.userAgent,
           ip_address: ipInfo.ip,
-          referrer: document.referrer || '',
+          referrer: document.referrer || "",
           country: ipInfo.country,
           city: ipInfo.city,
           region: ipInfo.region,
-          visit_duration: 0
+          visit_duration: 0,
         };
 
         const result = await recordPageVisit(statisticData);
         visitId.current = result.id;
       } catch (error) {
-        console.error('Error recording page visit:', error);
+        console.error("Error recording page visit:", error);
       }
     };
 
     const updateDuration = async () => {
       if (visitId.current) {
-        const duration = Math.floor((Date.now() - visitStartTime.current) / 1000); // Convert to seconds
+        const duration = Math.floor(
+          (Date.now() - visitStartTime.current) / 1000
+        ); // Convert to seconds
         await updateVisitDuration(visitId.current, duration);
       }
     };
@@ -85,14 +88,16 @@ export const PageStatistic = () => {
   useEffect(() => {
     const handleBeforeUnload = async () => {
       if (visitId.current) {
-        const duration = Math.floor((Date.now() - visitStartTime.current) / 1000);
+        const duration = Math.floor(
+          (Date.now() - visitStartTime.current) / 1000
+        );
         await updateVisitDuration(visitId.current, duration);
       }
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 
