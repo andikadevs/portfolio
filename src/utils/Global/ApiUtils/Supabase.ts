@@ -19,6 +19,20 @@ export interface Article {
   status: 'published' | 'draft';
 }
 
+export interface UserStatistic {
+  id?: number;
+  page_path: string;
+  visitor_id: string;
+  user_agent: string;
+  ip_address: string;
+  referrer: string;
+  country: string;
+  city: string;
+  region: string;
+  visit_duration?: number;
+  created_at?: string;
+}
+
 export async function getArticle(slug: string): Promise<Article | null> {
   const { data, error } = await supabase
     .from("articles")
@@ -61,6 +75,21 @@ export async function createArticle(articleData: Omit<Article, 'id' | 'created_a
       {
         ...articleData,
         status: "published",
+        created_at: new Date().toISOString(),
+      },
+    ])
+    .select();
+
+  if (error) throw error;
+  return data[0];
+}
+
+export async function recordPageVisit(statisticData: Omit<UserStatistic, 'id' | 'created_at'>) {
+  const { data, error } = await supabase
+    .from('statistics')
+    .insert([
+      {
+        ...statisticData,
         created_at: new Date().toISOString(),
       },
     ])
