@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/*", "/private/*"]
       }
     ],
-    sitemap: "https://andikads.my.id/sitemap.xml"
+    sitemap: "https://andikads.cloud/sitemap.xml"
   };
 }
