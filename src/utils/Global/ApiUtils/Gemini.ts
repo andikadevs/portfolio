@@ -7,5 +7,5 @@ const genAI = new GoogleGenerativeAI(
 );
 
 export const geminiModel = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash-002",
+  model: Math.random() < 0.5 ? "gemini-1.5-flash-8b" : "gemini-1.5-flash-002",
 });
