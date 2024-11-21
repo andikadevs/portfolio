@@ -53,6 +53,8 @@ export async function POST(request: Request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ topic, image: customImageUrl })
+    }).catch(error => {
+      console.error("Error calling generate-title:", error);
     });
 
     return NextResponse.json({ success: true, topic });

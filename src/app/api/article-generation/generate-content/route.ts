@@ -42,6 +42,8 @@ export async function POST(request: Request) {
         imageUrl,
         imageAuthor
       })
+    }).catch(error => {
+      console.error("Error calling save-article:", error);
     });
 
     return NextResponse.json({ success: true });

@@ -32,15 +32,13 @@ export async function POST(request: Request) {
     const body = await request.json();
     
     // Start the generation pipeline with provided topic/image
-    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-topic`, {
+    fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-topic`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body)
     });
-
-    if (!response.ok) throw new Error('Failed to start generation process');
 
     return NextResponse.json({ message: "Article generation started..." });
   } catch (error) {

@@ -57,9 +57,11 @@ export async function POST(request: Request) {
           title,
           imageUrl: imageData.url,
           imageAuthor: imageData.photographer,
-        }),
+        })
       }
-    );
+    ).catch(error => {
+      console.error("Error calling generate-content:", error);
+    });
 
     return NextResponse.json({ success: true, title, imageData });
   } catch (error) {
