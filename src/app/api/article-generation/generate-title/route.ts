@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     const title = titleResult.response.text().trim();
 
     // Call next step in the pipeline
-    fetch(
+    await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-content`,
       {
         method: "POST",
@@ -57,10 +57,12 @@ export async function POST(request: Request) {
           title,
           imageUrl: imageData.url,
           imageAuthor: imageData.photographer,
-        })
+        }),
+        signal: AbortSignal.timeout(30000)
       }
     ).catch(error => {
       console.error("Error calling generate-content:", error);
+      throw error; // Re-throw to handle in outer catch
     });
 
     return NextResponse.json({ success: true, title, imageData });

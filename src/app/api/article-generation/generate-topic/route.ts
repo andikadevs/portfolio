@@ -47,14 +47,16 @@ export async function POST(request: Request) {
     }
 
     // Call next step in the pipeline
-    fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-title`, {
+    await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-title`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ topic, image: customImageUrl })
+      body: JSON.stringify({ topic, image: customImageUrl }),
+      signal: AbortSignal.timeout(30000)
     }).catch(error => {
       console.error("Error calling generate-title:", error);
+      throw error;
     });
 
     return NextResponse.json({ success: true, topic });

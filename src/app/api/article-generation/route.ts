@@ -12,18 +12,23 @@ export async function GET(request: Request) {
   }
 
   try {
-    // Start the generation pipeline
+    // Start the generation pipeline with timeout
     fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-topic`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      // Add timeout of 30 seconds
+      signal: AbortSignal.timeout(30000)
     });
 
     return NextResponse.json({ message: "Article generation started..." });
   } catch (error) {
     console.error("Error starting article generation:", error);
-    return NextResponse.json({ error: "Failed to start generation" }, { status: 500 });
+    return NextResponse.json({ 
+      error: "Failed to start generation", 
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 });
   }
 }
 
@@ -31,18 +36,23 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     
-    // Start the generation pipeline with provided topic/image
+    // Start the generation pipeline with timeout
     fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-topic`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      // Add timeout of 30 seconds
+      signal: AbortSignal.timeout(30000)
     });
 
     return NextResponse.json({ message: "Article generation started..." });
   } catch (error) {
     console.error("Error starting article generation:", error);
-    return NextResponse.json({ error: "Failed to start generation" }, { status: 500 });
+    return NextResponse.json({ 
+      error: "Failed to start generation", 
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 });
   }
 }

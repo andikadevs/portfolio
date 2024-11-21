@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     const article = await articleResult.response.text();
 
     // Call final step to save the article
-    fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/save-article`, {
+    await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/save-article`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,9 +41,11 @@ export async function POST(request: Request) {
         content: article,
         imageUrl,
         imageAuthor
-      })
+      }),
+      signal: AbortSignal.timeout(30000)
     }).catch(error => {
       console.error("Error calling save-article:", error);
+      throw error; // Re-throw to handle in outer catch
     });
 
     return NextResponse.json({ success: true });
