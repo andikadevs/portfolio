@@ -17,7 +17,7 @@ const heroSchema = {
     "jobTitle": "Full Stack Developer",
     "description": "Experienced Full Stack Developer specializing in modern web technologies and software engineering",
     "image": "/assets/static/img/avatar.webp",
-    "url": "https://andikads.my.id",
+    "url": "https://andikads.cloud",
     "knowsAbout": [
       "Full Stack Development",
       "Software Engineering",
@@ -91,7 +91,7 @@ export const Hero = () => {
                 </p>
                 <meta itemProp="name" content="Andika Dwi Saputra" />
                 <meta itemProp="email" content="andikadwisaputra.dev@gmail.com" />
-                <meta itemProp="url" content="https://andikads.my.id" />
+                <meta itemProp="url" content="https://andikads.cloud" />
               </div>
             </div>
           </AnimateOnView>

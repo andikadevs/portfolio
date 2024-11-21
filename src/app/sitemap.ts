@@ -4,7 +4,7 @@ import { MetadataRoute } from "next";
 import { supabase } from "@/utils/Global";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://andikads.my.id';
+  const baseUrl = 'https://andikads.cloud';
 
   // Static routes
   const staticRoutes: MetadataRoute.Sitemap = [
