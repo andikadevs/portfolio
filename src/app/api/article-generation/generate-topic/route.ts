@@ -30,7 +30,7 @@ export async function POST(request: Request) {
         
         Return only the topic name, nothing else.`;
 
-        const topicResult = await geminiModel.generateContent(topicPrompt);
+        const topicResult = await geminiModel().generateContent(topicPrompt);
         const generatedTopic = topicResult.response.text().trim().toLowerCase();
 
         if (!existingTitles.some(title => 

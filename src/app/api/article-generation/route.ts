@@ -12,14 +12,16 @@ export async function GET(request: Request) {
   }
 
   try {
-    // Start the generation pipeline with timeout
     fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-topic`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      // Add timeout of 30 seconds
       signal: AbortSignal.timeout(30000)
+    })
+    .then(response => response.blob())
+    .catch(error => {
+      console.error("Error in fetch:", error);
     });
 
     return NextResponse.json({ message: "Article generation started..." });
@@ -36,15 +38,17 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     
-    // Start the generation pipeline with timeout
     fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/article-generation/generate-topic`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-      // Add timeout of 30 seconds
       signal: AbortSignal.timeout(30000)
+    })
+    .then(response => response.blob())
+    .catch(error => {
+      console.error("Error in fetch:", error);
     });
 
     return NextResponse.json({ message: "Article generation started..." });

@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
     // Generate title and fetch image in parallel
     const [titleResult, imageData] = await Promise.all([
-      geminiModel.generateContent(titlePrompt),
+      geminiModel().generateContent(titlePrompt),
       image
         ? Promise.resolve({ url: image, photographer: "AI Assistant" })
         : getRelevantImage(topic, existingImages),

@@ -13,21 +13,20 @@ export async function POST(request: Request) {
     
     const selectedStyle = contentStyles[Math.floor(Math.random() * contentStyles.length)];
 
-    const articlePrompt = `Create a complete, publication-ready ${selectedStyle} article titled "${title}" about ${topic}.
+    const articlePrompt = `
+    You are a professional writer with a knack for crafting engaging and informative articles. Focusing on SEO and keywords. Your task is to create a complete, publication-ready ${selectedStyle} article titled "${title}" about ${topic}.
 
     Requirements:
-    1. Write in a clear, engaging, and professional style
-    2. Include proper markdown formatting
-    3. Structure with clear headings (H2 and H3)
-    4. Length: 700-1000 words
-    5. Include a brief introduction
-    6. Break into logical sections
-    7. Use technical terms appropriately
-    8. Focus on practical insights and real-world applications
+    1. Must be publication-ready, no placeholders, no instructions to update the article, only publication ready content.
+    2. Write in a clear, engaging, and professional style
+    3. Include proper markdown formatting
+    4. Structure with clear headings (H2 and H3)
+    5. Length: 700-1000 words
+    6. Include a brief introduction
 
     Format the article in markdown with proper spacing and structure.`;
 
-    const articleResult = await geminiModel.generateContent(articlePrompt);
+    const articleResult = await geminiModel('gemini-1.5-pro').generateContent(articlePrompt);
     const article = await articleResult.response.text();
 
     // Call final step to save the article
