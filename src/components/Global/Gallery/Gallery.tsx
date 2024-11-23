@@ -22,6 +22,27 @@ export const Gallery: React.FC<GalleryProps> = ({
     config: { tension: 200, friction: 20 },
   });
 
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isOpen) return;
+      
+      switch (event.key) {
+        case 'ArrowLeft':
+          onPrev();
+          break;
+        case 'ArrowRight':
+          onNext();
+          break;
+        case 'Escape':
+          onClose();
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onPrev, onNext, onClose]);
+
   if (!isOpen || !images?.length) return null;
 
   const hasDescription = descriptions && descriptions.length > 0;
