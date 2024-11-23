@@ -22,6 +22,7 @@ export const Chat = () => {
   const chatRef = useRef<HTMLDivElement>(null);
   const visitorId = useRef<string>("");
   const [isStreaming, setIsStreaming] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
 
   // Add welcome message function
   const addWelcomeMessage = async () => {
@@ -230,30 +231,64 @@ Remember to:
     }
   };
 
+  // Show tooltip for 5 seconds when component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowTooltip(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []); // Only run once on mount
+
   return (
     <>
-      {/* Floating button */}
-      <animated.button
-        style={buttonSpring}
-        onClick={handleOpenChat}
-        className="fixed bottom-6 right-6 bg-[var(--main)] 
-          text-[var(--text)] p-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 
-          transition-all duration-300 z-50 group border border-[var(--secondary)]"
-      >
-        <div className="relative">
-          <FaRobot size={24} className="transform group-hover:rotate-12 transition-transform" />
-          <animated.div
-            style={useSpring({
-              loop: true,
-              from: { opacity: 0.5, transform: 'scale(1)' },
-              to: { opacity: 0, transform: 'scale(1.5)' },
-              config: { duration: 2000 },
-            })}
-            className="absolute inset-0 bg-[var(--secondary)] rounded-full"
-          />
-        </div>
-      </animated.button>
+      {/* Chat Button with Tooltip */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {/* Tooltip */}
+        <animated.div
+          style={useSpring({
+            opacity: showTooltip ? 1 : 0,
+            transform: showTooltip ? 'translateY(0)' : 'translateY(10px)',
+            config: { tension: 300, friction: 20 },
+          })}
+          className="absolute bottom-full right-0 mb-4 bg-[var(--secondary)] 
+            text-[var(--text)] p-3 rounded-lg shadow-lg w-48 
+            border border-[var(--main)]"
+        >
+          <div className="relative">
+            <p className="text-sm text-center">👋 Hi! Chat with Tejo, My Personal AI assistant!</p>
+            {/* Tooltip arrow */}
+            <div className="absolute -bottom-4 right-6 w-0 h-0 
+              border-l-[8px] border-l-transparent
+              border-r-[8px] border-r-transparent
+              border-t-[8px] border-t-[var(--secondary)]"
+            />
+          </div>
+        </animated.div>
 
+        {/* Chat Button */}
+        <animated.button
+          style={buttonSpring}
+          onClick={handleOpenChat}
+          className="bg-[var(--main)] text-[var(--text)] p-4 rounded-full 
+            shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 
+            group border border-[var(--secondary)]"
+        >
+          <div className="relative">
+            <FaRobot size={24} className="transform group-hover:rotate-12 transition-transform" />
+            <animated.div
+              style={useSpring({
+                loop: true,
+                from: { opacity: 0.5, transform: 'scale(1)' },
+                to: { opacity: 0, transform: 'scale(1.5)' },
+                config: { duration: 2000 },
+              })}
+              className="absolute inset-0 bg-[var(--secondary)] rounded-full"
+            />
+          </div>
+        </animated.button>
+      </div>
+
+      {/* Chat Window */}
       {isOpen && (
         <animated.div
           style={springProps}
