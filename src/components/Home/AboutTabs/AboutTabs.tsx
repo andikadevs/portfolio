@@ -4,6 +4,7 @@ import React from "react";
 import { Tabs } from "@/components/Global";
 import { FaUser, FaMapMarkerAlt, FaHeart, FaTwitter } from "react-icons/fa";
 import { Hello, Hobbies, Origin, Sosmed } from "./Child";
+import { useSpring, animated, config } from "@react-spring/web";
 
 interface TabItem {
   name: string;
@@ -16,14 +17,22 @@ interface TabItem {
 const tabs: TabItem[] = [
   { 
     name: "hello",
-    icon: <FaUser aria-hidden="true" />,
+    icon: <FaUser className="
+      transition-all duration-300 
+      group-hover:scale-110 group-hover:rotate-12 
+      text-accent
+    " aria-hidden="true" />,
     component: <Hello />,
     ariaLabel: "About Me",
     description: "Personal introduction and background information about Andika Dwi Saputra"
   },
   { 
     name: "origin",
-    icon: <FaMapMarkerAlt aria-hidden="true" />,
+    icon: <FaMapMarkerAlt className="
+      transition-all duration-300 
+      group-hover:scale-110 group-hover:bounce 
+      text-accent
+    " aria-hidden="true" />,
     component: <Origin />,
     ariaLabel: "Location and Origin",
     description: "Information about where Andika Dwi Saputra is based and his background"
@@ -67,9 +76,28 @@ const aboutSchema = {
 };
 
 export const AboutTabs = () => {
+  const fadeIn = useSpring({
+    from: { transform: 'translateY(20px)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
+    config: config.gentle
+  });
+
+  const tabAnimation = useSpring({
+    from: { transform: 'translateX(-20px)' },
+    to: { opacity: 1, transform: 'translateX(0)' },
+    config: config.wobbly
+  });
+
+  const tabContentAnimation = useSpring({
+    from: { transform: 'scale(0.95)' },
+    to: { opacity: 1, transform: 'scale(1)' },
+    config: config.gentle
+  });
+
   return (
-    <section 
-      className="bg-secondary w-full p-0 h-auto"
+    <animated.section 
+      style={fadeIn}
+      className="bg-secondary w-full p-0 h-auto relative overflow-hidden"
       aria-label="About Section"
       itemScope 
       itemType="https://schema.org/AboutPage"
@@ -82,7 +110,7 @@ export const AboutTabs = () => {
         }}
       />
 
-      {/* Hidden SEO content */}
+      {/* Enhanced SEO content */}
       <div className="sr-only">
         <h2>About Andika Dwi Saputra</h2>
         <div itemScope itemType="https://schema.org/Person">
@@ -102,8 +130,10 @@ export const AboutTabs = () => {
         </div>
       </div>
 
-      {/* Tabs Component */}
-      <div 
+      {/* Enhanced Tabs Component */}
+      <animated.div 
+        style={tabAnimation}
+        className="relative z-10"
         role="tablist"
         aria-label="About information tabs"
       >
@@ -112,17 +142,40 @@ export const AboutTabs = () => {
           contentRenderer={(activeTab: string) => {
             const tab = tabs.find((t) => t.name === activeTab);
             return tab ? (
-              <div
+              <animated.div
+                style={tabContentAnimation}
                 role="tabpanel"
                 aria-label={tab.ariaLabel}
                 tabIndex={0}
+                className="py-6 bg-secondary/50 backdrop-blur-sm rounded-lg transition-all duration-300 hover:bg-secondary/60"
               >
                 {tab.component}
-              </div>
+              </animated.div>
             ) : null;
           }}
         />
+      </animated.div>
+
+      {/* Enhanced background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <animated.div 
+          style={useSpring({
+            from: { scale: 0.8 },
+            to: { opacity: 1, scale: 1 },
+            config: config.molasses
+          })}
+          className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" 
+        />
+        <animated.div 
+          style={useSpring({
+            from: { scale: 0.8 },
+            to: { opacity: 1, scale: 1 },
+            delay: 200,
+            config: config.molasses
+          })}
+          className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" 
+        />
       </div>
-    </section>
+    </animated.section>
   );
 };

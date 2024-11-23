@@ -47,13 +47,11 @@ export const Certificate: React.FC = React.memo(() => {
     [certificates]
   );
 
-  const handleImageClick = (index: number, includeToeic: boolean = false) => {
-    const allCertificates = includeToeic
-      ? [
-          ...filteredCertificates,
-          certificates.find((cert) => cert.src.toLowerCase().includes("toeic")),
-        ]
-      : filteredCertificates;
+  const handleImageClick = (index: number) => {
+    const allCertificates = [
+      ...filteredCertificates,
+      certificates.find((cert) => cert.src.toLowerCase().includes("toeic")),
+    ];
 
     setSelectedImages(
       allCertificates.map((cert) => `/assets/static/img/Portfolio/${cert?.src}`)
@@ -68,7 +66,7 @@ export const Certificate: React.FC = React.memo(() => {
     <section
       id="certificate"
       aria-label="Professional Certifications"
-      className="bg-secondary relative h-auto w-full p-4 md:px-10 shadow-xl"
+      className="bg-secondary relative h-auto w-full p-4 sm:px-10 shadow-xl"
     >
       <AnimateOnView direction="up">
         <h2 className="relative text-3xl text-text mb-4">
@@ -81,7 +79,7 @@ export const Certificate: React.FC = React.memo(() => {
       </AnimateOnView>
 
       <AnimateOnView direction="up" delay={150}>
-        <p className="text-text md:w-[50%] w-full mb-8">
+        <p className="text-text sm:w-[50%] w-full mb-8">
           Most of the skills I gained were{" "}
           <span className="text-accent">self-taught.</span> However, I also
           acquired some certifications through testing and competitions.
@@ -94,8 +92,8 @@ export const Certificate: React.FC = React.memo(() => {
           role="list"
           aria-label="Technical certifications grid"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-            <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+            <div className="sm:col-span-4 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredCertificates.map((cert, index) => (
                 <AnimateOnView
                   key={cert.src}
@@ -123,16 +121,16 @@ export const Certificate: React.FC = React.memo(() => {
             </div>
             <div className="lg:col-span-1 grid grid-cols-1 gap-4">
               <AnimateOnView direction="up" delay={600}>
-                <figure role="listitem" className="break-inside-avoid">
-                  <Image
-                    src="/assets/static/img/Portfolio/toeic.webp"
-                    alt="Advanced TOEIC Certification"
-                    fill
-                    className="object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() =>
-                      handleImageClick(filteredCertificates.length, true)
-                    }
-                  />
+                <figure role="listitem" className="break-inside-avoid h-full">
+                  <div className="aspect-[4/5] sm:aspect-auto relative h-full">
+                    <Image
+                      src="/assets/static/img/Portfolio/toeic.webp"
+                      alt="Advanced TOEIC Certification"
+                      fill
+                      className="object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={() => handleImageClick(filteredCertificates.length)}
+                    />
+                  </div>
                   <figcaption className="sr-only">
                     Advanced TOEIC Certification
                   </figcaption>
@@ -150,7 +148,7 @@ export const Certificate: React.FC = React.memo(() => {
             iconUrl="assets/static/img/Icons/instagram.svg"
             altText="Visit my Instagram profile"
             label="Follow me on Instagram"
-            classNames="w-full md:w-auto"
+            classNames="w-full sm:w-auto"
             aria-label="Follow me on Instagram to see more updates about my professional journey"
           />
         </div>

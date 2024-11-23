@@ -1,6 +1,14 @@
+/** @format */
+
 import React from "react";
 import { AnimateOnView, Button, Tooltip } from "@/components/Global";
-import { FaChrome, FaDownload, FaWhatsapp } from "react-icons/fa";
+import {
+  FaChrome,
+  FaCode,
+  FaDownload,
+  FaServer,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 export const Hello: React.FC = () => {
   const handleDownload = () => {
@@ -17,12 +25,22 @@ export const Hello: React.FC = () => {
           <FaChrome /> Fullstack <span className="text-accent">Developer</span>
         </h3>
 
-        <p className="text-text mb-5">
+        <p className="text-text">
           Hi, I`m Andika Dwi Saputra, a passionate{" "}
-          <span className="text-accent">Fullstack Developer</span> with expertise in building
-          modern web applications. I specialize in creating seamless user experiences
-          and robust backend solutions. Let`s explore my work together!
+          <span className="text-accent">Fullstack Developer</span> with
+          expertise in building modern web applications. I specialize in
+          creating seamless user experiences and robust backend solutions. Let`s
+          explore my work together!
         </p>
+
+        <div className="flex gap-2 my-5">
+          <span className="inline-flex text-text items-center gap-1">
+            <FaCode className="text-accent" /> Frontend Development
+          </span>
+          <span className="inline-flex text-text items-center gap-1">
+            <FaServer className="text-accent" /> Backend Solutions
+          </span>
+        </div>
 
         <div className="flex gap-3">
           <Tooltip hasArrow position="bottom" label="Download my CV">

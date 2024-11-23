@@ -7,4 +7,6 @@ export interface ButtonProps {
     disabled?: boolean;
     variant?: 'outline' | 'fill' | 'disabled';
     size?: 'md' | 'sm';
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
 }
