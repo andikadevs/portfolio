@@ -17,7 +17,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
   onClick,
 }) => {
   return (
-    <div className="group h-full bg-secondary hover:bg-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl rounded-lg overflow-hidden flex flex-col relative">
+    <div className="group h-full bg-secondary hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl rounded-lg overflow-hidden flex flex-col relative">
       <div
         className="relative w-full cursor-pointer overflow-hidden"
         style={{ paddingTop: "60%" }}
@@ -78,7 +78,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
               variant="outline"
               size="sm"
               disabled={url === "forbidden"}
-              className="hover:bg-accent/10 transition-colors"
+              className="transition-colors"
             >
               {url === "forbidden" ? (
                 <>
