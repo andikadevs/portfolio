@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { PageStatistic } from "@/components/Analytics";
+import { Chat } from "@/components/Global";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -144,6 +145,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} antialiased`}>
         <PageStatistic />
         {children}
+        <Chat />
       </body>
     </html>
   );

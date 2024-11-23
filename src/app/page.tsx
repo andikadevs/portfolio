@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Navbar, Progress, Facts, Footer, Loader } from "@/components/Global";
+import { Navbar, Progress, Footer, Loader } from "@/components/Global";
 import {
   About,
   Certificate,
@@ -17,7 +17,7 @@ export default function Home() {
       <main className="bg-main relative">
         <Progress />
         <Navbar />
-        <Facts />
+        {/* <Facts /> */}
 
         {/* Contents */}
         <Hero />

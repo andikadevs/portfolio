@@ -33,6 +33,15 @@ export interface UserStatistic {
   created_at?: string;
 }
 
+export interface ChatMessage {
+  id?: number;
+  visitor_id: string;
+  message: string;
+  is_bot: boolean;
+  context?: string;
+  created_at?: string;
+}
+
 export async function getArticle(slug: string): Promise<Article | null> {
   const { data, error } = await supabase
     .from("articles")
@@ -111,4 +120,37 @@ export async function updateVisitDuration(id: number, duration: number) {
   if (error) {
     console.error('Error updating visit duration:', error);
   }
+}
+
+export async function saveChatMessage(messageData: Omit<ChatMessage, 'id' | 'created_at'>) {
+  const { data, error } = await supabase
+    .from('chat_messages')
+    .insert([
+      {
+        ...messageData,
+        created_at: new Date().toISOString(),
+      },
+    ])
+    .select();
+
+  if (error) {
+    console.error('Error saving chat message:', error);
+    throw error;
+  }
+  return data[0];
+}
+
+export async function getChatHistory(visitor_id: string): Promise<ChatMessage[]> {
+  const { data, error } = await supabase
+    .from('chat_messages')
+    .select('*')
+    .eq('visitor_id', visitor_id)
+    .order('created_at', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching chat history:', error);
+    throw error;
+  }
+  
+  return data || [];
 }

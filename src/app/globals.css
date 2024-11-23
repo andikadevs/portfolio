@@ -9,11 +9,11 @@
 } */
 
 :root {
-  --main: #ffffff;
-  --secondary: #f0f0f0;
-  --accent: #f2c32f;
-  --dark: #e5e5e5;
-  --text: #26262b;
+  --main: #34353a;
+  --secondary: #3c3e43;
+  --accent: #f1be6c;
+  --dark: #26262b;
+  --text: #e5e5e5;
 }
 
 .dark {
