@@ -292,8 +292,8 @@ Remember to:
       {isOpen && (
         <animated.div
           style={springProps}
-          className="fixed bottom-6 right-6 w-96 h-[500px] bg-[var(--main)] rounded-lg 
-            shadow-2xl flex flex-col z-50 border border-[var(--secondary)]"
+          className="fixed bottom-2 right-2 w-[calc(100vw-1rem)] sm:w-[400px] sm:right-6 sm:bottom-6 h-[calc(100vh-1rem)] sm:h-[500px] bg-[var(--main)] rounded-lg 
+            shadow-2xl flex flex-col z-[9999] border border-[var(--secondary)]"
         >
           {/* Header */}
           <div className="p-4 bg-[var(--secondary)] rounded-t-lg flex justify-between items-center">

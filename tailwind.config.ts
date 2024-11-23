@@ -1,4 +1,7 @@
+/** @format */
+
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   darkMode: "class",
@@ -19,20 +22,30 @@ const config: Config = {
       },
       animation: {
         "loop-scroll": "loop-scroll 50s linear infinite",
-        "rotate": 'rotate 6s linear infinite',
+        rotate: "rotate 6s linear infinite",
+        float: 'float 3s ease-in-out infinite',
       },
       keyframes: {
         "loop-scroll": {
           from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-100%)" }
+          to: { transform: "translateX(-100%)" },
         },
-        "rotate": {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
+        rotate: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
-      }
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+      },
     },
   },
+  plugins: [
+    plugin(({ addVariant }) => {
+      addVariant("tooltip-trigger-hover", ".tooltip-trigger:hover &");
+    }),
+  ],
 };
 
 export default config;

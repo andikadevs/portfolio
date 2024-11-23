@@ -18,7 +18,7 @@ export const Gallery: React.FC<GalleryProps> = ({
 }) => {
   const animationProps = useSpring({
     opacity: isOpen ? 1 : 0,
-    transform: isOpen ? "scale(1)" : "scale(0.9)",
+    transform: isOpen ? "scale(1)" : "scale(1)",
     config: { tension: 200, friction: 20 },
   });
 
@@ -55,7 +55,7 @@ export const Gallery: React.FC<GalleryProps> = ({
         draggable={false}
         src={images[currentIndex]}
         alt={titles?.[currentIndex] || `Slide ${currentIndex + 1}`}
-        className="max-w-[calc(100vw-1rem)] sm:max-w-full h-full object-contain"
+        className="max-h-[70vh] sm:max-w-full h-full object-contain"
       />
       {hasDescription && (
         <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white p-2 rounded">

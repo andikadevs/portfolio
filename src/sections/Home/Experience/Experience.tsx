@@ -1,8 +1,10 @@
+/** @format */
+
 "use client";
 
 import React, { useState, useEffect } from "react";
 import { Lists, SocialButton, AnimateOnView } from "@/components/Global";
-import Image from 'next/image';
+import Image from "next/image";
 
 const data_1 = [
   {
@@ -51,14 +53,14 @@ const StructuredData = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "itemListElement": allData.map((item, index) => ({
+    itemListElement: allData.map((item, index) => ({
       "@type": "WorkExperience",
-      "position": index + 1,
-      "title": item.title.replace(/[\[\]]/g, ''),
-      "description": item.description,
-      "datePublished": item.details.split('|')[1].trim(),
-      "organization": item.details.split('|')[0].trim()
-    }))
+      position: index + 1,
+      title: item.title.replace(/[\[\]]/g, ""),
+      description: item.description,
+      datePublished: item.details.split("|")[1].trim(),
+      organization: item.details.split("|")[0].trim(),
+    })),
   };
 
   return (
@@ -85,10 +87,10 @@ export const Experience: React.FC = () => {
   }, []);
 
   return (
-    <section 
-      id='experience' 
+    <section
+      id="experience"
       aria-label="Professional Experience and Achievements"
-      className='h-auto w-full px-4 md:px-12 pt-12 pb-2 bg-secondary shadow-xl relative mb-[60px]'
+      className="h-auto w-full px-4 md:px-12 pt-12 pb-2 bg-secondary shadow-xl relative mb-[60px]"
     >
       <h2 className="text-text text-4xl absolute top-[-20px] left-4">
         Experience
@@ -96,8 +98,11 @@ export const Experience: React.FC = () => {
 
       <div itemScope itemType="https://schema.org/WorkExperience">
         {isMobileOrTablet ? (
-          <AnimateOnView direction="left" className="mb-4">
-            <article role="list" aria-label="Work experience and certifications">
+          <>
+            <article
+              role="list"
+              aria-label="Work experience and certifications"
+            >
               <Lists items={combinedData} />
             </article>
             <div className="flex justify-end w-full">
@@ -109,7 +114,7 @@ export const Experience: React.FC = () => {
                 classNames="w-full md:w-auto"
               />
             </div>
-          </AnimateOnView>
+          </>
         ) : (
           <>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mb-14">
@@ -118,7 +123,10 @@ export const Experience: React.FC = () => {
                   <Lists items={data_1} />
                 </article>
               </AnimateOnView>
-              <AnimateOnView direction="up" className="hidden md:flex items-center justify-center">
+              <AnimateOnView
+                direction="up"
+                className="hidden md:flex items-center justify-center"
+              >
                 <Image
                   src="/assets/static/img/Icons/csharp.svg"
                   width={180}
@@ -131,7 +139,11 @@ export const Experience: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mb-14">
-              <AnimateOnView direction="up" delay={200} className="hidden md:flex items-center justify-center">
+              <AnimateOnView
+                direction="up"
+                delay={200}
+                className="hidden md:flex items-center justify-center"
+              >
                 <img
                   draggable={false}
                   src="assets/static/img/Icons/nodejs.svg"
@@ -148,12 +160,16 @@ export const Experience: React.FC = () => {
               <AnimateOnView direction="left" delay={400} className="w-full">
                 <Lists items={data_3} />
               </AnimateOnView>
-              <AnimateOnView direction="up" delay={400} className="hidden md:flex items-center justify-center">
+              <AnimateOnView
+                direction="up"
+                delay={400}
+                className="hidden md:flex items-center justify-center"
+              >
                 <img
                   draggable={false}
                   src="assets/static/img/Icons/docker.svg"
                   alt="Docker"
-                  className="h-[180px]"
+                  className="h-[180px] animate-float"
                 />
               </AnimateOnView>
             </div>

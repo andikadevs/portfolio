@@ -77,7 +77,7 @@ export const Skills: React.FC = () => {
                 transform: itemAnimations.transform.to(
                   (t) => `${t} scale(${inView ? 1 : 0.5}) rotate(${inView ? 0 : -10}deg)`
                 ),
-                transition: `all ${index * 100}ms`,
+                transition: `all ${index * 100}ms, background-color 300ms`,
               }}
               className='cursor-pointer relative bg-secondary gap-2 sm:gap-3 flex justify-between flex-col items-center px-2 sm:px-4 py-4 sm:py-8 rounded shadow-xl text-center text-text hover:bg-accent hover:text-secondary transition duration-300 ease-in-out'
             >

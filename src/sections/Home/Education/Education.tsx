@@ -41,11 +41,11 @@ export const Education: React.FC = () => {
         itemScope 
         itemType="https://schema.org/EducationalOrganization"
       >
-        <AnimateOnView direction="left" className="w-full">
+        <div className="w-full">
           <article role="list" aria-label="Education history">
             <Lists items={items} />
           </article>
-        </AnimateOnView>
+        </div>
 
         <AnimateOnView direction="up" className="flex items-center justify-center">
           <Image

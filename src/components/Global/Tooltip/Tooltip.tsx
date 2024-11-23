@@ -23,10 +23,10 @@ export const Tooltip: React.FC<TooltipProps> = ({ label, hasArrow = true, positi
   };
 
   return (
-    <div className="relative inline-block group">
+    <div className="relative inline-block tooltip-trigger">
       {children}
       <div
-        className={`absolute ${tooltipPosition[position]} w-max max-w-xs px-2 py-1 text-white bg-gray-800 rounded-md shadow-lg text-sm opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+        className={`absolute ${tooltipPosition[position]} w-max max-w-xs px-2 py-1 text-white bg-gray-800 rounded-md shadow-lg text-sm hidden tooltip-trigger-hover:block`}
       >
         {hasArrow && (
           <div

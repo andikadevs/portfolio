@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { SocialButton } from "@/components/Global";
 import { AnimateOnView } from "@/components/Global/AnimateOnView";
 import certificateData from './Certificate.json';
+import { Gallery } from "@/components/Global/Gallery/Gallery";
 
 const StructuredData = () => {
   const jsonLd = {
@@ -30,12 +31,26 @@ const StructuredData = () => {
 };
 
 export const Certificate: React.FC = React.memo(() => {
+  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [descriptions, setDescriptions] = useState<string[]>([]);
+  const [titles, setTitles] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   const { certificates } = certificateData;
   
   const filteredCertificates = useMemo(() => 
-    certificates.filter((cert) => cert.src !== "toeic.webp"),
+    certificates,
     [certificates]
   );
+
+  const handleImageClick = (index: number) => {
+    setSelectedImages(certificates.map(cert => `/assets/static/img/Portfolio/${cert.src}`));
+    setDescriptions(certificates.map(cert => cert.description));
+    setTitles(certificates.map(cert => cert.alt));
+    setCurrentIndex(index);
+    setIsModalOpen(true);
+  };
 
   return (
     <section
@@ -58,55 +73,35 @@ export const Certificate: React.FC = React.memo(() => {
         </p>
       </AnimateOnView>
 
-      <div className="flex gap-3 flex-col md:flex-row h-full">
+      <div className="w-full">
         <div 
-          className="w-[100%] md:w-[75%] h-full"
+          className="w-full"
           role="list"
           aria-label="Technical certifications grid"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
+          <div className="columns-2 lg:columns-4 gap-4">
             {filteredCertificates.map((cert, index) => (
               <AnimateOnView
                 key={cert.src}
                 direction="up"
                 delay={300 + index * 100}
               >
-                <figure role="listitem" className="h-full">
+                <figure role="listitem" className="mb-4 break-inside-avoid">
                   <Image
                     src={`/assets/static/img/Portfolio/${cert.src}`}
                     alt={cert.alt}
                     width={400}
                     height={300}
-                    className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
+                    className="w-full shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
                     priority={index < 3}
                     loading={index < 3 ? "eager" : "lazy"}
+                    onClick={() => handleImageClick(index)}
                   />
                   <figcaption className="sr-only">{cert.description}</figcaption>
                 </figure>
               </AnimateOnView>
             ))}
           </div>
-        </div>
-        <div 
-          className="w-[calc(50%-8px)] md:w-[25%] h-full flex flex-1"
-          role="complementary"
-          aria-label="Featured TOEIC certification"
-        >
-          <AnimateOnView direction="up" delay={900} className="h-full w-full">
-            <figure>
-              <Image
-                src="/assets/static/img/Portfolio/toeic.webp"
-                alt="Advanced TOEIC Certification - Professional English Language Proficiency"
-                width={400}
-                height={600}
-                className="w-full h-full object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
-                priority
-              />
-              <figcaption className="sr-only">
-                High-level English proficiency certification demonstrating advanced business communication skills
-              </figcaption>
-            </figure>
-          </AnimateOnView>
         </div>
       </div>
 
@@ -122,6 +117,16 @@ export const Certificate: React.FC = React.memo(() => {
           />
         </div>
       </AnimateOnView>
+      <Gallery
+        images={selectedImages}
+        descriptions={descriptions}
+        titles={titles}
+        currentIndex={currentIndex}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onPrev={() => setCurrentIndex(prevIndex => (prevIndex - 1 + selectedImages.length) % selectedImages.length)}
+        onNext={() => setCurrentIndex(nextIndex => (nextIndex + 1) % selectedImages.length)}
+      />
       <StructuredData />
     </section>
   );

@@ -88,4 +88,21 @@ body {
   top: 0;
 }
 
-/* ARTICLES */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      calc(-250px * 4)
+    ); /* Adjust based on your logo width + gap */
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
