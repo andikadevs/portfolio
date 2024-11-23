@@ -298,7 +298,7 @@ Remember to:
           {/* Header */}
           <div className="p-4 bg-[var(--secondary)] rounded-t-lg flex justify-between items-center">
             <div className="flex items-center space-x-2">
-              <FaRegLightbulb className="text-[var(--text)] animate-pulse" />
+              <FaRegLightbulb className="text-accent animate-pulse" />
               <h3 className="font-semibold text-[var(--text)]">Tejo - Andika`s AI Assistant</h3>
             </div>
             <button
