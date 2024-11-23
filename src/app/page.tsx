@@ -1,9 +1,12 @@
+/** @format */
+
 import { Suspense } from "react";
 import { Navbar, Progress, Footer, Loader } from "@/components/Global";
 import {
   About,
   Certificate,
   Companies,
+  Contact,
   Education,
   Experience,
   Hero,
@@ -28,6 +31,7 @@ export default function Home() {
         <Experience />
         <Portfolio />
         <Certificate />
+        <Contact />
 
         <Footer />
       </main>

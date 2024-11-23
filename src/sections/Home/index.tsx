@@ -7,3 +7,4 @@ export * from "./Experience";
 export * from "./Hero";
 export * from "./Portfolio";
 export * from "./Skills";
+export * from "./Contact";
