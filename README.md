@@ -1,3 +1,5 @@
+<!-- @format -->
+
 # Fullstack Developer 📝
 
 Hello there! I'm Andika Dwi Saputra, and I'm a Fullstack Developer
@@ -9,25 +11,26 @@ Can't program everything by myself, can I? Here is a list of all the tools that 
 #### Programming Language
 
 <div style="display: flex; flex-direction: row;">
-    <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40" style="margin-right: 12px"/>
-    <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" alt="Typescript" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/php/php-original.svg" alt="php" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/csharp/csharp-original.svg" alt="c#" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40" style="margin-right: 12px"/>
 </div>
 
 #### Tools & Framework
 
 <div style="display: flex; flex-direction: row;">
+    <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original-wordmark.svg" alt="nextjs" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/laravel/laravel-original.svg" alt="laravel" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/composer/composer-original.svg" alt="composer" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/livewire/livewire-original.svg" alt="composer" width="40" height="40" style="margin-right: 12px"/>
-    <img src="https://github.com/devicons/devicon/blob/master/icons/jquery/jquery-original.svg" alt="composer" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-original.svg" alt="tailwindcss" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/jquery/jquery-original.svg" alt="jquery" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/dotnetcore/dotnetcore-original.svg" alt="dotnet" width="40" height="40" style="margin-right: 12px"/>
-    <img src="https://github.com/devicons/devicon/blob/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40" style="margin-right: 12px"/>
-    <img src="https://github.com/devicons/devicon/blob/master/icons/materialui/materialui-original.svg" alt="materialui" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40" style="margin-right: 12px"/>
 </div>
 
@@ -36,6 +39,7 @@ Can't program everything by myself, can I? Here is a list of all the tools that 
 <div style="display: flex; flex-direction: row;">
     <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/microsoftsqlserver/microsoftsqlserver-plain-wordmark.svg" alt="mssql" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/supabase/supabase-original.svg" alt="supabase" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" alt="git" width="40" height="40" style="margin-right: 12px"/>
 </div>
 
@@ -51,14 +55,14 @@ Can't program everything by myself, can I? Here is a list of all the tools that 
 #### Design
 
 <div style="display: flex; flex-direction: row;">
-    <img src="https://github.com/devicons/devicon/blob/master/icons/canva/canva-original.svg" alt="Canva" width="40" height="40" style="margin-right: 12px"/>
-    <img src="https://github.com/devicons/devicon/blob/master/icons/figma/figma-original.svg" alt="Figma" width="40" height="40" style="margin-right: 12px"/>
-    <img src="https://seeklogo.com/images/C/coreldraw-2019-logo-73390B2962-seeklogo.com.png" alt="Coreldraw" width="40" height="40" style="margin-right: 12px"/>
     <img src="https://github.com/devicons/devicon/blob/master/icons/photoshop/photoshop-original.svg" alt="Photoshop" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/figma/figma-original.svg" alt="Figma" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/canva/canva-original.svg" alt="Canva" width="40" height="40" style="margin-right: 12px"/>
+    <img src="https://seeklogo.com/images/C/coreldraw-2019-logo-73390B2962-seeklogo.com.png" alt="Coreldraw" width="40" height="40" style="margin-right: 12px"/>
 </div>
 
 ## Portfolio
 
 I'm a fighter who will do everything to become the best version of myself! I'm always eager to learn and level up my skills. Here is my portfolio, the place where I deliver my all ideas and inovations. You'll see innovative solutions and a bunch of web projects here!
 
-[My Portfolio](https://andikads.cloud)
+[My Portfolio](https://andikss.github.io)
