@@ -3,10 +3,16 @@
 "use client";
 
 import { Title } from "@/components/Global";
-import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaPaperPlane,
+} from "react-icons/fa";
 import { AnimateOnView } from "@/components/Global/AnimateOnView/AnimateOnView";
 import { useState } from "react";
-import { useSpring, animated } from '@react-spring/web';
+import { useSpring, animated } from "@react-spring/web";
+import { Button } from "@/components/Global/Button/Button";
 
 const ContactInfo = [
   {
@@ -91,8 +97,7 @@ export const Contact = () => {
     config: { tension: 200, friction: 20 },
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setIsLoading(true);
     setStatus({ type: null, message: "" });
 
@@ -175,7 +180,10 @@ export const Contact = () => {
         </div>
 
         <AnimateOnView direction="up" delay={600}>
-          <form onSubmit={handleSubmit} className="mt-12 space-y-6">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="mt-12 space-y-6"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <input
                 type="text"
@@ -220,16 +228,11 @@ export const Contact = () => {
             )}
 
             <div className="flex justify-end">
-              <button
-                type="submit"
+              <Button
+                onClick={handleSubmit}
                 disabled={isLoading}
-                className={`px-8 py-3 bg-accent text-secondary rounded-lg transition-all duration-300 
-                    ${
-                      isLoading
-                        ? "opacity-70 cursor-not-allowed"
-                        : "hover:bg-opacity-90"
-                    }
-                    flex items-center gap-2`}
+                variant="fill"
+                className="gap-2"
               >
                 {isLoading ? (
                   <>
@@ -248,7 +251,7 @@ export const Contact = () => {
                     <FaPaperPlane className="text-lg" />
                   </>
                 )}
-              </button>
+              </Button>
             </div>
           </form>
         </AnimateOnView>

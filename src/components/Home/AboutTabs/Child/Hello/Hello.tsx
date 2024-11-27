@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { AnimateOnView, Button, Tooltip } from "@/components/Global";
+import { AnimateOnView, Button } from "@/components/Global";
 import {
   FaChrome,
   FaCode,
@@ -33,28 +33,24 @@ export const Hello: React.FC = () => {
           explore my work together!
         </p>
 
-        <div className="flex gap-2 my-5">
-          <span className="inline-flex text-text items-center gap-1">
+        <div className="flex gap-3 flex-wrap my-5">
+          <span className="inline-flex whitespace-nowrap text-text items-center gap-1">
             <FaCode className="text-accent" /> Frontend Development
           </span>
-          <span className="inline-flex text-text items-center gap-1">
+          <span className="inline-flex whitespace-nowrap text-text items-center gap-1">
             <FaServer className="text-accent" /> Backend Solutions
           </span>
         </div>
 
-        <div className="flex gap-3">
-          <Tooltip hasArrow position="bottom" label="Download my CV">
-            <Button variant="outline" onClick={handleDownload}>
-              <FaDownload /> Download CV
-            </Button>
-          </Tooltip>
+        <div className="flex flex-wrap gap-3">
+          <Button className="flex-1 sm:flex-none whitespace-nowrap" variant="outline" onClick={handleDownload}>
+            <FaDownload /> Download CV
+          </Button>
 
-          <a target="_blank" href="https://wa.me/6285743699909">
-            <Tooltip hasArrow position="bottom" label="Chat me on WhatsApp!">
-              <Button variant="fill">
-                <FaWhatsapp /> Contact Me
-              </Button>
-            </Tooltip>
+          <a target="_blank" className="flex-1 sm:flex-none sm:flex-0 flex" href="https://wa.me/6285743699909">
+            <Button className="flex-1 sm:flex-0 whitespace-nowrap" variant="fill">
+              <FaWhatsapp /> Contact Me
+            </Button>
           </a>
         </div>
       </div>

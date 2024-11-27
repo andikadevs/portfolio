@@ -128,7 +128,9 @@ export const Certificate: React.FC = React.memo(() => {
                       alt="Advanced TOEIC Certification"
                       fill
                       className="object-cover shadow-xl cursor-pointer hover:opacity-80 transition-opacity"
-                      onClick={() => handleImageClick(filteredCertificates.length)}
+                      onClick={() =>
+                        handleImageClick(filteredCertificates.length)
+                      }
                     />
                   </div>
                   <figcaption className="sr-only">
@@ -141,18 +143,16 @@ export const Certificate: React.FC = React.memo(() => {
         </div>
       </div>
 
-      <AnimateOnView direction="up" delay={1000}>
-        <div className="flex w-full justify-center mt-12 mb-16">
-          <SocialButton
-            href="https://instagram.com/andikads__"
-            iconUrl="assets/static/img/Icons/instagram.svg"
-            altText="Visit my Instagram profile"
-            label="Follow me on Instagram"
-            classNames="w-full sm:w-auto"
-            aria-label="Follow me on Instagram to see more updates about my professional journey"
-          />
-        </div>
-      </AnimateOnView>
+      <div className="flex w-full justify-center mt-12 mb-16">
+        <SocialButton
+          href="https://instagram.com/andikads__"
+          iconUrl="assets/static/img/Icons/instagram.svg"
+          altText="Visit my Instagram profile"
+          label="Follow me on Instagram"
+          classNames="w-full md:w-auto !flex-1"
+          aria-label="Follow me on Instagram to see more updates about my professional journey"
+        />
+      </div>
 
       <Gallery
         images={selectedImages}
