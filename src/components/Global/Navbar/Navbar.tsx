@@ -203,7 +203,7 @@ export const Navbar: React.FC = () => {
                 rel="noopener noreferrer"
                 aria-label="Send email to Andika"
               >
-                <Button variant="outline" className="rounded-full">
+                <Button variant="outline" className="!rounded-full">
                   <BsEnvelope aria-hidden="true" /> Email
                 </Button>
               </Link>

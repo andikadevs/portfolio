@@ -180,7 +180,7 @@ const DesktopSkills = () => {
           style={{
             ...slideProps,
             transform: slideProps.x.to((x) => `translateX(${x}%)`),
-            width: `${skills.length * 200}px`,
+            width: `${skills.length * 220}px`,
             display: 'flex',
           }}
           className="flex"
@@ -188,8 +188,8 @@ const DesktopSkills = () => {
           {skills.map((skill, index) => (
             <animated.div 
               key={index} 
-              style={{ width: '200px', flexShrink: 0 }}
-              className="px-1"
+              style={{ width: '220px', flexShrink: 0 }}
+              className="px-3"
             >
               <div className="cursor-pointer relative bg-secondary gap-3 flex justify-between flex-col items-center px-4 py-8 rounded shadow-xl text-center text-text hover:bg-accent hover:text-secondary transition duration-300 ease-in-out">
                 <a

@@ -74,7 +74,7 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const baseStyles =
-    "flex items-center justify-center gap-2 transition-colors duration-300 ease-in-out";
+    "flex items-center justify-center gap-2 transition-colors duration-300 ease-in-out rounded-md";
   const fillStyles = "bg-accent hover:brightness-110 text-secondary";
   const outlineStyles =
     "bg-transparent border border-accent hover:bg-accent hover:text-secondary text-accent";
