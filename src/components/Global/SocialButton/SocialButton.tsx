@@ -13,7 +13,7 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
   return (
     <a href={href} target="_blank" className="w-full md:w-auto">
       <button
-        className={`relative flex w-full md:w-auto items-center justify-center gap-3 text-text px-8 py-2 bg-secondary shadow-xl transition-shadow duration-300 hover:shadow-accent group ${classNames}`}
+        className={`relative hover:scale-105 transition-all duration-400 active:scale-95 flex w-full md:w-auto items-center justify-center gap-3 text-text px-8 py-2 bg-secondary shadow-xl hover:shadow-accent group ${classNames}`}
         style={{ fontWeight: 550 }}
       >
         <img
@@ -22,7 +22,7 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
           alt={altText}
           height={40}
           width={40}
-          className="transition-transform duration-300 group-hover:rotate-[-20deg]"
+          className="transition-transform duration-300 group-hover:rotate-[-20deg] group-active:rotate-[20deg]"
         />
         {label}
       </button>
