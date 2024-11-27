@@ -38,10 +38,10 @@ const data_2 = [
 
 const data_3 = [
   {
-    title: "Digital Marketing [Analyst]",
+    title: "Fullstack [Developer]",
     details: "Toploker.com | May 2024 - Now",
     description:
-      "I work at Toploker.com as a Digital Marketing Analyst. My job involves finding and analyzing the best digital marketing strategies for the company. I also look for ways to improve our team and develop better algorithms to save time or increase company's value.",
+      "I work at Toploker.com as a Fullstack Developer. My job involves building management systems for the company. I also look for ways to improve our team and develop better algorithms to save time or increase company's value.",
   },
 ];
 

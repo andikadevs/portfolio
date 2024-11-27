@@ -132,6 +132,12 @@
     "animation": "static"
   },
   {
+    "src": "/assets/static/img/Icons/typescript.svg",
+    "alt": "TypeScript",
+    "url": "https://www.typescriptlang.org/",
+    "animation": "static"
+  },
+  {
     "src": "/assets/static/img/Icons/html.svg",
     "alt": "HTML",
     "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
