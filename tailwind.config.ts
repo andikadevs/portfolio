@@ -23,7 +23,8 @@ const config: Config = {
       animation: {
         "loop-scroll": "loop-scroll 50s linear infinite",
         rotate: "rotate 6s linear infinite",
-        float: 'float 3s ease-in-out infinite',
+        float: "float 3s ease-in-out infinite",
+        "infinite-scroll": "infinite-scroll 40s linear infinite",
       },
       keyframes: {
         "loop-scroll": {
@@ -35,8 +36,12 @@ const config: Config = {
           "100%": { transform: "rotate(360deg)" },
         },
         float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "infinite-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-25%)" },
         },
       },
     },

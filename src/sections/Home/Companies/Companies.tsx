@@ -42,18 +42,20 @@ export const Companies = () => {
         role="marquee"
         aria-label="Scrolling company logos"
       >
-        <div className="flex items-center animate-loop-scroll whitespace-nowrap">
-          {[...Array(4)].map((_, groupIndex) => (
-            companyLogos.map((logo, index) => (
-              <img
-                key={`group-${groupIndex}-${index}`}
-                loading="lazy"
-                draggable={false}
-                src={logo.src}
-                alt={logo.alt}
-                className={`max-w-none grayscale hover:grayscale-0 ${logo.height} shrink-0 object-contain transition-all duration-300 ease-in-out hover:scale-110 mx-8`}
-              />
-            ))
+        <div className="flex items-center animate-infinite-scroll whitespace-nowrap">
+          {[...Array(4)].map((_, arrayIndex) => (
+            <React.Fragment key={`set-${arrayIndex}`}>
+              {companyLogos.map((logo, index) => (
+                <img
+                  key={`logo-${arrayIndex}-${index}`}
+                  loading="lazy"
+                  draggable={false}
+                  src={logo.src}
+                  alt={logo.alt}
+                  className={`max-w-none grayscale hover:grayscale-0 ${logo.height} shrink-0 object-contain transition-all duration-300 ease-in-out hover:scale-110 mx-8`}
+                />
+              ))}
+            </React.Fragment>
           ))}
         </div>
       </div>
