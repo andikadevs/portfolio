@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { FaRobot, FaSpinner } from "react-icons/fa";
+import { FaRobot, FaSpinner, FaSearch } from "react-icons/fa";
 import InfiniteScroll from "react-infinite-scroll-component";
 import debounce from "lodash.debounce";
 import { supabase } from "@/utils/Global";
@@ -107,21 +107,13 @@ export default function ArticlesList({
             placeholder="Search articles..."
             value={searchQuery}
             onChange={handleSearchChange}
-            className="w-full px-6 py-4 rounded-full bg-secondary text-text placeholder-text/50 focus:outline-none focus:ring-2 focus:ring-accent shadow-md"
+            className="w-full px-6 py-4 rounded-full bg-secondary text-text placeholder-text focus:outline-none focus:ring-2 focus:ring-accent shadow-md"
           />
-          <svg
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text/50"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
+          {isSearching ? (
+            <FaSpinner className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text animate-spin" />
+          ) : (
+            <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text" />
+          )}
         </div>
       </div>
 
