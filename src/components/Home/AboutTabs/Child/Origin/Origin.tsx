@@ -1,3 +1,5 @@
+/** @format */
+
 import { AnimateOnView, Clock } from "@/components/Global";
 import { calculateAgeDetails } from "@/utils/Global";
 
@@ -20,13 +22,14 @@ export const Origin: React.FC = () => {
         </h3>
 
         <p className="text-text">
-          I was born in <span className="text-accent">Banjarnegara</span> on July
-          9th, 2005, and I have lived there ever since. Computers were not really
-          my thing, I had no access to computers back then. My first time handling
-          a computer was when I was in Senior High School. I couldn`t even turn on
-          a computer back then. However, I found my passion there. I have always
-          studied hard ever since, working on building myself to become a
-          future-ready <span className="text-accent">Programmer</span>.
+          I was born in <span className="text-accent">Banjarnegara</span>{" "}
+          {years} years {days} days ago and I have lived there ever since.
+          Computers were not really my thing, I had no access to computers back
+          then. My first time handling a computer was when I was in Senior High
+          School. I couldn`t even turn on a computer back then. However, I found
+          my passion there. I have always studied hard ever since, working on
+          building myself to become a future-ready{" "}
+          <span className="text-accent">Programmer</span>.
         </p>
 
         <div className="space-y-2">
