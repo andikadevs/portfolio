@@ -119,11 +119,15 @@ const DesktopSkills = () => {
             ? Math.max(0, currentIndex - 1)
             : Math.min(totalSlides - 1, currentIndex + 1);
         setCurrentIndex(newIndex);
-        slideApi.start({ x: -(newIndex * (100 / totalSlides)), immediate: false });
+        slideApi.start({
+          x: -(newIndex * (100 / totalSlides)),
+          immediate: false,
+        });
       } else {
         slideApi.start({
           x: down
-            ? -(currentIndex * (100 / totalSlides)) + (mx / window.innerWidth) * 100
+            ? -(currentIndex * (100 / totalSlides)) +
+              (mx / window.innerWidth) * 100
             : -(currentIndex * (100 / totalSlides)),
           immediate: down,
         });
@@ -181,14 +185,14 @@ const DesktopSkills = () => {
             ...slideProps,
             transform: slideProps.x.to((x) => `translateX(${x}%)`),
             width: `${skills.length * 220}px`,
-            display: 'flex',
+            display: "flex",
           }}
           className="flex"
         >
           {skills.map((skill, index) => (
-            <animated.div 
-              key={index} 
-              style={{ width: '220px', flexShrink: 0 }}
+            <animated.div
+              key={index}
+              style={{ width: "220px", flexShrink: 0 }}
               className="px-3"
             >
               <div className="cursor-pointer relative bg-secondary gap-3 flex justify-between flex-col items-center px-4 py-8 rounded shadow-xl text-center text-text hover:bg-accent hover:text-secondary transition duration-300 ease-in-out">
@@ -239,8 +243,28 @@ const DesktopSkills = () => {
 };
 
 export const Skills: React.FC = () => {
-  const [ref] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: "-20% 0px",
+    once: true,
+  });
   const [isMobile, setIsMobile] = useState(false);
+
+  const springProps = useSpring({
+    from: {
+      opacity: 0,
+      transform: 'translateY(100px)',
+    },
+    to: {
+      opacity: inView ? 1 : 0,
+      transform: inView ? 'translateY(0px)' : 'translateY(100px)',
+    },
+    config: {
+      mass: 1,
+      tension: 200,
+      friction: 26,
+    },
+    delay: 100,
+  });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -263,7 +287,7 @@ export const Skills: React.FC = () => {
       aria-label="Skills and Technologies"
       className="bg-main h-auto w-full mb-10 sm:mb-20"
     >
-      <animated.div ref={ref}>
+      <animated.div ref={ref} style={springProps}>
         <Title title="Skills" description="Swipe to explore my toolkit" />
         {isMobile ? <MobileSkills /> : <DesktopSkills />}
       </animated.div>
