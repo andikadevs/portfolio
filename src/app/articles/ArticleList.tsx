@@ -80,7 +80,7 @@ export default function ArticlesList({
         <img
           src="/assets/static/img/formal.webp"
           alt="Andika Dwi Saputra"
-          className="w-16 h-16 rounded-full object-cover object-[center_30%] border-2 border-accent"
+          className="w-16 h-16 rounded-full object-cover object-[center_30%] border-2 border-accent shrink-0"
         />
         <div>
           <h2 className="text-xl font-semibold text-text">

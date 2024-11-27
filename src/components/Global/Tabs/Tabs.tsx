@@ -21,11 +21,11 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, contentRenderer }) => {
 
   return (
     <div>
-      <div className="flex justify-even">
+      <div className="flex justify-even border border-accent">
         {tabs.map((tab) => (
           <button
             key={tab.name}
-            className={`p-2 font-normal text-sm flex-1 flex items-center justify-center gap-1 border border-accent 
+            className={`p-2 font-normal text-sm flex-1 flex items-center justify-center gap-1 border-x border-accent 
               transition duration-300 ease-in-out px-0 md:px-2
               hover:bg-accent hover:text-secondary whitespace-nowrap 
               ${activeTab === tab.name ? 'bg-accent text-main' : 'bg-transparent text-text'}`}

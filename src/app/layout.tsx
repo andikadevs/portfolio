@@ -129,12 +129,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link 
-          rel="preload"
-          href="/assets/static/img/avatar.webp"
-          as="image"
-          type="image/webp"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
