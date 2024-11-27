@@ -76,17 +76,19 @@ export default function ArticlesList({
 
   return (
     <>
-      <div className="relative max-w-4xl mx-auto mb-8 flex items-center gap-4 bg-secondary p-6 rounded-xl">
+      <div className="relative max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row items-center gap-4 bg-secondary p-6 rounded-xl">
         <img
           src="/assets/static/img/formal.webp"
           alt="Andika Dwi Saputra"
           className="w-16 h-16 rounded-full object-cover object-[center_30%] border-2 border-accent shrink-0"
         />
         <div>
-          <h2 className="text-xl font-semibold text-text">
+          <h2 className="text-xl font-semibold text-text text-center sm:text-left">
             Andika Dwi Saputra
           </h2>
-          <p className="text-accent">Software Engineer | AI Enthusiast</p>
+          <p className="text-accent text-center sm:text-left">
+            Software Engineer | AI Enthusiast
+          </p>
         </div>
       </div>
 
