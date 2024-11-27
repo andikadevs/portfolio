@@ -32,30 +32,28 @@ export const Companies = () => {
     <section
       id="companies"
       aria-label="Trusted Companies"
-      className="bg-secondary flex flex-col shadow-xl items-center py-6 overflow-hidden mb-12 relative"
+      className="bg-secondary flex flex-col shadow-xl items-center justify-center py-6 overflow-hidden mb-12 relative"
     >
       <h2 className="text-text mb-3">
         Companies that <span className="text-accent">trusted me!</span>
       </h2>
       <div
-        className="flex overflow-hidden bg-secondary w-full relative"
+        className="flex items-center justify-center overflow-hidden bg-secondary w-full relative"
         role="marquee"
         aria-label="Scrolling company logos"
       >
-        <div className="animate-loop-scroll flex space-x-16 items-center">
+        <div className="flex items-center animate-loop-scroll whitespace-nowrap">
           {[...Array(4)].map((_, groupIndex) => (
-            <div key={groupIndex} className="flex space-x-16 items-center">
-              {companyLogos.map((logo, index) => (
-                <img
-                  key={`${groupIndex}-${index}`}
-                  loading="lazy"
-                  draggable={false}
-                  src={logo.src}
-                  alt={logo.alt}
-                  className={`max-w-none grayscale hover:grayscale-0 ${logo.height} shrink-0 object-contain transition-all duration-300 ease-in-out hover:scale-110`}
-                />
-              ))}
-            </div>
+            companyLogos.map((logo, index) => (
+              <img
+                key={`group-${groupIndex}-${index}`}
+                loading="lazy"
+                draggable={false}
+                src={logo.src}
+                alt={logo.alt}
+                className={`max-w-none grayscale hover:grayscale-0 ${logo.height} shrink-0 object-contain transition-all duration-300 ease-in-out hover:scale-110 mx-8`}
+              />
+            ))
           ))}
         </div>
       </div>
