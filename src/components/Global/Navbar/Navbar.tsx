@@ -87,7 +87,7 @@ export const Navbar: React.FC = () => {
       const section = document.querySelector(href) as HTMLElement;
       if (section) {
         window.scrollTo({
-          top: section.offsetTop - 80,
+          top: section.offsetTop - 100,
           behavior: "smooth",
         });
       }
