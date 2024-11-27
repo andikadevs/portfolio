@@ -52,7 +52,6 @@ export const Chat = () => {
 
         // Load chat history
         const history = await getChatHistory(visitorId.current);
-        console.log('Loaded chat history:', history); // Debug log
         
         if (history.length === 0) {
           // If this is a new chat, add the welcome message
