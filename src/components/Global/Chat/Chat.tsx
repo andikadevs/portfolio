@@ -247,7 +247,7 @@ Guidelines:
   return (
     <>
       {/* Chat Button with Tooltip */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-3 right-3 z-50">
         {/* Tooltip */}
         <animated.div
           style={useSpring({
@@ -255,7 +255,7 @@ Guidelines:
             transform: showTooltip ? "translateY(0)" : "translateY(10px)",
             config: { tension: 300, friction: 20 },
           })}
-          className="absolute bottom-full right-0 mb-4 bg-[var(--secondary)] 
+          className="absolute x bottom-full right-0 mb-4 bg-[var(--secondary)] 
             text-[var(--text)] p-3 rounded-lg shadow-lg w-48 
             border border-[var(--main)]"
         >
@@ -277,9 +277,9 @@ Guidelines:
         <animated.button
           style={buttonSpring}
           onClick={handleOpenChat}
-          className="bg-[var(--main)] text-[var(--text)] p-4 rounded-full 
+          className="bg-zinc-800 text-[var(--text)] p-4 rounded-full 
             shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 
-            group border border-[var(--secondary)]"
+            group border border-[var(--secondary)] z-50"
         >
           <div className="relative">
             <FaRobot

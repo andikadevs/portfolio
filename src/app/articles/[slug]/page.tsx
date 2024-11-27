@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import { FaGithub, FaInstagram } from 'react-icons/fa';
+import { Share } from "@/components/Article";
 
 interface AuthorInfo {
   name: string;
@@ -61,9 +62,16 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     avatarUrl: "https://avatars.githubusercontent.com/Andikss",
   };
 
+  // Get the full URL for sharing
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://yourdomain.com';
+  const fullUrl = `${baseUrl}/articles/${params.slug}`;
+
   return (
     <main className="bg-main min-h-screen">
       <Navbar />
+
+      {/* Share Component */}
+      <Share url={fullUrl} title={article.title} />
 
       <article 
         className="container mx-auto px-4 py-24 max-w-4xl text-gray-300"
