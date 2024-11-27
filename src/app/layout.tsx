@@ -129,6 +129,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        <link rel="preload" href="/favicon.ico" as="image" type="image/ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
