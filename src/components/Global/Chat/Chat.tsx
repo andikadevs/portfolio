@@ -28,7 +28,8 @@ export const Chat = () => {
   const addWelcomeMessage = async () => {
     const welcomeMessage: Omit<ChatMessage, "id" | "created_at"> = {
       visitor_id: visitorId.current,
-      message: "👋 Hi there! I'm Tejo, Andika's AI assistant. I'm here to help answer your questions about Andika's work, experience, and anything else you'd like to discuss. How can I assist you today?",
+      message:
+        "👋 Hi there! I'm Tejo, Andika's AI assistant. I'm here to help answer your questions about Andika's work, experience, and anything else you'd like to discuss. How can I assist you today?",
       is_bot: true,
     };
 
@@ -41,7 +42,7 @@ export const Chat = () => {
     const initChat = async () => {
       try {
         setIsHistoryLoading(true);
-        
+
         // Get visitor ID from localStorage or create new one
         let storedVisitorId = localStorage.getItem("chat_visitor_id");
         if (!storedVisitorId) {
@@ -52,7 +53,7 @@ export const Chat = () => {
 
         // Load chat history
         const history = await getChatHistory(visitorId.current);
-        
+
         if (history.length === 0) {
           // If this is a new chat, add the welcome message
           await addWelcomeMessage();
@@ -81,7 +82,7 @@ export const Chat = () => {
     if (chatRef.current) {
       chatRef.current.scrollTo({
         top: chatRef.current.scrollHeight,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -96,7 +97,9 @@ export const Chat = () => {
   // Enhanced animations
   const springProps = useSpring({
     opacity: isOpen ? 1 : 0,
-    transform: isOpen ? 'translateY(0) scale(1)' : 'translateY(100px) scale(0.8)',
+    transform: isOpen
+      ? "translateY(0) scale(1)"
+      : "translateY(100px) scale(0.8)",
     config: {
       mass: 1,
       tension: 280,
@@ -107,14 +110,14 @@ export const Chat = () => {
   // Floating button animation
   const buttonSpring = useSpring({
     scale: isOpen ? 0 : 1,
-    rotate: isOpen ? '360deg' : '0deg',
+    rotate: isOpen ? "360deg" : "0deg",
     config: config.wobbly,
   });
 
   // Message transitions
   const transitions = useTransition(messages, {
-    from: { opacity: 0, transform: 'translateY(20px)' },
-    enter: { opacity: 1, transform: 'translateY(0px)' },
+    from: { opacity: 0, transform: "translateY(20px)" },
+    enter: { opacity: 1, transform: "translateY(0px)" },
     config: { tension: 280, friction: 20 },
   });
 
@@ -134,20 +137,23 @@ export const Chat = () => {
     try {
       await saveChatMessage(userMessage);
 
-      // Update system prompt to reflect Tejo's personality
-      const systemPrompt = `You are Tejo, Andika's friendly and knowledgeable AI assistant. Your responses should be:
-- Warm and approachable, like a helpful friend
-- Professional yet conversational
-- Knowledgeable about Andika's work and experience
-- Concise but informative
-- Include relevant emojis occasionally (but not too many)
+      // Updated system prompt for more natural conversations
+      const systemPrompt = `You are Tejo, Andika's friendly and knowledgeable AI assistant. You have access to information about Andika's background, projects, and experience.
 
-Remember to:
-- Stay focused on helping users learn about Andika and his work
-- Be enthusiastic about technology and development
-- Show personality while maintaining professionalism
-- Provide helpful context when discussing Andika's projects
-- Be direct in your answers`;
+Key traits:
+- Friendly and conversational, like a helpful colleague
+- Direct and clear in your responses
+- Knowledgeable about web development, particularly React, Next.js, and TypeScript
+- Enthusiastic about technology and innovation
+
+Guidelines:
+- Always provide specific, accurate information about Andika's work and experience
+- Keep responses concise but informative
+- Use a natural, conversational tone
+- Include occasional emojis to add warmth (1-2 per message)
+- Focus on being helpful and informative
+- If you're not sure about something, be honest and say so
+- Never use placeholder text or hypothetical examples`;
 
       const context = messages
         .slice(-5)
@@ -156,7 +162,7 @@ Remember to:
 
       const model = geminiModel("gemini-1.5-flash-002");
       const prompt = `${systemPrompt}\n\nPrevious conversation:\n${context}\n\nUser: ${message.trim()}\nAssistant:`;
-      
+
       const result = await model.generateContentStream({
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: {
@@ -173,7 +179,7 @@ Remember to:
         is_bot: true,
         context,
       };
-      
+
       setMessages((prev) => [...prev, tempBotMessage as ChatMessage]);
       setIsStreaming(true);
       let fullResponse = "";
@@ -182,7 +188,7 @@ Remember to:
       for await (const chunk of result.stream) {
         const chunkText = chunk.text();
         fullResponse += chunkText;
-        
+
         // Update the temporary message with the accumulated response
         setMessages((prev) => {
           const newMessages = [...prev];
@@ -203,7 +209,7 @@ Remember to:
       };
 
       await saveChatMessage(finalBotMessage);
-      
+
       // Update the message one final time with the saved version
       setMessages((prev) => {
         const newMessages = [...prev];
@@ -213,16 +219,16 @@ Remember to:
         }
         return newMessages;
       });
-
     } catch (error) {
       console.error("Error sending message:", error);
-      
+
       const errorMessage: Omit<ChatMessage, "id" | "created_at"> = {
         visitor_id: visitorId.current,
-        message: "I apologize, but I'm having trouble responding right now. Could you please try again? 🙏",
+        message:
+          "I apologize, but I'm having trouble responding right now. Could you please try again? 🙏",
         is_bot: true,
       };
-      
+
       setMessages((prev) => [...prev, errorMessage as ChatMessage]);
     } finally {
       setIsLoading(false);
@@ -246,7 +252,7 @@ Remember to:
         <animated.div
           style={useSpring({
             opacity: showTooltip ? 1 : 0,
-            transform: showTooltip ? 'translateY(0)' : 'translateY(10px)',
+            transform: showTooltip ? "translateY(0)" : "translateY(10px)",
             config: { tension: 300, friction: 20 },
           })}
           className="absolute bottom-full right-0 mb-4 bg-[var(--secondary)] 
@@ -254,9 +260,12 @@ Remember to:
             border border-[var(--main)]"
         >
           <div className="relative">
-            <p className="text-sm text-center">👋 Hi! Chat with Tejo, My Personal AI assistant!</p>
+            <p className="text-sm text-center">
+              👋 Hi! Chat with Tejo, My Personal AI assistant!
+            </p>
             {/* Tooltip arrow */}
-            <div className="absolute -bottom-4 right-6 w-0 h-0 
+            <div
+              className="absolute -bottom-4 right-6 w-0 h-0 
               border-l-[8px] border-l-transparent
               border-r-[8px] border-r-transparent
               border-t-[8px] border-t-[var(--secondary)]"
@@ -273,12 +282,15 @@ Remember to:
             group border border-[var(--secondary)]"
         >
           <div className="relative">
-            <FaRobot size={24} className="transform group-hover:rotate-12 transition-transform" />
+            <FaRobot
+              size={24}
+              className="transform group-hover:rotate-12 transition-transform"
+            />
             <animated.div
               style={useSpring({
                 loop: true,
-                from: { opacity: 0.5, transform: 'scale(1)' },
-                to: { opacity: 0, transform: 'scale(1.5)' },
+                from: { opacity: 0.5, transform: "scale(1)" },
+                to: { opacity: 0, transform: "scale(1.5)" },
                 config: { duration: 2000 },
               })}
               className="absolute inset-0 bg-[var(--secondary)] rounded-full"
@@ -291,14 +303,16 @@ Remember to:
       {isOpen && (
         <animated.div
           style={springProps}
-          className="fixed bottom-2 right-2 w-[calc(100vw-1rem)] sm:w-[400px] sm:right-6 sm:bottom-6 h-[calc(100vh-1rem)] sm:h-[500px] bg-[var(--main)] rounded-lg 
+          className="fixed bottom-2 right-2 w-[calc(100dvw-1rem)] sm:w-[400px] sm:right-6 sm:bottom-6 h-[calc(100vh-1rem)] sm:h-[500px] bg-[var(--main)] rounded-lg 
             shadow-2xl flex flex-col z-[9999] border border-[var(--secondary)]"
         >
           {/* Header */}
           <div className="p-4 bg-[var(--secondary)] rounded-t-lg flex justify-between items-center">
             <div className="flex items-center space-x-2">
               <FaRegLightbulb className="text-accent animate-pulse" />
-              <h3 className="font-semibold text-[var(--text)]">Tejo - Andika`s AI Assistant</h3>
+              <h3 className="font-semibold text-[var(--text)]">
+                Tejo - Andika`s AI Assistant
+              </h3>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -309,7 +323,10 @@ Remember to:
           </div>
 
           {/* Messages */}
-          <div ref={chatRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-[var(--main)]">
+          <div
+            ref={chatRef}
+            className="flex-1 overflow-y-auto p-4 space-y-4 bg-[var(--main)]"
+          >
             {isHistoryLoading ? (
               <div className="flex justify-center items-center h-full">
                 <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[var(--secondary)]"></div>
@@ -318,7 +335,9 @@ Remember to:
               transitions((style, msg) => (
                 <animated.div
                   style={style}
-                  className={`flex ${msg.is_bot ? "justify-start" : "justify-end"}`}
+                  className={`flex ${
+                    msg.is_bot ? "justify-start" : "justify-end"
+                  }`}
                 >
                   <div
                     className={`max-w-[80%] p-3 rounded-lg ${
@@ -336,12 +355,18 @@ Remember to:
               <div className="flex justify-start">
                 <div className="bg-[var(--secondary)] p-3 rounded-lg">
                   <div className="flex space-x-2">
-                    <div className="w-2 h-2 bg-[var(--text)] rounded-full animate-bounce" 
-                         style={{ animationDelay: '0ms' }} />
-                    <div className="w-2 h-2 bg-[var(--text)] rounded-full animate-bounce" 
-                         style={{ animationDelay: '150ms' }} />
-                    <div className="w-2 h-2 bg-[var(--text)] rounded-full animate-bounce" 
-                         style={{ animationDelay: '300ms' }} />
+                    <div
+                      className="w-2 h-2 bg-[var(--text)] rounded-full animate-bounce"
+                      style={{ animationDelay: "0ms" }}
+                    />
+                    <div
+                      className="w-2 h-2 bg-[var(--text)] rounded-full animate-bounce"
+                      style={{ animationDelay: "150ms" }}
+                    />
+                    <div
+                      className="w-2 h-2 bg-[var(--text)] rounded-full animate-bounce"
+                      style={{ animationDelay: "300ms" }}
+                    />
                   </div>
                 </div>
               </div>
@@ -378,4 +403,3 @@ Remember to:
     </>
   );
 };
-
