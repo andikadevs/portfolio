@@ -50,11 +50,11 @@ const MobileSkills = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative mb-16">
       {showScrollHint && (
         <animated.div
           style={springProps}
-          className="absolute right-4 top-[84px] -translate-y-1/2 z-10 text-accent pointer-events-none flex items-center"
+          className="absolute right-4 top-[54px] -translate-y-1/2 z-10 text-accent pointer-events-none flex items-center"
         >
           <div className="flex flex-col items-center gap-1">
             <BiChevronRight size={36} />
