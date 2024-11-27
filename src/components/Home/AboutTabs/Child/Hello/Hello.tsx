@@ -34,25 +34,49 @@ export const Hello: React.FC = () => {
           explore my work together!
         </p>
 
-        <div className="flex gap-3 flex-wrap my-5">
-          <span className="inline-flex whitespace-nowrap text-text items-center gap-1">
+        <div
+          className="flex gap-3 flex-wrap my-5"
+          role="group"
+          aria-label="Skills"
+        >
+          <label
+            className="inline-flex whitespace-nowrap text-text items-center gap-1"
+            data-skill="frontend"
+          >
             <FaCode className="text-accent" /> Frontend Development
-          </span>
-          <span className="inline-flex whitespace-nowrap text-text items-center gap-1">
+          </label>
+          <label
+            className="inline-flex whitespace-nowrap text-text items-center gap-1"
+            data-skill="backend"
+          >
             <FaServer className="text-accent" /> Backend Solutions
-          </span>
-          <span className="inline-flex whitespace-nowrap text-text items-center gap-1">
+          </label>
+          <label
+            className="inline-flex whitespace-nowrap text-text items-center gap-1"
+            data-skill="automation"
+          >
             <FaRobot className="text-accent" /> Automations
-          </span>
+          </label>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Button className="flex-1 sm:flex-none whitespace-nowrap" variant="outline" onClick={handleDownload}>
+          <Button
+            className="flex-1 sm:flex-none whitespace-nowrap"
+            variant="outline"
+            onClick={handleDownload}
+          >
             <FaDownload /> Download CV
           </Button>
 
-          <a target="_blank" className="flex-1 sm:flex-none sm:flex-0 flex" href="https://wa.me/6285743699909">
-            <Button className="flex-1 sm:flex-0 whitespace-nowrap" variant="fill">
+          <a
+            target="_blank"
+            className="flex-1 sm:flex-none sm:flex-0 flex"
+            href="https://wa.me/6285743699909"
+          >
+            <Button
+              className="flex-1 sm:flex-0 whitespace-nowrap"
+              variant="fill"
+            >
               <FaWhatsapp /> Contact Me
             </Button>
           </a>
