@@ -6,6 +6,7 @@ import {
   FaChrome,
   FaCode,
   FaDownload,
+  FaRobot,
   FaServer,
   FaWhatsapp,
 } from "react-icons/fa";
@@ -39,6 +40,9 @@ export const Hello: React.FC = () => {
           </span>
           <span className="inline-flex whitespace-nowrap text-text items-center gap-1">
             <FaServer className="text-accent" /> Backend Solutions
+          </span>
+          <span className="inline-flex whitespace-nowrap text-text items-center gap-1">
+            <FaRobot className="text-accent" /> Automations
           </span>
         </div>
 
