@@ -22,10 +22,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   
   return {
     title: article.title,
-    description: article.description,
+    description: article.meta_description,
     openGraph: {
       title: article.title,
-      description: article.description,
+      description: article.meta_description,
       type: 'article',
       publishedTime: article.created_at,
       images: [
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     twitter: {
       card: 'summary_large_image',
       title: article.title,
-      description: article.description,
+      description: article.meta_description,
       images: [article.image_url],
     },
     authors: [{ name: article.image_author }],
@@ -124,7 +124,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
             itemProp="description" 
             className="text-lg md:text-xl text-gray-300 mb-12 leading-relaxed border-l-4 border-accent pl-4 italic"
           >
-            {article.description}
+            {article.meta_description}
           </p>
 
           {/* Main Content */}

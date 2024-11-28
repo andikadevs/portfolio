@@ -12,7 +12,7 @@ export interface Article {
   title: string;
   slug: string;
   content: string;
-  description: string;
+  meta_description: string;
   image_url: string;
   image_author: string;
   created_at: string;
