@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}/articles/${article.slug}`,
     lastModified: new Date(article.created_at),
     changeFrequency: 'weekly',
-    priority: 0.7,
+    priority: 0.8,
   })) || [];
 
   // Combine and return all routes
