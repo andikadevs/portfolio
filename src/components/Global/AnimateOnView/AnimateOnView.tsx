@@ -19,16 +19,16 @@ export const AnimateOnView: React.FC<AnimateOnViewProps> = ({
   className = "",
 }) => {
   const getTransform = (direction: Direction) => {
-    const distance = "100px";
+    const distance = "30px";
     switch (direction) {
       case "up":
-        return `translateY(${distance})`;
+        return `translate3d(0, ${distance}, 0)`;
       case "down":
-        return `translateY(-${distance})`;
+        return `translate3d(0, -${distance}, 0)`;
       case "left":
-        return `translateX(-${distance})`;
+        return `translate3d(-${distance}, 0, 0)`;
       case "right":
-        return `translateX(${distance})`;
+        return `translate3d(${distance}, 0, 0)`;
     }
   };
 
@@ -40,18 +40,19 @@ export const AnimateOnView: React.FC<AnimateOnViewProps> = ({
       },
       to: {
         opacity: 1,
-        transform: "translate(0px)",
+        transform: "translate3d(0, 0, 0)",
       },
       config: {
-        tension: 400,
-        friction: 14,
-        duration: 600,
+        mass: 0.5,
+        tension: 200,
+        friction: 26,
       },
       delay,
     }),
     {
-      amount: 0.2,
-      once: true
+      amount: 0.1,
+      once: true,
+      rootMargin: "-50px 0px"
     }
   );
 
