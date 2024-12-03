@@ -7,7 +7,10 @@ import Image from "next/image";
 import { SocialButton } from "@/components/Global";
 import { AnimateOnView } from "@/components/Global/AnimateOnView";
 import certificateData from "./Certificate.json";
-import { Gallery } from "@/components/Global/Gallery/Gallery";
+import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/captions.css";
 
 const StructuredData = () => {
   const jsonLd = {
@@ -33,12 +36,7 @@ const StructuredData = () => {
 };
 
 export const Certificate: React.FC = React.memo(() => {
-  const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const [descriptions, setDescriptions] = useState<string[]>([]);
-  const [titles, setTitles] = useState<string[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
+  const [index, setIndex] = useState(-1);
   const { certificates } = certificateData;
 
   const filteredCertificates = useMemo(
@@ -47,19 +45,21 @@ export const Certificate: React.FC = React.memo(() => {
     [certificates]
   );
 
-  const handleImageClick = (index: number) => {
+  const slides = useMemo(() => {
     const allCertificates = [
       ...filteredCertificates,
       certificates.find((cert) => cert.src.toLowerCase().includes("toeic")),
     ];
 
-    setSelectedImages(
-      allCertificates.map((cert) => `/assets/static/img/Portfolio/${cert?.src}`)
-    );
-    setDescriptions(allCertificates.map((cert) => cert?.description || ""));
-    setTitles(allCertificates.map((cert) => cert?.alt || ""));
-    setCurrentIndex(index);
-    setIsModalOpen(true);
+    return allCertificates.map((cert) => ({
+      src: `/assets/static/img/Portfolio/${cert?.src}`,
+      title: cert?.alt,
+      description: cert?.description,
+    }));
+  }, [certificates, filteredCertificates]);
+
+  const handleImageClick = (index: number) => {
+    setIndex(index);
   };
 
   return (
@@ -154,24 +154,13 @@ export const Certificate: React.FC = React.memo(() => {
         />
       </div>
 
-      <Gallery
-        images={selectedImages}
-        descriptions={descriptions}
-        titles={titles}
-        currentIndex={currentIndex}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onPrev={() =>
-          setCurrentIndex(
-            (prevIndex) =>
-              (prevIndex - 1 + selectedImages.length) % selectedImages.length
-          )
-        }
-        onNext={() =>
-          setCurrentIndex(
-            (nextIndex) => (nextIndex + 1) % selectedImages.length
-          )
-        }
+      <Lightbox
+        plugins={[Captions]}
+        slides={slides}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        captions={{ showToggle: true, descriptionMaxLines: 3 }}
       />
       <StructuredData />
     </section>
