@@ -11,6 +11,8 @@ import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 const StructuredData = () => {
   const jsonLd = {
@@ -155,7 +157,7 @@ export const Certificate: React.FC = React.memo(() => {
       </div>
 
       <Lightbox
-        plugins={[Captions]}
+        plugins={[Captions, Thumbnails]}
         slides={slides}
         open={index >= 0}
         index={index}
