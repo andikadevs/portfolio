@@ -1,12 +1,13 @@
 /** @format */
 
 import { Navbar, Footer } from "@/components/Global";
-import { getArticle } from "@/utils/Global";
+import { getArticle, GoToTop } from "@/utils/Global";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import { FaGithub, FaInstagram } from 'react-icons/fa';
 import { Share } from "@/components/Article";
+import Image from "next/image";
 
 interface AuthorInfo {
   name: string;
@@ -68,6 +69,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
   return (
     <main className="bg-main min-h-screen">
+      <GoToTop />
       <Navbar />
 
       {/* Share Component */}
@@ -80,7 +82,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       >
         {/* Hero Image */}
         <div className="relative w-full h-[300px] md:h-[500px] mb-8">
-          <img
+          <Image
             src={article.image_url}
             alt={article.title}
             className="w-full h-full object-cover object-[center_30%] rounded-xl shadow-xl"

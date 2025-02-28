@@ -5,7 +5,8 @@ import Link from "next/link";
 import { FaRobot, FaSpinner, FaSearch } from "react-icons/fa";
 import InfiniteScroll from "react-infinite-scroll-component";
 import debounce from "lodash.debounce";
-import { supabase } from "@/utils/Global";
+import { GoToTop, supabase } from "@/utils/Global";
+import Image from "next/image";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -76,6 +77,7 @@ export default function ArticlesList({
 
   return (
     <>
+      <GoToTop />
       <div className="relative max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row items-center gap-4 bg-secondary p-6 rounded-xl">
         <img
           src="/assets/static/img/formal.webp"
@@ -140,10 +142,12 @@ export default function ArticlesList({
               className="relative bg-secondary rounded-xl overflow-hidden shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl flex flex-col"
             >
               <div className="relative h-48 md:h-56">
-                <img
+                <Image
                   src={article.image_url}
                   alt={article.title}
                   className="w-full h-full object-cover object-[center_30%]"
+                  width={1920}
+                  height={1080}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
               </div>
