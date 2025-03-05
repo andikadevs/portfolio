@@ -11,21 +11,22 @@ import {
 } from "@/utils/Global";
 
 export const PageStatistic = () => {
-  const rawPathname = usePathname();
-  // Extract ref value and clean pathname
-  const [pathname, ref] = (() => {
-    if (rawPathname?.includes('?ref=')) {
-      const [path, refValue] = rawPathname.split('?ref=');
-      // Remove ref from URL without page reload
-      if (typeof window !== 'undefined') {
-        window.history.replaceState({}, '', path);
-      }
-      return [path, refValue];
-    }
-    return [rawPathname, ''];
-  })();
+  const pathname = usePathname();
   const visitStartTime = useRef<number>(Date.now());
   const visitId = useRef<number | null>(null);
+  const refValue = useRef<string | null>(null);
+
+  // Capture and remove ref parameter
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has("ref")) {
+        refValue.current = url.searchParams.get("ref");
+        url.searchParams.delete("ref");
+        window.history.replaceState({}, "", url.toString());
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const generateVisitorId = () => {
@@ -64,7 +65,7 @@ export const PageStatistic = () => {
           visitor_id: vid,
           user_agent: window.navigator.userAgent,
           ip_address: ipInfo.ip,
-          referrer: ref || document.referrer || "",  // Use extracted ref if available
+          referrer: document.referrer + (refValue.current ? `${refValue.current}` : ""),
           country: ipInfo.country,
           city: ipInfo.city,
           region: ipInfo.region,
@@ -93,7 +94,7 @@ export const PageStatistic = () => {
     return () => {
       updateDuration();
     };
-  }, [pathname, ref]);
+  }, [pathname]);
 
   // Update duration before page unload
   useEffect(() => {
