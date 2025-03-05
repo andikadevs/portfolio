@@ -11,7 +11,19 @@ import {
 } from "@/utils/Global";
 
 export const PageStatistic = () => {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  // Extract ref value and clean pathname
+  const [pathname, ref] = (() => {
+    if (rawPathname?.includes('?ref=')) {
+      const [path, refValue] = rawPathname.split('?ref=');
+      // Remove ref from URL without page reload
+      if (typeof window !== 'undefined') {
+        window.history.replaceState({}, '', path);
+      }
+      return [path, refValue];
+    }
+    return [rawPathname, ''];
+  })();
   const visitStartTime = useRef<number>(Date.now());
   const visitId = useRef<number | null>(null);
 
@@ -52,7 +64,7 @@ export const PageStatistic = () => {
           visitor_id: vid,
           user_agent: window.navigator.userAgent,
           ip_address: ipInfo.ip,
-          referrer: document.referrer || "",
+          referrer: ref || document.referrer || "",  // Use extracted ref if available
           country: ipInfo.country,
           city: ipInfo.city,
           region: ipInfo.region,
@@ -81,7 +93,7 @@ export const PageStatistic = () => {
     return () => {
       updateDuration();
     };
-  }, [pathname]);
+  }, [pathname, ref]);
 
   // Update duration before page unload
   useEffect(() => {
