@@ -5,6 +5,7 @@ import {
   // ParallaxImage
 } from "@/components/ui";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 export const Hero = () => {
   return (
@@ -41,7 +42,7 @@ export const Hero = () => {
 
             <AnimatedText
               text="Full Stack Developer"
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight relative"
+              className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight relative"
             />
 
             <div className="h-1 w-24 sm:w-32 bg-accent mt-4 sm:mt-6 mb-6 sm:mb-8"></div>
@@ -64,14 +65,15 @@ export const Hero = () => {
             transition={{ delay: 1.8, duration: 0.5 }}
             className="flex flex-wrap gap-3 sm:gap-5 mt-8 sm:mt-10"
           >
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="relative px-6 sm:px-8 py-2.5 sm:py-3 font-medium text-sm sm:text-base rounded-full bg-[var(--dark)] text-[var(--text)] shadow-md hover:shadow-[var(--accent)]/20 transition-all duration-300 overflow-hidden"
-            >
-              <span className="relative z-10">View My Projects</span>
-            </motion.button>
-
+            <Link href="/portfolio">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative px-6 sm:px-8 cursor-pointer py-2.5 sm:py-3 font-medium text-sm sm:text-base rounded-full bg-[var(--dark)] text-[var(--text)] shadow-md hover:shadow-[var(--accent)]/20 transition-all duration-300 overflow-hidden"
+              >
+                <span className="relative z-10">View My Projects</span>
+              </motion.button>
+            </Link>
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}

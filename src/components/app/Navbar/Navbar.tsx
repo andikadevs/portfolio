@@ -100,6 +100,13 @@ export const Navbar = () => {
       // Set active link to the full path including hash
       setActiveLink(path);
 
+      // Check if we're already on the homepage
+      if (window.location.pathname !== "/") {
+        // If not on homepage, do a normal navigation to the homepage with hash
+        window.location.href = path;
+        return;
+      }
+
       const targetId = path.substring(path.indexOf("#") + 1);
       scrollToSection(targetId);
     } else {
