@@ -29,7 +29,10 @@ const HeroParallaxClient = dynamic(
  */
 
 const SwiperCardClient = dynamic(
-  () => import("@/components/ui/Swipercard").then((mod) => mod.SwiperCard),
+  () =>
+    import("@/components/ui/Swipercard/SwiperCard").then(
+      (mod) => mod.SwiperCard
+    ),
   { ssr: true }
 );
 
