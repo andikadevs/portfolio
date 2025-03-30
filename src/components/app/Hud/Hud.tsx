@@ -4,9 +4,22 @@ import React, { useState, useEffect, useRef } from "react";
 import { Mail, Instagram, Github, Linkedin, MessageCircle } from "lucide-react";
 import { Menu, Button } from "./Child";
 
+/**
+ * @author Andika Dwi Saputra
+ * 
+ * @date 30/03/2025
+ * @description Hud component
+ */
+
 export const Hud = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  /**
+   * @author Andika Dwi Saputra
+   * 
+   * @description Handle click outside, will close the menu if the user clicks outside the menu
+   */
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -29,6 +42,12 @@ export const Hud = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
+
+  /**
+   * @author Andika Dwi Saputra
+   * 
+   * @description Menu items
+   */
 
   const menuItems = [
     {

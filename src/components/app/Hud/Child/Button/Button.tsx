@@ -1,11 +1,16 @@
 import React from "react";
 
-interface ButtonProps {
+/**
+ * @author Andika Dwi Saputra
+ *
+ * @date 30/03/2025
+ * @description Button component
+ */
+
+export const Button: React.FC<{
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-}
-
-export const Button: React.FC<ButtonProps> = ({ isOpen, setIsOpen }) => {
+}> = ({ isOpen, setIsOpen }) => {
   return (
     <button
       data-hud-toggle
