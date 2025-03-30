@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { Hud } from "@/components/app";
+import { ThemeProvider } from "next-themes";
+import { Hud, Navbar } from "@/components/app";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -22,8 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} antialiased`}>
-        {children}
-        <Hud />
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+          <Hud />
+          <Navbar />
+        </ThemeProvider>
       </body>
     </html>
   );
