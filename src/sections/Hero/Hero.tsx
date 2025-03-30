@@ -1,6 +1,9 @@
 "use client";
 
-import { AnimatedText, ParallaxImage } from "@/components/ui";
+import {
+  AnimatedText,
+  // ParallaxImage
+} from "@/components/ui";
 import { motion } from "motion/react";
 
 export const Hero = () => {
@@ -9,15 +12,14 @@ export const Hero = () => {
       id="home"
       className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-16 sm:pt-20"
     >
-      {/* Background effects */}
-      <ParallaxImage
+      {/* <ParallaxImage
         speed={-0.2}
         className="absolute top-0 right-0 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] rounded-full bg-[var(--dark)] blur-[80px] sm:blur-[120px]"
       />
       <ParallaxImage
         speed={0.1}
         className="absolute bottom-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] rounded-full bg-[var(--dark)] blur-[60px] sm:blur-[100px]"
-      />
+      /> */}
 
       <div className="container mx-auto px-4 lg:px-[34px] z-10">
         <motion.div
