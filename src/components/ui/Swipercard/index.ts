@@ -1,0 +1,1 @@
+export { AnimatedTestimonials as SwiperCard } from './SwiperCard'; 
