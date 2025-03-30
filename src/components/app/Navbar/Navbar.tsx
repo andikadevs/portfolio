@@ -25,10 +25,10 @@ export const Navbar = () => {
   const navLinks: NavLink[] = [
     { name: "Home", path: "/#home" },
     { name: "About", path: "/#about" },
-    { name: "Skills", path: "/#skills" },
     { name: "Education", path: "/#education" },
     { name: "Experience", path: "/#experience" },
-    { name: "Portfolio", path: "/#portfolio" },
+    { name: "Skills", path: "/#skills" },
+    { name: "Projects", path: "/projects" },
     { name: "Articles", path: "/articles" },
   ];
 
