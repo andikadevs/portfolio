@@ -2,6 +2,7 @@ import Link from "next/link";
 import { X } from "lucide-react";
 import { NavLink } from "@/types";
 import { SocialLinks } from "../SocialLinks";
+import { usePathname } from "next/navigation";
 
 /**
  * @author Andika Dwi Saputra
@@ -23,6 +24,23 @@ export const MobileMenu = ({
   activeLink: string;
   handleLinkClick: (path: string, e: React.MouseEvent) => void;
 }) => {
+  const pathname = usePathname();
+
+  // Helper function to check if a link is active
+  const isLinkActive = (link: NavLink) => {
+    // For hash links on homepage
+    if (link.path.includes("#") && pathname === "/") {
+      return (
+        activeLink === link.path ||
+        (activeLink.includes("#") &&
+          link.path.endsWith(activeLink.substring(activeLink.indexOf("#"))))
+      );
+    }
+
+    // For regular page links
+    return pathname === link.path || activeLink === link.path;
+  };
+
   return (
     <div
       className={`fixed inset-0 bg-[var(--dark)] h-screen z-50 transition-all duration-500 ease-in-out ${
@@ -48,11 +66,7 @@ export const MobileMenu = ({
               href={link.path}
               onClick={(e) => handleLinkClick(link.path, e)}
               className={`flex items-center group transition-all duration-300 ease-out ${
-                activeLink === link.path ||
-                (link.path.includes("#") &&
-                  activeLink.endsWith(
-                    link.path.substring(link.path.indexOf("#"))
-                  ))
+                isLinkActive(link)
                   ? "text-[var(--accent)]"
                   : "text-[var(--text)]"
               }`}

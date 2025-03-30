@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NavLink } from "@/types";
+import { usePathname } from "next/navigation";
 
 /**
  * @author Andika Dwi Saputra
@@ -17,6 +18,23 @@ export const NavLinks = ({
   activeLink: string;
   handleLinkClick: (path: string, e: React.MouseEvent) => void;
 }) => {
+  const pathname = usePathname();
+
+  // Helper function to check if a link is active
+  const isLinkActive = (link: NavLink) => {
+    // For hash links on homepage
+    if (link.path.includes("#") && pathname === "/") {
+      return (
+        activeLink === link.path ||
+        (activeLink.includes("#") &&
+          link.path.endsWith(activeLink.substring(activeLink.indexOf("#"))))
+      );
+    }
+
+    // For regular page links
+    return pathname === link.path || activeLink === link.path;
+  };
+
   return (
     <div className="hidden lg:flex items-center gap-5">
       {navLinks.map((link) => (
@@ -28,11 +46,7 @@ export const NavLinks = ({
         >
           <span
             className={`text-base text-[var(--text)] transition-all duration-300 ease-out ${
-              activeLink === link.path ||
-              (link.path.includes("#") &&
-                activeLink.endsWith(
-                  link.path.substring(link.path.indexOf("#"))
-                ))
+              isLinkActive(link)
                 ? "text-[var(--accent)]"
                 : "hover:text-[var(--accent)]"
             }`}
@@ -41,11 +55,7 @@ export const NavLinks = ({
           </span>
           <span
             className={`absolute bottom-0 left-0 w-full h-[2px] ${
-              activeLink === link.path ||
-              (link.path.includes("#") &&
-                activeLink.endsWith(
-                  link.path.substring(link.path.indexOf("#"))
-                ))
+              isLinkActive(link)
                 ? "bg-[var(--accent)] scale-x-100"
                 : "bg-[var(--accent)] scale-x-0 group-hover:scale-x-100"
             } transition-transform duration-300 ease-out origin-left`}
