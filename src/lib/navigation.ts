@@ -101,7 +101,7 @@ export const handleScrollSpy = (
 
     // If near the top of the page, set Home as active
     if (window.scrollY < 300) {
-      setActiveLink("/");
+      setActiveLink("/#home");
       return;
     }
 
@@ -109,7 +109,8 @@ export const handleScrollSpy = (
 
     // Update active link if a section is found and is at least 10% visible
     if (mostVisibleSection && maxVisibility > 0.1) {
-      setActiveLink(mostVisibleSection.path);
+      // Use the full path with hash for accurate matching
+      setActiveLink(`/#${mostVisibleSection.id}`);
     }
   }
 }; 

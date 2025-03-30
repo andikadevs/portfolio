@@ -26,7 +26,7 @@ export const About = () => {
       id="about"
       className="py-16 sm:py-24 relative overflow-hidden bg-background"
     >
-      <div className="px-4 lg:px-32">
+      <div className="px-4 lg:px-17">
         <motion.div
           ref={ref}
           initial={{ opacity: 0 }}

@@ -89,19 +89,22 @@ export const Navbar = () => {
    */
 
   const handleLinkClick = (path: string, e: React.MouseEvent) => {
-    // Set the active link
-    setActiveLink(path);
-
     // Close mobile menu if open
     if (isOpen) {
       setIsOpen(false);
     }
 
     // Handle hash links with smooth scrolling
-    if (path.startsWith("#")) {
+    if (path.includes("#")) {
       e.preventDefault();
-      const targetId = path.substring(1);
+      // Set active link to the full path including hash
+      setActiveLink(path);
+
+      const targetId = path.substring(path.indexOf("#") + 1);
       scrollToSection(targetId);
+    } else {
+      // For non-hash links, set active link directly
+      setActiveLink(path);
     }
   };
 

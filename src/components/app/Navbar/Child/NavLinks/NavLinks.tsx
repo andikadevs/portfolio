@@ -3,7 +3,7 @@ import { NavLink } from "@/types";
 
 /**
  * @author Andika Dwi Saputra
- * 
+ *
  * @date 30/03/2025
  * @description NavLinks component
  */
@@ -28,7 +28,11 @@ export const NavLinks = ({
         >
           <span
             className={`text-base text-[var(--text)] transition-all duration-300 ease-out ${
-              activeLink === link.path
+              activeLink === link.path ||
+              (link.path.includes("#") &&
+                activeLink.endsWith(
+                  link.path.substring(link.path.indexOf("#"))
+                ))
                 ? "text-[var(--accent)]"
                 : "hover:text-[var(--accent)]"
             }`}
@@ -37,7 +41,11 @@ export const NavLinks = ({
           </span>
           <span
             className={`absolute bottom-0 left-0 w-full h-[2px] ${
-              activeLink === link.path
+              activeLink === link.path ||
+              (link.path.includes("#") &&
+                activeLink.endsWith(
+                  link.path.substring(link.path.indexOf("#"))
+                ))
                 ? "bg-[var(--accent)] scale-x-100"
                 : "bg-[var(--accent)] scale-x-0 group-hover:scale-x-100"
             } transition-transform duration-300 ease-out origin-left`}

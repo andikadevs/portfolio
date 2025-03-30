@@ -5,7 +5,7 @@ import { SocialLinks } from "../SocialLinks";
 
 /**
  * @author Andika Dwi Saputra
- * 
+ *
  * @date 30/03/2025
  * @description MobileMenu component
  */
@@ -48,7 +48,11 @@ export const MobileMenu = ({
               href={link.path}
               onClick={(e) => handleLinkClick(link.path, e)}
               className={`flex items-center group transition-all duration-300 ease-out ${
-                activeLink === link.path
+                activeLink === link.path ||
+                (link.path.includes("#") &&
+                  activeLink.endsWith(
+                    link.path.substring(link.path.indexOf("#"))
+                  ))
                   ? "text-[var(--accent)]"
                   : "text-[var(--text)]"
               }`}
