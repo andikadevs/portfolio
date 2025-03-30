@@ -13,7 +13,7 @@ export const ExperienceCard = ({
   technologies: string[];
 }) => {
   return (
-    <div className="relative overflow-hidden bg-[var(--foreground)] hover:shadow-xl hover:scale-[1.02] transition-all duration-150 ease-out p-6 rounded-lg">
+    <div className="relative overflow-hidden bg-[var(--foreground)] hover:shadow-xl transition-all duration-150 ease-out p-6 rounded-lg">
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent-light)] to-transparent opacity-0"
         animate={{
