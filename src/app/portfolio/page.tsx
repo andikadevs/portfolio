@@ -126,7 +126,7 @@ export default async function PortfolioPage() {
               about technologies used and challenges overcome.
             </p>
           </div>
-          <div className="backdrop-blur-sm bg-foreground/20 p-6 md:p-10 rounded-3xl shadow-lg">
+          <div className="p-6 md:p-10 rounded-3xl">
             <SwiperCardClient
               contents={portfolioData.map((item) => ({
                 description: item.description,
