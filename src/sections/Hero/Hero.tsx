@@ -74,13 +74,15 @@ export const Hero = () => {
                 <span className="relative z-10">View My Projects</span>
               </motion.button>
             </Link>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="relative px-6 sm:px-8 py-2.5 sm:py-3 font-medium text-sm sm:text-base rounded-full bg-[var(--foreground)]/10 backdrop-blur-sm border border-[var(--foreground)]/20 text-[var(--text)] transition-all duration-300 hover:bg-[var(--foreground)]/20 overflow-hidden"
-            >
-              <span className="relative z-10">Contact Me</span>
-            </motion.button>
+            <Link href="https://wa.me/6285743699909">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative cursor-pointer px-6 sm:px-8 py-2.5 sm:py-3 font-medium text-sm sm:text-base rounded-full bg-[var(--foreground)]/10 backdrop-blur-sm border border-[var(--foreground)]/20 text-[var(--text)] transition-all duration-300 hover:bg-[var(--foreground)]/20 overflow-hidden"
+              >
+                <span className="relative z-10">Contact Me</span>
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

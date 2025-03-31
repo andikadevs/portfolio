@@ -1,1 +1,1 @@
-export { AnimatedTestimonials as SwiperCard } from './SwiperCard'; 
+export * from './SwiperCard';

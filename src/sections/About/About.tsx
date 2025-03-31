@@ -3,6 +3,8 @@
 import { motion } from "motion/react";
 import { useRef, Suspense } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { Github } from "lucide-react";
 
 // Lazy load the DirectionAwareHover component with reduced loading priority
 const DirectionAwareHover = dynamic(
@@ -86,13 +88,17 @@ export const About = () => {
               className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4"
             >
               {/* Simplify button animations */}
-              <a
-                href="#contact"
+              <Link
+                href="https://github.com/Andikss"
+                target="_blank"
                 className="relative px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium rounded-full bg-[var(--dark)] text-[var(--text)] shadow-md hover:shadow-[var(--accent)]/20 transition-all duration-300 overflow-hidden hover:scale-[1.03] active:scale-[0.98]"
               >
                 <span className="absolute inset-0 bg-[var(--accent)]/20 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10">Contact Me</span>
-              </a>
+                <span className="relative z-10 flex items-center gap-2 flex-row">
+                  <Github />
+                  See My GitHub
+                </span>
+              </Link>
 
               <a
                 href="#"
@@ -109,7 +115,7 @@ export const About = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="col-span-12 md:col-span-5 order-1 md:order-2 relative h-[300px] sm:h-[350px] md:h-full mx-auto w-full max-w-[400px] md:max-w-none"
+            className="col-span-12 md:col-span-5 order-1 md:order-2 relative h-[300px] sm:h-[350px] md:h-full mx-auto w-full max-w-[400px] md:max-w-none mb-12 md:mb-0"
           >
             <Suspense
               fallback={
