@@ -59,8 +59,10 @@ export const Timeline = ({
                 <div className="h-2 w-2 md:h-4 md:w-4 rounded-full bg-[var(--accent)] border border-[var(--accent)] p-1 md:p-2" />
               </div>
               <h3
-                className={`hidden md:block text-xl ${
-                  position === "left" ? "md:pl-20" : "md:pr-20"
+                className={`hidden align-las md:block text-xl ${
+                  position === "left"
+                    ? "md:pl-20 !text-left"
+                    : "md:pr-20 !text-right"
                 } md:text-2xl font-bold text-[var(--text)]`}
               >
                 {item.title}
@@ -74,7 +76,11 @@ export const Timeline = ({
                   : "pr-12 pl-2 md:pr-4 md:pl-4"
               } w-full`}
             >
-              <h3 className="md:hidden block text-lg mb-2 text-left font-bold text-[var(--text)]">
+              <h3
+                className={`md:hidden block text-lg mb-2 font-bold text-[var(--text)] ${
+                  position === "left" ? "text-left" : "text-right"
+                }`}
+              >
                 {item.title}
               </h3>
               {item.content}{" "}
