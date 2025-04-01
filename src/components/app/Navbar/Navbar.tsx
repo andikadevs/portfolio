@@ -24,7 +24,6 @@ export const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const router = useRouter();
 
-
   const navLinks: NavLink[] = [
     { name: "Home", path: "/#home" },
     { name: "About", path: "/#about" },
@@ -68,21 +67,35 @@ export const Navbar = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Initially set based on path
-      setActiveLink(
-        window.location.pathname === "/" ? "/" : window.location.pathname
-      );
+      const currentPath = window.location.pathname;
 
-      // Update active link on scroll
+      // For non-home pages, find the matching nav link based on path inclusion
+      if (currentPath !== "/") {
+        const matchingLink = navLinks.find((link) => {
+          const linkPath = link.path.split("#")[0]; // Remove hash if present
+          return linkPath !== "/" && currentPath.startsWith(linkPath);
+        });
+
+        if (matchingLink) {
+          setActiveLink(matchingLink.path);
+        } else {
+          setActiveLink(currentPath);
+        }
+      } else {
+        setActiveLink("/");
+      }
+
+      // Update active link on scroll for home page sections
       const scrollSpyHandler = () => handleScrollSpy(navLinks, setActiveLink);
 
       // Run once on initial load to set correct active section
-      setTimeout(scrollSpyHandler, 100);
-
-      window.addEventListener("scroll", scrollSpyHandler, { passive: true });
-      return () => {
-        window.removeEventListener("scroll", scrollSpyHandler);
-      };
+      if (currentPath === "/") {
+        setTimeout(scrollSpyHandler, 100);
+        window.addEventListener("scroll", scrollSpyHandler, { passive: true });
+        return () => {
+          window.removeEventListener("scroll", scrollSpyHandler);
+        };
+      }
     }
   }, [navLinks]);
 
