@@ -7,11 +7,14 @@ import { Github, Instagram, ArrowLeft } from "lucide-react";
 import { AuthorInfo } from "@/types";
 import Link from "next/link";
 
+type PageProps = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   const article = await fetchArticleBySlug(params.slug);
 
   if (!article) {
@@ -42,11 +45,7 @@ const authorInfo: AuthorInfo = {
   avatarUrl: "/static/img/person.webp",
 };
 
-export default async function ArticleDetail({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function ArticleDetail({ params }: PageProps) {
   const article = await fetchArticleBySlug(params.slug);
 
   if (!article) {
