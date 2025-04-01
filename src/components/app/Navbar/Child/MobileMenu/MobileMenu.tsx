@@ -49,14 +49,27 @@ export const MobileMenu = ({
           : "opacity-0 pointer-events-none -translate-y-10"
       }`}
     >
-      {/* Close button for mobile */}
-      <button
-        onClick={() => setIsOpen(false)}
-        className="absolute top-4 right-4 p-2 rounded-md bg-[var(--foreground)] text-[var(--accent)]"
-        aria-label="Close menu"
-      >
-        <X size={24} strokeWidth={1.5} />
-      </button>
+      <div className="flex items-center justify-between">
+        <Link
+          href="/"
+          className="absolute top-4 left-4 overflow-hidden flex items-center"
+          onClick={(e) => handleLinkClick("/", e)}
+        >
+          <h1 className="text-xl lg:text-2xl font-bold text-[var(--text)] tracking-tight">
+            <span className="bg-clip-text text-text">AndikaDS</span>
+          </h1>
+          <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--accent)] group-hover:w-full transition-all duration-300 ease-out" />
+        </Link>
+
+        {/* Close button for mobile */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-4 right-4 p-2 rounded-md cursor-pointer text-[var(--accent)]"
+          aria-label="Close menu"
+        >
+          <X size={24} strokeWidth={1.5} />
+        </button>
+      </div>
 
       <div className="min-h-screen flex flex-col justify-center px-6">
         <div className="flex flex-col gap-8">

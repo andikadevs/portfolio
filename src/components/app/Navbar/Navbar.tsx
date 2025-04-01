@@ -189,7 +189,7 @@ export const Navbar = () => {
           />
 
           {/* Right side actions */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2 md:gap-5">
             {/**
              * Social Links
              *
@@ -217,7 +217,7 @@ export const Navbar = () => {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative flex items-center justify-center w-9 h-9 rounded-md focus:outline-none"
+              className="lg:hidden cursor-pointer relative flex items-center justify-center w-9 h-9 rounded-md focus:outline-none"
               aria-label="Toggle menu"
             >
               <div className="relative">
