@@ -5,3 +5,4 @@ export * from "./Timeline";
 export * from "./Marquee";
 export * from "./HeroParalax";
 export * from "./Swipercard";
+export * from "./Button";

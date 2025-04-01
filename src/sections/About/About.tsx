@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { useRef, Suspense } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import { Button } from "@/components/ui";
 import { Github } from "lucide-react";
 
 // Lazy load the DirectionAwareHover component with reduced loading priority
@@ -35,9 +35,9 @@ export const About = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center"
+          className="flex flex-col md:flex-row gap-8 md:gap-12 items-center"
         >
-          <div className="order-2 md:order-1 col-span-12 md:col-span-7">
+          <div className="order-2 md:order-1 w-full md:w-7/12">
             <motion.h2
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -85,28 +85,20 @@ export const About = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.3 }}
-              className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4"
+              className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
-              {/* Simplify button animations */}
-              <Link
+              <Button
                 href="https://github.com/Andikss"
-                target="_blank"
-                className="relative px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium rounded-full bg-[var(--dark)] text-[var(--text)] shadow-md hover:shadow-[var(--accent)]/20 transition-all duration-300 overflow-hidden hover:scale-[1.03] active:scale-[0.98]"
+                external
+                variant="primary"
+                icon={<Github />}
               >
-                <span className="absolute inset-0 bg-[var(--accent)]/20 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10 flex items-center gap-2 flex-row">
-                  <Github />
-                  See My GitHub
-                </span>
-              </Link>
+                See My GitHub
+              </Button>
 
-              <a
-                href="#"
-                className="relative px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium rounded-full bg-[var(--foreground)]/10 backdrop-blur-sm border border-[var(--foreground)]/20 text-[var(--text)] transition-all duration-300 hover:bg-[var(--foreground)]/20 overflow-hidden hover:scale-[1.03] active:scale-[0.98]"
-              >
-                <span className="absolute inset-0 bg-[var(--foreground)]/10 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10">Download Resume</span>
-              </a>
+              <Button variant="secondary" href="#">
+                Download <span className="inline-block">Resume</span>
+              </Button>
             </motion.div>
           </div>
 
@@ -115,7 +107,7 @@ export const About = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="col-span-12 md:col-span-5 order-1 md:order-2 relative h-[300px] sm:h-[350px] md:h-full mx-auto w-full max-w-[400px] md:max-w-none mb-12 md:mb-0"
+            className="order-1 md:order-2 w-full md:w-5/12 relative h-full mx-auto max-w-[400px] md:max-w-none"
           >
             <Suspense
               fallback={
