@@ -7,9 +7,13 @@ import { AuthorInfo } from "@/types";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: any): Promise<Metadata> {
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = await fetchArticleBySlug(params.slug);
 
   if (!article) {
@@ -22,7 +26,8 @@ export async function generateMetadata({
 
   return {
     title: article.title,
-    description: article.meta_description || `Read ${article.title} on our blog`,
+    description:
+      article.meta_description || `Read ${article.title} on our blog`,
     openGraph: article.image_url
       ? {
           images: [{ url: article.image_url, alt: article.title }],
@@ -39,7 +44,7 @@ const authorInfo: AuthorInfo = {
   avatarUrl: "/static/img/person.webp",
 };
 
-export default async function ArticleDetail({ params }: PageProps) {
+export default async function ArticleDetail({ params }: Props) {
   const article = await fetchArticleBySlug(params.slug);
 
   if (!article) {
