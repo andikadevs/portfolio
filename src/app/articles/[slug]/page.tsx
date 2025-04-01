@@ -1,20 +1,15 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { fetchArticleBySlug } from "@/lib/supabase";
-import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import { Github, Instagram, ArrowLeft } from "lucide-react";
 import { AuthorInfo } from "@/types";
 import Link from "next/link";
-
-type PageProps = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+import { Metadata } from "next";
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: any): Promise<Metadata> {
   const article = await fetchArticleBySlug(params.slug);
 
   if (!article) {
@@ -27,8 +22,7 @@ export async function generateMetadata({
 
   return {
     title: article.title,
-    description:
-      article.meta_description || `Read ${article.title} on our blog`,
+    description: article.meta_description || `Read ${article.title} on our blog`,
     openGraph: article.image_url
       ? {
           images: [{ url: article.image_url, alt: article.title }],
