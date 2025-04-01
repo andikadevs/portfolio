@@ -4,7 +4,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Articles | AndikaDS",
-  description: "Read articles about web development, programming, and technology from AndikaDS",
+  description:
+    "Read articles about web development, programming, and technology from AndikaDS",
   keywords: [
     "web development",
     "programming",
@@ -14,17 +15,18 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Articles | AndikaDS",
-    description: "Read articles about web development, programming, and technology from AndikaDS",
+    description:
+      "Read articles about web development, programming, and technology from AndikaDS",
     url: "/articles",
     type: "website",
   },
 };
 
-export default async function ArticlesPage({
-  searchParams,
-}: {
-  searchParams?: { search?: string; page?: string };
-}) {
+type Props = {
+  searchParams: any;
+};
+
+export default async function ArticlesPage({ searchParams }: Props) {
   const search = searchParams?.search || "";
   const page = parseInt(searchParams?.page || "1");
 
