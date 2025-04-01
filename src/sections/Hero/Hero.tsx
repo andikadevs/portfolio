@@ -12,7 +12,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-16 sm:pt-20"
+      className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-4 sm:pt-20"
     >
       {/* <ParallaxImage
         speed={-0.2}
@@ -23,7 +23,7 @@ export const Hero = () => {
         className="absolute bottom-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] rounded-full bg-[var(--dark)] blur-[60px] sm:blur-[100px]"
       /> */}
 
-      <div className="container mx-auto px-4 lg:px-[34px] z-10">
+      <div className="container border border-red-500 mx-auto px-4 lg:px-[34px] z-10">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
