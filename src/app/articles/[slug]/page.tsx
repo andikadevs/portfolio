@@ -6,6 +6,7 @@ import { Github, Instagram, ArrowLeft } from "lucide-react";
 import { AuthorInfo } from "@/types";
 import Link from "next/link";
 import { Metadata } from "next";
+import { Share } from "@/components/app";
 
 type Props = {
   params: any;
@@ -213,6 +214,11 @@ export default async function ArticleDetail({ params }: Props) {
           </div>
         </div>
       </div>
+
+      <Share
+        url={`${process.env.NEXT_PUBLIC_APP_URL}/articles/${article.slug}`}
+        title={article.title}
+      />
     </article>
   );
 }

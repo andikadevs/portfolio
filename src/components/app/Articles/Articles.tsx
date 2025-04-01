@@ -16,7 +16,7 @@ import dynamic from "next/dynamic";
  */
 const ArticleCard = dynamic(
   () =>
-    import("@/components/ui/ArticleCard/ArticleCard").then(
+    import("./Child/ArticleCard/ArticleCard").then(
       (mod) => mod.ArticleCard
     ),
   { ssr: true }

@@ -6,13 +6,19 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Missing Supabase environment variables');
   throw new Error('Missing Supabase environment variables');
 }
 
+// Ensure the URL is properly formatted
+const formattedUrl = supabaseUrl.endsWith('/') ? supabaseUrl.slice(0, -1) : supabaseUrl;
+
 // Create a single supabase client for interacting with your database
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient(formattedUrl, supabaseAnonKey, {
   auth: {
     persistSession: false,
+    autoRefreshToken: false,
+    detectSessionInUrl: false,
   },
 });
 
@@ -97,6 +103,11 @@ export const fetchArticles = cache(async ({
 
 // Implement cache for fetchArticleBySlug
 export const fetchArticleBySlug = cache(async (slug: string) => {
+  if (!slug) {
+    console.error('No slug provided to fetchArticleBySlug');
+    return null;
+  }
+
   try {
     const { data, error } = await supabase
       .from('articles')
@@ -106,10 +117,16 @@ export const fetchArticleBySlug = cache(async (slug: string) => {
       .single();
 
     if (error) {
-      throw error;
+      console.error('Supabase error fetching article:', error);
+      return null;
     }
 
-    return data as Article | null;
+    if (!data) {
+      console.log('No article found for slug:', slug);
+      return null;
+    }
+
+    return data as Article;
   } catch (error) {
     console.error('Error fetching article by slug:', error);
     return null;
