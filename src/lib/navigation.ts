@@ -1,5 +1,5 @@
 import { SectionInfo, NavLink } from "@/types";
-
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 /**
  * Calculate section visibility in viewport for scroll spy functionality
  * 
@@ -50,10 +50,10 @@ export const prepareSections = (navLinks: NavLink[]): SectionInfo[] => {
  * @param targetId The ID of the element to scroll to
  * @param fromDifferentPage Should page navigation occur if not on home page
  */
-export const scrollToSection = (targetId: string, fromDifferentPage: boolean = false): void => {
+export const scrollToSection = (router: AppRouterInstance, targetId: string, fromDifferentPage: boolean = false): void => {
   // If we're not on the home page and this is triggered from a link click, navigate to home page
   if (fromDifferentPage && typeof window !== 'undefined' && window.location.pathname !== '/') {
-    window.location.href = `/#${targetId}`;
+    router.push(`/#${targetId}`);
     return;
   }
 

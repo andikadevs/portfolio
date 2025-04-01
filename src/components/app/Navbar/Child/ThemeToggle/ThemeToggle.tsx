@@ -19,23 +19,19 @@ export const ThemeToggle = ({
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="relative flex items-center justify-center w-9 h-9 rounded-full overflow-hidden transition-all duration-300 focus:outline-none bg-[var(--foreground)] border border-[var(--accent)] shadow-sm"
+      className="relative cursor-pointer flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 focus:outline-none hover:bg-[var(--accent-hover)] bg-transparent"
       aria-label="Toggle dark mode"
     >
       {mounted && (
         <div
-          className={`transition-all duration-500 ease-in-out ${
+          className={`flex items-center justify-center transition-all duration-500 ease-in-out ${
             theme === "dark" ? "rotate-180" : "rotate-0"
           }`}
         >
           {theme === "dark" ? (
-            <Sun size={18} className="text-[var(--accent)]" strokeWidth={2.5} />
+            <Sun size={20} className="text-yellow-400" strokeWidth={2} />
           ) : (
-            <Moon
-              size={18}
-              className="text-[var(--accent)]"
-              strokeWidth={2.5}
-            />
+            <Moon size={20} className="text-blue-500" strokeWidth={2} />
           )}
         </div>
       )}

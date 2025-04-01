@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { NavLink } from "@/types";
 import { scrollToSection, handleScrollSpy } from "@/lib/navigation";
 import { NavLinks, ThemeToggle, SocialLinks, MobileMenu } from "./Child";
+import { useRouter } from "next/navigation";
 
 /**
  * @author Andika Dwi Saputra
@@ -21,6 +22,8 @@ export const Navbar = () => {
   const [activeLink, setActiveLink] = useState("/");
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
+
 
   const navLinks: NavLink[] = [
     { name: "Home", path: "/#home" },
@@ -103,7 +106,7 @@ export const Navbar = () => {
       const targetId = path.substring(path.indexOf("#") + 1);
       const isNotHomePage =
         typeof window !== "undefined" && window.location.pathname !== "/";
-      scrollToSection(targetId, isNotHomePage);
+      scrollToSection(router, targetId, isNotHomePage);
     } else {
       // For non-hash links, set active link directly
       setActiveLink(path);
