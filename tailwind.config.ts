@@ -47,9 +47,50 @@ const config: Config = {
         '600': '600ms',
         '900': '900ms',
       },
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            color: 'var(--text)',
+            a: {
+              color: 'var(--accent)',
+              '&:hover': {
+                color: theme('colors.accent/80'),
+              },
+            },
+            h1: {
+              color: 'var(--text)',
+            },
+            h2: {
+              color: 'var(--text)',
+            },
+            h3: {
+              color: 'var(--text)',
+            },
+            h4: {
+              color: 'var(--text)',
+            },
+            code: {
+              color: 'var(--accent)',
+              backgroundColor: 'var(--foreground)',
+              borderRadius: theme('borderRadius.md'),
+              padding: `${theme('spacing.1')} ${theme('spacing.2')}`,
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            blockquote: {
+              borderLeftColor: 'var(--accent)',
+              color: 'var(--text/80)',
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
 
 export default config;

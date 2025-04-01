@@ -1,0 +1,212 @@
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { fetchArticleBySlug } from "@/lib/supabase";
+import { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
+import { Github, Instagram, ArrowLeft } from "lucide-react";
+import { AuthorInfo } from "@/types";
+import Link from "next/link";
+
+type ArticleDetailProps = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({
+  params,
+}: ArticleDetailProps): Promise<Metadata> {
+  const article = await fetchArticleBySlug(params.slug);
+
+  if (!article) {
+    return {
+      title: "Article Not Found",
+      description:
+        "The article you are looking for doesn't exist or has been removed.",
+    };
+  }
+
+  return {
+    title: article.title,
+    description:
+      article.meta_description || `Read ${article.title} on our blog`,
+    openGraph: article.image_url
+      ? {
+          images: [{ url: article.image_url, alt: article.title }],
+        }
+      : undefined,
+  };
+}
+
+const authorInfo: AuthorInfo = {
+  name: "Andika's AI Assistant",
+  bio: "Full-stack developer passionate about building great user experiences. Writing about web development, React, and everything in between.",
+  github: "Andikss",
+  instagram: "andikads__",
+  avatarUrl: "/static/img/person.webp",
+};
+
+export default async function ArticleDetail({ params }: ArticleDetailProps) {
+  const article = await fetchArticleBySlug(params.slug);
+
+  if (!article) {
+    notFound();
+  }
+
+  const formattedDate = new Date(article.created_at).toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
+
+  return (
+    <article className="min-h-screen">
+      <div className="container mx-auto px-4 py-32">
+        <div className="max-w-4xl mx-auto">
+          {/* Back Link */}
+          <Link
+            href="/articles"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors mb-8 group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span>Back to Articles</span>
+          </Link>
+
+          {/* Article Header */}
+          <header className="text-center mb-12">
+            <h1 className="text-2xl md:text-5xl font-bold mb-6 text-[var(--text)] leading-tight tracking-tight">
+              {article.title}
+            </h1>
+          </header>
+
+          {/* Featured Image */}
+          {article.image_url && (
+            <div className="relative w-full h-[10rem] md:h-[30rem] rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
+              <Image
+                src={article.image_url}
+                alt={article.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                priority
+              />
+            </div>
+          )}
+
+          <div className="text-text italic mb-12 mt-4 text-sm md:text-base flex items-center justify-between">
+            <time dateTime={article.created_at}>{formattedDate}</time>
+            {article.image_author && (
+              <>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                <span>Photo by {article.image_author}</span>
+              </>
+            )}
+          </div>
+
+          {/* Article Content */}
+          <div className="prose prose-lg prose-invert max-w-none">
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => <h2 className="hidden">{children}</h2>,
+                h2: ({ children }) => (
+                  <h2 className="text-2xl md:text-3xl font-bold mb-6 mt-12 text-[var(--text)] leading-tight">
+                    {children}
+                  </h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-xl md:text-2xl font-bold mb-4 mt-8 text-[var(--text)] leading-tight">
+                    {children}
+                  </h3>
+                ),
+                p: ({ children }) => (
+                  <p className="text-base md:text-lg mb-6 leading-relaxed text-[var(--text)] tracking-wide">
+                    {children}
+                  </p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc ml-8 mb-6 space-y-3 text-[var(--text)]">
+                    {children}
+                  </ul>
+                ),
+                li: ({ children }) => (
+                  <li className="text-[var(--text)] leading-relaxed">
+                    {children}
+                  </li>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-bold text-[var(--text)]">
+                    {children}
+                  </strong>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote className="border-l-4 border-accent pl-4 italic text-[var(--text)] my-8">
+                    {children}
+                  </blockquote>
+                ),
+                code: ({ children }) => (
+                  <code className="bg-dark rounded px-2 py-1 text-sm text-[var(--text)]">
+                    {children}
+                  </code>
+                ),
+                pre: ({ children }) => (
+                  <pre className="bg-dark rounded-lg p-4 overflow-x-auto my-8 text-[var(--text)]">
+                    {children}
+                  </pre>
+                ),
+              }}
+            >
+              {article.content}
+            </ReactMarkdown>
+          </div>
+
+          <div className="container w-full mt-16 shadow-sm">
+            <div className="border border-gray-700 rounded-lg p-6 bg-dark/50 backdrop-blur-sm">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                <img
+                  src={authorInfo.avatarUrl}
+                  alt={authorInfo.name}
+                  className="w-16 h-16 rounded-full"
+                  loading="lazy"
+                />
+
+                <div className="flex-1">
+                  <h2 className="text-xl font-semibold text-gray-100 mb-2">
+                    Created by {authorInfo.name}
+                  </h2>
+                  <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+                    {authorInfo.bio}
+                  </p>
+
+                  <div className="flex gap-4">
+                    <a
+                      href={`https://github.com/${authorInfo.github}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors text-sm"
+                    >
+                      <Github className="w-5 h-5" />
+                      <span>Follow on GitHub</span>
+                    </a>
+
+                    {authorInfo.instagram && (
+                      <a
+                        href={`https://instagram.com/${authorInfo.instagram}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors text-sm"
+                      >
+                        <Instagram className="w-5 h-5" />
+                        <span>Follow on Instagram</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}

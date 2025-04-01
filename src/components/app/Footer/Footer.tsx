@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Github, Linkedin, Heart, Coffee, Send } from "lucide-react";
+import { Button } from "@/components/ui";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,16 +21,9 @@ export const Footer = () => {
                 chat. I&apos;ll buy the coffee.
               </p>
             </div>
-            <Link
-              href="/contact"
-              className="flex items-center gap-2 bg-[var(--accent)] hover:bg-opacity-90 text-[var(--dark)] px-6 py-3 rounded-lg font-medium transition-all duration-300 group"
-            >
-              <span>Wrap it up!</span>
-              <Send
-                size={18}
-                className="transform group-hover:translate-x-1 transition-transform duration-300"
-              />
-            </Link>
+            <Button href="/contact" variant="primary" icon={<Send />}>
+              Wrap it up!
+            </Button>
           </div>
         </div>
       </div>
