@@ -163,27 +163,29 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
           <div className="container w-full mt-16 shadow-sm">
             <div className="border border-gray-700 rounded-lg p-6 bg-dark/50 backdrop-blur-sm">
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                <img
+                <Image
                   src={authorInfo.avatarUrl}
                   alt={authorInfo.name}
+                  width={240}
+                  height={240}
                   className="w-16 h-16 rounded-full"
                   loading="lazy"
                 />
 
                 <div className="flex-1">
-                  <h2 className="text-xl font-semibold text-gray-100 mb-2">
+                  <h2 className="text-xl font-semibold text-[var(--text)] mb-2 text-center">
                     Created by {authorInfo.name}
                   </h2>
-                  <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+                  <p className="text-[var(--text)] mb-4 text-sm leading-relaxed">
                     {authorInfo.bio}
                   </p>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-wrap gap-4">
                     <a
                       href={`https://github.com/${authorInfo.github}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors text-sm"
+                      className="flex items-center gap-2 text-[var(--text)] hover:text-[var(--accent)] transition-colors text-sm"
                     >
                       <Github className="w-5 h-5" />
                       <span>Follow on GitHub</span>
@@ -194,7 +196,7 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
                         href={`https://instagram.com/${authorInfo.instagram}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors text-sm"
+                        className="flex items-center gap-2 text-[var(--text)] hover:text-[var(--accent)] transition-colors text-sm"
                       >
                         <Instagram className="w-5 h-5" />
                         <span>Follow on Instagram</span>
