@@ -8,9 +8,10 @@ export default function ArticleNotFound() {
   const router = useRouter();
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-4 py-16 min-h-screen flex items-center">
       <div className="max-w-3xl mx-auto text-center">
-        <h1 className="text-3xl font-bold mb-4">Article Not Found</h1>
+        <h1 className="text-8xl italic font-bold mb-4">404</h1>
+        <h2 className="text-3xl font-bold mb-4">Article Not Found</h2>
         <p className="text-text/70 mb-8">
           The article you are looking for doesn&apos;t exist or has been
           removed.

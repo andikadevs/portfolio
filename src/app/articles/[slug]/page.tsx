@@ -12,26 +12,32 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const article = await fetchArticleBySlug(params.slug);
+  try {
+    const article = await fetchArticleBySlug(params.slug);
 
-  if (!article) {
+    if (!article) {
+      return {
+        title: "Article Not Found",
+        description:
+          "The article you are looking for doesn't exist or has been removed.",
+      };
+    }
+
+    return {
+      title: article.title,
+      description:
+        article.meta_description || `Read ${article.title} on our blog`,
+      openGraph: article.image_url
+        ? {
+            images: [{ url: article.image_url, alt: article.title }],
+          }
+        : undefined,
+    };
+  } catch {
     return {
       title: "Article Not Found",
-      description:
-        "The article you are looking for doesn't exist or has been removed.",
     };
   }
-
-  return {
-    title: article.title,
-    description:
-      article.meta_description || `Read ${article.title} on our blog`,
-    openGraph: article.image_url
-      ? {
-          images: [{ url: article.image_url, alt: article.title }],
-        }
-      : undefined,
-  };
 }
 
 const authorInfo: AuthorInfo = {
