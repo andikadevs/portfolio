@@ -1,4 +1,5 @@
 import { PortfolioData } from "@/types";
+import { Contact } from "@/components/app";
 import dynamic from "next/dynamic";
 import portfolioDataJson from "@/data/Portfolio.json";
 import { Metadata } from "next";
@@ -115,7 +116,7 @@ export default async function PortfolioPage() {
         />
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="pt-16 md:pt-24">
         <div className="container mx-auto">
           <div className="mb-12 text-center">
             <h2 className="text-3xl sm:text-3xl font-bold mb-3 sm:mb-4 text-[var(--text)]">
@@ -138,6 +139,10 @@ export default async function PortfolioPage() {
             />
           </div>
         </div>
+      </section>
+
+      <section>
+        <Contact />
       </section>
     </div>
   );

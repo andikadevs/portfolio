@@ -38,8 +38,9 @@ export const SwiperCard = ({
     }
   }, [autoplay]);
 
-  const randomRotateY = () => {
-    return Math.floor(Math.random() * 21) - 10;
+  const getRotation = (index: number) => {
+    const rotations = [-7, -5, -3, 0, 3, 5, 7];
+    return rotations[index % rotations.length];
   };
 
   return (
@@ -55,13 +56,13 @@ export const SwiperCard = ({
                     opacity: 0,
                     scale: 0.9,
                     z: -100,
-                    rotate: randomRotateY(),
+                    rotate: getRotation(index),
                   }}
                   animate={{
                     opacity: isActive(index) ? 1 : 0.7,
                     scale: isActive(index) ? 1 : 0.95,
                     z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
+                    rotate: isActive(index) ? 0 : getRotation(index),
                     zIndex: isActive(index) ? 40 : contents.length + 2 - index,
                     y: isActive(index) ? [0, -80, 0] : 0,
                   }}
@@ -69,7 +70,7 @@ export const SwiperCard = ({
                     opacity: 0,
                     scale: 0.9,
                     z: -100,
-                    rotate: randomRotateY(),
+                    rotate: getRotation(index),
                   }}
                   transition={{
                     duration: 0.4,
@@ -77,10 +78,11 @@ export const SwiperCard = ({
                   }}
                   className="absolute inset-0 origin-bottom"
                   style={{
-                    opacity: isActive(index) ? 1 : 0,
                     transform: isActive(index)
                       ? "translateZ(0) scale(1) rotate(0deg)"
-                      : `translateZ(-100px) scale(0.9) rotate(-10deg)`,
+                      : `translateZ(-100px) scale(0.9) rotate(${getRotation(
+                          index
+                        )}deg)`,
                   }}
                 >
                   <Image
@@ -167,4 +169,3 @@ export const SwiperCard = ({
     </div>
   );
 };
-
