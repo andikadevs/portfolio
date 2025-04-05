@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { motion, HTMLMotionProps } from "motion/react";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { ButtonProps } from "@/types";
 

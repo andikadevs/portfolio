@@ -15,7 +15,6 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import {
-  Certification as CertificationType,
   CertificationGridProps,
 } from "@/types";
 
