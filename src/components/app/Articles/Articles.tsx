@@ -222,9 +222,29 @@ export const Articles = ({
     setLoading(true);
   };
 
+  useEffect(() => {
+    // Keep track of animated articles to avoid re-animating
+    const animatedArticles = new Set();
+
+    const animateNewArticles = () => {
+      document.querySelectorAll(".article-card").forEach((element, index) => {
+        if (element instanceof HTMLElement && !animatedArticles.has(element)) {
+          animatedArticles.add(element);
+          // Calculate delay based on position in current page
+          const delay = (index % 9) * 100; // 9 is the page size
+          setTimeout(() => {
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }, delay);
+        }
+      });
+    };
+
+    animateNewArticles();
+  }, [articles]); // Re-run when articles array changes
+
   return (
     <div className="relative overflow-x-hidden">
-      {/* Enhanced search bar with visual effects */}
       <div className="mb-16 md:mb-20 relative z-10">
         <div
           className={cn(
@@ -284,7 +304,6 @@ export const Articles = ({
         )}
       </div>
 
-      {/* Articles presentation with enhanced styling and animations */}
       {loading && articles.length === 0 ? (
         <div className="w-full py-20 text-center">
           <div className="relative w-16 h-16 mx-auto mb-6">
@@ -351,17 +370,15 @@ export const Articles = ({
         </div>
       ) : (
         <div className="space-y-16 relative z-10">
-          {/* Articles grid with enhanced animation and layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {articles.map((article, index) => (
+            {articles.map((article) => (
               <div
                 key={article.id}
-                className="group"
+                className="group article-card transition-all duration-500 ease-out"
                 style={{
-                  animationDelay: `${index * 0.1}s`,
-                  animationDuration: "0.6s",
-                  animationFillMode: "both",
-                  animationName: "fadeInUp",
+                  opacity: "0",
+                  transform: "translateY(20px)",
+                  willChange: "transform, opacity",
                 }}
               >
                 <div className="transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl relative rounded-xl overflow-hidden backdrop-blur-sm bg-[var(--foreground)]/5 border border-[var(--foreground)]/10 group-hover:border-[var(--accent)]/20">
@@ -371,8 +388,6 @@ export const Articles = ({
               </div>
             ))}
           </div>
-
-          {/* Enhanced load more indicator */}
           {hasMore && (
             <div
               ref={ref}
@@ -399,8 +414,6 @@ export const Articles = ({
               </div>
             </div>
           )}
-
-          {/* End of content indication */}
           {!hasMore && articles.length > 6 && (
             <div className="text-center py-12 border-t border-[var(--foreground)]/10">
               <div className="inline-block pb-3 relative">

@@ -15,7 +15,8 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Articles | AndikaDS",
-    description: "Read articles about web development, programming, and technology from AndikaDS",
+    description:
+      "Read articles about web development, programming, and technology from AndikaDS",
     url: "/articles",
     type: "website",
   },
@@ -39,12 +40,6 @@ export default async function ArticlesPage({ searchParams }: Props) {
     <>
       {/* Hero Section */}
       <div className="relative w-full pt-16 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
-          <div className="absolute -top-[300px] -left-[300px] w-[600px] h-[600px] rounded-full bg-[var(--accent)]/10 blur-3xl"></div>
-          <div className="absolute -bottom-[400px] -right-[400px] w-[800px] h-[800px] rounded-full bg-[var(--accent)]/10 blur-3xl"></div>
-        </div>
-
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-screen-xl mx-auto text-center">
             {/* Title with gradient */}
@@ -70,7 +65,7 @@ export default async function ArticlesPage({ searchParams }: Props) {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-[var(--accent)]/60"
+                className="text-[var(--accent)]"
               >
                 <path d="M12 5v14M19 12l-7 7-7-7" />
               </svg>
