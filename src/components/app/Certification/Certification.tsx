@@ -14,20 +14,10 @@ import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
-
-interface Certification {
-  title: string;
-  imgSrc: string;
-  description: string;
-  url: string;
-  issuer: string;
-  date: string;
-}
-
-interface CertificationGridProps {
-  certifications: Certification[];
-  className?: string;
-}
+import {
+  Certification as CertificationType,
+  CertificationGridProps,
+} from "@/types";
 
 export function Certification({
   certifications,

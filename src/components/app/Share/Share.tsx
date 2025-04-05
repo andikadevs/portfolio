@@ -13,11 +13,7 @@ import {
   IconShare,
 } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
-
-interface ShareProps {
-  url: string;
-  title: string;
-}
+import { ShareProps } from "@/types";
 
 export const Share: React.FC<ShareProps> = ({ url, title }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

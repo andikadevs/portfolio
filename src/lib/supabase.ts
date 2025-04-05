@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { cache } from 'react';
+import { Article } from '@/types';
 
 // These should be in your environment variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -21,19 +22,6 @@ export const supabase = createClient(formattedUrl, supabaseAnonKey, {
     detectSessionInUrl: false,
   },
 });
-
-// Article type based on the schema provided
-export type Article = {
-  id: string;
-  title: string;
-  content: string;
-  meta_description: string | null;
-  image_url: string | null;
-  image_author: string | null;
-  slug: string;
-  status: 'draft' | 'published';
-  created_at: string;
-};
 
 // Implement cache for fetchArticles to optimize server-side rendering
 export const fetchArticles = cache(async ({

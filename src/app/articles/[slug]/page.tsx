@@ -7,18 +7,16 @@ import {
   IconBrandInstagram,
   IconArrowLeft,
 } from "@tabler/icons-react";
-import { AuthorInfo } from "@/types";
+import { AuthorInfo, ArticleDetailProps } from "@/types";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Share } from "@/components/app";
 import { generateArticleSchema } from "@/lib/structuredData";
 import Script from "next/script";
 
-type Props = {
-  params: any;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ArticleDetailProps): Promise<Metadata> {
   try {
     const article = await fetchArticleBySlug(params.slug);
 
@@ -94,7 +92,7 @@ const authorInfo: AuthorInfo = {
   avatarUrl: "/static/img/person.webp",
 };
 
-export default async function ArticleDetail({ params }: Props) {
+export default async function ArticleDetail({ params }: ArticleDetailProps) {
   const article = await fetchArticleBySlug(params.slug);
 
   if (!article) {

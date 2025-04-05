@@ -1,10 +1,12 @@
 import { fetchArticles } from "@/lib/supabase";
 import { Articles } from "@/components/app";
 import { Metadata } from "next";
+import { ArticlePageProps } from "@/types";
 
 export const metadata: Metadata = {
   title: "Articles | Andika Dwi Saputra - Fullstack Developer",
-  description: "Insights and tutorials on web development, programming, and technology by Andika Dwi Saputra. Explore practical knowledge and industry best practices.",
+  description:
+    "Insights and tutorials on web development, programming, and technology by Andika Dwi Saputra. Explore practical knowledge and industry best practices.",
   keywords: [
     "web development",
     "programming",
@@ -19,17 +21,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Articles | Andika Dwi Saputra - Fullstack Developer",
-    description: "Insights and tutorials on web development, programming, and technology by Andika Dwi Saputra. Explore practical knowledge and industry best practices.",
+    description:
+      "Insights and tutorials on web development, programming, and technology by Andika Dwi Saputra. Explore practical knowledge and industry best practices.",
     url: "/articles",
     type: "website",
   },
 };
 
-type Props = {
-  searchParams: any;
-};
-
-export default async function ArticlesPage({ searchParams }: Props) {
+export default async function ArticlesPage({ searchParams }: ArticlePageProps) {
   const search = searchParams?.search || "";
   const page = parseInt(searchParams?.page || "1");
 

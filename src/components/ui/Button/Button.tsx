@@ -2,16 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { motion, HTMLMotionProps } from "motion/react";
 import { cn } from "@/lib/utils";
-
-export interface ButtonProps
-  extends Omit<HTMLMotionProps<"button">, "className" | "children"> {
-  variant?: "primary" | "secondary";
-  href?: string;
-  icon?: React.ReactNode;
-  external?: boolean;
-  className?: string;
-  children: React.ReactNode;
-}
+import { ButtonProps } from "@/types";
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
