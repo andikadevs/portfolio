@@ -1,15 +1,13 @@
-import { Github, Linkedin } from "lucide-react";
+import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 
 /**
  * @author Andika Dwi Saputra
- * 
+ *
  * @date 30/03/2025
  * @description SocialLinks component
  */
 
-export const SocialLinks = ({ isMobile = false }: {
-  isMobile?: boolean;
-}) => {
+export const SocialLinks = ({ isMobile = false }: { isMobile?: boolean }) => {
   return (
     <div
       className={`${isMobile ? "flex" : "hidden lg:flex"} items-center ${
@@ -23,7 +21,7 @@ export const SocialLinks = ({ isMobile = false }: {
         className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"
         aria-label="GitHub"
       >
-        <Github size={isMobile ? 24 : 20} strokeWidth={1.5} />
+        <IconBrandGithub size={isMobile ? 24 : 20} strokeWidth={1.5} />
       </a>
       <a
         href="https://linkedin.com/in/andikadwisaputra"
@@ -32,7 +30,7 @@ export const SocialLinks = ({ isMobile = false }: {
         className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"
         aria-label="LinkedIn"
       >
-        <Linkedin size={isMobile ? 24 : 20} strokeWidth={1.5} />
+        <IconBrandLinkedin size={isMobile ? 24 : 20} strokeWidth={1.5} />
       </a>
     </div>
   );

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { X } from "lucide-react";
+import { IconX } from "@tabler/icons-react";
 import { NavLink } from "@/types";
 import { SocialLinks } from "../SocialLinks";
 import { usePathname } from "next/navigation";
@@ -67,7 +67,7 @@ export const MobileMenu = ({
           className="absolute top-4 right-4 p-2 rounded-md cursor-pointer text-[var(--accent)]"
           aria-label="Close menu"
         >
-          <X size={24} strokeWidth={1.5} />
+          <IconX size={24} strokeWidth={1.5} />
         </button>
       </div>
 

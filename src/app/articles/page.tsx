@@ -15,8 +15,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Articles | AndikaDS",
-    description:
-      "Read articles about web development, programming, and technology from AndikaDS",
+    description: "Read articles about web development, programming, and technology from AndikaDS",
     url: "/articles",
     type: "website",
   },

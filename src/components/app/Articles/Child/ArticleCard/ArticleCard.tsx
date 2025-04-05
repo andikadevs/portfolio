@@ -2,7 +2,8 @@ import { Article } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, Camera } from "lucide-react";
+import { IconCalendar, IconCamera } from "@tabler/icons-react";
+import ReactMarkdown from "react-markdown";
 
 export const ArticleCard = ({
   article,
@@ -56,19 +57,28 @@ export const ArticleCard = ({
         </h3>
 
         {article.meta_description && (
-          <p className="text-text/80 text-sm line-clamp-3 leading-relaxed">
-            {article.meta_description}
-          </p>
+          <div className="text-text/80 text-sm line-clamp-3 leading-relaxed">
+            <ReactMarkdown
+              components={{
+                p: ({ children }) => <>{children}</>,
+                strong: ({ children }) => (
+                  <strong className="font-semibold">{children}</strong>
+                ),
+              }}
+            >
+              {article.meta_description}
+            </ReactMarkdown>
+          </div>
         )}
 
         <div className="flex items-center text-text/60 text-xs pt-3 space-x-4">
           <span className="flex items-center">
-            <Calendar className="w-3.5 h-3.5 mr-1.5 inline" />
+            <IconCalendar className="w-3.5 h-3.5 mr-1.5 inline" />
             {formattedDate}
           </span>
           {article.image_author && (
             <span className="flex items-center">
-              <Camera className="w-3.5 h-3.5 mr-1.5 inline" />
+              <IconCamera className="w-3.5 h-3.5 mr-1.5 inline" />
               {article.image_author}
             </span>
           )}

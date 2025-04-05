@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Menu, X } from "lucide-react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
 import { NavLink } from "@/types";
 import { scrollToSection, handleScrollSpy } from "@/lib/navigation";
 import { NavLinks, ThemeToggle, SocialLinks, MobileMenu } from "./Child";
@@ -222,13 +222,13 @@ export const Navbar = () => {
             >
               <div className="relative">
                 {isOpen ? (
-                  <X
+                  <IconX
                     size={20}
                     className="text-[var(--accent)]"
                     strokeWidth={2}
                   />
                 ) : (
-                  <Menu
+                  <IconMenu2
                     size={20}
                     className="text-[var(--text)]"
                     strokeWidth={2}

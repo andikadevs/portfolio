@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { fetchArticleBySlug } from "@/lib/supabase";
 import ReactMarkdown from "react-markdown";
-import { Github, Instagram, ArrowLeft } from "lucide-react";
+import { IconBrandGithub, IconBrandInstagram, IconArrowLeft } from "@tabler/icons-react";
 import { AuthorInfo } from "@/types";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -74,7 +74,7 @@ export default async function ArticleDetail({ params }: Props) {
             href="/articles"
             className="inline-flex items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors mb-8 group"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <IconArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Articles</span>
           </Link>
 
@@ -192,7 +192,7 @@ export default async function ArticleDetail({ params }: Props) {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-[var(--text)] hover:text-[var(--accent)] transition-colors text-sm"
                     >
-                      <Github className="w-5 h-5" />
+                      <IconBrandGithub className="w-5 h-5" />
                       <span>Follow on GitHub</span>
                     </a>
 
@@ -203,7 +203,7 @@ export default async function ArticleDetail({ params }: Props) {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-[var(--text)] hover:text-[var(--accent)] transition-colors text-sm"
                       >
-                        <Instagram className="w-5 h-5" />
+                        <IconBrandInstagram className="w-5 h-5" />
                         <span>Follow on Instagram</span>
                       </a>
                     )}

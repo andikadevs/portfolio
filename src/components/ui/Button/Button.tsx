@@ -27,7 +27,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "relative flex justify-center px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium rounded-full transition-all duration-300 overflow-hidden hover:scale-[1.03] active:scale-[0.98]";
+      "relative flex cursor-pointer justify-center px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium rounded-full transition-all duration-300 overflow-hidden hover:scale-[1.03] active:scale-[0.98]";
 
     const variants = {
       primary:

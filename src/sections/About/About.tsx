@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { useRef, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui";
-import { Github } from "lucide-react";
+import { IconBrandGithub } from "@tabler/icons-react";
 
 // Lazy load the DirectionAwareHover component with reduced loading priority
 const DirectionAwareHover = dynamic(
@@ -91,7 +91,7 @@ export const About = () => {
                 href="https://github.com/Andikss"
                 external
                 variant="primary"
-                icon={<Github />}
+                icon={<IconBrandGithub />}
               >
                 See My GitHub
               </Button>

@@ -6,7 +6,7 @@ import {
   // ParallaxImage
 } from "@/components/ui";
 import { motion } from "motion/react";
-import { ArrowRight, MessageSquare } from "lucide-react";
+import { IconArrowRight, IconMessageCircle } from "@tabler/icons-react";
 
 export const Hero = () => {
   return (
@@ -69,7 +69,7 @@ export const Hero = () => {
             <Button
               variant="primary"
               href="/portfolio"
-              icon={<ArrowRight size={16} />}
+              icon={<IconArrowRight size={16} />}
             >
               View My Projects
             </Button>
@@ -77,7 +77,7 @@ export const Hero = () => {
             <Button
               variant="secondary"
               href="https://wa.me/6285743699909"
-              icon={<MessageSquare size={16} />}
+              icon={<IconMessageCircle size={16} />}
             >
               Contact Me
             </Button>

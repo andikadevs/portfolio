@@ -114,10 +114,10 @@ export const fetchArticleBySlug = cache(async (slug: string) => {
       .select('*')
       .eq('slug', slug)
       .eq('status', 'published')
-      .single();
+      .maybeSingle();
 
     if (error) {
-      console.error('Supabase error fetching article:', error);
+      console.error('Supabase error fetching article:', JSON.stringify(error, null, 2));
       return null;
     }
 
@@ -128,7 +128,7 @@ export const fetchArticleBySlug = cache(async (slug: string) => {
 
     return data as Article;
   } catch (error) {
-    console.error('Error fetching article by slug:', error);
+    console.error('Error fetching article by slug:', error instanceof Error ? error.message : JSON.stringify(error, null, 2));
     return null;
   }
 }); 

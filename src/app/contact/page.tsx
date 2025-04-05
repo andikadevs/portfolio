@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Coffee, Send } from "lucide-react";
+import { IconCoffee, IconSend } from "@tabler/icons-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -58,7 +58,7 @@ export default function Contact() {
             {submitSuccess ? (
               <div className="flex flex-col items-center justify-center py-8">
                 <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                  <Send className="text-green-500" size={24} />
+                  <IconSend className="text-green-500" size={24} />
                 </div>
                 <h3 className="text-xl font-semibold text-[var(--text)] mb-2">
                   Message Sent!
@@ -129,7 +129,7 @@ export default function Contact() {
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-sm text-[var(--text)] opacity-80">
-                    <Coffee size={16} />
+                    <IconCoffee size={16} />
                     <span>Coffee&apos;s on me!</span>
                   </div>
                   <button
@@ -140,7 +140,7 @@ export default function Contact() {
                     }`}
                   >
                     <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-                    <Send
+                    <IconSend
                       size={18}
                       className={`transform transition-transform duration-300 ${
                         isSubmitting

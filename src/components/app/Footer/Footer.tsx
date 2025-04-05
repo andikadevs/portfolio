@@ -1,6 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { Github, Linkedin, Heart, Coffee, Send } from "lucide-react";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconHeart,
+  IconCoffee,
+  IconSend,
+} from "@tabler/icons-react";
 import { Button } from "@/components/ui";
 
 export const Footer = () => {
@@ -21,7 +27,7 @@ export const Footer = () => {
                 chat. I&apos;ll buy the coffee.
               </p>
             </div>
-            <Button href="/contact" variant="primary" icon={<Send />}>
+            <Button href="/contact" variant="primary" icon={<IconSend />}>
               Wrap it up!
             </Button>
           </div>
@@ -46,7 +52,7 @@ export const Footer = () => {
                 className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"
                 aria-label="GitHub"
               >
-                <Github size={24} strokeWidth={1.5} />
+                <IconBrandGithub size={24} strokeWidth={1.5} />
               </a>
               <a
                 href="https://linkedin.com/in/andikadwisaputra"
@@ -55,14 +61,14 @@ export const Footer = () => {
                 className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"
                 aria-label="LinkedIn"
               >
-                <Linkedin size={24} strokeWidth={1.5} />
+                <IconBrandLinkedin size={24} strokeWidth={1.5} />
               </a>
               <a
                 href="mailto:contact@andikadwisaputra.com"
                 className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"
                 aria-label="Email"
               >
-                <Coffee size={24} strokeWidth={1.5} />
+                <IconCoffee size={24} strokeWidth={1.5} />
               </a>
             </div>
 
@@ -111,7 +117,7 @@ export const Footer = () => {
               <span className="mx-2 hidden md:flex">•</span>
               <span className="flex items-center gap-1">
                 <span>Made with</span>
-                <Heart
+                <IconHeart
                   size={14}
                   className="text-[var(--accent)]"
                   fill="currentColor"

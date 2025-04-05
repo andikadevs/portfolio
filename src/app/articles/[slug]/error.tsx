@@ -1,49 +1,28 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
-import { AlertTriangle, ArrowLeft } from "lucide-react";
+import { IconAlertTriangle, IconRefresh } from "@tabler/icons-react";
 
 export default function Error({
-  error,
   reset,
 }: {
-  error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error);
-  }, [error]);
-
   return (
-    <div className="container mx-auto px-4 py-16 min-h-screen flex items-center justify-center">
-      <div className="max-w-3xl mx-auto">
+    <div className="container min-h-screen mx-auto flex items-center justify-center px-4 py-24">
+      <div className="max-w-screen-xl mx-auto">
         <div className="flex flex-col items-center justify-center py-12 text-center">
-          <AlertTriangle className="w-16 h-16 text-accent mb-6" />
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Article Error</h1>
+          <IconAlertTriangle className="w-16 h-16 text-accent mb-6" />
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            Something went wrong!
+          </h1>
           <p className="text-text/70 max-w-md mb-6">
-            We encountered an error while trying to load this article. Please
-            try again or return to the articles list.
+            We encountered an error while trying to load the articles. Please
+            try again or come back later.
           </p>
-          <div className="flex gap-4 flex-wrap justify-center">
-            <Button
-              onClick={reset}
-              icon={<AlertTriangle className="w-4 h-4" />}
-            >
-              Try again
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => router.push("/articles")}
-              icon={<ArrowLeft className="w-4 h-4" />}
-            >
-              Back to Articles
-            </Button>
-          </div>
+          <Button onClick={reset} icon={<IconRefresh className="w-4 h-4" />}>
+            Try again
+          </Button>
         </div>
       </div>
     </div>

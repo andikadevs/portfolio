@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Hero, About, Education, Experience, Skills } from "@/sections";
-import { ArrowRightIcon } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <Experience />
       <Skills />
       <div className="flex justify-center py-16">
-        <Button href="/portfolio" variant="primary" icon={<ArrowRightIcon />}>
+        <Button href="/portfolio" variant="primary" icon={<IconArrowRight />}>
           View My Portfolio
         </Button>
       </div>

@@ -1,4 +1,4 @@
-import { Moon, Sun } from "lucide-react";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 
 /**
  * @author Andika Dwi Saputra
@@ -29,9 +29,9 @@ export const ThemeToggle = ({
           }`}
         >
           {theme === "dark" ? (
-            <Sun size={20} className="text-yellow-400" strokeWidth={2} />
+            <IconSun size={20} className="text-yellow-400" strokeWidth={2} />
           ) : (
-            <Moon size={20} className="text-blue-500" strokeWidth={2} />
+            <IconMoon size={20} className="text-blue-500" strokeWidth={2} />
           )}
         </div>
       )}

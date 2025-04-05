@@ -4,14 +4,14 @@
 
 import { useState } from "react";
 import {
-  Link,
-  Twitter,
-  Linkedin,
-  MessageCircle,
-  Facebook,
-  Send,
-  Share2,
-} from "lucide-react";
+  IconLink,
+  IconBrandTwitter,
+  IconBrandLinkedin,
+  IconMessageCircle,
+  IconBrandFacebook,
+  IconSend,
+  IconShare,
+} from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface ShareProps {
@@ -29,39 +29,39 @@ export const Share: React.FC<ShareProps> = ({ url, title }) => {
 
   const shareLinks = [
     {
-      icon: <Link className="w-5 h-5" />,
+      icon: <IconLink className="w-5 h-5" />,
       title: "Copy link",
       onClick: handleCopyLink,
       isButton: true,
     },
     {
-      icon: <Twitter className="w-5 h-5" />,
+      icon: <IconBrandTwitter className="w-5 h-5" />,
       title: "Share on X",
       href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
         url
       )}&text=${encodeURIComponent(title)}`,
     },
     {
-      icon: <Linkedin className="w-5 h-5" />,
+      icon: <IconBrandLinkedin className="w-5 h-5" />,
       title: "Share on LinkedIn",
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
         url
       )}`,
     },
     {
-      icon: <MessageCircle className="w-5 h-5" />,
+      icon: <IconMessageCircle className="w-5 h-5" />,
       title: "Share on WhatsApp",
       href: `https://wa.me/?text=${encodeURIComponent(`${title}\n\n${url}`)}`,
     },
     {
-      icon: <Facebook className="w-5 h-5" />,
+      icon: <IconBrandFacebook className="w-5 h-5" />,
       title: "Share on Facebook",
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         url
       )}`,
     },
     {
-      icon: <Send className="w-5 h-5" />,
+      icon: <IconSend className="w-5 h-5" />,
       title: "Share on Telegram",
       href: `https://t.me/share/url?url=${encodeURIComponent(
         url
@@ -69,7 +69,8 @@ export const Share: React.FC<ShareProps> = ({ url, title }) => {
     },
   ];
 
-  const buttonClasses = "p-3 bg-[var(--dark)] backdrop-blur-sm rounded-full text-text hover:bg-[var(--accent)] hover:text-[var(--background)] cursor-pointer transition-all";
+  const buttonClasses =
+    "p-3 bg-[var(--dark)] backdrop-blur-sm rounded-full text-text hover:bg-[var(--accent)] hover:text-[var(--background)] cursor-pointer transition-all";
 
   return (
     <>
@@ -110,7 +111,7 @@ export const Share: React.FC<ShareProps> = ({ url, title }) => {
             group border border-[var(--secondary)] z-50 cursor-pointer"
           aria-label="Share this article"
         >
-          <Share2 className="w-5 h-5" />
+          <IconShare className="w-5 h-5" />
         </button>
 
         {/* Mobile Share Menu Overlay */}

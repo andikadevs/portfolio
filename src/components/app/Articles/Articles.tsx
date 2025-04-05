@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
-import { Search, FilterX } from "lucide-react";
+import { IconSearch, IconFilterX } from "@tabler/icons-react";
 import { fetchArticles, Article } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
@@ -16,9 +16,7 @@ import dynamic from "next/dynamic";
  */
 const ArticleCard = dynamic(
   () =>
-    import("./Child/ArticleCard/ArticleCard").then(
-      (mod) => mod.ArticleCard
-    ),
+    import("./Child/ArticleCard/ArticleCard").then((mod) => mod.ArticleCard),
   { ssr: true }
 );
 
@@ -239,7 +237,7 @@ export const Articles = ({
             <div className="absolute inset-0 bg-[var(--accent)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center relative">
               <div className="pl-5 text-[var(--accent)]">
-                <Search className="h-5 w-5 group-hover:animate-pulse" />
+                <IconSearch className="h-5 w-5 group-hover:animate-pulse" />
               </div>
               <input
                 type="text"
@@ -257,7 +255,7 @@ export const Articles = ({
                   className="absolute right-4 text-[var(--text)]/50 hover:text-[var(--accent)] transition-colors"
                   aria-label="Clear search"
                 >
-                  <FilterX className="h-5 w-5" />
+                  <IconFilterX className="h-5 w-5" />
                 </button>
               )}
               {searchLoading && (
@@ -345,7 +343,7 @@ export const Articles = ({
                 onClick={clearSearch}
                 className="mt-8 px-8 py-3 bg-[var(--accent)]/10 text-[var(--accent)] rounded-full hover:bg-[var(--accent)]/20 transition-all duration-300 font-medium text-sm inline-flex items-center shadow-md hover:shadow-xl transform hover:-translate-y-1"
               >
-                <FilterX className="h-4 w-4 mr-2" />
+                <IconFilterX className="h-4 w-4 mr-2" />
                 Clear search
               </button>
             )}
