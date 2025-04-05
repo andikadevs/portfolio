@@ -11,6 +11,8 @@ import { AuthorInfo } from "@/types";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Share } from "@/components/app";
+import { generateArticleSchema } from "@/lib/structuredData";
+import Script from "next/script";
 
 type Props = {
   params: any;
@@ -34,7 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
       title: `${article.title} | Andika Dwi Saputra`,
-      description: article.meta_description || `Read ${article.title} by Andika Dwi Saputra, fullstack developer and tech enthusiast.`,
+      description:
+        article.meta_description ||
+        `Read ${article.title} by Andika Dwi Saputra, fullstack developer and tech enthusiast.`,
       keywords: [
         "web development",
         "programming",
@@ -48,7 +52,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
       openGraph: {
         title: `${article.title} | Andika Dwi Saputra`,
-        description: article.meta_description || `Read ${article.title} by Andika Dwi Saputra, fullstack developer and tech enthusiast.`,
+        description:
+          article.meta_description ||
+          `Read ${article.title} by Andika Dwi Saputra, fullstack developer and tech enthusiast.`,
         type: "article",
         url: articleUrl,
         images: article.image_url
@@ -67,7 +73,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       twitter: {
         card: "summary_large_image",
         title: `${article.title} | Andika Dwi Saputra`,
-        description: article.meta_description || `Read ${article.title} by Andika Dwi Saputra.`,
+        description:
+          article.meta_description ||
+          `Read ${article.title} by Andika Dwi Saputra.`,
         images: article.image_url ? [article.image_url] : undefined,
       },
     };
@@ -102,8 +110,32 @@ export default async function ArticleDetail({ params }: Props) {
     }
   );
 
+  // Generate structured data for this article
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://andikads.cloud";
+  const articleStructuredData = generateArticleSchema(
+    {
+      title: article.title,
+      description:
+        article.meta_description ||
+        `Read ${article.title} by Andika Dwi Saputra, fullstack developer and tech enthusiast.`,
+      slug: article.slug,
+      imageUrl: article.image_url || undefined,
+      publishedDate: article.created_at,
+    },
+    baseUrl
+  );
+
   return (
     <article className="min-h-screen">
+      {/* Add structured data */}
+      <Script
+        id="article-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleStructuredData),
+        }}
+      />
+
       <div className="container mx-auto px-4 py-32">
         <div className="max-w-4xl mx-auto">
           {/* Back Link */}

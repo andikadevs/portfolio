@@ -2,6 +2,11 @@ import { Button } from "@/components/ui/Button";
 import { Hero, About, Education, Experience, Skills } from "@/sections";
 import { IconArrowRight } from "@tabler/icons-react";
 import type { Metadata } from "next";
+import {
+  generatePersonSchema,
+  generateWebsiteSchema,
+} from "@/lib/structuredData";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Home | Andika Dwi Saputra - Fullstack Developer",
@@ -18,8 +23,26 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://andikads.cloud";
+  const personSchema = generatePersonSchema(baseUrl);
+  const websiteSchema = generateWebsiteSchema(baseUrl);
+
   return (
     <div className="bg-background relative text-text">
+      {/* Structured Data for Person */}
+      <Script
+        id="person-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+
+      {/* Structured Data for Website */}
+      <Script
+        id="website-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+
       <Hero />
       <About />
       <Education />
