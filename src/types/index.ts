@@ -34,6 +34,7 @@ export interface ButtonProps {
   icon?: React.ReactNode;
   external?: boolean;
   className?: string;
+  onClick?: () => void;
   children: React.ReactNode;
 }
 
