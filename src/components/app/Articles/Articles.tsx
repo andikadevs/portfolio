@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
 import { IconSearch, IconFilterX } from "@tabler/icons-react";
-import { fetchArticles, Article } from "@/lib/supabase";
+import { fetchArticles } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+import { Article } from "@/types";
 
 /**
  * @author Andika Dwi Saputra
