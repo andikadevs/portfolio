@@ -1,5 +1,5 @@
 import { PortfolioData } from "@/types";
-import { Contact, Certification } from "@/components/app";
+import { Contact, Certification, Companies } from "@/components/app";
 import dynamic from "next/dynamic";
 import portfolioDataJson from "@/data/Portfolio.json";
 import certificationsDataJson from "@/data/Certifications.json";
@@ -14,13 +14,15 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Portfolio | Andika Dwi Saputra - Fullstack Developer",
-  description: "Browse through Andika Dwi Saputra's professional projects and achievements showcasing expertise in Next.js, React, Laravel, and other web technologies.",
+  description:
+    "Browse through Andika Dwi Saputra's professional projects and achievements showcasing expertise in Next.js, React, Laravel, and other web technologies.",
   alternates: {
     canonical: "/portfolio",
   },
   openGraph: {
     title: "Portfolio | Andika Dwi Saputra - Fullstack Developer",
-    description: "Browse through Andika Dwi Saputra's professional projects and achievements showcasing expertise in Next.js, React, Laravel, and other web technologies.",
+    description:
+      "Browse through Andika Dwi Saputra's professional projects and achievements showcasing expertise in Next.js, React, Laravel, and other web technologies.",
     url: "/portfolio",
   },
 };
@@ -102,6 +104,13 @@ export default async function PortfolioPage() {
     ...selectedCertifications,
   ];
 
+  const companies = [
+    { name: "Akastra", logo: "/static/companies/Akastra.png" },
+    { name: "DIGITEK", logo: "/static/companies/DIGITEK.png" },
+    { name: "STEKOM", logo: "/static/companies/STEKOM.png" },
+    { name: "Toploker", logo: "/static/companies/Toploker.png" },
+  ];
+
   return (
     <div className="min-h-screen">
       <section className="py-0">
@@ -151,6 +160,8 @@ export default async function PortfolioPage() {
           <Certification certifications={certificationsData} />
         </div>
       </section>
+
+      <Companies companies={companies} />
 
       <section>
         <Contact />
