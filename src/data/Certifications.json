@@ -3,8 +3,8 @@
     "title": "Web Development Certificate",
     "imgSrc": "/static/portfolio/certificates/webdev.webp",
     "description": "Comprehensive web development certification covering modern web technologies and best practices",
-    "url": "#",
-    "issuer": "Professional Certification",
+    "url": "https://www.sololearn.com/certificates/CC-AJ2MMPAH",
+    "issuer": "Sololearn",
     "date": "2024"
   },
   {
@@ -19,24 +19,24 @@
     "title": "Technology Professional",
     "imgSrc": "/static/portfolio/certificates/tech.webp",
     "description": "Advanced technology certification covering various aspects of modern software development",
-    "url": "#",
-    "issuer": "Professional Institute",
+    "url": "https://www.sololearn.com/certificates/CC-CQBZUWSR",
+    "issuer": "Sololearn",
     "date": "2023"
   },
   {
     "title": "SQL Intermediate Certification",
     "imgSrc": "/static/portfolio/certificates/sql-intermediate.webp",
     "description": "Intermediate-level SQL certification demonstrating database management and query optimization skills",
-    "url": "#",
-    "issuer": "Database Professional Institute",
+    "url": "https://www.hackerrank.com/certificates/29e2ac5d72aa",
+    "issuer": "HackerRank",
     "date": "2023"
   },
   {
     "title": "SQL Advanced Certification",
     "imgSrc": "/static/portfolio/certificates/sql-advanced.webp",
     "description": "Advanced SQL certification covering complex queries, database design, and performance optimization",
-    "url": "#",
-    "issuer": "Database Professional Institute",
+    "url": "https://www.hackerrank.com/certificates/2c4173417b24",
+    "issuer": "HackerRank",
     "date": "2023"
   },
   {
@@ -44,23 +44,23 @@
     "imgSrc": "/static/portfolio/certificates/lks.webp",
     "description": "Recognition for excellence in technical skills competition",
     "url": "#",
-    "issuer": "LKS Organization",
+    "issuer": "LKS",
     "date": "2023"
   },
   {
     "title": "JavaScript Intermediate",
     "imgSrc": "/static/portfolio/certificates/javascript-intermediate.webp",
     "description": "Intermediate JavaScript programming certification covering modern ES6+ features and best practices",
-    "url": "#",
-    "issuer": "Programming Institute",
+    "url": "https://www.hackerrank.com/certificates/c27497609bfa",
+    "issuer": "HackerRank",
     "date": "2023"
   },
   {
     "title": "Data Programming",
     "imgSrc": "/static/portfolio/certificates/data-programing.webp",
     "description": "Certification in data programming and analysis using modern tools and techniques",
-    "url": "#",
-    "issuer": "Data Science Institute",
+    "url": "https://www.sololearn.com/certificates/CC-FWXVWTOI",
+    "issuer": "Sololearn",
     "date": "2023"
   }
 ] 

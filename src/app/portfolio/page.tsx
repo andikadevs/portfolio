@@ -57,32 +57,51 @@ export default async function PortfolioPage() {
   const portfolioData = await getPortfolioData();
   const certificationsData = certificationsDataJson;
 
-  const transformedData = portfolioData
-    .map((item) => {
-      if (!item || typeof item !== "object") {
-        console.error("Invalid portfolio item:", item);
-        return null;
-      }
-
-      return {
-        title: item.title || "Untitled Project",
-        link: item.url && item.url !== "forbidden" ? item.url : "#",
-        thumbnail: item.imgSrc || "/static/portfolio/placeholder.webp",
-      };
-    })
-    .filter(
-      (item): item is { title: string; link: string; thumbnail: string } =>
-        item !== null
+  // Select specific portfolio items and certifications for HeroParallax
+  const selectedPortfolioItems = portfolioData
+    .filter((item) =>
+      [
+        "OtoTop",
+        "Attendance Management",
+        "Akastra - Company Profile",
+        "MRS Genius APIs",
+        "Project Management",
+      ].includes(item.title)
     )
-    .reverse();
+    .map((item) => ({
+      title: item.title,
+      link: item.url && item.url !== "forbidden" ? item.url : "#",
+      thumbnail: item.imgSrc || "/static/portfolio/placeholder.webp",
+    }));
+
+  const selectedCertifications = certificationsData
+    .filter((cert) =>
+      [
+        "SQL Advanced Certification",
+        "SQL Intermediate Certification",
+        "JavaScript Intermediate",
+        "Technology Professional",
+        "Web Development Certificate",
+      ].includes(cert.title)
+    )
+    .map((cert) => ({
+      title: cert.title,
+      link: cert.url,
+      thumbnail: cert.imgSrc,
+    }));
+
+  const transformedData = [
+    ...selectedPortfolioItems,
+    ...selectedCertifications,
+  ];
 
   return (
     <div className="min-h-screen">
       <section className="py-0">
         <HeroParallaxClient
           products={transformedData}
-          headerTitle={`Innovative\nPortfolio Collection`}
-          headerDescription={`Discover my curated collection of projects that showcase creative problem-solving through technology and design. Each piece represents a unique challenge solved with innovation, precision, and artistic vision.`}
+          headerTitle={`Featured Projects\n& Certifications`}
+          headerDescription={`Explore my top projects and professional certifications that demonstrate my technical expertise and commitment to excellence in software development.`}
         />
       </section>
 
