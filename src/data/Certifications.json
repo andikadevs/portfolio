@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Web Development Certificate",
+    "imgSrc": "/static/portfolio/certificates/webdev.webp",
+    "description": "Comprehensive web development certification covering modern web technologies and best practices",
+    "url": "#",
+    "issuer": "Professional Certification",
+    "date": "2024"
+  },
+  {
+    "title": "TOEIC Certification",
+    "imgSrc": "/static/portfolio/certificates/toeic.webp",
+    "description": "Test of English for International Communication certification demonstrating professional English language proficiency",
+    "url": "#",
+    "issuer": "ETS",
+    "date": "2023"
+  },
+  {
+    "title": "Technology Professional",
+    "imgSrc": "/static/portfolio/certificates/tech.webp",
+    "description": "Advanced technology certification covering various aspects of modern software development",
+    "url": "#",
+    "issuer": "Professional Institute",
+    "date": "2023"
+  },
+  {
+    "title": "SQL Intermediate Certification",
+    "imgSrc": "/static/portfolio/certificates/sql-intermediate.webp",
+    "description": "Intermediate-level SQL certification demonstrating database management and query optimization skills",
+    "url": "#",
+    "issuer": "Database Professional Institute",
+    "date": "2023"
+  },
+  {
+    "title": "SQL Advanced Certification",
+    "imgSrc": "/static/portfolio/certificates/sql-advanced.webp",
+    "description": "Advanced SQL certification covering complex queries, database design, and performance optimization",
+    "url": "#",
+    "issuer": "Database Professional Institute",
+    "date": "2023"
+  },
+  {
+    "title": "LKS Achievement",
+    "imgSrc": "/static/portfolio/certificates/lks.webp",
+    "description": "Recognition for excellence in technical skills competition",
+    "url": "#",
+    "issuer": "LKS Organization",
+    "date": "2023"
+  },
+  {
+    "title": "JavaScript Intermediate",
+    "imgSrc": "/static/portfolio/certificates/javascript-intermediate.webp",
+    "description": "Intermediate JavaScript programming certification covering modern ES6+ features and best practices",
+    "url": "#",
+    "issuer": "Programming Institute",
+    "date": "2023"
+  },
+  {
+    "title": "Data Programming",
+    "imgSrc": "/static/portfolio/certificates/data-programing.webp",
+    "description": "Certification in data programming and analysis using modern tools and techniques",
+    "url": "#",
+    "issuer": "Data Science Institute",
+    "date": "2023"
+  }
+] 

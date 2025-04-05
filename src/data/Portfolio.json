@@ -1,7 +1,7 @@
 [
     {
       "title": "OtoTop",
-      "imgSrc": "/static/portfolio/ototop.webp",
+      "imgSrc": "/static/portfolio/projects/ototop.webp",
       "description": "Ototop is a Internal Management System for Toploker.com. It helps the company to manage their daily operational, such as Ads Service Management, Revenue Recaps, and much more automations services like post generator, invoices, and more.",
       "url": "forbidden",
       "stacks": [
@@ -15,7 +15,7 @@
     },
     {
       "title": "Attendance Management",
-      "imgSrc": "/static/portfolio/attendify.webp",
+      "imgSrc": "/static/portfolio/projects/attendify.webp",
       "description": "Attendify is an attendance management web app that can automatically recap employees attendance data from different sources, including security input, Face Recognition Attendance Machines, and custom input from the HCD Team.",
       "url": "forbidden",
       "stacks": [
@@ -27,7 +27,7 @@
     },
     {
       "title": "Akastra - Company Profile",
-      "imgSrc": "/static/portfolio/akastra.webp",
+      "imgSrc": "/static/portfolio/projects/akastra.webp",
       "description": "Akastra Company Profile enhances Akastra`s SEO on the internet with seamless company web pages, booking services, articles, and more. This website increases Akastra`s visibility on the internet.",
       "url": "https://akastra.id",
       "stacks": [
@@ -40,7 +40,7 @@
     },
     {
       "title": "Akastra Care - Company Profile",
-      "imgSrc": "/static/portfolio/akastra-care.webp",
+      "imgSrc": "/static/portfolio/projects/akastra-care.webp",
       "description": "Company profile website to help customer find workshop easily. Make an appointment for services and improve the company`s sales.",
       "url": "https://akastra-care.id",
       "stacks": [
@@ -52,7 +52,7 @@
     },
     {
       "title": "Akastra Passport",
-      "imgSrc": "/static/portfolio/akastra-passport.webp",
+      "imgSrc": "/static/portfolio/projects/akastra-passport.webp",
       "description": "Akastra Passport is an OAuth2 authentication server that enables Akastra`s internal applications to use Single Sign-On (SSO) authentication. This allows us to create a robust yet simple experience for users and developers.",
       "url": "forbidden",
       "stacks": [
@@ -64,7 +64,7 @@
     },
     {
       "title": "Project Management",
-      "imgSrc": "/static/portfolio/easytask.webp",
+      "imgSrc": "/static/portfolio/projects/easytask.webp",
       "description": "Project Management AKA EasyTask is a task management tool that helps our teams work together. It has been used by Akastra Toyota and KSC Motor Company. I have contributed to the refactoring updates.",
       "url": "forbidden",
       "stacks": [
@@ -76,7 +76,7 @@
     },
     {
       "title": "Staging Panel",
-      "imgSrc": "/static/portfolio/staging.webp",
+      "imgSrc": "/static/portfolio/projects/staging.webp",
       "description": "Fetching Akastra`s database and exporting it directly to an Excel file allows for the export of pre-formatted available data or the use of custom SQL queries. This eases the management team`s ability to manage service data.",
       "url": "forbidden",
       "stacks": [
@@ -88,7 +88,7 @@
     },
     {
       "title": "Akastra Tracking",
-      "imgSrc": "/static/portfolio/tracking.webp",
+      "imgSrc": "/static/portfolio/projects/tracking.webp",
       "description": "Akastra Tracking helps customers keep track of their vehicles while servicing at Akastra Toyota.",
       "url": "https://parking.akastra.id",
       "stacks": [
@@ -101,7 +101,7 @@
     },
     {
       "title": "E Parking",
-      "imgSrc": "/static/portfolio/parking.webp",
+      "imgSrc": "/static/portfolio/projects/parking.webp",
       "description": "E-parking management for Akastra Care (Akastra`s branch) eases monitoring of the parking lot and helps to identify the root cause of crowded parking lots.",
       "url": "forbidden",
       "stacks": [
@@ -114,7 +114,7 @@
     },
     {
       "title": "MRS Genius APIs",
-      "imgSrc": "/static/portfolio/mrs.webp",
+      "imgSrc": "/static/portfolio/projects/mrs.webp",
       "description": "API services for the MRS Genius application for Toyota MRA automatically generate attacklist data every month, dashboard for monitoring, making reminder management easier for the MRA team.",
       "url": "forbidden",
       "stacks": [

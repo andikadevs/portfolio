@@ -84,7 +84,7 @@ export const Contact = () => {
         </span>
         <div className="relative flex justify-center w-full text-center space-x-2 h-full items-center z-10 rounded-full bg-zinc-800 hover:bg-zinc-900 transition-all duration-300 py-0.5 px-4 ring-1 ring-white/10">
           <Link href="https://wa.me/6285743699909" target="_blank">
-            <span className="md:text-4xl flex flex-row items-center  gap-3 text-xl bg-clip-text text-[var(--text)]">
+            <span className="md:text-4xl flex flex-row items-center  gap-3 text-xl bg-clip-text text-white">
               Contact Me
             </span>
           </Link>

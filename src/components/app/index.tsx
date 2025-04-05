@@ -4,3 +4,4 @@ export * from "./Footer";
 export * from "./Contact";
 export * from "./Articles";
 export * from "./Share";
+export * from "./Certification";

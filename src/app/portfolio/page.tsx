@@ -1,7 +1,8 @@
 import { PortfolioData } from "@/types";
-import { Contact } from "@/components/app";
+import { Contact, Certification } from "@/components/app";
 import dynamic from "next/dynamic";
 import portfolioDataJson from "@/data/Portfolio.json";
+import certificationsDataJson from "@/data/Certifications.json";
 import { Metadata } from "next";
 
 /**
@@ -40,43 +41,11 @@ const SwiperCardClient = dynamic(
 /**
  * @author Andika Dwi Saputra
  *
- * @description This function is used to fetch the portfolio data from the API.
+ * @description This function is used to get the portfolio data from the local JSON file.
  * @returns {PortfolioData} The portfolio data is returned.
  */
 async function getPortfolioData() {
-  try {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/portfolio`,
-        {
-          cache: "no-store",
-          next: { revalidate: 0 },
-        }
-      );
-
-      if (response.ok) {
-        const result = await response.json();
-        return result.data as PortfolioData;
-      }
-
-      throw new Error("API response was not OK");
-    } catch (fetchError) {
-      console.error("Error fetching from API:", fetchError);
-
-      if (
-        portfolioDataJson &&
-        Array.isArray(portfolioDataJson) &&
-        portfolioDataJson.length > 0
-      ) {
-        return portfolioDataJson as PortfolioData;
-      }
-
-      throw new Error("Failed to fetch portfolio data from API and fallback");
-    }
-  } catch (error) {
-    console.error("Error fetching portfolio data:", error);
-    throw error;
-  }
+  return portfolioDataJson as PortfolioData;
 }
 
 /**
@@ -86,6 +55,7 @@ async function getPortfolioData() {
  */
 export default async function PortfolioPage() {
   const portfolioData = await getPortfolioData();
+  const certificationsData = certificationsDataJson;
 
   const transformedData = portfolioData
     .map((item) => {
@@ -138,6 +108,21 @@ export default async function PortfolioPage() {
               autoplay={true}
             />
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl sm:text-3xl font-bold mb-3 sm:mb-4 text-[var(--text)]">
+              Certifications & Achievements
+            </h2>
+            <p className="text-base sm:text-lg text-[var(--text)] max-w-2xl mx-auto">
+              A showcase of my professional certifications and achievements that
+              demonstrate my commitment to continuous learning and expertise.
+            </p>
+          </div>
+          <Certification certifications={certificationsData} />
         </div>
       </section>
 
