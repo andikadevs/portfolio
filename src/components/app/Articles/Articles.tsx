@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useInView } from "react-intersection-observer";
 import { IconSearch, IconFilterX } from "@tabler/icons-react";
 import { fetchArticles } from "@/lib/supabase";
@@ -38,7 +38,9 @@ export const Articles = ({
   initialHasMore: boolean;
 }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const [searchParams, setSearchParams] = useState<URLSearchParams | null>(
+    null
+  );
 
   // State management
   const [articles, setArticles] = useState<Article[]>(initialArticles);
@@ -47,13 +49,27 @@ export const Articles = ({
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(initialHasMore);
 
+  // Initialize search params on client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setSearchParams(new URLSearchParams(window.location.search));
+    }
+  }, []);
+
   // For search functionality
-  const initialSearch = searchParams.get("search") || "";
-  const [searchQuery, setSearchQuery] = useState(initialSearch);
-  const [debouncedSearchQuery, setDebouncedSearchQuery] =
-    useState(initialSearch);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  // Set initial search query once searchParams is available
+  useEffect(() => {
+    if (searchParams) {
+      const initialSearch = searchParams.get("search") || "";
+      setSearchQuery(initialSearch);
+      setDebouncedSearchQuery(initialSearch);
+    }
+  }, [searchParams]);
 
   // Reference for infinite scroll detection - increased threshold for earlier loading
   const { ref, inView } = useInView({
@@ -121,19 +137,21 @@ export const Articles = ({
    * @description Resets state when search changes
    */
   useEffect(() => {
+    const initialSearch = searchParams?.get("search") || "";
     if (debouncedSearchQuery !== initialSearch) {
       setArticles([]);
       setPage(1);
       setHasMore(true);
       setLoading(true);
     }
-  }, [debouncedSearchQuery, initialSearch]);
+  }, [debouncedSearchQuery, searchParams]);
 
   /**
    * @description Fetches more articles when needed for infinite scroll
    */
   useEffect(() => {
     // Skip initial load as we already have the data from SSR
+    const initialSearch = searchParams?.get("search") || "";
     if (
       page === 1 &&
       articles.length > 0 &&
@@ -187,7 +205,7 @@ export const Articles = ({
     };
 
     loadMoreArticles();
-  }, [page, debouncedSearchQuery, hasMore, articles.length, initialSearch]);
+  }, [page, debouncedSearchQuery, hasMore, articles.length, searchParams]);
 
   /**
    * @description Loads more articles when scrolling to the bottom

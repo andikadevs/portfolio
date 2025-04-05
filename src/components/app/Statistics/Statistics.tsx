@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { UserStatistic } from "@/types";
 
@@ -12,9 +12,18 @@ import { UserStatistic } from "@/types";
  */
 export const Statistics = () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const [searchParams, setSearchParams] = useState<URLSearchParams | null>(
+    null
+  );
   const [visitorId, setVisitorId] = useState<string>("");
   const [visitStartTime, setVisitStartTime] = useState<number>(0);
+
+  // Get search params safely on the client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setSearchParams(new URLSearchParams(window.location.search));
+    }
+  }, []);
 
   // Generate or retrieve visitor ID on component mount
   useEffect(() => {
