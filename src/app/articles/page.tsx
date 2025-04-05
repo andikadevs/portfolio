@@ -3,20 +3,23 @@ import { Articles } from "@/components/app";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Articles | AndikaDS",
-  description:
-    "Read articles about web development, programming, and technology from AndikaDS",
+  title: "Articles | Andika Dwi Saputra - Fullstack Developer",
+  description: "Insights and tutorials on web development, programming, and technology by Andika Dwi Saputra. Explore practical knowledge and industry best practices.",
   keywords: [
     "web development",
     "programming",
     "technology",
     "articles",
     "blog",
+    "Andika Dwi Saputra",
+    "fullstack developer",
   ],
+  alternates: {
+    canonical: "/articles",
+  },
   openGraph: {
-    title: "Articles | AndikaDS",
-    description:
-      "Read articles about web development, programming, and technology from AndikaDS",
+    title: "Articles | Andika Dwi Saputra - Fullstack Developer",
+    description: "Insights and tutorials on web development, programming, and technology by Andika Dwi Saputra. Explore practical knowledge and industry best practices.",
     url: "/articles",
     type: "website",
   },

@@ -1,8 +1,17 @@
 import { Button } from "@/components/ui";
 import { IconHome } from "@tabler/icons-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "404 - Page Not Found | Andika Dwi Saputra",
+  description: "The page you're looking for doesn't exist or has been moved.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function NotFound() {
-
   return (
     <div className="min-h-screen flex items-center justify-center pt-16 bg-[var(--background)] relative overflow-hidden">
       <div className="container mx-auto px-4 text-center relative z-10">

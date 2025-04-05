@@ -27,7 +27,7 @@ export const Footer = () => {
                 chat. I&apos;ll buy the coffee.
               </p>
             </div>
-            <Button href="/contact" variant="primary" icon={<IconSend />}>
+            <Button href="https://wa.me/6285743699909" variant="primary" icon={<IconSend />}>
               Wrap it up!
             </Button>
           </div>

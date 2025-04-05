@@ -2,7 +2,11 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { fetchArticleBySlug } from "@/lib/supabase";
 import ReactMarkdown from "react-markdown";
-import { IconBrandGithub, IconBrandInstagram, IconArrowLeft } from "@tabler/icons-react";
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconArrowLeft,
+} from "@tabler/icons-react";
 import { AuthorInfo } from "@/types";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -18,25 +22,58 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     if (!article) {
       return {
-        title: "Article Not Found",
+        title: "Article Not Found | Andika Dwi Saputra",
         description:
           "The article you are looking for doesn't exist or has been removed.",
       };
     }
 
+    const authorName = "Andika Dwi Saputra";
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://andikads.cloud";
+    const articleUrl = `${baseUrl}/articles/${article.slug}`;
+
     return {
-      title: article.title,
-      description:
-        article.meta_description || `Read ${article.title} on our blog`,
-      openGraph: article.image_url
-        ? {
-            images: [{ url: article.image_url, alt: article.title }],
-          }
-        : undefined,
+      title: `${article.title} | Andika Dwi Saputra`,
+      description: article.meta_description || `Read ${article.title} by Andika Dwi Saputra, fullstack developer and tech enthusiast.`,
+      keywords: [
+        "web development",
+        "programming",
+        "technology",
+        "Andika Dwi Saputra",
+        article.title,
+      ],
+      authors: [{ name: authorName }],
+      alternates: {
+        canonical: articleUrl,
+      },
+      openGraph: {
+        title: `${article.title} | Andika Dwi Saputra`,
+        description: article.meta_description || `Read ${article.title} by Andika Dwi Saputra, fullstack developer and tech enthusiast.`,
+        type: "article",
+        url: articleUrl,
+        images: article.image_url
+          ? [
+              {
+                url: article.image_url,
+                alt: article.title,
+                width: 1200,
+                height: 630,
+              },
+            ]
+          : undefined,
+        authors: [authorName],
+        publishedTime: article.created_at,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${article.title} | Andika Dwi Saputra`,
+        description: article.meta_description || `Read ${article.title} by Andika Dwi Saputra.`,
+        images: article.image_url ? [article.image_url] : undefined,
+      },
     };
   } catch {
     return {
-      title: "Article Not Found",
+      title: "Article Not Found | Andika Dwi Saputra",
     };
   }
 }

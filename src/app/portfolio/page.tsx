@@ -13,9 +13,16 @@ import { Metadata } from "next";
  */
 
 export const metadata: Metadata = {
-  title: "Portfolio | Creative Showcase",
-  description:
-    "Explore my latest projects and creative work showcasing innovation and technology.",
+  title: "Portfolio | Andika Dwi Saputra - Fullstack Developer",
+  description: "Browse through Andika Dwi Saputra's professional projects and achievements showcasing expertise in Next.js, React, Laravel, and other web technologies.",
+  alternates: {
+    canonical: "/portfolio",
+  },
+  openGraph: {
+    title: "Portfolio | Andika Dwi Saputra - Fullstack Developer",
+    description: "Browse through Andika Dwi Saputra's professional projects and achievements showcasing expertise in Next.js, React, Laravel, and other web technologies.",
+    url: "/portfolio",
+  },
 };
 
 const HeroParallaxClient = dynamic(
