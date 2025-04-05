@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import { Hud, Navbar, Footer } from "@/components/app";
+import { Hud, Navbar, Footer, Statistics } from "@/components/app";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -38,8 +38,7 @@ export const metadata: Metadata = {
   publisher: "Andika Dwi Saputra",
   metadataBase: new URL("https://andikads.cloud"),
   verification: {
-    google: "verification_token", // Replace with your Google verification token
-    yandex: "verification_token", // Replace with your Yandex verification token
+    google: "google09b0413a67f3be1d.html",
   },
   robots: {
     index: true,
@@ -94,6 +93,7 @@ export default function RootLayout({
           <Footer />
           <Hud />
           <Navbar />
+          <Statistics />
         </ThemeProvider>
       </body>
     </html>

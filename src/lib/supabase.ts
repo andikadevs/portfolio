@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { cache } from 'react';
-import { Article } from '@/types';
+import { Article, SiteAnalytics } from '@/types';
 
 // These should be in your environment variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -119,4 +119,106 @@ export const fetchArticleBySlug = cache(async (slug: string) => {
     console.error('Error fetching article by slug:', error instanceof Error ? error.message : JSON.stringify(error, null, 2));
     return null;
   }
-}); 
+});
+
+/**
+ * Fetches aggregated analytics data for dashboard visualization
+ * @param startDate Optional start date for filtering (ISO string)
+ * @param endDate Optional end date for filtering (ISO string)
+ * @returns Promise with analytics data
+ */
+export async function fetchSiteAnalytics(
+  startDate?: string,
+  endDate?: string
+): Promise<SiteAnalytics> {
+  try {
+    let query = supabase.from('statistics').select('*');
+    
+    // Apply date range filters if provided
+    if (startDate) {
+      query = query.gte('created_at', startDate);
+    }
+    
+    if (endDate) {
+      query = query.lte('created_at', endDate);
+    }
+    
+    const { data, error } = await query;
+    
+    if (error) {
+      console.error('Error fetching analytics data:', error);
+      throw error;
+    }
+    
+    // Calculate metrics from raw data
+    const allVisits = data || [];
+    const uniqueVisitorIds = new Set(allVisits.map(v => v.visitor_id));
+    
+    // Calculate average visit duration (excluding nulls)
+    const visitsWithDuration = allVisits.filter(v => v.visit_duration != null);
+    const totalDuration = visitsWithDuration.reduce((sum, v) => sum + (v.visit_duration || 0), 0);
+    const averageDuration = visitsWithDuration.length > 0 
+      ? totalDuration / visitsWithDuration.length
+      : 0;
+    
+    // Group by page path
+    const pageVisits = allVisits.reduce<Record<string, number>>((acc, visit) => {
+      const path = visit.page_path;
+      if (!acc[path]) acc[path] = 0;
+      acc[path]++;
+      return acc;
+    }, {});
+    
+    // Get top pages
+    const topPages = Object.entries(pageVisits)
+      .map(([page_path, visits]) => ({ page_path, visits }))
+      .sort((a, b) => b.visits - a.visits)
+      .slice(0, 10);
+    
+    // Group by country
+    const countryVisits = allVisits.reduce<Record<string, number>>((acc, visit) => {
+      const country = visit.country || 'Unknown';
+      if (!acc[country]) acc[country] = 0;
+      acc[country]++;
+      return acc;
+    }, {});
+    
+    // Get top countries
+    const topCountries = Object.entries(countryVisits)
+      .map(([country, visits]) => ({ country, visits }))
+      .sort((a, b) => b.visits - a.visits)
+      .slice(0, 5);
+    
+    // Group by day for time series
+    const visitsByDay = allVisits.reduce<Record<string, number>>((acc, visit) => {
+      const day = visit.created_at ? visit.created_at.split('T')[0] : 'Unknown';
+      if (!acc[day]) acc[day] = 0;
+      acc[day]++;
+      return acc;
+    }, {});
+    
+    // Format visits per day for charting
+    const visitsPerDay = Object.entries(visitsByDay)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+    
+    return {
+      totalVisitors: allVisits.length,
+      uniqueVisitors: uniqueVisitorIds.size,
+      averageVisitDuration: averageDuration,
+      topPages,
+      topCountries,
+      visitsPerDay
+    };
+  } catch (error) {
+    console.error('Error calculating analytics:', error);
+    return {
+      totalVisitors: 0,
+      uniqueVisitors: 0,
+      averageVisitDuration: 0,
+      topPages: [],
+      topCountries: [],
+      visitsPerDay: []
+    };
+  }
+} 

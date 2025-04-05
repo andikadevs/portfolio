@@ -80,3 +80,45 @@ export type ArticlePageProps = {
 export type ArticleDetailProps = {
   params: any;
 };
+
+// Statistics and chat messaging interfaces
+export interface UserStatistic {
+  id?: number;
+  page_path: string;
+  visitor_id: string;
+  user_agent: string;
+  ip_address: string;
+  referrer: string;
+  country: string;
+  city: string;
+  region: string;
+  visit_duration?: number;
+  created_at?: string;
+}
+
+export interface ChatMessage {
+  id?: number;
+  visitor_id: string;
+  message: string;
+  is_bot: boolean;
+  context?: string;
+  created_at?: string;
+}
+
+export interface SiteAnalytics {
+  totalVisitors: number;
+  uniqueVisitors: number;
+  averageVisitDuration: number;
+  topPages: {
+    page_path: string;
+    visits: number;
+  }[];
+  topCountries: {
+    country: string;
+    visits: number;
+  }[];
+  visitsPerDay: {
+    date: string;
+    count: number;
+  }[];
+}
