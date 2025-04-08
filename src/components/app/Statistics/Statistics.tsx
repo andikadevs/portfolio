@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -17,11 +19,23 @@ export const Statistics = () => {
   );
   const [visitorId, setVisitorId] = useState<string>("");
   const [visitStartTime, setVisitStartTime] = useState<number>(0);
+  const [refValue, setRefValue] = useState<string | null>(null);
 
   // Get search params safely on the client side
   useEffect(() => {
     if (typeof window !== "undefined") {
       setSearchParams(new URLSearchParams(window.location.search));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has("ref")) {
+        setRefValue(url.searchParams.get("ref"));
+        url.searchParams.delete("ref");
+        window.history.replaceState({}, "", url.toString());
+      }
     }
   }, []);
 
@@ -50,7 +64,7 @@ export const Statistics = () => {
           visitor_id: vid,
           user_agent: navigator.userAgent,
           ip_address: ipData.ip,
-          referrer: document.referrer || "",
+          referrer: refValue || document.referrer || "",
           country: ipData.country || "Unknown",
           city: ipData.city || "Unknown",
           region: ipData.region || "Unknown",
