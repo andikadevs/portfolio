@@ -1,24 +1,12 @@
+/** @format */
+
 "use client";
 
 import { motion } from "motion/react";
-import { useRef, Suspense } from "react";
-import dynamic from "next/dynamic";
+import { useRef } from "react";
 import { Button } from "@/components/ui";
 import { IconBrandGithub } from "@tabler/icons-react";
-
-// Lazy load the DirectionAwareHover component with reduced loading priority
-const DirectionAwareHover = dynamic(
-  () =>
-    import("@/components/ui/DirectionAwareHover/DirectionAwareHover").then(
-      (mod) => ({ default: mod.DirectionAwareHover })
-    ),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full rounded-lg bg-foreground/10 animate-pulse"></div>
-    ),
-  }
-);
+import Image from "next/image";
 
 export const About = () => {
   const ref = useRef(null);
@@ -35,9 +23,29 @@ export const About = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row gap-8 md:gap-12 items-center"
+          className="flex flex-col md:flex-row items-center justify-between gap-8"
         >
-          <div className="order-2 md:order-1 w-full md:w-7/12">
+          {/* Image on the left */}
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="w-full md:w-4/12 order-2 md:order-1"
+          >
+            <div className="relative aspect-square overflow-hidden rounded-xl">
+              <Image
+                src="/static/img/person.webp"
+                alt="Profile Photo"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </motion.div>
+
+          {/* Text content on the right */}
+          <div className="w-full md:w-7/12 text-right order-1 md:order-2">
             <motion.h2
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -51,7 +59,7 @@ export const About = () => {
                 whileInView={{ width: "80px" }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.3 }}
-                className="h-1 bg-accent mt-2"
+                className="h-1 bg-accent mt-2 ml-auto"
               />
             </motion.h2>
 
@@ -85,7 +93,7 @@ export const About = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.3 }}
-              className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
+              className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end"
             >
               <Button
                 href="https://github.com/Andikss"
@@ -101,55 +109,6 @@ export const About = () => {
               </Button>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.4 }}
-            className="order-1 md:order-2 w-full md:w-5/12 relative h-full mx-auto max-w-[400px] md:max-w-none"
-          >
-            <Suspense
-              fallback={
-                <div className="w-full h-full rounded-lg bg-foreground/10 animate-pulse"></div>
-              }
-            >
-              <DirectionAwareHover
-                imageUrl="/static/img/person.webp"
-                className="w-full h-full rounded-lg"
-                imageClassName="object-cover object-bottom filter brightness-80 contrast-105"
-                childrenClassName="bottom-0 left-0 right-0"
-              >
-                <div className="p-5 sm:p-8">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">
-                    Full Stack Developer
-                  </h3>
-                  <p className="text-sm sm:text-base text-text/70">
-                    2+ years of experience
-                  </p>
-
-                  <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-3 sm:gap-4">
-                    <div>
-                      <p className="text-xs sm:text-sm text-text/60">
-                        Specialization
-                      </p>
-                      <p className="text-sm sm:text-base font-medium">
-                        Web Applications
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs sm:text-sm text-text/60">
-                        Based in
-                      </p>
-                      <p className="text-sm sm:text-base font-medium">
-                        Semarang, ID
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </DirectionAwareHover>
-            </Suspense>
-          </motion.div>
         </motion.div>
       </div>
     </section>
