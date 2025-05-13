@@ -1,7 +1,7 @@
 /** @format */
 
 import { motion } from "motion/react";
-import { PointerHighlight } from "../PointerHighlight/PointerHighlight";
+import { PointerHighlight } from "@/components/ui/PointerHighlight";
 
 export const AnimatedText = ({
   text,

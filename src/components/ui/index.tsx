@@ -6,3 +6,5 @@ export * from "./Marquee";
 export * from "./HeroParalax";
 export * from "./Swipercard";
 export * from "./Button";
+export * from "./PointerHighlight";
+export * from "./DraggableCard";
