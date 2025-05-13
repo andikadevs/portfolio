@@ -128,59 +128,69 @@ export default async function PortfolioPage() {
               about technologies used and challenges overcome.
             </p>
           </div>
-          <div className="relative min-h-[800px] p-6 md:p-10 overflow-hidden">
-            {portfolioData.map((item, index) => (
-              <div
-                key={index}
-                className="absolute"
-                style={{
-                  top: index === 0 ? "50%" : `${30 + ((index * 10) % 40)}%`,
-                  left: index === 0 ? "50%" : `${20 + ((index * 15) % 60)}%`,
-                  transform:
-                    index === 0
-                      ? "translate(-50%, -50%)"
-                      : `translate(-50%, -50%) rotate(${
-                          ((index * 5) % 10) - 5
-                        }deg)`,
-                  zIndex: portfolioData.length - index,
-                }}
-              >
-                <DraggableCardClient>
-                  <div className="flex flex-col h-full bg-[var(--dark)] backdrop-blur-sm border border-[var(--foreground)]/10 transition-all duration-300 hover:border-[var(--accent)]/20">
-                    <div className="relative aspect-[16/9] w-80 overflow-hidden">
-                      <Image
-                        src={
-                          item.imgSrc || "/static/portfolio/placeholder.webp"
-                        }
-                        alt={item.title}
-                        width={320}
-                        height={180}
-                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-70 transition-opacity"></div>
+          <div className="relative min-h-[1200px] p-6 md:p-10 overflow-hidden">
+            {portfolioData.map((item, index) => {
+              // Create a more random but controlled distribution
+              const angle = (index * 137.5) % 360; // Golden angle for better distribution
+              const radius = 20 + index * 3; // Reduced radius and increment for tighter spacing
+              const centerX = 50; // Center X position
+              const centerY = 50; // Center Y position
+
+              // Calculate position using polar coordinates
+              const x = centerX + radius * Math.cos((angle * Math.PI) / 180);
+              const y = centerY + radius * Math.sin((angle * Math.PI) / 180);
+
+              // Random rotation between -12 and 12 degrees
+              const rotation = ((index * 5) % 24) - 12;
+
+              return (
+                <div
+                  key={index}
+                  className="absolute"
+                  style={{
+                    top: `${y}%`,
+                    left: `${x}%`,
+                    transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+                    zIndex: portfolioData.length - index,
+                  }}
+                >
+                  <DraggableCardClient>
+                    <div className="flex flex-col h-full bg-[var(--dark)] backdrop-blur-sm border border-[var(--foreground)]/10 transition-all duration-300 hover:border-[var(--accent)]/20">
+                      <div className="relative aspect-[16/9] w-80 overflow-hidden">
+                        <Image
+                          src={
+                            item.imgSrc || "/static/portfolio/placeholder.webp"
+                          }
+                          alt={item.title}
+                          width={320}
+                          height={180}
+                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-70 transition-opacity"></div>
+                      </div>
+                      <div className="p-6 space-y-3">
+                        <h3 className="text-xl font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-[var(--text)]/80 leading-relaxed">
+                          {item.description}
+                        </p>
+                        {item.url && item.url !== "forbidden" && (
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 inline-block text-[var(--accent)] hover:text-[var(--accent)]/80 transition-colors"
+                          >
+                            View Project →
+                          </a>
+                        )}
+                      </div>
                     </div>
-                    <div className="p-6 space-y-3">
-                      <h3 className="text-xl font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-[var(--text)]/80 leading-relaxed">
-                        {item.description}
-                      </p>
-                      {item.url && item.url !== "forbidden" && (
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-4 inline-block text-[var(--accent)] hover:text-[var(--accent)]/80 transition-colors"
-                        >
-                          View Project →
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </DraggableCardClient>
-              </div>
-            ))}
+                  </DraggableCardClient>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

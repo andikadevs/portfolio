@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -82,17 +84,33 @@ export const Navbar = () => {
           setActiveLink(currentPath);
         }
       } else {
-        setActiveLink("/");
+        // On home page, check for hash in URL
+        const hash = window.location.hash;
+        if (hash) {
+          setActiveLink(`/#${hash.substring(1)}`);
+        } else {
+          setActiveLink("/#home");
+        }
       }
 
       // Update active link on scroll for home page sections
-      const scrollSpyHandler = () => handleScrollSpy(navLinks, setActiveLink);
+      const scrollSpyHandler = () => {
+        // Use requestAnimationFrame for smoother updates
+        requestAnimationFrame(() => {
+          handleScrollSpy(navLinks, setActiveLink);
+        });
+      };
 
       // Run once on initial load to set correct active section
       if (currentPath === "/") {
-        setTimeout(scrollSpyHandler, 100);
+        // Add a small delay to ensure DOM is ready
+        const timeoutId = setTimeout(scrollSpyHandler, 100);
+
+        // Use passive scroll listener for better performance
         window.addEventListener("scroll", scrollSpyHandler, { passive: true });
+
         return () => {
+          clearTimeout(timeoutId);
           window.removeEventListener("scroll", scrollSpyHandler);
         };
       }
@@ -113,12 +131,15 @@ export const Navbar = () => {
     // Handle hash links with smooth scrolling
     if (path.includes("#")) {
       e.preventDefault();
-      // Set active link to the full path including hash
+
+      // Set active link immediately for better UX
       setActiveLink(path);
 
       const targetId = path.substring(path.indexOf("#") + 1);
       const isNotHomePage =
         typeof window !== "undefined" && window.location.pathname !== "/";
+
+      // Use smooth scrolling
       scrollToSection(router, targetId, isNotHomePage);
     } else {
       // For non-hash links, set active link directly

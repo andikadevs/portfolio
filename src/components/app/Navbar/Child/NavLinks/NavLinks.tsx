@@ -1,3 +1,5 @@
+/** @format */
+
 import Link from "next/link";
 import { NavLink } from "@/types";
 import { usePathname } from "next/navigation";
@@ -45,7 +47,7 @@ export const NavLinks = ({
           onClick={(e) => handleLinkClick(link.path, e)}
         >
           <span
-            className={`text-base text-[var(--text)] transition-all duration-300 ease-out ${
+            className={`text-base text-[var(--text)] transition-colors duration-300 ease-out ${
               isLinkActive(link)
                 ? "text-[var(--accent)]"
                 : "hover:text-[var(--accent)]"
@@ -54,11 +56,15 @@ export const NavLinks = ({
             {link.name}
           </span>
           <span
-            className={`absolute bottom-0 left-0 w-full h-[2px] ${
+            className={`absolute bottom-0 left-0 w-full h-[2px] bg-[var(--accent)] transform transition-transform duration-300 ease-out ${
               isLinkActive(link)
-                ? "bg-[var(--accent)] scale-x-100"
-                : "bg-[var(--accent)] scale-x-0 group-hover:scale-x-100"
-            } transition-transform duration-300 ease-out origin-left`}
+                ? "scale-x-100"
+                : "scale-x-0 group-hover:scale-x-100"
+            }`}
+            style={{
+              transformOrigin: "left",
+              willChange: "transform",
+            }}
           />
         </Link>
       ))}
