@@ -57,7 +57,7 @@ export const Hero = () => {
               </motion.p>
 
               <AnimatedText
-                text="Full Stack Developer"
+                text="Full Stack [Developer]"
                 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight relative"
               />
 

@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { Button } from "@/components/ui";
 import { IconBrandGithub } from "@tabler/icons-react";
 import Image from "next/image";
+import { PointerHighlight } from "@/components/ui/PointerHighlight";
 
 export const About = () => {
   const ref = useRef(null);
@@ -51,15 +52,17 @@ export const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="text-3xl sm:text-3xl font-bold mb-4 sm:mb-6"
+              className="text-3xl sm:text-3xl font-bold mb-4 sm:mb-6 flex flex-col items-end"
             >
-              <span className="text-text">About Me</span>
+              <PointerHighlight >
+                <span className="text-text">About Me</span>
+              </PointerHighlight>
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: "80px" }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.3 }}
-                className="h-1 bg-accent mt-2 ml-auto"
+                className="h-1 bg-accent mt-2"
               />
             </motion.h2>
 

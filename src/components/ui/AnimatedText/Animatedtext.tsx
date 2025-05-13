@@ -1,4 +1,7 @@
+/** @format */
+
 import { motion } from "motion/react";
+import { PointerHighlight } from "../PointerHighlight/PointerHighlight";
 
 export const AnimatedText = ({
   text,
@@ -22,12 +25,35 @@ export const AnimatedText = ({
     }),
   };
 
-  return (
-    <h1 className={className}>
-      {text.split("").map((char: string, index: number) => (
+  const renderText = () => {
+    const parts = text.split(/(\[.*?\])/);
+    return parts.map((part, index) => {
+      if (part.startsWith("[") && part.endsWith("]")) {
+        const content = part.slice(1, -1);
+        return (
+          <span key={index} className="inline-block">
+            <PointerHighlight>
+              {content.split("").map((char: string, charIndex: number) => (
+                <motion.span
+                  key={charIndex}
+                  custom={charIndex}
+                  variants={letterVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once }}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </PointerHighlight>
+          </span>
+        );
+      }
+      return part.split("").map((char: string, charIndex: number) => (
         <motion.span
-          key={index}
-          custom={index}
+          key={`${index}-${charIndex}`}
+          custom={charIndex}
           variants={letterVariants}
           initial="hidden"
           whileInView="visible"
@@ -36,7 +62,9 @@ export const AnimatedText = ({
         >
           {char === " " ? "\u00A0" : char}
         </motion.span>
-      ))}
-    </h1>
-  );
+      ));
+    });
+  };
+
+  return <h1 className={className}>{renderText()}</h1>;
 };
