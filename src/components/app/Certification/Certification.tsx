@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { IconCalendar, IconBuildingBank } from "@tabler/icons-react";
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
@@ -42,15 +42,10 @@ export function Certification({
     description: cert.description,
   }));
 
-  // Create two different random orders of certifications
-  const firstRandomOrder = useMemo(
-    () => shuffleArray(certifications),
-    [certifications]
-  );
-  const secondRandomOrder = useMemo(
-    () => shuffleArray(certifications),
-    [certifications]
-  );
+  // Use useEffect to shuffle arrays only on the client-side after hydration
+  useEffect(() => {
+    shuffleArray(certifications);
+  }, [certifications]);
 
   const renderCertificationCard = (cert: any, index: number) => (
     <div className="group block rounded-xl overflow-hidden bg-[var(--foreground)] border border-[var(--foreground)] transition-all duration-300 hover:shadow-lg hover:bg-[var(--foreground)] hover:border-[var(--foreground)] h-full mx-4">
@@ -128,7 +123,7 @@ export function Certification({
     <section className="py-12 flex flex-col items-center justify-center">
       <div className="space-y-8 w-full flex flex-col items-center justify-center">
         <Marquee
-          items={firstRandomOrder}
+          items={certifications}
           direction="left"
           speed="slow"
           pauseOnHover={true}
@@ -138,7 +133,7 @@ export function Certification({
         />
 
         <Marquee
-          items={secondRandomOrder}
+          items={certifications}
           direction="right"
           speed="slow"
           pauseOnHover={true}
