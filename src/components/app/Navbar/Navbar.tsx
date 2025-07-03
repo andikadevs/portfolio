@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { NavLink } from "@/types";
-import { scrollToSection, handleScrollSpy } from "@/lib/navigation";
+import { handleScrollSpy } from "@/lib/navigation";
 import { NavLinks, ThemeToggle, SocialLinks, MobileMenu } from "./Child";
 import { useRouter } from "next/navigation";
 
@@ -84,37 +84,56 @@ export const Navbar = () => {
           setActiveLink(currentPath);
         }
       } else {
-        // On home page, check for hash in URL
+        // On home page, check for hash in URL first
         const hash = window.location.hash;
         if (hash) {
           setActiveLink(`/#${hash.substring(1)}`);
         } else {
           setActiveLink("/#home");
         }
-      }
 
-      // Update active link on scroll for home page sections
-      const scrollSpyHandler = () => {
-        // Use requestAnimationFrame for smoother updates
-        requestAnimationFrame(() => {
+        // Setup scroll spy for home page
+        const scrollSpyHandler = () => {
           handleScrollSpy(navLinks, setActiveLink);
+        };
+
+        // Run immediately on mount and after a short delay to ensure all elements are rendered
+        scrollSpyHandler();
+        const initialTimeoutId = setTimeout(scrollSpyHandler, 500);
+
+        // Use throttled scroll event for better performance
+        let isThrottled = false;
+        const throttledScrollHandler = () => {
+          if (!isThrottled) {
+            isThrottled = true;
+            requestAnimationFrame(() => {
+              scrollSpyHandler();
+              setTimeout(() => {
+                isThrottled = false;
+              }, 100);
+            });
+          }
+        };
+
+        window.addEventListener("scroll", throttledScrollHandler, {
+          passive: true,
         });
-      };
+        window.addEventListener("resize", throttledScrollHandler, {
+          passive: true,
+        });
 
-      // Run once on initial load to set correct active section
-      if (currentPath === "/") {
-        // Add a small delay to ensure DOM is ready
-        const timeoutId = setTimeout(scrollSpyHandler, 100);
-
-        // Use passive scroll listener for better performance
-        window.addEventListener("scroll", scrollSpyHandler, { passive: true });
+        // Also recheck when all content is fully loaded
+        window.addEventListener("load", scrollSpyHandler);
 
         return () => {
-          clearTimeout(timeoutId);
-          window.removeEventListener("scroll", scrollSpyHandler);
+          clearTimeout(initialTimeoutId);
+          window.removeEventListener("scroll", throttledScrollHandler);
+          window.removeEventListener("resize", throttledScrollHandler);
+          window.removeEventListener("load", scrollSpyHandler);
         };
       }
     }
+    // Use only navLinks as dependency to avoid errors
   }, [navLinks]);
 
   /**
@@ -139,8 +158,19 @@ export const Navbar = () => {
       const isNotHomePage =
         typeof window !== "undefined" && window.location.pathname !== "/";
 
-      // Use smooth scrolling
-      scrollToSection(router, targetId, isNotHomePage);
+      // If we're on a different page, navigate to home with the hash
+      if (isNotHomePage) {
+        router.push(`/#${targetId}`);
+      } else {
+        // Use smooth scrolling directly if already on home page
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100, // Offset for navbar height
+            behavior: "smooth",
+          });
+        }
+      }
     } else {
       // For non-hash links, set active link directly
       setActiveLink(path);

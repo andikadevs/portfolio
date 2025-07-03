@@ -36,9 +36,22 @@ export const prepareSections = (navLinks: NavLink[]): SectionInfo[] => {
     .filter((link) => link.path.includes("#")) // Include all hash links
     .map((link) => {
       const id = link.path.substring(link.path.indexOf("#") + 1); // Extract ID from path
+      const element = document.getElementById(id);
+
+      // Debug to help troubleshoot if elements aren't being found
+      if (
+        !element &&
+        typeof window !== "undefined" &&
+        process.env.NODE_ENV === "development"
+      ) {
+        console.warn(
+          `Section with ID "${id}" not found in the DOM for link "${link.path}"`
+        );
+      }
+
       return {
         id,
-        element: document.getElementById(id),
+        element,
         path: link.path,
       };
     })
@@ -92,46 +105,71 @@ export const handleScrollSpy = (
     return;
   }
 
-  const sections = prepareSections(navLinks);
+  // Get all sections with IDs that match our navigation links
+  const sections = navLinks
+    .filter((link) => link.path.includes("#"))
+    .map((link) => {
+      const id = link.path.split("#")[1];
+      return {
+        id,
+        element: document.getElementById(id),
+        path: link.path,
+      };
+    })
+    .filter((section) => section.element !== null);
+
   if (sections.length === 0) return;
 
-  // Set home as active only when we're at the very top of the page
+  // Very top of page - always select Home
   if (window.scrollY < 50) {
     setActiveLink("/#home");
     return;
   }
 
-  // Find which section has the top closest to the top of the viewport
-  let bestSection: SectionInfo | null = null;
-  let bestScore: number = -1;
+  // Find the section that's currently most visible in the viewport
+  const headerOffset = 100; // Account for fixed header
 
+  let currentSection: SectionInfo | null = null;
+
+  // First pass: check for sections currently in primary viewing area
   for (const section of sections) {
     if (!section.element) continue;
 
     const rect = section.element.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
 
-    // Calculate how much of the section is in view
-    const visibleTop = Math.max(rect.top, 0);
-    const visibleBottom = Math.min(rect.bottom, viewportHeight);
-    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-
-    // Calculate a score based on visibility and position
-    const visibilityScore = visibleHeight / rect.height;
-    const positionScore = 1 - Math.abs(rect.top) / viewportHeight;
-    const totalScore = visibilityScore * 0.7 + positionScore * 0.3;
-
-    // Skip home section when we're scrolled down significantly
-    if (section.id === "home" && window.scrollY > 200) continue;
-
-    if (totalScore > bestScore) {
-      bestScore = totalScore;
-      bestSection = section;
+    // Check if this section is in the primary viewing area
+    // Primary area is when the section top is at or just past the header
+    if (rect.top <= headerOffset && rect.bottom > headerOffset) {
+      currentSection = section;
+      break; // We found our section, no need to continue checking
     }
   }
 
-  // Update active link if a good section is found
-  if (bestSection !== null && bestScore > 0.1) {
-    setActiveLink(bestSection.path);
+  // If no section was found in the primary area, use a backup approach
+  if (!currentSection) {
+    // Look for the section closest to entering the viewport from the top
+    let minDistance = Infinity;
+
+    for (const section of sections) {
+      if (!section.element) continue;
+
+      const rect = section.element.getBoundingClientRect();
+
+      // Skip sections that are completely above viewport
+      if (rect.bottom < 0) continue;
+
+      // Calculate how close this section is to the primary viewing area
+      const distance = Math.abs(rect.top - headerOffset);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        currentSection = section;
+      }
+    }
+  }
+
+  // Update active link if we found a section
+  if (currentSection) {
+    setActiveLink(currentSection.path);
   }
 };

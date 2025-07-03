@@ -24,17 +24,34 @@ export const NavLinks = ({
 
   // Helper function to check if a link is active
   const isLinkActive = (link: NavLink) => {
-    // For hash links on homepage
-    if (link.path.includes("#") && pathname === "/") {
-      return (
-        activeLink === link.path ||
-        (activeLink.includes("#") &&
-          link.path.endsWith(activeLink.substring(activeLink.indexOf("#"))))
-      );
+    // Extract the section IDs for comparison
+    const activeSectionId = activeLink.includes("#")
+      ? activeLink.split("#")[1]
+      : "";
+    const linkSectionId = link.path.includes("#")
+      ? link.path.split("#")[1]
+      : "";
+
+    // Case 1: Exact match (including hash links)
+    if (activeLink === link.path) {
+      return true;
     }
 
-    // For regular page links
-    return pathname === link.path || activeLink === link.path;
+    // Case 2: Both are hash links and the sections match
+    if (
+      activeLink.includes("#") &&
+      link.path.includes("#") &&
+      activeSectionId === linkSectionId
+    ) {
+      return true;
+    }
+
+    // Case 3: For regular pages (no hash)
+    if (!link.path.includes("#") && pathname === link.path) {
+      return true;
+    }
+
+    return false;
   };
 
   return (
