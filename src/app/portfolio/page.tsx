@@ -128,7 +128,7 @@ export default async function PortfolioPage() {
               about technologies used and challenges overcome.
             </p>
           </div>
-          <div className="relative min-h-[1200px] p-6 md:p-10 overflow-hidden">
+          <div className="relative min-h-[1900px] p-6 md:p-10 overflow-hidden">
             {portfolioData.map((item, index) => {
               // Create a more random but controlled distribution
               const angle = (index * 137.5) % 360; // Golden angle for better distribution
