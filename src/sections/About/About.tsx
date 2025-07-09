@@ -107,7 +107,7 @@ export const About = () => {
                 See My GitHub
               </Button>
 
-              <Button variant="secondary" href="#">
+              <Button variant="secondary" href="/static/portfolio/cv/curicullum-vitae-andika-dwi-saputra.pdf" external>
                 Download <span className="inline-block">Resume</span>
               </Button>
             </motion.div>
