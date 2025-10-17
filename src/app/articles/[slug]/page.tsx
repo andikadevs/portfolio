@@ -240,19 +240,19 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
                   alt={authorInfo.name}
                   width={240}
                   height={240}
-                  className="w-16 h-16 rounded-full"
+                  className="w-24 h-24 sm:w-16 sm:h-16 object-cover rounded-full"
                   loading="lazy"
                 />
 
                 <div className="flex-1">
-                  <h2 className="text-xl font-semibold text-[var(--text)] mb-2 text-center">
+                  <h2 className="text-xl font-semibold text-[var(--text)] mb-2 text-center sm:text-start">
                     Created by {authorInfo.name}
                   </h2>
-                  <p className="text-[var(--text)] mb-4 text-sm leading-relaxed">
+                  <p className="text-[var(--text)] mb-4 text-sm leading-relaxed text-center sm:text-start">
                     {authorInfo.bio}
                   </p>
 
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-4 items-center justify-center sm:justify-start">
                     <a
                       href={`https://github.com/${authorInfo.github}`}
                       target="_blank"
