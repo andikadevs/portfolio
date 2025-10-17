@@ -6,7 +6,7 @@ export function generatePersonSchema(baseUrl: string) {
     url: baseUrl,
     jobTitle: 'Fullstack Developer',
     sameAs: [
-      'https://github.com/Andikss',
+      'https://github.com/andikadevs',
       'https://instagram.com/andikads__',
       'https://wa.me/6285743699909',
       'https://linkedin.com/in/andikadwisaputra',

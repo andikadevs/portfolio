@@ -87,7 +87,7 @@ export async function generateMetadata({
 const authorInfo: AuthorInfo = {
   name: "Andika's AI Assistant",
   bio: "Full-stack developer passionate about building great user experiences. Writing about web development, React, and everything in between.",
-  github: "Andikss",
+  github: "andikadevs",
   instagram: "andikads__",
   avatarUrl: "/static/img/person.webp",
 };

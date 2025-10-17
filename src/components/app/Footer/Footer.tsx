@@ -46,7 +46,7 @@ export const Footer = () => {
             {/* Social links */}
             <div className="flex items-center justify-center gap-8 mb-8">
               <a
-                href="https://github.com/Andikss"
+                href="https://github.com/andikadevs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"

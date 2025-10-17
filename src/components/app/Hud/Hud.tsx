@@ -73,7 +73,7 @@ export const Hud = () => {
     {
       icon: <IconBrandGithub className="w-5 h-5" />,
       label: "GitHub",
-      href: "https://github.com/Andikss",
+      href: "https://github.com/andikadevs",
     },
     {
       icon: <IconBrandMedium />,

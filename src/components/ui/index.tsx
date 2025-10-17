@@ -8,3 +8,4 @@ export * from "./Swipercard";
 export * from "./Button";
 export * from "./PointerHighlight";
 export * from "./DraggableCard";
+export * from "./PixelatedCanvas"

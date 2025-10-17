@@ -99,7 +99,7 @@ export const About = () => {
               className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end"
             >
               <Button
-                href="https://github.com/Andikss"
+                href="https://github.com/andikadevs"
                 external
                 variant="primary"
                 icon={<IconBrandGithub />}

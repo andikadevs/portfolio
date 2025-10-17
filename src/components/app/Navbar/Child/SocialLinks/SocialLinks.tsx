@@ -15,7 +15,7 @@ export const SocialLinks = ({ isMobile = false }: { isMobile?: boolean }) => {
       }`}
     >
       <a
-        href="https://github.com/Andikss"
+        href="https://github.com/andikadevs"
         target="_blank"
         rel="noopener noreferrer"
         className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"

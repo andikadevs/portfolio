@@ -10,6 +10,7 @@ import {
 import { motion, useScroll, useTransform } from "motion/react";
 import { IconArrowRight, IconMessageCircle } from "@tabler/icons-react";
 import { useRef } from "react";
+import Image from "next/image";
 
 // Create a shared layout ID for the image to animate between components
 export const heroImageId = "main-image";
@@ -124,10 +125,12 @@ export const Hero = () => {
             className="hidden lg:block w-[500px] h-[500px] relative"
             layoutId={heroImageId}
           >
-            <img
+            <Image
               src="/static/img/main.webp"
               alt="Main illustration"
               className="w-full h-full object-contain"
+              width={500}
+              height={500}
             />
           </motion.div>
         </div>
