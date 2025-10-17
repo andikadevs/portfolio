@@ -4,12 +4,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { NavLink } from "@/types";
 import { handleScrollSpy } from "@/lib/navigation";
-import { NavLinks, ThemeToggle, SocialLinks, MobileMenu } from "./Child";
+import { NavLinks, SocialLinks, MobileMenu } from "./Child";
 import { useRouter } from "next/navigation";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 /**
  * @author Andika Dwi Saputra
@@ -22,8 +22,6 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
   const router = useRouter();
 
   const navLinks: NavLink[] = [
@@ -35,15 +33,6 @@ export const Navbar = () => {
     { name: "Portfolio", path: "/portfolio" },
     { name: "Articles", path: "/articles" },
   ];
-
-  /**
-   * @author Andika Dwi Saputra
-   * @description Set mounted state to true after mounting
-   */
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   /**
    * @author Andika Dwi Saputra
@@ -257,7 +246,8 @@ export const Navbar = () => {
              * @description Theme toggle component, set app theme state to be dark or light
              */}
 
-            <ThemeToggle theme={theme} setTheme={setTheme} mounted={mounted} />
+
+            <AnimatedThemeToggler  />
 
             {/**
              * Mobile Menu Button
