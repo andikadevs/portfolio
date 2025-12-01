@@ -25,11 +25,6 @@ export const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Hide navbar on article detail pages
-  if (pathname?.startsWith("/articles/") && pathname !== "/articles") {
-    return null;
-  }
-
   const navLinks: NavLink[] = [
     { name: "Home", path: "/#home" },
     { name: "About", path: "/#about" },
@@ -176,6 +171,16 @@ export const Navbar = () => {
    * @author Andika Dwi Saputra
    * @description Display navbar
    */
+
+  /**
+   * @author Andika Dwi Saputra
+   * @description Display navbar
+   */
+
+  // Hide navbar on article detail pages
+  if (pathname?.startsWith("/articles/") && pathname !== "/articles") {
+    return null;
+  }
 
   return (
     <header
