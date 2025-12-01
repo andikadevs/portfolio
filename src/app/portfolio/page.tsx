@@ -118,7 +118,7 @@ export default async function PortfolioPage() {
       </section>
 
       <section className="pt-16 md:pt-24">
-        <div className="container mx-auto">
+        <div className="mx-auto">
           <div className="mb-12 text-center">
             <h2 className="text-3xl sm:text-3xl font-bold mb-3 sm:mb-4 text-[var(--text)]">
               Project Details

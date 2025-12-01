@@ -28,7 +28,7 @@ export default function Home() {
   const websiteSchema = generateWebsiteSchema(baseUrl);
 
   return (
-    <div className="bg-background relative text-text">
+    <div className="bg-background relative text-text max-w-7xl px-12 mx-auto">
       {/* Structured Data for Person */}
       <Script
         id="person-structured-data"

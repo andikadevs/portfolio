@@ -93,7 +93,7 @@ export const Skills = () => {
       id="skills"
       className="py-16 sm:py-24 relative overflow-hidden bg-background"
     >
-      <div className="container mx-auto px-4 lg:px-[34px]">
+      <div className="container mx-auto">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

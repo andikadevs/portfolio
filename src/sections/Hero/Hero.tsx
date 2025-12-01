@@ -38,7 +38,7 @@ export const Hero = () => {
         className="absolute bottom-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] rounded-full bg-[var(--dark)] blur-[60px] sm:blur-[100px]"
       /> */}
 
-      <div className="container mx-auto px-4 lg:px-[68px] z-10">
+      <div className="container mx-auto z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
           <motion.div
             initial={{ opacity: 0 }}

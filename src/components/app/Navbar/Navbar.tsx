@@ -173,7 +173,7 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] z-50 transition-all duration-300 ${
+      className={`fixed max-w-7xl mx-auto top-4 left-1/2 -translate-x-1/2 w-[95%] z-50 transition-all duration-300 ${
         isOpen ? "!w-full left-0 !top-0 -translate-x-0" : ""
       }`}
     >
