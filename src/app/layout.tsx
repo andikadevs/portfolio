@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Andika Dwi Saputra" }],
   creator: "Andika Dwi Saputra",
   publisher: "Andika Dwi Saputra",
-  metadataBase: new URL("https://andikads.cloud"),
+  metadataBase: new URL("https://andikads.vercel.app"),
   verification: {
     google: "google09b0413a67f3be1d.html",
   },
@@ -86,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://andikads.cloud" />
+        <link rel="canonical" href="https://andikads.vercel.app" />
       </head>
       <body className={`${poppins.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

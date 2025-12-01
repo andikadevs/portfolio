@@ -28,7 +28,8 @@ export async function generateMetadata({
     }
 
     const authorName = "Andika Dwi Saputra";
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://andikads.cloud";
+    const baseUrl =
+      process.env.NEXT_PUBLIC_APP_URL || "https://andikads.vercel.app";
     const articleUrl = `${baseUrl}/articles/${article.slug}`;
 
     return {
@@ -109,7 +110,8 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
   );
 
   // Generate structured data for this article
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://andikads.cloud";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_APP_URL || "https://andikads.vercel.app";
   const articleStructuredData = generateArticleSchema(
     {
       title: article.title,

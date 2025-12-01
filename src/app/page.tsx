@@ -23,7 +23,8 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://andikads.cloud";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_APP_URL || "https://andikads.vercel.app";
   const personSchema = generatePersonSchema(baseUrl);
   const websiteSchema = generateWebsiteSchema(baseUrl);
 
