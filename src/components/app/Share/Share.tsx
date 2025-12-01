@@ -12,6 +12,7 @@ import {
   IconSend,
   IconShare,
 } from "@tabler/icons-react";
+import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "motion/react";
 import { ShareProps } from "@/types";
 
@@ -20,6 +21,7 @@ export const Share: React.FC<ShareProps> = ({ url, title }) => {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(url);
+    toast.success("Link copied to clipboard!");
     setIsMobileMenuOpen(false);
   };
 
@@ -104,7 +106,7 @@ export const Share: React.FC<ShareProps> = ({ url, title }) => {
           onClick={() => setIsMobileMenuOpen(true)}
           className="fixed bottom-3 right-4 bg-[var(--dark)] backdrop-blur-sm text-[var(--text)] p-4 rounded-full 
             shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 
-            group border border-[var(--secondary)] z-50 cursor-pointer"
+            group z-50 cursor-pointer"
           aria-label="Share this article"
         >
           <IconShare className="w-5 h-5" />

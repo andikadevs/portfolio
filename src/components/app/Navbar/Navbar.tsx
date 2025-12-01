@@ -8,7 +8,7 @@ import { IconMenu2, IconX } from "@tabler/icons-react";
 import { NavLink } from "@/types";
 import { handleScrollSpy } from "@/lib/navigation";
 import { NavLinks, SocialLinks, MobileMenu } from "./Child";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 /**
@@ -23,6 +23,12 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Hide navbar on article detail pages
+  if (pathname?.startsWith("/articles/") && pathname !== "/articles") {
+    return null;
+  }
 
   const navLinks: NavLink[] = [
     { name: "Home", path: "/#home" },
@@ -246,8 +252,7 @@ export const Navbar = () => {
              * @description Theme toggle component, set app theme state to be dark or light
              */}
 
-
-            <AnimatedThemeToggler  />
+            <AnimatedThemeToggler />
 
             {/**
              * Mobile Menu Button

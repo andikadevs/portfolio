@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Hud, Navbar, Footer, Statistics } from "@/components/app";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -94,6 +95,22 @@ export default function RootLayout({
           <Hud />
           <Navbar />
           <Statistics />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "var(--dark)",
+                color: "var(--text)",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+              },
+              success: {
+                iconTheme: {
+                  primary: "var(--accent)",
+                  secondary: "var(--background)",
+                },
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>
