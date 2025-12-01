@@ -92,7 +92,8 @@ const authorInfo: AuthorInfo = {
 };
 
 export default async function ArticleDetail({ params }: ArticleDetailProps) {
-  const article = await fetchArticleBySlug(params.slug);
+  const resolvedParams = await params;
+  const article = await fetchArticleBySlug(resolvedParams.slug);
 
   if (!article) {
     notFound();
@@ -121,8 +122,6 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
     },
     baseUrl
   );
-
-  const articleUrl = `${baseUrl}/articles/${article.slug}`;
 
   return (
     <div className="flex w-full flex-col items-center bg-background min-h-screen pb-20">

@@ -1,6 +1,6 @@
 /** @format */
 
-import { motion } from "motion/react";
+import { motion, Easing } from "motion/react";
 import { PointerHighlight } from "@/components/ui/PointerHighlight";
 
 export const AnimatedText = ({
@@ -20,7 +20,7 @@ export const AnimatedText = ({
       transition: {
         delay: i * 0.03,
         duration: 0.5,
-        ease: [0.2, 0.65, 0.3, 0.9],
+        ease: "easeOut" as Easing,
       },
     }),
   };

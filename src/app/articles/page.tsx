@@ -29,8 +29,9 @@ export const metadata: Metadata = {
 };
 
 export default async function ArticlesPage({ searchParams }: ArticlePageProps) {
-  const search = searchParams?.search || "";
-  const page = parseInt(searchParams?.page || "1");
+  const resolvedSearchParams = await searchParams;
+  const search = resolvedSearchParams?.search || "";
+  const page = parseInt(resolvedSearchParams?.page || "1");
 
   const initialData = await fetchArticles({
     page,
