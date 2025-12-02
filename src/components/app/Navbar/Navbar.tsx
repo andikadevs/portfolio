@@ -156,7 +156,7 @@ export const Navbar = () => {
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 100, // Offset for navbar height
+            top: targetElement.offsetTop - 40, // Offset for navbar height
             behavior: "smooth",
           });
         }
