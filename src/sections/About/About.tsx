@@ -24,7 +24,7 @@ export const About = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row items-center justify-between gap-8"
+          className="flex flex-col-reverse md:flex-row items-center justify-between gap-8"
         >
           {/* Image on the left */}
           <motion.div
@@ -34,6 +34,24 @@ export const About = () => {
             transition={{ duration: 0.4 }}
             className="w-full md:w-4/12 order-2 md:order-1"
           >
+            <motion.h2
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="text-3xl md:hidden sm:text-3xl font-bold mb-4 sm:mb-6 flex flex-col items-end"
+            >
+              <PointerHighlight>
+                <span className="text-text">About Me</span>
+              </PointerHighlight>
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "80px" }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.3 }}
+                className="h-1 bg-accent mt-2"
+              />
+            </motion.h2>
             <div className="relative aspect-square overflow-hidden rounded-xl">
               <Image
                 src="/static/img/person.webp"
@@ -46,15 +64,15 @@ export const About = () => {
           </motion.div>
 
           {/* Text content on the right */}
-          <div className="w-full md:w-7/12 text-right order-1 md:order-2">
+          <div className="w-full md:w-7/12 text-left md:text-right order-1 md:order-2">
             <motion.h2
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="text-3xl sm:text-3xl font-bold mb-4 sm:mb-6 flex flex-col items-end"
+              className="text-3xl hidden md:flex sm:text-3xl font-bold mb-4 sm:mb-6 flex-col items-end"
             >
-              <PointerHighlight >
+              <PointerHighlight>
                 <span className="text-text">About Me</span>
               </PointerHighlight>
               <motion.div
@@ -107,7 +125,11 @@ export const About = () => {
                 See My GitHub
               </Button>
 
-              <Button variant="secondary" href="/static/portfolio/cv/curicullum-vitae-andika-dwi-saputra.pdf" external>
+              <Button
+                variant="secondary"
+                href="/static/portfolio/cv/curicullum-vitae-andika-dwi-saputra.pdf"
+                external
+              >
                 Download <span className="inline-block">Resume</span>
               </Button>
             </motion.div>
