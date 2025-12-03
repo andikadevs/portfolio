@@ -48,10 +48,10 @@ export function Certification({
   }, [certifications]);
 
   const renderCertificationCard = (cert: any, index: number) => (
-    <div className="group relative flex flex-col h-full mx-4 rounded-2xl bg-[var(--dark)]/90 backdrop-blur-md border border-[var(--foreground)]/10 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-[var(--accent)]/30 hover:-translate-y-1 overflow-hidden">
+    <div className="group relative flex flex-col h-full mx-1 md:mx-4 rounded-2xl bg-[var(--dark)]/90 backdrop-blur-md border border-[var(--foreground)]/10 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-[var(--accent)]/30 hover:-translate-y-1 overflow-hidden">
       {/* Image Section - Triggers Lightbox */}
       <div
-        className="relative h-48 w-full overflow-hidden border-b border-[var(--foreground)]/5 cursor-zoom-in"
+        className="relative h-24 md:h-48 w-full overflow-hidden border-b border-[var(--foreground)]/5 cursor-zoom-in"
         onClick={(e) => {
           e.preventDefault(); // Prevent link click if nested (safety)
           setPhotoIndex(index);
@@ -95,11 +95,11 @@ export function Certification({
         href={cert.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex flex-col flex-grow p-5"
+        className="flex flex-col flex-grow p-2 md:p-5"
       >
         {/* Title Header */}
-        <div className="mb-3">
-          <h3 className="text-lg font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300 line-clamp-1">
+        <div className="mb-1 md:mb-3">
+          <h3 className="text-xs md:text-lg font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300 line-clamp-2 md:line-clamp-1">
             {cert.title}
           </h3>
           {/* Expanding Accent Line */}
@@ -107,7 +107,7 @@ export function Certification({
         </div>
 
         {/* Metadata Row */}
-        <div className="flex items-center gap-4 text-xs font-medium text-[var(--text)]/60 mb-3">
+        <div className="hidden md:flex items-center gap-4 text-xs font-medium text-[var(--text)]/60 mb-3">
           <span className="flex items-center bg-[var(--foreground)]/5 px-2 py-1 rounded-md border border-[var(--foreground)]/5">
             <IconCalendar className="w-3.5 h-3.5 mr-1.5 opacity-70" />
             {cert.date}
@@ -119,14 +119,14 @@ export function Certification({
         </div>
 
         {/* Description */}
-        <div className="text-[var(--text)]/70 text-sm line-clamp-2 leading-relaxed mb-4">
+        <div className="hidden md:block text-[var(--text)]/70 text-xs md:text-sm line-clamp-2 leading-relaxed mb-4">
           {cert.description}
         </div>
 
         {/* Footer / Action */}
-        <div className="mt-auto pt-4 border-t border-[var(--foreground)]/10 flex items-center justify-between group/link">
-          <span className="text-sm font-medium text-[var(--text)] group-hover/link:text-[var(--accent)] transition-colors">
-            Verify Credential
+        <div className="mt-auto pt-1 md:pt-4 border-t border-[var(--foreground)]/10 flex items-center justify-between group/link">
+          <span className="text-[10px] md:text-sm font-medium text-[var(--text)] group-hover/link:text-[var(--accent)] transition-colors">
+            Verify
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +156,7 @@ export function Certification({
           speed="slow"
           pauseOnHover={true}
           className={cn("!w-[100vw]", className)}
-          itemClassName="w-[400px] h-[420px]" // Fixed height helps marquee alignment
+          itemClassName="w-[160px] h-[180px] md:w-[400px] md:h-[420px]" // Fixed height helps marquee alignment
           renderItem={renderCertificationCard}
         />
 
@@ -166,7 +166,7 @@ export function Certification({
           speed="slow"
           pauseOnHover={true}
           className={cn("!w-[100vw]", className)}
-          itemClassName="w-[400px] h-[420px]"
+          itemClassName="w-[160px] h-[180px] md:w-[400px] md:h-[420px]"
           renderItem={renderCertificationCard}
         />
       </div>

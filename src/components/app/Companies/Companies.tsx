@@ -34,17 +34,17 @@ export const Companies = ({ companies = [] }: CompaniesProps) => {
       <Marquee
         items={companiesToShow}
         direction="left"
-        speed="slow"
+        speed="fast"
         pauseOnHover={true}
         className="w-[80vw]"
         renderItem={(company) => (
-          <div className="flex items-center justify-center mx-8 h-20 w-auto">
+          <div className="flex items-center justify-center mx-4 md:mx-8 h-12 md:h-20 w-auto">
             <Image
               src={company.logo}
               alt={company.name}
               width={160}
               height={60}
-              className="h-auto w-auto object-contain max-h-16"
+              className="h-auto w-auto object-contain max-h-8 md:max-h-16 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
             />
           </div>
         )}

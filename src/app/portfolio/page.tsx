@@ -130,6 +130,11 @@ export default async function PortfolioPage() {
             </p>
           </div>
           <div className="relative min-h-[1900px] p-6 md:p-10 overflow-hidden">
+            {/* Top Fade */}
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[var(--background)] to-transparent z-10 pointer-events-none" />
+
+            {/* Bottom Fade */}
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[var(--background)] to-transparent z-10 pointer-events-none" />
             {portfolioData.map((item, index) => {
               // Create a more random but controlled distribution
               const angle = (index * 137.5) % 360; // Golden angle for better distribution
@@ -156,7 +161,7 @@ export default async function PortfolioPage() {
                   }}
                 >
                   <DraggableCardClient>
-                    <div className="group flex flex-col h-full w-80 rounded-2xl bg-[var(--dark)]/90 backdrop-blur-md border border-[var(--foreground)]/10 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-[var(--accent)]/30 hover:-translate-y-1 overflow-hidden">
+                    <div className="group flex flex-col h-full w-60 sm:w-80 rounded-2xl bg-[var(--dark)]/90 backdrop-blur-md border border-[var(--foreground)]/10 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-[var(--accent)]/30 hover:-translate-y-1 overflow-hidden">
                       {/* Image Container - Adjusted aspect ratio for a more 'card-like' feel */}
                       <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-[var(--foreground)]/5">
                         <Image
@@ -173,10 +178,10 @@ export default async function PortfolioPage() {
                       </div>
 
                       {/* Content Container */}
-                      <div className="flex flex-col flex-grow p-6 relative">
+                      <div className="flex flex-col flex-grow p-3 sm:p-6 relative">
                         {/* Header */}
                         <div className="mb-3">
-                          <h3 className="text-xl font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300">
+                          <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300">
                             {item.title}
                           </h3>
                           {/* Optional: Add a subtle divider or category tag here if you have one */}
@@ -184,7 +189,7 @@ export default async function PortfolioPage() {
                         </div>
 
                         {/* Description */}
-                        <p className="text-sm text-[var(--text)]/70 leading-relaxed line-clamp-3 mb-6">
+                        <p className="text-xs sm:text-sm text-[var(--text)]/70 leading-relaxed line-clamp-3 mb-6">
                           {item.description}
                         </p>
 
@@ -195,7 +200,7 @@ export default async function PortfolioPage() {
                               href={item.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="group/link flex items-center text-sm font-medium text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                              className="group/link flex items-center text-xs sm:text-sm font-medium text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                             >
                               View Project
                               <span className="ml-2 transform transition-transform duration-300 group-hover/link:translate-x-1">

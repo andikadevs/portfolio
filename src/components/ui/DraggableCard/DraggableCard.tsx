@@ -177,8 +177,8 @@ export const DraggableCardBody = ({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative min-h-96 w-80 overflow-hidden rounded-md shadow-2xl transform-3d",
-        className,
+        "relative w-fit h-fit rounded-xl transform-3d cursor-grab active:cursor-grabbing",
+        className
       )}
     >
       {children}
@@ -186,7 +186,7 @@ export const DraggableCardBody = ({
         style={{
           opacity: glareOpacity,
         }}
-        className="pointer-events-none absolute inset-0 bg-[var(--accent)]/5 select-none"
+        className="pointer-events-none absolute inset-0 bg-[var(--accent)]/5 select-none rounded-2xl"
       />
     </motion.div>
   );
