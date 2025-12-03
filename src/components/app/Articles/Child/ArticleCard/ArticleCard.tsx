@@ -26,43 +26,66 @@ export const ArticleCard = ({
     <Link
       href={`/articles/${article.slug}`}
       className={cn(
-        "group block rounded-xl overflow-hidden bg-foreground/5 border border-foreground/10 transition-all duration-300 hover:shadow-lg hover:bg-foreground/10 hover:border-foreground/20 h-full",
+        "group flex flex-col h-full rounded-2xl bg-[var(--dark)]/90 backdrop-blur-md border border-[var(--foreground)]/10 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-[var(--accent)]/30 hover:-translate-y-1 overflow-hidden",
         className
       )}
     >
-      {/* Image with gradient overlay */}
-      <div className="relative h-52 md:h-56 w-full overflow-hidden">
+      {/* Image with gradient overlay and border separation */}
+      <div className="relative h-52 md:h-56 w-full overflow-hidden border-b border-[var(--foreground)]/5">
         {article.image_url ? (
           <>
             <Image
               src={article.image_url}
               alt={article.title}
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-70 transition-opacity"></div>
+            {/* Gradient overlay - appears on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--dark)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </>
         ) : (
-          <div className="absolute inset-0 bg-foreground/20 flex items-center justify-center">
-            <span className="text-text/50">No image</span>
+          <div className="absolute inset-0 bg-[var(--foreground)]/5 flex items-center justify-center">
+            <span className="text-[var(--text)]/30 font-mono text-sm">No Preview</span>
           </div>
         )}
       </div>
 
-      {/* Content */}
-      <div className="p-6 space-y-3">
-        <h3 className="text-xl font-semibold text-text group-hover:text-accent transition-colors line-clamp-2">
-          {article.title}
-        </h3>
+      {/* Content Container */}
+      <div className="flex flex-col flex-grow p-6">
+        {/* Title Header */}
+        <div className="mb-4">
+          <h3 className="text-xl font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300 line-clamp-2">
+            {article.title}
+          </h3>
+          {/* Expanding Accent Line */}
+          <div className="h-1 w-12 bg-[var(--accent)]/50 rounded-full mt-3 transition-all duration-500 group-hover:w-full"></div>
+        </div>
 
+        {/* Metadata Chips (Date & Author) */}
+        <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-[var(--text)]/60 mb-4">
+          <span className="flex items-center bg-[var(--foreground)]/5 px-2.5 py-1 rounded-md border border-[var(--foreground)]/5">
+            <IconCalendar className="w-3.5 h-3.5 mr-1.5 opacity-70" />
+            {formattedDate}
+          </span>
+          {article.image_author && (
+            <span className="flex items-center bg-[var(--foreground)]/5 px-2.5 py-1 rounded-md border border-[var(--foreground)]/5">
+              <IconCamera className="w-3.5 h-3.5 mr-1.5 opacity-70" />
+              {article.image_author}
+            </span>
+          )}
+        </div>
+
+        {/* Description */}
         {article.meta_description && (
-          <div className="text-text/80 text-sm line-clamp-3 leading-relaxed">
+          <div className="text-[var(--text)]/70 text-sm line-clamp-3 leading-relaxed mb-6">
             <ReactMarkdown
               components={{
                 p: ({ children }) => <>{children}</>,
                 strong: ({ children }) => (
-                  <strong className="font-semibold">{children}</strong>
+                  <strong className="font-semibold text-[var(--text)]">
+                    {children}
+                  </strong>
                 ),
               }}
             >
@@ -71,27 +94,14 @@ export const ArticleCard = ({
           </div>
         )}
 
-        <div className="flex items-center text-text/60 text-xs pt-3 space-x-4">
-          <span className="flex items-center">
-            <IconCalendar className="w-3.5 h-3.5 mr-1.5 inline" />
-            {formattedDate}
+        {/* Footer / Read More Action */}
+        <div className="mt-auto pt-4 border-t border-[var(--foreground)]/10 flex items-center justify-between group/footer">
+          <span className="text-sm font-medium text-[var(--text)] group-hover/footer:text-[var(--accent)] transition-colors">
+            Read article
           </span>
-          {article.image_author && (
-            <span className="flex items-center">
-              <IconCamera className="w-3.5 h-3.5 mr-1.5 inline" />
-              {article.image_author}
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* Read more indicator */}
-      <div className="px-6 py-3 border-t border-foreground/10">
-        <span className="text-accent text-sm font-medium flex items-center">
-          Read article
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+            className="h-4 w-4 text-[var(--accent)] transform transition-transform duration-300 group-hover:translate-x-1"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -103,7 +113,7 @@ export const ArticleCard = ({
               d="M14 5l7 7m0 0l-7 7m7-7H3"
             />
           </svg>
-        </span>
+        </div>
       </div>
     </Link>
   );
