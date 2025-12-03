@@ -101,10 +101,11 @@ export default async function PortfolioPage() {
   ];
 
   const companies = [
-    { name: "Akastra", logo: "/static/companies/Akastra.png" },
-    { name: "DIGITEK", logo: "/static/companies/DIGITEK.png" },
-    { name: "STEKOM", logo: "/static/companies/STEKOM.png" },
-    { name: "Toploker", logo: "/static/companies/Toploker.png" },
+    { name: "Akastra", logo: "/static/companies/akastra.webp" },
+    { name: "DIGITEK", logo: "/static/companies/digitek.webp" },
+    { name: "STEKOM", logo: "/static/companies/stekom.webp" },
+    { name: "Toploker", logo: "/static/companies/toploker.webp" },
+    { name: "Kerja Malam", logo: "/static/companies/kerjamalam.webp" },
   ];
 
   return (
