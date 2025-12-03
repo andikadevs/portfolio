@@ -48,11 +48,12 @@ export function Certification({
   }, [certifications]);
 
   const renderCertificationCard = (cert: any, index: number) => (
-    <div className="group block rounded-xl overflow-hidden bg-[var(--foreground)] border border-[var(--foreground)] transition-all duration-300 hover:shadow-lg hover:bg-[var(--foreground)] hover:border-[var(--foreground)] h-full mx-4">
-      {/* Image with gradient overlay */}
+    <div className="group relative flex flex-col h-full mx-4 rounded-2xl bg-[var(--dark)]/90 backdrop-blur-md border border-[var(--foreground)]/10 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-[var(--accent)]/30 hover:-translate-y-1 overflow-hidden">
+      {/* Image Section - Triggers Lightbox */}
       <div
-        className="relative h-48 w-full overflow-hidden cursor-pointer"
-        onClick={() => {
+        className="relative h-48 w-full overflow-hidden border-b border-[var(--foreground)]/5 cursor-zoom-in"
+        onClick={(e) => {
+          e.preventDefault(); // Prevent link click if nested (safety)
           setPhotoIndex(index);
           setIsOpen(true);
         }}
@@ -60,60 +61,87 @@ export function Certification({
         <Image
           src={cert.imgSrc}
           alt={cert.title}
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-70 transition-opacity"></div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--dark)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+        {/* Zoom Hint Icon (Optional, appears on hover) */}
+        <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-white w-4 h-4"
+          >
+            <path d="m21 21-6-6" />
+            <circle cx="10" cy="10" r="7" />
+            <line x1="10" x2="10" y1="7" y2="13" />
+            <line x1="7" x2="13" y1="10" y2="10" />
+          </svg>
+        </div>
       </div>
 
-      {/* Content */}
+      {/* Content Section - Links to External URL */}
       <Link
         href={cert.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="block"
+        className="flex flex-col flex-grow p-5"
       >
-        <div className="p-4 space-y-2">
-          <h3 className="text-lg font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors line-clamp-2">
+        {/* Title Header */}
+        <div className="mb-3">
+          <h3 className="text-lg font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300 line-clamp-1">
             {cert.title}
           </h3>
-
-          <div className="text-[var(--text)] text-sm line-clamp-2 leading-relaxed">
-            {cert.description}
-          </div>
-
-          <div className="flex items-center text-[var(--text)] text-xs pt-2 space-x-4">
-            <span className="flex items-center">
-              <IconCalendar className="w-3.5 h-3.5 mr-1.5 inline" />
-              {cert.date}
-            </span>
-            <span className="flex items-center">
-              <IconBuildingBank className="w-3.5 h-3.5 mr-1.5 inline" />
-              {cert.issuer}
-            </span>
-          </div>
+          {/* Expanding Accent Line */}
+          <div className="h-1 w-8 bg-[var(--accent)]/50 rounded-full mt-2 transition-all duration-500 group-hover:w-full"></div>
         </div>
 
-        {/* View Certificate indicator */}
-        <div className="px-4 py-2 border-t border-[var(--foreground)]">
-          <span className="text-[var(--accent)] text-sm font-medium flex items-center">
-            View Certificate
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
+        {/* Metadata Row */}
+        <div className="flex items-center gap-4 text-xs font-medium text-[var(--text)]/60 mb-3">
+          <span className="flex items-center bg-[var(--foreground)]/5 px-2 py-1 rounded-md border border-[var(--foreground)]/5">
+            <IconCalendar className="w-3.5 h-3.5 mr-1.5 opacity-70" />
+            {cert.date}
           </span>
+          <span className="flex items-center bg-[var(--foreground)]/5 px-2 py-1 rounded-md border border-[var(--foreground)]/5">
+            <IconBuildingBank className="w-3.5 h-3.5 mr-1.5 opacity-70" />
+            {cert.issuer}
+          </span>
+        </div>
+
+        {/* Description */}
+        <div className="text-[var(--text)]/70 text-sm line-clamp-2 leading-relaxed mb-4">
+          {cert.description}
+        </div>
+
+        {/* Footer / Action */}
+        <div className="mt-auto pt-4 border-t border-[var(--foreground)]/10 flex items-center justify-between group/link">
+          <span className="text-sm font-medium text-[var(--text)] group-hover/link:text-[var(--accent)] transition-colors">
+            Verify Credential
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 text-[var(--accent)] transform transition-transform duration-300 group-hover/link:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg>
         </div>
       </Link>
     </div>
@@ -128,7 +156,7 @@ export function Certification({
           speed="slow"
           pauseOnHover={true}
           className={cn("!w-[100vw]", className)}
-          itemClassName="w-[400px]"
+          itemClassName="w-[400px] h-[420px]" // Fixed height helps marquee alignment
           renderItem={renderCertificationCard}
         />
 
@@ -138,7 +166,7 @@ export function Certification({
           speed="slow"
           pauseOnHover={true}
           className={cn("!w-[100vw]", className)}
-          itemClassName="w-[400px]"
+          itemClassName="w-[400px] h-[420px]"
           renderItem={renderCertificationCard}
         />
       </div>
