@@ -3,7 +3,7 @@
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export const SwiperCard = ({
   contents,
@@ -19,9 +19,9 @@ export const SwiperCard = ({
 }) => {
   const [active, setActive] = useState(0);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActive((prev) => (prev + 1) % contents.length);
-  };
+  }, [contents.length]);
 
   const handlePrev = () => {
     setActive((prev) => (prev - 1 + contents.length) % contents.length);
@@ -36,7 +36,7 @@ export const SwiperCard = ({
       const interval = setInterval(handleNext, 5000);
       return () => clearInterval(interval);
     }
-  }, [autoplay]);
+  }, [autoplay, handleNext]);
 
   const getRotation = (index: number) => {
     const rotations = [-7, -5, -3, 0, 3, 5, 7];

@@ -1,10 +1,15 @@
 import { supabase } from '@/lib/supabase';
+import { cacheLife, cacheTag } from 'next/cache';
 
 /**
  * Fetches all published article slugs for sitemap generation
  * @returns Array of article slugs and their last modified dates
  */
 export async function getAllArticleSlugs(): Promise<{ slug: string; lastModified: string }[]> {
+  'use cache';
+  cacheLife('days');
+  cacheTag('articles');
+  
   try {
     const { data, error } = await supabase
       .from('articles')

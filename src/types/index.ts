@@ -74,12 +74,12 @@ export type Article = {
 
 // From articles page.tsx
 export type ArticlePageProps = {
-  searchParams: any;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 // From article [slug] page.tsx
 export type ArticleDetailProps = {
-  params: any;
+  params: Promise<{ slug: string }>;
 };
 
 // Statistics and chat messaging interfaces

@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { cache } from 'react';
+import { cacheLife, cacheTag } from 'next/cache';
 import { Article, SiteAnalytics } from '@/types';
 
 // These should be in your environment variables
@@ -24,7 +24,7 @@ export const supabase = createClient(formattedUrl, supabaseAnonKey, {
 });
 
 // Implement cache for fetchArticles to optimize server-side rendering
-export const fetchArticles = cache(async ({
+export async function fetchArticles({
   page = 1,
   limit = 6,
   searchQuery = '',
@@ -34,7 +34,11 @@ export const fetchArticles = cache(async ({
   limit?: number;
   searchQuery?: string;
   status?: 'draft' | 'published';
-}) => {
+}) {
+  'use cache';
+  cacheLife('minutes');
+  cacheTag('articles');
+
   try {
     let query = supabase
       .from('articles')
@@ -87,10 +91,14 @@ export const fetchArticles = cache(async ({
       hasMore: false,
     };
   }
-});
+}
 
 // Implement cache for fetchArticleBySlug
-export const fetchArticleBySlug = cache(async (slug: string) => {
+export async function fetchArticleBySlug(slug: string) {
+  'use cache';
+  cacheLife('days');
+  if (slug) cacheTag(`article-${slug}`);
+
   if (!slug) {
     console.error('No slug provided to fetchArticleBySlug');
     return null;
@@ -119,7 +127,7 @@ export const fetchArticleBySlug = cache(async (slug: string) => {
     console.error('Error fetching article by slug:', error instanceof Error ? error.message : JSON.stringify(error, null, 2));
     return null;
   }
-});
+}
 
 /**
  * Fetches aggregated analytics data for dashboard visualization

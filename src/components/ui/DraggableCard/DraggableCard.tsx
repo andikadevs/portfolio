@@ -61,24 +61,25 @@ export const DraggableCardBody = ({
   );
 
   useEffect(() => {
-    // Set initial constraints
-    setConstraints({
-      top: -window.innerHeight,
-      left: -window.innerWidth,
-      right: window.innerWidth,
-      bottom: window.innerHeight,
-    });
-
-    // Update constraints after mount
+    // Update constraints
     const updateConstraints = () => {
-      if (cardRef.current) {
-        const rect = cardRef.current.getBoundingClientRect();
-        setConstraints({
-          top: -window.innerHeight + rect.height,
-          left: -window.innerWidth + rect.width,
-          right: window.innerWidth - rect.width,
-          bottom: window.innerHeight - rect.height,
-        });
+      if (typeof window !== "undefined") {
+        if (cardRef.current) {
+          const rect = cardRef.current.getBoundingClientRect();
+          setConstraints({
+            top: -window.innerHeight + rect.height,
+            left: -window.innerWidth + rect.width,
+            right: window.innerWidth - rect.width,
+            bottom: window.innerHeight - rect.height,
+          });
+        } else {
+          setConstraints({
+            top: -window.innerHeight,
+            left: -window.innerWidth,
+            right: window.innerWidth,
+            bottom: window.innerHeight,
+          });
+        }
       }
     };
 

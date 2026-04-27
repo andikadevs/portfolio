@@ -2,53 +2,46 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { UserStatistic } from "@/types";
 
 /**
- * @author
+ * @author Andika Dwi Saputra
  *
  * @description Tracks user visits across the site
  */
 export const Statistics = () => {
   const pathname = usePathname();
-  const [searchParams, setSearchParams] = useState<URLSearchParams | null>(
-    null
-  );
-  const [visitorId, setVisitorId] = useState<string>("");
-  const [visitStartTime, setVisitStartTime] = useState<number>(0);
-  const [refValue, setRefValue] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  
+  // Use refs for values that don't need to trigger re-renders
+  const visitorIdRef = useRef<string>("");
+  const visitStartTimeRef = useRef<number>(0);
+  const refValueRef = useRef<string | null>(null);
 
-  // Get search params safely on the client side
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setSearchParams(new URLSearchParams(window.location.search));
-    }
-  }, []);
-
+  // Extract ref from URL on initial load
   useEffect(() => {
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
       if (url.searchParams.has("ref")) {
-        setRefValue(url.searchParams.get("ref"));
+        refValueRef.current = url.searchParams.get("ref");
         url.searchParams.delete("ref");
         window.history.replaceState({}, "", url.toString());
       }
     }
   }, []);
 
-  // Generate or retrieve visitor ID on component mount
+  // Generate or retrieve visitor ID and record visit
   useEffect(() => {
     const getOrCreateVisitorId = () => {
       let storedId = localStorage.getItem("visitor_id");
       if (!storedId) {
-        // Generate a random ID if uuid is not available
         storedId = crypto.randomUUID();
         localStorage.setItem("visitor_id", storedId);
       }
-      setVisitorId(storedId);
+      visitorIdRef.current = storedId;
       return storedId;
     };
 
@@ -64,7 +57,7 @@ export const Statistics = () => {
           visitor_id: vid,
           user_agent: navigator.userAgent,
           ip_address: ipData.ip,
-          referrer: refValue || document.referrer || "",
+          referrer: refValueRef.current || document.referrer || "",
           country: ipData.country || "Unknown",
           city: ipData.city || "Unknown",
           region: ipData.region || "Unknown",
@@ -77,7 +70,7 @@ export const Statistics = () => {
         }
 
         // Start timing the visit duration
-        setVisitStartTime(Date.now());
+        visitStartTimeRef.current = Date.now();
       } catch (error) {
         console.error("Error in visitor tracking:", error);
       }
@@ -88,8 +81,11 @@ export const Statistics = () => {
 
     // Return cleanup function to record visit duration
     return () => {
-      if (visitStartTime > 0 && visitorId) {
-        const duration = Math.floor((Date.now() - visitStartTime) / 1000); // Convert to seconds
+      const startTime = visitStartTimeRef.current;
+      const visitorId = visitorIdRef.current;
+      
+      if (startTime > 0 && visitorId) {
+        const duration = Math.floor((Date.now() - startTime) / 1000);
 
         supabase
           .from("statistics")
@@ -102,7 +98,7 @@ export const Statistics = () => {
           });
       }
     };
-  }, [pathname, searchParams]); // Re-run when path or search params change
+  }, [pathname, searchParams]);
 
   // This component doesn't render anything visible
   return null;

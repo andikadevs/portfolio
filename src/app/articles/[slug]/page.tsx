@@ -16,8 +16,9 @@ import Script from "next/script";
 export async function generateMetadata({
   params,
 }: ArticleDetailProps): Promise<Metadata> {
+  const { slug } = await params;
   try {
-    const article = await fetchArticleBySlug(params.slug);
+    const article = await fetchArticleBySlug(slug);
 
     if (!article) {
       return {

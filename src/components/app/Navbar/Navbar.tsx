@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { NavLink } from "@/types";
@@ -10,6 +10,16 @@ import { handleScrollSpy } from "@/lib/navigation";
 import { NavLinks, SocialLinks, MobileMenu } from "./Child";
 import { useRouter, usePathname } from "next/navigation";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+
+const navLinks: NavLink[] = [
+  { name: "Home", path: "/#home" },
+  { name: "About", path: "/#about" },
+  { name: "Education", path: "/#education" },
+  { name: "Experience", path: "/#experience" },
+  { name: "Skills", path: "/#skills" },
+  { name: "Portfolio", path: "/portfolio" },
+  { name: "Articles", path: "/articles" },
+];
 
 /**
  * @author Andika Dwi Saputra
@@ -21,19 +31,28 @@ import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("/");
   const router = useRouter();
   const pathname = usePathname();
+  
+  // Use state only for scroll-spy updates (hash links)
+  const [activeHashLink, setActiveHashLink] = useState(() => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      return `/#${window.location.hash.substring(1)}`;
+    }
+    return "";
+  });
 
-  const navLinks: NavLink[] = [
-    { name: "Home", path: "/#home" },
-    { name: "About", path: "/#about" },
-    { name: "Education", path: "/#education" },
-    { name: "Experience", path: "/#experience" },
-    { name: "Skills", path: "/#skills" },
-    { name: "Portfolio", path: "/portfolio" },
-    { name: "Articles", path: "/articles" },
-  ];
+  // Memoize active link for non-home pages or initial render
+  const activeLink = useMemo(() => {
+    if (pathname !== "/") {
+      const matchingLink = navLinks.find((link) => {
+        const linkPath = link.path.split("#")[0];
+        return linkPath !== "/" && pathname.startsWith(linkPath);
+      });
+      return matchingLink ? matchingLink.path : pathname;
+    }
+    return activeHashLink || "/#home";
+  }, [pathname, activeHashLink]);
 
   /**
    * @author Andika Dwi Saputra
@@ -54,95 +73,68 @@ export const Navbar = () => {
 
   /**
    * @author Andika Dwi Saputra
-   * @description Set active link based on current path or scroll position
+   * @description Setup scroll spy for home page
    */
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const currentPath = window.location.pathname;
+    if (typeof window !== "undefined" && pathname === "/") {
+      // Setup scroll spy for home page
+      const scrollSpyHandler = () => {
+        handleScrollSpy(navLinks, setActiveHashLink);
+      };
 
-      // For non-home pages, find the matching nav link based on path inclusion
-      if (currentPath !== "/") {
-        const matchingLink = navLinks.find((link) => {
-          const linkPath = link.path.split("#")[0]; // Remove hash if present
-          return linkPath !== "/" && currentPath.startsWith(linkPath);
-        });
+      // Run immediately on mount and after a short delay to ensure all elements are rendered
+      scrollSpyHandler();
+      const initialTimeoutId = setTimeout(scrollSpyHandler, 500);
 
-        if (matchingLink) {
-          setActiveLink(matchingLink.path);
-        } else {
-          setActiveLink(currentPath);
+      // Use throttled scroll event for better performance
+      let isThrottled = false;
+      const throttledScrollHandler = () => {
+        if (!isThrottled) {
+          isThrottled = true;
+          requestAnimationFrame(() => {
+            scrollSpyHandler();
+            setTimeout(() => {
+              isThrottled = false;
+            }, 100);
+          });
         }
-      } else {
-        // On home page, check for hash in URL first
-        const hash = window.location.hash;
-        if (hash) {
-          setActiveLink(`/#${hash.substring(1)}`);
-        } else {
-          setActiveLink("/#home");
-        }
+      };
 
-        // Setup scroll spy for home page
-        const scrollSpyHandler = () => {
-          handleScrollSpy(navLinks, setActiveLink);
-        };
+      window.addEventListener("scroll", throttledScrollHandler, {
+        passive: true,
+      });
+      window.addEventListener("resize", throttledScrollHandler, {
+        passive: true,
+      });
 
-        // Run immediately on mount and after a short delay to ensure all elements are rendered
-        scrollSpyHandler();
-        const initialTimeoutId = setTimeout(scrollSpyHandler, 500);
+      // Also recheck when all content is fully loaded
+      window.addEventListener("load", scrollSpyHandler);
 
-        // Use throttled scroll event for better performance
-        let isThrottled = false;
-        const throttledScrollHandler = () => {
-          if (!isThrottled) {
-            isThrottled = true;
-            requestAnimationFrame(() => {
-              scrollSpyHandler();
-              setTimeout(() => {
-                isThrottled = false;
-              }, 100);
-            });
-          }
-        };
-
-        window.addEventListener("scroll", throttledScrollHandler, {
-          passive: true,
-        });
-        window.addEventListener("resize", throttledScrollHandler, {
-          passive: true,
-        });
-
-        // Also recheck when all content is fully loaded
-        window.addEventListener("load", scrollSpyHandler);
-
-        return () => {
-          clearTimeout(initialTimeoutId);
-          window.removeEventListener("scroll", throttledScrollHandler);
-          window.removeEventListener("resize", throttledScrollHandler);
-          window.removeEventListener("load", scrollSpyHandler);
-        };
-      }
+      return () => {
+        clearTimeout(initialTimeoutId);
+        window.removeEventListener("scroll", throttledScrollHandler);
+        window.removeEventListener("resize", throttledScrollHandler);
+        window.removeEventListener("load", scrollSpyHandler);
+      };
     }
-    // Use only navLinks as dependency to avoid errors
-  }, [navLinks]);
+  }, [pathname]);
 
   /**
    * @author Andika Dwi Saputra
    * @description Handle link clicks for smooth scrolling
    */
 
-  const handleLinkClick = (path: string, e: React.MouseEvent) => {
+  const handleLinkClick = useCallback((path: string, e: React.MouseEvent) => {
     // Close mobile menu if open
-    if (isOpen) {
-      setIsOpen(false);
-    }
+    setIsOpen(false);
 
     // Handle hash links with smooth scrolling
     if (path.includes("#")) {
       e.preventDefault();
 
       // Set active link immediately for better UX
-      setActiveLink(path);
+      setActiveHashLink(path);
 
       const targetId = path.substring(path.indexOf("#") + 1);
       const isNotHomePage =
@@ -162,10 +154,9 @@ export const Navbar = () => {
         }
       }
     } else {
-      // For non-hash links, set active link directly
-      setActiveLink(path);
+      // For non-hash links, the activeLink will be updated via useMemo when pathname changes
     }
-  };
+  }, [router]);
 
   /**
    * @author Andika Dwi Saputra
