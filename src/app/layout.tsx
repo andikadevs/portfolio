@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Hud, Navbar, Footer, Statistics } from "@/components/app";
+import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
@@ -91,10 +92,16 @@ export default function RootLayout({
       <body className={`${poppins.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
-          <Footer />
+          <Suspense>
+            <Footer />
+          </Suspense>
           <Hud />
-          <Navbar />
-          <Statistics />
+          <Suspense>
+            <Navbar />
+          </Suspense>
+          <Suspense>
+            <Statistics />
+          </Suspense>
           <Toaster
             position="top-right"
             toastOptions={{

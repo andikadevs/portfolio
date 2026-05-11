@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js';
-import { cacheLife, cacheTag } from 'next/cache';
 import { Article, SiteAnalytics } from '@/types';
 
 // These should be in your environment variables
@@ -35,9 +34,9 @@ export async function fetchArticles({
   searchQuery?: string;
   status?: 'draft' | 'published';
 }) {
-  'use cache';
-  cacheLife('minutes');
-  cacheTag('articles');
+  
+  
+
 
   try {
     let query = supabase
@@ -95,9 +94,9 @@ export async function fetchArticles({
 
 // Implement cache for fetchArticleBySlug
 export async function fetchArticleBySlug(slug: string) {
-  'use cache';
-  cacheLife('days');
-  if (slug) cacheTag(`article-${slug}`);
+  
+  
+
 
   if (!slug) {
     console.error('No slug provided to fetchArticleBySlug');

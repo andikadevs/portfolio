@@ -1,8 +1,10 @@
 /** @format */
 
 import { NextResponse } from "next/server";
+import { connection } from "next/server";
 
 export async function GET(request: Request) {
+  await connection();
   try {
     // Get IP from multiple possible headers in order of reliability
     const forwardedFor = request.headers.get("x-forwarded-for");
