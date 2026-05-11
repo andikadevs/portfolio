@@ -6,9 +6,11 @@ import React, { useEffect, useRef, useState } from "react";
 export const Timeline = ({
   data,
   position = "left",
+  itemClassName = "",
 }: {
   data: { title: string; content: React.ReactNode }[];
   position?: "left" | "right";
+  itemClassName?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -75,7 +77,8 @@ export const Timeline = ({
                 position === "left"
                   ? "pl-12 pr-2 md:pl-4 md:pr-4"
                   : "pr-12 pl-2 md:pr-4 md:pl-4"
-              } w-full`}
+              } w-full ${itemClassName}`}
+              style={itemClassName ? { opacity: 0 } : {}}
             >
               <h3
                 className={`md:hidden block font-caveat text-lg mb-2 font-bold text-text ${

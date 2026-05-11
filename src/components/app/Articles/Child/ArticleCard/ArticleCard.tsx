@@ -2,117 +2,121 @@ import { Article } from "@/types";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { IconCalendar, IconCamera } from "@tabler/icons-react";
+import { IconCalendar } from "@tabler/icons-react";
 import ReactMarkdown from "react-markdown";
+
+const tapeColors = ["var(--tape-yellow)", "var(--tape-blue)", "var(--tape-pink)"];
 
 export const ArticleCard = ({
   article,
   className,
+  index = 0,
 }: {
   article: Article;
   className?: string;
+  index?: number;
 }) => {
-  // Format the date to a readable format
-  const formattedDate = new Date(article.created_at).toLocaleDateString(
-    "en-US",
-    {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }
-  );
+  const formattedDate = new Date(article.created_at).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
+  const tapeColor = tapeColors[index % 3];
+  const rotation = [-0.8, 0.6, -0.4][index % 3];
 
   return (
     <Link
       href={`/articles/${article.slug}`}
-      className={cn(
-        "group flex flex-col h-full rounded-2xl bg-[var(--dark)]/90 backdrop-blur-md border border-[var(--foreground)]/10 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-[var(--accent)]/30 hover:-translate-y-1 overflow-hidden",
-        className
-      )}
+      className={cn("group block h-full cursor-pointer", className)}
+      style={{
+        transform: `rotate(${rotation}deg)`,
+        transition: "transform 0.2s ease, box-shadow 0.2s ease",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLAnchorElement).style.transform = "rotate(0deg) translateY(-4px)";
+        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "4px 6px 18px rgba(36,22,16,0.18)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLAnchorElement).style.transform = `rotate(${rotation}deg)`;
+        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "";
+      }}
     >
-      {/* Image with gradient overlay and border separation */}
-      <div className="relative h-52 md:h-56 w-full overflow-hidden border-b border-[var(--foreground)]/5">
-        {article.image_url ? (
-          <>
+      <div
+        className="flex flex-col h-full overflow-hidden"
+        style={{
+          background: "var(--paper)",
+          border: "1px solid rgba(184,151,106,0.40)",
+          boxShadow: "2px 3px 10px rgba(36,22,16,0.12)",
+        }}
+      >
+        {/* Tape top strip */}
+        <div className="h-3 w-full" style={{ background: tapeColor }} />
+
+        {/* Image */}
+        <div className="relative h-44 w-full overflow-hidden">
+          {article.image_url ? (
             <Image
               src={article.image_url}
               alt={article.title}
-              className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-            {/* Gradient overlay - appears on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--dark)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-[var(--foreground)]/5 flex items-center justify-center">
-            <span className="text-[var(--text)]/30 font-mono text-sm">No Preview</span>
-          </div>
-        )}
-      </div>
-
-      {/* Content Container */}
-      <div className="flex flex-col flex-grow p-6">
-        {/* Title Header */}
-        <div className="mb-4">
-          <h3 className="text-xl font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300 line-clamp-2">
-            {article.title}
-          </h3>
-          {/* Expanding Accent Line */}
-          <div className="h-1 w-12 bg-[var(--accent)]/50 rounded-full mt-3 transition-all duration-500 group-hover:w-full"></div>
-        </div>
-
-        {/* Metadata Chips (Date & Author) */}
-        <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-[var(--text)]/60 mb-4">
-          <span className="flex items-center bg-[var(--foreground)]/5 px-2.5 py-1 rounded-md border border-[var(--foreground)]/5">
-            <IconCalendar className="w-3.5 h-3.5 mr-1.5 opacity-70" />
-            {formattedDate}
-          </span>
-          {article.image_author && (
-            <span className="flex items-center bg-[var(--foreground)]/5 px-2.5 py-1 rounded-md border border-[var(--foreground)]/5">
-              <IconCamera className="w-3.5 h-3.5 mr-1.5 opacity-70" />
-              {article.image_author}
-            </span>
+          ) : (
+            <div
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ background: "var(--foreground)" }}
+            >
+              <span className="font-mono text-xs text-text/30">no preview</span>
+            </div>
           )}
         </div>
 
-        {/* Description */}
-        {article.meta_description && (
-          <div className="text-[var(--text)]/70 text-sm line-clamp-3 leading-relaxed mb-6">
-            <ReactMarkdown
-              components={{
-                p: ({ children }) => <>{children}</>,
-                strong: ({ children }) => (
-                  <strong className="font-semibold text-[var(--text)]">
-                    {children}
-                  </strong>
-                ),
-              }}
-            >
-              {article.meta_description}
-            </ReactMarkdown>
-          </div>
-        )}
+        {/* Content */}
+        <div
+          className="flex flex-col flex-grow p-4"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(transparent, transparent 23px, rgba(184,151,106,0.12) 23px, rgba(184,151,106,0.12) 24px)",
+            backgroundSize: "100% 24px",
+            backgroundPositionY: "8px",
+          }}
+        >
+          <h3 className="font-caveat text-xl font-bold text-text group-hover:text-accent transition-colors line-clamp-2 mb-1">
+            {article.title}
+          </h3>
+          <div
+            className="h-1.5 w-10 rounded-sm mb-3 transition-all duration-500 group-hover:w-full"
+            style={{ background: "var(--accent)", opacity: 0.5 }}
+          />
 
-        {/* Footer / Read More Action */}
-        <div className="mt-auto pt-4 border-t border-[var(--foreground)]/10 flex items-center justify-between group/footer">
-          <span className="text-sm font-medium text-[var(--text)] group-hover/footer:text-[var(--accent)] transition-colors">
-            Read article
-          </span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 text-[var(--accent)] transform transition-transform duration-300 group-hover:translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+          <div className="flex items-center gap-1 text-xs text-text/55 mb-3 font-mono">
+            <IconCalendar className="w-3 h-3" />
+            {formattedDate}
+          </div>
+
+          {article.meta_description && (
+            <div className="text-text/65 text-sm line-clamp-3 leading-relaxed mb-4">
+              <ReactMarkdown
+                components={{
+                  p: ({ children }) => <>{children}</>,
+                  strong: ({ children }) => <strong className="font-semibold text-text">{children}</strong>,
+                }}
+              >
+                {article.meta_description}
+              </ReactMarkdown>
+            </div>
+          )}
+
+          <div
+            className="mt-auto pt-3 border-t flex items-center justify-between group/link"
+            style={{ borderColor: "rgba(184,151,106,0.25)" }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            />
-          </svg>
+            <span className="font-caveat text-base text-accent group-hover/link:text-text transition-colors">
+              Read article →
+            </span>
+          </div>
         </div>
       </div>
     </Link>

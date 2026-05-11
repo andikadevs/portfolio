@@ -2,33 +2,33 @@
 
 /* ─── Scrapbook Design System ─────────────────────────────────────────────── */
 
-/* Light mode — warm cream paper */
+/* Light mode — warm craft paper */
 :root {
-  --background: #F5F0E8;
-  --foreground: #EDE8DC;
-  --accent: #8B5E3C;
-  --dark: #D4C5AA;
-  --text: #2C1810;
-  --paper: #FBF8F2;
-  --kraft: #C4A77D;
-  --tape-yellow: rgba(232, 197, 71, 0.62);
-  --tape-blue: rgba(126, 200, 227, 0.62);
-  --tape-pink: rgba(240, 160, 170, 0.62);
-  --shadow-paper: 2px 3px 10px rgba(44, 24, 16, 0.12), 0 1px 2px rgba(44, 24, 16, 0.06);
+  --background: #EDE8DC;
+  --foreground: #E4DDD0;
+  --accent: #7A4F2E;
+  --dark: #CFC0A8;
+  --text: #241610;
+  --paper: #F7F3EB;
+  --kraft: #B8976A;
+  --tape-yellow: rgba(192, 152, 46, 0.62);
+  --tape-blue: rgba(62, 92, 124, 0.60);
+  --tape-pink: rgba(88, 108, 72, 0.60);
+  --shadow-paper: 2px 3px 10px rgba(36, 22, 16, 0.14), 0 1px 2px rgba(36, 22, 16, 0.07);
 }
 
-/* Dark mode — aged book / night scrapbook */
+/* Dark mode — original gray palette */
 .dark {
-  --background: #1C1810;
-  --foreground: #2A2318;
-  --accent: #F1BE6C;
-  --dark: #16130E;
-  --text: #E8DCC8;
-  --paper: #2C2418;
-  --kraft: #7A5832;
-  --tape-yellow: rgba(193, 152, 58, 0.50);
-  --tape-blue: rgba(74, 123, 124, 0.50);
-  --tape-pink: rgba(180, 100, 110, 0.50);
+  --background: #303135;
+  --foreground: #3c3e43;
+  --accent: #f1be6c;
+  --dark: #26262b;
+  --text: #e5e5e5;
+  --paper: #35373c;
+  --kraft: #5a5c62;
+  --tape-yellow: rgba(241, 190, 108, 0.50);
+  --tape-blue: rgba(100, 130, 170, 0.50);
+  --tape-pink: rgba(100, 120, 90, 0.50);
   --shadow-paper: 2px 3px 14px rgba(0, 0, 0, 0.40), 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
@@ -67,6 +67,10 @@ body::after {
 
 .font-caveat {
   font-family: var(--font-caveat, 'Caveat', cursive);
+}
+
+.font-mono {
+  font-family: var(--font-mono, 'JetBrains Mono', 'Fira Code', monospace);
 }
 
 /* Polaroid-style photo frame */

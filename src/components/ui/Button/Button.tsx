@@ -22,11 +22,22 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles =
       "relative flex cursor-pointer justify-center items-center px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium rounded-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 gap-2";
 
-    const variants = {
-      primary:
-        "bg-accent text-white border-2 border-accent/80 shadow-[2px_3px_0px_rgba(44,24,16,0.22)] hover:shadow-[3px_4px_0px_rgba(44,24,16,0.28)] active:shadow-[1px_1px_0px_rgba(44,24,16,0.2)]",
-      secondary:
-        "bg-[var(--paper)] text-text border-2 border-kraft shadow-[2px_3px_0px_rgba(44,24,16,0.12)] hover:shadow-[3px_4px_0px_rgba(44,24,16,0.18)] active:shadow-[1px_1px_0px_rgba(44,24,16,0.1)]",
+    const variantClass = {
+      primary: "text-white",
+      secondary: "text-[var(--text)]",
+    };
+
+    const variantStyle: Record<string, React.CSSProperties> = {
+      primary: {
+        backgroundColor: "var(--accent)",
+        border: "2px solid var(--accent)",
+        boxShadow: "2px 3px 0px rgba(36,22,16,0.25)",
+      },
+      secondary: {
+        backgroundColor: "var(--paper)",
+        border: "2px solid var(--kraft)",
+        boxShadow: "2px 3px 0px rgba(36,22,16,0.12)",
+      },
     };
 
     const content = (
@@ -40,7 +51,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return (
         <Link
           href={href}
-          className={cn(baseStyles, variants[variant], className)}
+          className={cn(baseStyles, variantClass[variant], className)}
+          style={variantStyle[variant]}
           {...(external
             ? { target: "_blank", rel: "noopener noreferrer" }
             : {})}
@@ -53,7 +65,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <motion.button
         ref={ref}
-        className={cn(baseStyles, variants[variant], className)}
+        className={cn(baseStyles, variantClass[variant], className)}
+        style={variantStyle[variant]}
         whileHover={{ y: -2 }}
         whileTap={{ y: 0, scale: 0.98 }}
         {...props}

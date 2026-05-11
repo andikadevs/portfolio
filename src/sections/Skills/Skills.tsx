@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Marquee } from "@/components/ui";
 import Image from "next/image";
 
@@ -119,36 +118,33 @@ export const Skills = () => {
       <div className="container mx-auto">
 
         {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-14 sm:mb-18"
-        >
-          <h2 className="font-caveat text-4xl sm:text-5xl font-bold mb-3 text-text">
+        <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-18">
+          <h2
+            className="gsap-section-title font-caveat text-4xl sm:text-5xl font-bold mb-3 text-text"
+            style={{ opacity: 0 }}
+          >
             Technical Skills
           </h2>
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="h-3 w-16 rounded-sm" style={{ background: "var(--tape-yellow)", transform: "rotate(-0.5deg)" }} />
-            <div className="h-3 w-10 rounded-sm" style={{ background: "var(--tape-blue)", transform: "rotate(0.5deg)" }} />
+            <div
+              className="gsap-tape-strip h-3 w-16 rounded-sm"
+              style={{ background: "var(--tape-yellow)", transform: "rotate(-0.5deg)", opacity: 0 }}
+            />
+            <div
+              className="gsap-tape-strip h-3 w-10 rounded-sm"
+              style={{ background: "var(--tape-blue)", transform: "rotate(0.5deg)", opacity: 0 }}
+            />
           </div>
           <p className="text-base sm:text-lg text-text/70">
             A comprehensive overview of my technical expertise across various technologies.
           </p>
-        </motion.div>
+        </div>
 
         {/* Skill category marquees */}
         <div className="space-y-14 sm:space-y-18">
           {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="space-y-5">
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-                className="flex items-center justify-center gap-3"
-              >
+            <div key={categoryIndex} className="gsap-skill-cat space-y-5" style={{ opacity: 0 }}>
+              <div className="flex items-center justify-center gap-3">
                 {/* Tape tab as category label */}
                 <div
                   className="px-4 py-1 font-caveat text-xl font-semibold text-text/80 rounded-sm"
@@ -159,7 +155,7 @@ export const Skills = () => {
                 >
                   {category.name}
                 </div>
-              </motion.div>
+              </div>
 
               <Marquee
                 items={category.skills}
@@ -175,13 +171,7 @@ export const Skills = () => {
         </div>
 
         {/* Languages */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 sm:mt-20 max-w-4xl mx-auto"
-        >
+        <div className="mt-16 sm:mt-20 max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-8">
             <div
               className="px-4 py-1 font-caveat text-xl font-semibold text-text/80 rounded-sm"
@@ -191,38 +181,33 @@ export const Skills = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
+          <div className="gsap-lang-grid grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
             {[
               { name: "English", level: "Professional" },
               { name: "Indonesian", level: "Native" },
               { name: "Javanese", level: "Native" },
               { name: "Japanese", level: "Basic" },
             ].map((language, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="p-4 text-center relative"
+                className="gsap-lang-card p-4 text-center relative"
                 style={{
+                  opacity: 0,
                   background: "var(--paper)",
                   border: "1px solid rgba(196,167,125,0.35)",
                   boxShadow: "2px 3px 8px rgba(44,24,16,0.10)",
-                  transform: `rotate(${[-1, 0.8, -0.5, 1.2][index]}deg)`,
                 }}
               >
-                {/* Push pin */}
                 <div
                   className="absolute -top-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full shadow-sm"
                   style={{ background: "radial-gradient(circle at 40% 40%, #E08080, #C03030)" }}
                 />
                 <h4 className="font-caveat font-bold text-lg text-text mb-1">{language.name}</h4>
                 <p className="text-xs text-text/60 font-medium uppercase tracking-wide">{language.level}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

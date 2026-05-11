@@ -13,37 +13,57 @@ export const ExperienceCard = ({
   technologies: string[];
 }) => {
   return (
-    <div className="relative overflow-hidden bg-[var(--foreground)] hover:shadow-xl transition-all duration-150 ease-out p-6 rounded-lg">
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent-light)] to-transparent opacity-0"
-        animate={{
-          opacity: [0, 0.05, 0],
-          x: ["-100%", "100%", "100%"],
-        }}
-        transition={{
-          duration: 4,
-          ease: "easeInOut",
-          repeat: Infinity,
-        }}
+    <div
+      className="relative overflow-hidden p-5 transition-all duration-200 hover:-translate-y-0.5"
+      style={{
+        background: "var(--paper)",
+        border: "1px solid rgba(184,151,106,0.40)",
+        boxShadow: "2px 3px 10px rgba(36,22,16,0.10)",
+        backgroundImage:
+          "repeating-linear-gradient(transparent, transparent 27px, rgba(184,151,106,0.13) 27px, rgba(184,151,106,0.13) 28px)",
+        backgroundSize: "100% 28px",
+        backgroundPositionY: "14px",
+      }}
+    >
+      {/* Left margin line */}
+      <div
+        className="absolute left-10 top-0 bottom-0 w-px opacity-50"
+        style={{ background: "var(--tape-blue)" }}
       />
-      <div className="relative z-10 animate-fadeIn">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
-          <p className="text-[var(--text)] font-medium">{title}</p>
-          <p className="text-[var(--accent)] text-sm">{date}</p>
+
+      <div className="pl-5 relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-3">
+          <p className="font-caveat text-xl font-bold text-text">{title}</p>
+          <span
+            className="font-mono text-[11px] px-2 py-1 rounded-sm whitespace-nowrap self-start"
+            style={{
+              background: "var(--foreground)",
+              border: "1px solid rgba(184,151,106,0.35)",
+              color: "var(--accent)",
+            }}
+          >
+            {date}
+          </span>
         </div>
-        <p className="text-[var(--text)] mb-4">{content}</p>
-        <div className="mt-4">
-          <p className="text-xs uppercase tracking-wider text-[var(--text)] mb-2">
-            KEY TECHNOLOGIES
-          </p>
+
+        <p className="text-text/75 text-sm leading-relaxed mb-4">{content}</p>
+
+        <div className="mt-3">
           <div className="flex flex-wrap gap-2">
             {technologies.map((skill, idx) => (
-              <span
+              <motion.span
                 key={idx}
-                className="px-3 py-1.5 cursor-pointer bg-[var(--background)] text-[var(--text)] hover:bg-[var(--accent)] hover:text-[var(--background)] hover:scale-105 transition-all duration-100 ease-out rounded-md text-sm"
+                whileHover={{ y: -2 }}
+                className="font-mono text-xs px-2.5 py-1 rounded-sm cursor-default"
+                style={{
+                  background: "var(--foreground)",
+                  color: "var(--text)",
+                  border: "1px solid var(--kraft)",
+                  opacity: 0.9,
+                }}
               >
                 {skill}
-              </span>
+              </motion.span>
             ))}
           </div>
         </div>

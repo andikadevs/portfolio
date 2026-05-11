@@ -266,27 +266,32 @@ export const Articles = ({
     <div className="relative overflow-x-hidden">
       <div className="mb-16 md:mb-20 relative z-10">
         <div
-          className={cn(
-            "relative max-w-2xl mx-auto transition-all duration-300 transform",
-            isSearchFocused ? "scale-100" : "scale-100"
-          )}
+          className="relative max-w-2xl mx-auto"
         >
-          <div className="absolute inset-0 -m-1 bg-[var(--foreground)]/20 rounded-full blur-md"></div>
-          <div className="relative bg-[var(--foreground)]/5 backdrop-blur-md border border-[var(--foreground)]/10 rounded-full shadow-lg overflow-hidden group hover:shadow-[var(--accent)]/20 transition-all duration-500">
-            <div className="absolute inset-0 bg-[var(--accent)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="flex items-center relative">
-              <div className="pl-5 text-[var(--accent)]">
-                <IconSearch className="h-5 w-5 group-hover:animate-pulse" />
+          <div
+            className="relative overflow-hidden"
+            style={{
+              background: "var(--paper)",
+              border: "1px solid rgba(184,151,106,0.45)",
+              boxShadow: "2px 3px 8px rgba(36,22,16,0.10)",
+            }}
+          >
+            {/* Tape top */}
+            <div className="h-2 w-full" style={{ background: "var(--tape-yellow)" }} />
+            <div className="flex items-center">
+              <div className="pl-4 text-accent">
+                <IconSearch className="h-4 w-4" />
               </div>
               <input
                 type="text"
-                className="w-full py-5 pl-4 pr-12 bg-transparent text-[var(--text)] placeholder-[var(--text)]/50 focus:outline-none text-base font-medium"
-                placeholder="Search articles by keyword..."
+                className="w-full py-3.5 pl-3 pr-10 bg-transparent text-text focus:outline-none text-sm font-mono"
+                placeholder="search articles..."
                 value={searchQuery}
                 onChange={handleSearchChange}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
                 aria-label="Search articles"
+                style={{ caretColor: "var(--accent)" }}
               />
               {searchQuery && (
                 <button
@@ -306,7 +311,7 @@ export const Articles = ({
           </div>
         </div>
 
-        <p className="text-center italic text-[var(--text)]/60 mt-3 max-w-2xl mx-auto">
+        <p className="font-caveat text-center text-xl text-text/55 mt-3 max-w-2xl mx-auto">
           Discover insightful articles about technology, design, and innovation
         </p>
 
@@ -390,20 +395,18 @@ export const Articles = ({
       ) : (
         <div className="space-y-16 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {articles.map((article) => (
+            {articles.map((article, articleIndex) => (
               <div
                 key={article.id}
-                className="group article-card transition-all duration-500 ease-out"
+                className="article-card"
                 style={{
                   opacity: "0",
                   transform: "translateY(20px)",
                   willChange: "transform, opacity",
+                  transition: "opacity 0.5s ease, transform 0.5s ease",
                 }}
               >
-                <div className="transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl relative rounded-xl overflow-hidden backdrop-blur-sm bg-[var(--foreground)]/5 border border-[var(--foreground)]/10 group-hover:border-[var(--accent)]/20">
-                  <div className="absolute inset-0 bg-[var(--accent)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <ArticleCard article={article} />
-                </div>
+                <ArticleCard article={article} index={articleIndex} />
               </div>
             ))}
           </div>

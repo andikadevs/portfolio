@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Caveat } from "next/font/google";
+import { Poppins, Caveat, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Hud, Navbar, Footer, Statistics } from "@/components/app";
+import { LenisProvider } from "@/providers/LenisProvider";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
@@ -18,13 +19,19 @@ const caveat = Caveat({
   variable: "--font-caveat",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#121212" },
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: light)", color: "#EDE8DC" },
+    { media: "(prefers-color-scheme: dark)", color: "#303135" },
   ],
 };
 
@@ -95,8 +102,9 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href="https://andikads.vercel.app" />
       </head>
-      <body className={`${poppins.variable} ${caveat.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <body className={`${poppins.variable} ${caveat.variable} ${jetbrainsMono.variable} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <LenisProvider>
           {children}
           <Suspense>
             <Footer />
@@ -124,6 +132,7 @@ export default function RootLayout({
               },
             }}
           />
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>

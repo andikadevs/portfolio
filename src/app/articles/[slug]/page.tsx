@@ -161,8 +161,8 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
             </Link>
 
             <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="px-3 py-1 text-xs font-medium text-[var(--background)] bg-[var(--accent)] rounded-full">
-                Blog
+              <span className="font-mono text-xs px-3 py-1 font-medium text-white rounded-sm" style={{ backgroundColor: "var(--accent)" }}>
+                article
               </span>
               <div className="flex items-center gap-1 text-sm text-[var(--text)]/70">
                 <Calendar className="w-4 h-4" />
@@ -170,7 +170,7 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
               </div>
             </div>
 
-            <h1 className="text-3xl md:text-5xl font-bold text-[var(--text)] mb-6 leading-tight">
+            <h1 className="font-caveat text-3xl md:text-5xl font-bold text-[var(--text)] mb-6 leading-tight">
               {article.title}
             </h1>
 
@@ -209,12 +209,12 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
             components={{
               h1: ({ children }) => <h2 className="hidden">{children}</h2>,
               h2: ({ children }) => (
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 mt-12 text-[var(--text)] leading-tight">
+                <h2 className="font-caveat text-2xl md:text-3xl font-bold mb-4 mt-10 text-text leading-tight">
                   {children}
                 </h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-xl md:text-2xl font-bold mb-4 mt-8 text-[var(--text)] leading-tight">
+                <h3 className="font-caveat text-xl md:text-2xl font-bold mb-3 mt-8 text-text leading-tight">
                   {children}
                 </h3>
               ),
@@ -268,8 +268,16 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
             {article.content}
           </ReactMarkdown>
         </div>
-        <div className="container w-full mt-16 shadow-sm">
-          <div className="border border-gray-700 rounded-lg p-6 bg-dark/50 backdrop-blur-sm">
+        <div className="container w-full mt-16">
+          <div
+            className="p-6"
+            style={{
+              background: "var(--paper)",
+              border: "1px solid rgba(184,151,106,0.40)",
+              boxShadow: "2px 3px 10px rgba(36,22,16,0.10)",
+            }}
+          >
+            <div className="h-2 w-full mb-6 -mt-6 -mx-6" style={{ background: "var(--tape-blue)", width: "calc(100% + 3rem)" }} />
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
               <Image
                 src={authorInfo.avatarUrl}
@@ -281,8 +289,8 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
               />
 
               <div className="flex-1">
-                <h2 className="text-xl font-semibold text-[var(--text)] mb-2 text-center sm:text-start">
-                  Created by {authorInfo.name}
+                <h2 className="font-caveat text-2xl font-bold text-text mb-2 text-center sm:text-start">
+                  Written by {authorInfo.name}
                 </h2>
                 <p className="text-[var(--text)] mb-4 text-sm leading-relaxed text-center sm:text-start">
                   {authorInfo.bio}

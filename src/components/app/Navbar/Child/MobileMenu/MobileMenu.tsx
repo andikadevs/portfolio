@@ -4,13 +4,6 @@ import { NavLink } from "@/types";
 import { SocialLinks } from "../SocialLinks";
 import { usePathname } from "next/navigation";
 
-/**
- * @author Andika Dwi Saputra
- *
- * @date 30/03/2025
- * @description MobileMenu component
- */
-
 export const MobileMenu = ({
   isOpen,
   setIsOpen,
@@ -26,9 +19,7 @@ export const MobileMenu = ({
 }) => {
   const pathname = usePathname();
 
-  // Helper function to check if a link is active
   const isLinkActive = (link: NavLink) => {
-    // For hash links on homepage
     if (link.path.includes("#") && pathname === "/") {
       return (
         activeLink === link.path ||
@@ -36,71 +27,90 @@ export const MobileMenu = ({
           link.path.endsWith(activeLink.substring(activeLink.indexOf("#"))))
       );
     }
-
-    // For regular page links
     return pathname === link.path || activeLink === link.path;
   };
 
   return (
     <div
-      className={`fixed inset-0 bg-[var(--dark)] h-screen z-50 transition-all duration-500 ease-in-out ${
-        isOpen
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none -translate-y-10"
+      className={`fixed inset-0 h-screen z-50 transition-all duration-400 ease-in-out ${
+        isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none -translate-y-10"
       }`}
+      style={{ backgroundColor: "var(--paper)" }}
     >
-      <div className="flex items-center justify-between">
+      {/* Tape strip at top */}
+      <div className="h-1 w-full" style={{ background: "var(--tape-yellow)" }} />
+
+      {/* Header row */}
+      <div className="flex items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="absolute top-4 left-4 overflow-hidden flex items-center"
+          className="font-caveat text-2xl font-bold text-text cursor-pointer"
           onClick={(e) => handleLinkClick("/", e)}
         >
-          <h1 className="text-xl lg:text-2xl font-bold text-[var(--text)] tracking-tight">
-            <span className="bg-clip-text text-text">AndikaDS</span>
-          </h1>
-          <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--accent)] group-hover:w-full transition-all duration-300 ease-out" />
+          AndikaDS
         </Link>
-
-        {/* Close button for mobile */}
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 p-2 rounded-md cursor-pointer text-[var(--accent)]"
+          className="p-2 rounded-sm cursor-pointer text-accent hover:-translate-y-0.5 transition-transform"
           aria-label="Close menu"
+          style={{ border: "1px solid var(--kraft)" }}
         >
-          <IconX size={24} strokeWidth={1.5} />
+          <IconX size={20} strokeWidth={1.5} />
         </button>
       </div>
 
-      <div className="min-h-screen flex flex-col justify-center px-6">
-        <div className="flex flex-col gap-8">
-          {navLinks.map((link, index) => (
-            <Link
-              key={link.name}
-              href={link.path}
-              onClick={(e) => handleLinkClick(link.path, e)}
-              className={`flex items-center group transition-all duration-300 ease-out ${
-                isLinkActive(link)
-                  ? "text-[var(--accent)]"
-                  : "text-[var(--text)]"
-              }`}
-              style={{
-                transitionDelay: `${index * 50}ms`,
-                opacity: isOpen ? 1 : 0,
-              }}
-            >
-              <span className="w-6 h-[2px] bg-[var(--accent)] mr-4 transition-all duration-300 group-hover:w-12" />
-              <span className="text-2xl font-medium tracking-wide">
-                {link.name}
-              </span>
-            </Link>
-          ))}
+      {/* Ruled lines background */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(transparent, transparent 27px, rgba(184,151,106,0.14) 27px, rgba(184,151,106,0.14) 28px)",
+          backgroundSize: "100% 28px",
+        }}
+      />
+
+      {/* Nav links */}
+      <div className="relative min-h-screen flex flex-col justify-center px-8 pb-24">
+        <div className="flex flex-col gap-2">
+          {navLinks.map((link, index) => {
+            const active = isLinkActive(link);
+            return (
+              <Link
+                key={link.name}
+                href={link.path}
+                onClick={(e) => handleLinkClick(link.path, e)}
+                className="relative flex items-center py-3 group cursor-pointer"
+                style={{
+                  transitionDelay: `${index * 40}ms`,
+                  opacity: isOpen ? 1 : 0,
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                }}
+              >
+                {/* Tape indicator for active */}
+                <span
+                  className="w-8 h-[3px] rounded-sm mr-4 flex-shrink-0 transition-all duration-300"
+                  style={{
+                    background: active ? "var(--tape-yellow)" : "var(--kraft)",
+                    opacity: active ? 1 : 0.4,
+                    width: active ? "2rem" : "1rem",
+                  }}
+                />
+                <span
+                  className="font-caveat text-3xl font-bold transition-colors duration-200"
+                  style={{ color: active ? "var(--accent)" : "var(--text)" }}
+                >
+                  {link.name}
+                </span>
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Social links for mobile */}
+        {/* Social links */}
         <div
-          className="mt-16 transition-all duration-500"
+          className="mt-12 transition-all duration-400"
           style={{
-            transitionDelay: `${navLinks.length * 50 + 100}ms`,
+            transitionDelay: `${navLinks.length * 40 + 80}ms`,
             opacity: isOpen ? 1 : 0,
           }}
         >

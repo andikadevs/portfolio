@@ -187,15 +187,29 @@ export const Navbar = () => {
        * @description Animated background effect, will be applied when the menu is open or scrolled
        */}
 
+      {/* Scrolled / open background — paper card style */}
       <div
-        className={`absolute inset-0 transition-all rounded-2xl duration-500 ease-in-out ${
-          isOpen
-            ? "opacity-100 backdrop-blur-md bg-[var(--dark)] shadow-lg"
-            : isScrolled
-            ? "opacity-100 backdrop-blur-md bg-[var(--dark)] shadow-lg"
-            : "opacity-0"
-        }`}
+        className={`absolute inset-0 transition-all duration-400 ease-in-out ${
+          isOpen ? "rounded-none" : "rounded-2xl"
+        } ${isOpen || isScrolled ? "opacity-100" : "opacity-0"}`}
+        style={
+          isOpen || isScrolled
+            ? {
+                backdropFilter: "blur(12px)",
+                backgroundColor: "var(--paper)",
+                border: "1px solid rgba(184,151,106,0.30)",
+                boxShadow: "0 4px 20px rgba(36,22,16,0.14), 0 1px 4px rgba(36,22,16,0.08)",
+              }
+            : {}
+        }
       />
+      {/* Tape strip — shows at bottom of scrolled navbar */}
+      {isScrolled && !isOpen && (
+        <div
+          className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full z-10 opacity-70"
+          style={{ background: "var(--tape-yellow)" }}
+        />
+      )}
 
       <nav className="relative mx-auto px-4 lg:px-8">
         <div className="h-14 flex items-center justify-between">
