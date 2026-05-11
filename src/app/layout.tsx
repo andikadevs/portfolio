@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Caveat } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Hud, Navbar, Footer, Statistics } from "@/components/app";
 import { Suspense } from "react";
@@ -10,6 +10,12 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
+});
+
+const caveat = Caveat({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-caveat",
 });
 
 export const viewport: Viewport = {
@@ -89,7 +95,7 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href="https://andikads.vercel.app" />
       </head>
-      <body className={`${poppins.variable} antialiased`}>
+      <body className={`${poppins.variable} ${caveat.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
           <Suspense>

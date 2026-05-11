@@ -49,7 +49,10 @@ export default function Home() {
       <Education />
       <Experience />
       <Skills />
-      <div className="flex justify-center py-16">
+      <div className="flex flex-col items-center gap-4 py-16">
+        <p className="font-caveat text-2xl text-text/60" style={{ transform: "rotate(-1deg)" }}>
+          want to see more?
+        </p>
         <Button href="/portfolio" variant="primary" icon={<IconArrowRight />}>
           View My Portfolio
         </Button>

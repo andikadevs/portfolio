@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { motion } from "motion/react";
 import { Timeline } from "@/components/ui";
 import { experienceData } from "./Data";
 
@@ -10,17 +11,34 @@ export const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-20 sm:py-28 relative overflow-hidden bg-[var(--background)]"
+      className="py-20 sm:py-28 relative overflow-hidden"
     >
       <div>
-        <div ref={ref} className="mb-4 text-center animate-fadeIn">
-          <h2 className="text-3xl sm:text-3xl font-bold mb-3 sm:mb-4 text-[var(--text)]">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 text-center"
+        >
+          <h2 className="font-caveat text-4xl sm:text-5xl font-bold mb-3 text-text">
             My Experience
           </h2>
-          <p className="text-base sm:text-lg text-[var(--text)] max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div
+              className="h-3 w-20 rounded-sm"
+              style={{ background: "var(--tape-blue)", transform: "rotate(-0.5deg)" }}
+            />
+            <div
+              className="h-3 w-12 rounded-sm"
+              style={{ background: "var(--tape-yellow)", transform: "rotate(0.5deg)" }}
+            />
+          </div>
+          <p className="text-base sm:text-lg text-text/70 max-w-2xl mx-auto">
             Professional experience and achievements that I&apos;ve made
           </p>
-        </div>
+        </motion.div>
 
         <Timeline data={experienceData} />
       </div>

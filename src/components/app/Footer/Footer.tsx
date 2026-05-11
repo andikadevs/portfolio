@@ -10,40 +10,100 @@ import {
   IconSend,
 } from "@tabler/icons-react";
 import { Button } from "@/components/ui";
+import { motion } from "motion/react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <>
-      {/* Project Callout Section */}
-      <div className="w-full py-16 bg-[var(--dark)] relative">
-        <div className="container mx-auto px-4">
-          <div className="bg-[var(--foreground)] rounded-2xl p-12 flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto shadow-lg">
-            <div className="space-y-3 text-center md:text-left">
-              <h2 className="text-3xl font-bold text-[var(--text)]">
-                Start a Project
-              </h2>
-              <p className="text-[var(--text)] opacity-90 max-w-md">
-                Interested in working together? We should queue up a time to
-                chat. I&apos;ll buy the coffee.
-              </p>
+      {/* Project callout — scrapbook card */}
+      <div
+        className="w-full py-16 relative overflow-hidden"
+        style={{ background: "var(--foreground)" }}
+      >
+        {/* Ruled lines */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(transparent, transparent 27px, rgba(196,167,125,0.18) 27px, rgba(196,167,125,0.18) 28px)",
+            backgroundSize: "100% 28px",
+          }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl mx-auto relative"
+            style={{
+              background: "var(--paper)",
+              border: "1px solid rgba(196,167,125,0.40)",
+              boxShadow: "4px 6px 20px rgba(44,24,16,0.14), 0 2px 6px rgba(44,24,16,0.08)",
+              padding: "2.5rem",
+            }}
+          >
+            {/* Top tape */}
+            <div
+              className="absolute -top-3 left-16 h-5 w-24 rounded-sm z-10"
+              style={{ background: "var(--tape-yellow)", transform: "rotate(-2deg)" }}
+            />
+            <div
+              className="absolute -top-3 right-20 h-5 w-16 rounded-sm z-10"
+              style={{ background: "var(--tape-blue)", transform: "rotate(2deg)" }}
+            />
+
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="space-y-3 text-center md:text-left">
+                <h2 className="font-caveat text-3xl sm:text-4xl font-bold text-text">
+                  Start a Project
+                </h2>
+                <p className="text-text/70 max-w-md">
+                  Interested in working together? Let&apos;s queue up a time to chat.
+                  I&apos;ll buy the coffee.
+                </p>
+              </div>
+              <Button
+                href="https://wa.me/6285743699909"
+                variant="primary"
+                icon={<IconSend size={16} />}
+              >
+                Wrap it up!
+              </Button>
             </div>
-            <Button href="https://wa.me/6285743699909" variant="primary" icon={<IconSend />}>
-              Wrap it up!
-            </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Main Footer */}
-      <footer className="w-full py-12 border-t border-[var(--foreground)] bg-[var(--dark)]">
+      {/* Main footer */}
+      <footer
+        className="w-full py-12 border-t"
+        style={{
+          background: "var(--dark)",
+          borderColor: "rgba(196,167,125,0.25)",
+        }}
+      >
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center">
-            {/* Quote */}
-            <p className="text-center text-lg font-medium text-[var(--text)] mb-8 max-w-md mx-auto italic">
+
+            {/* Logo */}
+            <p className="font-caveat text-3xl font-bold text-text mb-5">
+              AndikaDS
+            </p>
+
+            {/* Handwritten quote */}
+            <p className="font-caveat text-center text-xl text-text/60 mb-8 max-w-md mx-auto">
               &ldquo;Living, learning, leveling up one day at a time&rdquo;
             </p>
+
+            {/* Tape accent */}
+            <div className="flex items-center gap-2 mb-8">
+              <div className="h-2.5 w-12 rounded-sm" style={{ background: "var(--tape-yellow)", transform: "rotate(-0.5deg)" }} />
+              <div className="h-2.5 w-8 rounded-sm" style={{ background: "var(--tape-pink)", transform: "rotate(0.5deg)" }} />
+            </div>
 
             {/* Social links */}
             <div className="flex items-center justify-center gap-8 mb-8">
@@ -51,82 +111,60 @@ export const Footer = () => {
                 href="https://github.com/andikadevs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"
+                className="text-text/60 hover:text-accent transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 aria-label="GitHub"
               >
-                <IconBrandGithub size={24} strokeWidth={1.5} />
+                <IconBrandGithub size={22} strokeWidth={1.5} />
               </a>
               <a
                 href="https://linkedin.com/in/andikadwisaputra"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"
+                className="text-text/60 hover:text-accent transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 aria-label="LinkedIn"
               >
-                <IconBrandLinkedin size={24} strokeWidth={1.5} />
+                <IconBrandLinkedin size={22} strokeWidth={1.5} />
               </a>
               <a
-                href="mailto:contact@andikadwisaputra.com"
-                className="text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 hover:-translate-y-1"
+                href="mailto:andikadwisaputra.dev@gmail.com"
+                className="text-text/60 hover:text-accent transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 aria-label="Email"
               >
-                <IconCoffee size={24} strokeWidth={1.5} />
+                <IconCoffee size={22} strokeWidth={1.5} />
               </a>
             </div>
 
-            {/* Navigation links */}
+            {/* Nav links */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-8">
-              <Link
-                href="/#home"
-                className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 relative group"
-              >
-                <span>Home</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent)] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-              <Link
-                href="/#about"
-                className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 relative group"
-              >
-                <span>About</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent)] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-              <Link
-                href="/#skills"
-                className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 relative group"
-              >
-                <span>Skills</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent)] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-              <Link
-                href="/portfolio"
-                className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 relative group"
-              >
-                <span>Portfolio</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent)] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-              <Link
-                href="/articles"
-                className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-all duration-300 relative group"
-              >
-                <span>Articles</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent)] group-hover:w-full transition-all duration-300"></span>
-              </Link>
+              {[
+                { label: "Home", href: "/#home" },
+                { label: "About", href: "/#about" },
+                { label: "Skills", href: "/#skills" },
+                { label: "Portfolio", href: "/portfolio" },
+                { label: "Articles", href: "/articles" },
+              ].map(({ label, href }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className="text-sm text-text/60 hover:text-accent transition-all duration-300 relative group cursor-pointer"
+                >
+                  {label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
+                </Link>
+              ))}
             </div>
 
             {/* Copyright */}
-            <div className="flex flex-col md:flex-row items-center text-sm text-[var(--text)] opacity-80">
+            <div className="flex flex-col md:flex-row items-center text-sm text-text/50 gap-1 md:gap-2">
               <span>&copy; {currentYear} AndikaDS. All rights reserved</span>
-              <span className="mx-2 hidden md:flex">•</span>
+              <span className="hidden md:inline">•</span>
               <span className="flex items-center gap-1">
-                <span>Made with</span>
-                <IconHeart
-                  size={14}
-                  className="text-[var(--accent)]"
-                  fill="currentColor"
-                />
-                <span>in Next.js</span>
+                Made with
+                <IconHeart size={12} className="text-accent" fill="currentColor" />
+                in Next.js
               </span>
             </div>
+
           </div>
         </div>
       </footer>

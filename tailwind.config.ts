@@ -17,6 +17,11 @@ const config: Config = {
         accent: "var(--accent)",
         dark: "var(--dark)",
         text: "var(--text)",
+        paper: "var(--paper)",
+        kraft: "var(--kraft)",
+      },
+      fontFamily: {
+        caveat: ["var(--font-caveat)", "Caveat", "cursive"],
       },
       animation: {
         fadeIn: 'fadeIn 0.6s ease-out forwards',

@@ -49,21 +49,22 @@ export const Timeline = ({
                 position === "right" ? "items-end" : ""
               }`}
             >
+              {/* Push-pin style timeline dot */}
               <div
                 className={`h-6 md:h-10 absolute ${
                   position === "left"
                     ? "left-2 md:left-3"
                     : "right-2 md:right-3"
-                } w-6 md:w-10 rounded-full bg-[var(--background)] dark:bg-[var(--background)] flex items-center justify-center border-2 border-[var(--accent)]`}
+                } w-6 md:w-10 rounded-full bg-background flex items-center justify-center border-2 border-accent`}
               >
-                <div className="h-2 w-2 md:h-4 md:w-4 rounded-full bg-[var(--accent)] border border-[var(--accent)] p-1 md:p-2" />
+                <div className="h-2 w-2 md:h-4 md:w-4 rounded-full bg-accent border border-accent/80 p-1 md:p-2" />
               </div>
               <h3
-                className={`hidden align-las md:block text-xl ${
+                className={`hidden align-las md:block font-caveat text-xl ${
                   position === "left"
                     ? "md:pl-20 !text-left"
                     : "md:pr-20 !text-right"
-                } md:text-2xl font-bold text-[var(--text)]`}
+                } md:text-2xl font-bold text-text`}
               >
                 {item.title}
               </h3>
@@ -77,7 +78,7 @@ export const Timeline = ({
               } w-full`}
             >
               <h3
-                className={`md:hidden block text-lg mb-2 font-bold text-[var(--text)] ${
+                className={`md:hidden block font-caveat text-lg mb-2 font-bold text-text ${
                   position === "left" ? "text-left" : "text-right"
                 }`}
               >

@@ -211,10 +211,10 @@ export const Navbar = () => {
             className="group relative overflow-hidden flex items-center"
             onClick={(e) => handleLinkClick("/", e)}
           >
-            <h1 className="text-xl lg:text-2xl font-bold text-[var(--text)] tracking-tight">
-              <span className="bg-clip-text text-text">AndikaDS</span>
+            <h1 className="font-caveat text-2xl lg:text-3xl font-bold text-text tracking-tight">
+              AndikaDS
             </h1>
-            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--accent)] group-hover:w-full transition-all duration-300 ease-out" />
+            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent group-hover:w-full transition-all duration-300 ease-out" />
           </Link>
 
           {/**

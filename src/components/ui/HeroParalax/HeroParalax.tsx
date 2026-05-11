@@ -189,19 +189,17 @@ export const Header = ({
 
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
-      <h1 className="text-2xl md:text-7xl font-bold text-text">
+      <h1 className="font-caveat text-3xl md:text-7xl font-bold text-text">
         {titleLines.map((line, index) => {
-          // Split the line by square brackets
           const parts = line.split(/(\[.*?\])/);
           return (
             <React.Fragment key={index}>
               {parts.map((part, partIndex) => {
                 if (part.startsWith("[") && part.endsWith("]")) {
-                  // Wrap the text inside brackets with PointerHighlight
-                  const text = part.slice(1, -1); // Remove the brackets
+                  const text = part.slice(1, -1);
                   return (
-                    <span key={partIndex} className="inline-flex">
-                      <PointerHighlight>{text}</PointerHighlight>
+                    <span key={partIndex} className="inline-flex text-accent">
+                      {text}
                     </span>
                   );
                 }
@@ -212,7 +210,12 @@ export const Header = ({
           );
         })}
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 text-text">
+      {/* Washi tape decoration */}
+      <div className="flex items-center gap-2 mt-4 mb-6">
+        <div className="h-3 w-20 rounded-sm" style={{ background: "var(--tape-yellow)", transform: "rotate(-0.5deg)" }} />
+        <div className="h-3 w-12 rounded-sm" style={{ background: "var(--tape-blue)", transform: "rotate(0.5deg)" }} />
+      </div>
+      <p className="max-w-2xl text-base md:text-lg mt-4 text-text/70">
         {description}
       </p>
     </div>
@@ -236,31 +239,44 @@ export const ProductCard = ({
 
   return (
     <motion.div
-      style={{
-        x: translate,
-      }}
-      whileHover={{
-        y: -20,
-      }}
+      style={{ x: translate }}
+      whileHover={{ y: -12 }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative shrink-0"
+      className="group/product shrink-0 cursor-pointer"
+      onClick={() => openGallery(index)}
     >
+      {/* Polaroid-style card */}
       <div
-        onClick={() => openGallery(index)}
-        className="block group-hover/product:shadow-2xl cursor-pointer"
+        className="relative bg-white dark:bg-paper p-2 pb-10 transition-shadow duration-300 group-hover/product:shadow-2xl"
+        style={{
+          boxShadow: "3px 5px 14px rgba(44,24,16,0.16), 0 1px 3px rgba(44,24,16,0.08)",
+          transform: `rotate(${[-1.5, 1, -0.5, 2, -1][index % 5]}deg)`,
+          width: "280px",
+        }}
       >
-        <Image
-          src={product.thumbnail}
-          height="600"
-          width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0"
-          alt={product.title}
+        {/* Tape strip */}
+        <div
+          className="absolute -top-3 left-1/2 -translate-x-1/2 h-5 w-16 rounded-sm z-10"
+          style={{
+            background: `var(--tape-${["yellow","blue","pink","yellow","blue"][index % 5]})`,
+            transform: "translateX(-50%) rotate(-1deg)",
+          }}
         />
+
+        <div className="relative overflow-hidden" style={{ height: "200px" }}>
+          <Image
+            src={product.thumbnail}
+            height={200}
+            width={256}
+            className="object-cover w-full h-full transition-transform duration-500 group-hover/product:scale-105"
+            alt={product.title}
+          />
+        </div>
+
+        <p className="font-caveat text-center text-text/60 text-base mt-2 px-1 truncate">
+          {product.title}
+        </p>
       </div>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-        {product.title}
-      </h2>
     </motion.div>
   );
 };
