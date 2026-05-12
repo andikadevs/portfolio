@@ -102,8 +102,8 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href="https://andikads.vercel.app" />
       </head>
-      <body className={`${poppins.variable} ${caveat.variable} ${jetbrainsMono.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+      <body className={`${poppins.variable} ${caveat.variable} ${jetbrainsMono.variable} antialiased`} suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <LenisProvider>
           {children}
           <Suspense>

@@ -8,7 +8,7 @@ export const Education = () => {
   const ref = useRef(null);
 
   return (
-    <section id="education" className="py-20 sm:py-28 relative overflow-hidden">
+    <section id="education" className="py-20 sm:py-28 relative">
       <div ref={ref}>
         <div className="mb-8 text-center">
           <h2

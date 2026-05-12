@@ -12,7 +12,7 @@ export const About = () => {
   const ref = useRef(null);
 
   return (
-    <section id="about" className="py-16 sm:py-24 relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-24 relative">
       <div
         ref={ref}
         className="flex flex-col-reverse md:flex-row items-start justify-between gap-10 md:gap-14"

@@ -114,7 +114,7 @@ export const Skills = () => {
   );
 
   return (
-    <section id="skills" className="py-16 sm:py-24 relative overflow-hidden">
+    <section id="skills" className="py-16 sm:py-24 relative">
       <div className="container mx-auto">
 
         {/* Section header */}

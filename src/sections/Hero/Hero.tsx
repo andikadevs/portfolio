@@ -20,7 +20,7 @@ export const Hero = () => {
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-4 sm:pt-20"
+      className="relative min-h-screen flex flex-col justify-center items-center pt-4 sm:pt-20"
     >
       {/* Ruled paper lines */}
       <div

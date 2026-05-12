@@ -50,6 +50,7 @@ body {
   color: var(--text);
   font-family: var(--font-poppins, Arial, Helvetica, sans-serif);
   transition: background 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
 /* Paper grain noise overlay — subtle texture on all pages */
