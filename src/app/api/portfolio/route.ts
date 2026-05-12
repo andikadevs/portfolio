@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import portfolioData from '@/data/Portfolio.json';
+import portfolioData from '@/data/portfolio.json';
 import { PortfolioData } from '@/types';
 
 export async function GET() {

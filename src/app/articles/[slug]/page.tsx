@@ -10,7 +10,7 @@ import { AuthorInfo, ArticleDetailProps } from "@/types";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Share } from "@/components/app";
-import { generateArticleSchema } from "@/lib/structuredData";
+import { generateArticleSchema } from "@/lib/structured-data";
 import Script from "next/script";
 
 export async function generateMetadata({

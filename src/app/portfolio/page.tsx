@@ -3,8 +3,8 @@
 import { PortfolioData } from "@/types";
 import { Contact, Certification, Companies } from "@/components/app";
 import dynamic from "next/dynamic";
-import portfolioDataJson from "@/data/Portfolio.json";
-import certificationsDataJson from "@/data/Certifications.json";
+import portfolioDataJson from "@/data/portfolio.json";
+import certificationsDataJson from "@/data/certifications.json";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
 };
 
 const HeroParallaxClient = dynamic(
-  () => import("@/components/ui/HeroParalax").then((mod) => mod.HeroParallax),
+  () => import("@/components/ui/hero-paralax").then((mod) => mod.HeroParallax),
   { ssr: true }
 );
 
 const DraggableCardClient = dynamic(
   () =>
-    import("@/components/ui/DraggableCard").then(
+    import("@/components/ui/draggable-card").then(
       (mod) => mod.DraggableCardBody
     ),
   { ssr: true }

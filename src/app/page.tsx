@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import {
   generatePersonSchema,
   generateWebsiteSchema,
-} from "@/lib/structuredData";
+} from "@/lib/structured-data";
 import Script from "next/script";
-import { HomeClient } from "./HomeClient";
+import { HomeClient } from "./home-client";
 
 export const metadata: Metadata = {
   title: "Home | Andika Dwi Saputra - Fullstack Developer",

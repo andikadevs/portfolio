@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Poppins, Caveat, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Hud, Navbar, Footer, Statistics } from "@/components/app";
-import { LenisProvider } from "@/providers/LenisProvider";
+import { LenisProvider } from "@/providers/lenis-provider";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
