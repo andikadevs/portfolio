@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabaseServer } from '@/lib/supabase';
 import { cacheLife, cacheTag } from 'next/cache';
 
 /**
@@ -11,7 +11,7 @@ export async function getAllArticleSlugs(): Promise<{ slug: string; lastModified
   cacheTag('articles');
   
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseServer
       .from('articles')
       .select('slug, created_at')
       .eq('status', 'published')

@@ -4,7 +4,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { recordVisit, updateVisitDuration } from "@/actions/statistics";
 import { UserStatistic } from "@/types";
 
 /**
@@ -47,27 +47,15 @@ export const Statistics = () => {
 
     const recordPageVisit = async (vid: string) => {
       try {
-        // Get IP and location data
-        const ipResponse = await fetch("/api/ip");
-        const ipData = await ipResponse.json();
-
         // Create statistic record
-        const statistic: UserStatistic = {
+        const statistic: Partial<UserStatistic> = {
           page_path: pathname ?? "/unknown",
           visitor_id: vid,
-          user_agent: navigator.userAgent,
-          ip_address: ipData.ip,
           referrer: refValueRef.current || document.referrer || "",
-          country: ipData.country || "Unknown",
-          city: ipData.city || "Unknown",
-          region: ipData.region || "Unknown",
         };
 
-        // Record visit in database
-        const { error } = await supabase.from("statistics").insert([statistic]);
-        if (error) {
-          console.error("Error recording visit:", error);
-        }
+        // Record visit using server action
+        await recordVisit(statistic);
 
         // Start timing the visit duration
         visitStartTimeRef.current = Date.now();
@@ -86,16 +74,7 @@ export const Statistics = () => {
       
       if (startTime > 0 && visitorId) {
         const duration = Math.floor((Date.now() - startTime) / 1000);
-
-        supabase
-          .from("statistics")
-          .update({ visit_duration: duration })
-          .match({ visitor_id: visitorId, page_path: pathname ?? "/unknown" })
-          .then(({ error }) => {
-            if (error) {
-              console.error("Error updating visit duration:", error);
-            }
-          });
+        updateVisitDuration(visitorId, pathname ?? "/unknown", duration);
       }
     };
   }, [pathname, searchParams]);

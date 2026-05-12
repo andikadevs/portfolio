@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { fetchArticleBySlug } from "@/lib/supabase";
+import { getArticleBySlug } from "@/actions/articles";
 import ReactMarkdown from "react-markdown";
 import { IconBrandGithub, IconBrandInstagram } from "@tabler/icons-react";
 import { Calendar, ChevronLeft } from "lucide-react";
@@ -18,7 +18,7 @@ export async function generateMetadata({
 }: ArticleDetailProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const article = await fetchArticleBySlug(slug);
+    const article = await getArticleBySlug(slug);
 
     if (!article) {
       return {
@@ -95,7 +95,7 @@ const authorInfo: AuthorInfo = {
 
 export default async function ArticleDetail({ params }: ArticleDetailProps) {
   const resolvedParams = await params;
-  const article = await fetchArticleBySlug(resolvedParams.slug);
+  const article = await getArticleBySlug(resolvedParams.slug);
 
   if (!article) {
     notFound();

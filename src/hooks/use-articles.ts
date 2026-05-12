@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useInView } from "react-intersection-observer";
-import { fetchArticles } from "@/lib/supabase";
+import { getArticles } from "@/actions/articles";
 import { Article } from "@/types";
 
 export function useArticles(initialArticles: Article[], initialHasMore: boolean) {
@@ -101,7 +101,7 @@ export function useArticles(initialArticles: Article[], initialHasMore: boolean)
           setSearchLoading(true);
         }
 
-        const result = await fetchArticles({
+        const result = await getArticles({
           page,
           searchQuery: debouncedSearchQuery,
           limit: 9,

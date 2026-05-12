@@ -1,4 +1,4 @@
-import { fetchArticles } from "@/lib/supabase";
+import { getArticles } from "@/actions/articles";
 import { Articles } from "@/components/app";
 import { Metadata } from "next";
 import { ArticlePageProps } from "@/types";
@@ -40,7 +40,7 @@ export default async function ArticlesPage({ searchParams }: ArticlePageProps) {
   const pageStr = Array.isArray(rawPage) ? rawPage[0] : (rawPage || "1");
   const page = parseInt(pageStr);
 
-  const initialData = await fetchArticles({
+  const initialData = await getArticles({
     page,
     searchQuery: search,
     limit: 9, // Match the client-side limit

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabaseServer } from "@/lib/supabase";
 import { UserStatistic } from "@/types";
 
 /**
@@ -46,10 +46,10 @@ export async function POST(request: NextRequest) {
       country: body.country || "Unknown",
       city: body.city || "Unknown",
       region: body.region || "Unknown",
-      visit_duration: body.visit_duration || null,
+      visit_duration: body.visit_duration || undefined,
     };
     
-    const { error } = await supabase.from("statistics").insert([statistic]);
+    const { error } = await supabaseServer.from("statistics").insert([statistic]);
     
     if (error) {
       console.error("Error recording visit:", error);
