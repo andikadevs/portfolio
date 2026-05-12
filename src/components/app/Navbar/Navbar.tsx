@@ -9,7 +9,7 @@ import { NavLink } from "@/types";
 import { handleScrollSpy } from "@/lib/navigation";
 import { NavLinks, SocialLinks, MobileMenu } from "./Child";
 import { useRouter, usePathname } from "next/navigation";
-import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import { AnimatedThemeToggler } from "@/components/ui/AnimatedThemeToggler/AnimatedThemeToggler";
 
 const navLinks: NavLink[] = [
   { name: "Home", path: "/#home" },
